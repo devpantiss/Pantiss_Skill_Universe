@@ -50,7 +50,7 @@ const navLinks: NavLink[] = [
       },
       {
         name: "Recognition of Prior Learning (RPL)",
-        path: "/our-programmes/rpl",
+        path: "/our-programmes/recognition-of-prior-learning",
         description: "Certifies experienced workers' skills for industry recognition.",
       },
       {
