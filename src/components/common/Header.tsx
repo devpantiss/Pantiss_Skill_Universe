@@ -55,7 +55,7 @@ const navLinks: NavLink[] = [
       },
       {
         name: "Apprenticeship & Dual Training Programs",
-        path: "/our-programmes/apprenticeship-dual-training",
+        path: "/our-programmes/apprenticeship-and-dual-training",
         description: "Blends classroom learning with hands-on industry training.",
       },
       {

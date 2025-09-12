@@ -13,6 +13,7 @@ import Collaborations from "./pages/Collaborations";
 import ContactPage from "./pages/ContactPage";
 import ProgramsPage from "./pages/ProgramsPage";
 import RecognitionofPriorLearningPage from "./pages/Programmes/RecognitionofPriorLearningPage";
+import ApprenticeshipAndDualTrainingPage from "./pages/Programmes/ApprenticeshipAndDualTrainingPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function LayoutWrapper() {
         <Route path="/contact-us" element={<ContactPage />} />
         <Route path="/our-programmes" element={<ProgramsPage />} />
         <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} />
+        <Route path="/our-programmes/apprenticeship-and-dual-training" element={<ApprenticeshipAndDualTrainingPage />} />
 
       </Routes>
       {!hideLayout && <Footer />}
