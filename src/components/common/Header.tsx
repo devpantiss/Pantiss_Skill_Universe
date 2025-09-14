@@ -65,7 +65,7 @@ const navLinks: NavLink[] = [
       },
       {
         name: "Diploma & Advanced Diploma Programs",
-        path: "/our-programmes/diploma-advanced",
+        path: "/our-programmes/diploma-programs",
         description: "Structured training for technical and supervisory roles.",
       },
       {
