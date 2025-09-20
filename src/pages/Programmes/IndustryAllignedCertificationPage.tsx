@@ -17,4 +17,4 @@ const IndustryAllignedCertificationPage: React.FC = () => {
   )
 }
 
-export default IndustryAllignedCertificationPage
+export default IndustryAllignedCertificationPage;
