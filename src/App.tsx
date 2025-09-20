@@ -15,6 +15,8 @@ import ProgramsPage from "./pages/ProgramsPage";
 import RecognitionofPriorLearningPage from "./pages/Programmes/RecognitionofPriorLearningPage";
 import ApprenticeshipAndDualTrainingPage from "./pages/Programmes/ApprenticeshipAndDualTrainingPage";
 import DiplomaAndAdvancedDiplomaPage from "./pages/Programmes/DiplomaAndAdvancedDiplomaPage";
+import UpskillingAndReskillingPage from "./pages/Programmes/UpskillingAndReskillingPage";
+import IndustryAllignedCertificationPage from "./pages/Programmes/IndustryAllignedCertificationPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -37,6 +39,8 @@ function LayoutWrapper() {
         <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} />
         <Route path="/our-programmes/apprenticeship-and-dual-training" element={<ApprenticeshipAndDualTrainingPage />} />
         <Route path="/our-programmes/diploma-programs" element={<DiplomaAndAdvancedDiplomaPage />} />
+        <Route path="/our-programmes/upskilling-and-reskilling-program" element={<UpskillingAndReskillingPage />} />
+        <Route path="/our-programmes/industry-alligned-certification" element={<IndustryAllignedCertificationPage />} />
 
       </Routes>
       {!hideLayout && <Footer />}

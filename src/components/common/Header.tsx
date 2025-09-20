@@ -58,46 +58,46 @@ const navLinks: NavLink[] = [
         path: "/our-programmes/apprenticeship-and-dual-training",
         description: "Blends classroom learning with hands-on industry training.",
       },
-      {
-        name: "Certificate Programs (Short-Term, Modular)",
-        path: "/our-programmes/certificate-programs",
-        description: "Short courses for quick, skill-specific job readiness.",
-      },
+      // {
+      //   name: "Certificate Programs (Short-Term, Modular)",
+      //   path: "/our-programmes/certificate-programs",
+      //   description: "Short courses for quick, skill-specific job readiness.",
+      // },
       {
         name: "Diploma & Advanced Diploma Programs",
         path: "/our-programmes/diploma-programs",
         description: "Structured training for technical and supervisory roles.",
       },
-      {
-        name: "Skill Development Bootcamps",
-        path: "/our-programmes/bootcamps",
-        description: "Intensive short-term programs for rapid job entry.",
-      },
-      {
-        name: "Bridge & Foundation Programs",
-        path: "/our-programmes/bridge-foundation",
-        description: "Prepares dropouts for workforce with essential skills.",
-      },
+      // {
+      //   name: "Skill Development Bootcamps",
+      //   path: "/our-programmes/bootcamps",
+      //   description: "Intensive short-term programs for rapid job entry.",
+      // },
+      // {
+      //   name: "Bridge & Foundation Programs",
+      //   path: "/our-programmes/bridge-foundation",
+      //   description: "Prepares dropouts for workforce with essential skills.",
+      // },
       {
         name: "Upskilling & Reskilling Programs",
-        path: "/our-programmes/upskilling-reskilling",
+        path: "/our-programmes/upskilling-and-reskilling-program",
         description: "Adapts workers to new technologies for career longevity.",
       },
       {
         name: "Industry-Aligned Certification Programs",
-        path: "/our-programmes/industry-certifications",
+        path: "/our-programmes/industry-alligned-certification",
         description: "Industry-designed certifications for high employability.",
       },
-      {
-        name: "Continuing Professional Development (CPD)",
-        path: "/our-programmes/cpd",
-        description: "Specialized training for mid-level career advancement.",
-      },
-      {
-        name: "International Mobility Programs",
-        path: "/our-programmes/international-mobility",
-        description: "Global-standard training for overseas job opportunities.",
-      },
+      // {
+      //   name: "Continuing Professional Development (CPD)",
+      //   path: "/our-programmes/cpd",
+      //   description: "Specialized training for mid-level career advancement.",
+      // },
+      // {
+      //   name: "International Mobility Programs",
+      //   path: "/our-programmes/international-mobility",
+      //   description: "Global-standard training for overseas job opportunities.",
+      // },
     ],
   },
   {
@@ -112,7 +112,7 @@ const navLinks: NavLink[] = [
       "Explore our schools driving the blue-collar skills revolution—from Mines & Shipping to Textiles & Robotics, all designed to create career-ready graduates.",
     subLinks: [
       {
-        name: "School of Mines & Shipping",
+        name: "School of Mines, Steel & Power",
         path: "/study/mines-shipping",
         description:
           "Cutting-edge training in mining operations and maritime logistics with advanced labs and fieldwork.",
@@ -120,7 +120,7 @@ const navLinks: NavLink[] = [
           "https://images.unsplash.com/photo-1504384308101-f5691483d42f?auto=format&fit=crop&w=700",
       },
       {
-        name: "School of Green Jobs",
+        name: "School of Power & Energy",
         path: "/study/green-jobs",
         description:
           "Preparing future leaders for green industries through sustainable technology training.",
@@ -128,7 +128,7 @@ const navLinks: NavLink[] = [
           "https://images.unsplash.com/photo-1500534625695-0a6b3f5190ad?auto=format&fit=crop&w=700",
       },
       {
-        name: "School of Semiconductors & Robotics",
+        name: "School of Shipping & Logistics",
         path: "/study/semiconductors-robotics",
         description:
           "Hands-on programs in semiconductors, robotics, and automation technologies for the new economy.",
@@ -136,7 +136,7 @@ const navLinks: NavLink[] = [
           "https://images.unsplash.com/photo-1517435126707-941ebe6640a6?auto=format&fit=crop&w=700",
       },
       {
-        name: "School of Construction Tech.",
+        name: "School of Infra & Facility Management",
         path: "/study/construction-tech",
         description:
           "Smart construction methods and technology, enabling efficient, sustainable building projects.",
@@ -145,6 +145,38 @@ const navLinks: NavLink[] = [
       },
       {
         name: "School of Textiles & Apparals",
+        path: "/study/textiles-apparals",
+        description:
+          "Innovating textile and apparel education with a focus on design, technology, and sustainability.",
+        image:
+          "https://images.unsplash.com/photo-1512436996995-bb3cf3b989b2?auto=format&fit=crop&w=700",
+      },
+      {
+        name: "School of Semiconductor & EV Tech",
+        path: "/study/textiles-apparals",
+        description:
+          "Innovating textile and apparel education with a focus on design, technology, and sustainability.",
+        image:
+          "https://images.unsplash.com/photo-1512436996995-bb3cf3b989b2?auto=format&fit=crop&w=700",
+      },
+      {
+        name: "School of Green Jobs",
+        path: "/study/textiles-apparals",
+        description:
+          "Innovating textile and apparel education with a focus on design, technology, and sustainability.",
+        image:
+          "https://images.unsplash.com/photo-1512436996995-bb3cf3b989b2?auto=format&fit=crop&w=700",
+      },
+      {
+        name: "School of Textiles & Apparels",
+        path: "/study/textiles-apparals",
+        description:
+          "Innovating textile and apparel education with a focus on design, technology, and sustainability.",
+        image:
+          "https://images.unsplash.com/photo-1512436996995-bb3cf3b989b2?auto=format&fit=crop&w=700",
+      },
+      {
+        name: "School of Social Development",
         path: "/study/textiles-apparals",
         description:
           "Innovating textile and apparel education with a focus on design, technology, and sustainability.",
