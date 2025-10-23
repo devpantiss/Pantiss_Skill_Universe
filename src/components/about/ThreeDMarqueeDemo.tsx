@@ -24,7 +24,7 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-pink-500 opacity-30 blur-[150px] rounded-full" />
         <div className="absolute top-2/3 left-2/3 w-80 h-80 bg-blue-500 opacity-30 blur-[150px] rounded-full" />
-        <div className="absolute top-1/3 left-2/3 w-60 h-60 bg-purple-500 opacity-30 blur-[150px] rounded-full" />
+        <div className="absolute top-1/3 left-2/3 w-60 h-60 bg-red-500 opacity-30 blur-[150px] rounded-full" />
       </div>
 
       <div className="grid grid-cols-4 gap-6">

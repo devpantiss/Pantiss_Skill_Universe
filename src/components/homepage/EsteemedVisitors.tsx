@@ -84,7 +84,7 @@ const EsteemedVisitors: React.FC = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-black via-purple-900 to-black py-12 text-white">
+    <section className="bg-gradient-to-b from-black via-red-900 to-black py-12 text-white">
       <div className="container mx-auto px-5">
         <h2 className="text-center text-4xl md:text-5xl font-bold mb-10">
           Esteemed <span className="text-orange-500">Visitors</span>

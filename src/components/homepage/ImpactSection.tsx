@@ -31,7 +31,7 @@ const ImpactSection: React.FC = () => {
       }}
     >
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/20 to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-red-900/20 to-black"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Header Section */}

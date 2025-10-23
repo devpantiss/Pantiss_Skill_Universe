@@ -20,7 +20,7 @@ const ForBusinessBanner: React.FC = () => {
         </p>
         <Link
           to="/job-search-engine/for-businesses"
-          className="bg-purple-600 hover:bg-purple-700 text-white text-xl md:text-2xl font-semibold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/50"
+          className="bg-red-600 hover:bg-red-700 text-white text-xl md:text-2xl font-semibold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-red-500/50"
           aria-label="Register now to hire talent and post job openings"
         >
           Register & Post Jobs

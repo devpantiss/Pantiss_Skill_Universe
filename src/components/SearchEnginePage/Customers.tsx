@@ -40,7 +40,7 @@ const Customers: React.FC = () => {
   };
 
   return (
-    <div className="bg-purple-900 py-10 px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-y-8">
+    <div className="bg-red-900 py-10 px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-y-8">
       {/* Header section */}
       <div className="text-left w-full lg:w-1/2">
         <h2 className="text-2xl text-white lg:text-4xl font-bold">

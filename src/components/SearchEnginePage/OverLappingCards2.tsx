@@ -27,11 +27,11 @@ const OverLappingCards2: React.FC = () => {
         <div className="absolute right-0 text-left flex flex-end mb-10">
           <h1 className="text-3xl lg:text-5xl font-bold text-white leading-snug">
             Build your Business <br />
-            on LabourNet’s <span className="text-purple-500">WORK CLOUD</span>
+            on LabourNet’s <span className="text-red-500">WORK CLOUD</span>
           </h1>
         </div>
         {/* Card 1 */}
-        <div className="absolute top-0 left-0 bg-purple-900 text-white p-6 rounded-bl-lg rounded-br-lg shadow-lg w-[400px] h-[350px]">
+        <div className="absolute top-0 left-0 bg-red-900 text-white p-6 rounded-bl-lg rounded-br-lg shadow-lg w-[400px] h-[350px]">
           <h3 className="text-lg font-bold mb-4">WCaaS</h3>
           <h4 className="text-xl font-semibold mb-2">
             Work Completion as a Service

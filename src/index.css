@@ -38,13 +38,13 @@ body {
 }
 
 .futuristic-card {
-  @apply bg-gradient-to-br from-purple-800 to-purple-600 text-white rounded-lg shadow-lg shadow-purple-500/50 border border-purple-400 p-6 transition-all duration-300 hover:shadow-purple-600/70;
+  @apply bg-gradient-to-br from-red-800 to-red-600 text-white rounded-lg shadow-lg shadow-red-500/50 border border-red-400 p-6 transition-all duration-300 hover:shadow-red-600/70;
 }
 
 .futuristic-input {
-  @apply mt-1 block w-full border border-purple-400 rounded-md bg-purple-900/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 p-4;
+  @apply mt-1 block w-full border border-red-400 rounded-md bg-red-900/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-red-400 focus:border-red-400 p-4;
 }
 
 .futuristic-button {
-  @apply bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-all duration-300 disabled:bg-gray-500;
+  @apply bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-all duration-300 disabled:bg-gray-500;
 }

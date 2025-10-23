@@ -108,8 +108,8 @@ export default function JobTabs() {
               key={tab}
               className={`px-4 py-2 flex-1 text-center ${
                 activeTab === tab
-                  ? "border-b-4 border-purple-600 font-bold text-purple-600"
-                  : "text-gray-50 hover:text-purple-500"
+                  ? "border-b-4 border-red-600 font-bold text-red-600"
+                  : "text-gray-50 hover:text-red-500"
               }`}
               onClick={() =>
                 setActiveTab(
@@ -126,7 +126,7 @@ export default function JobTabs() {
           {jobsData[activeTab].map((job, index) => (
             <div
               key={index}
-              className="p-6 shadow-lg rounded-2xl border bg-purple-600/30 flex flex-col gap-4 hover:shadow-2xl transition-shadow duration-300"
+              className="p-6 shadow-lg rounded-2xl border bg-red-600/30 flex flex-col gap-4 hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="flex items-center gap-3">
                 <img

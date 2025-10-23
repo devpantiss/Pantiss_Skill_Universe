@@ -9,7 +9,7 @@ const HeroCertification: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://res.cloudinary.com/djtzx6wo7/image/upload/v1756969575/Gemini_Generated_Image_qpe2ylqpe2ylqpe2_qmxnkn.png')",
+            "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1742126787/E-FvYHdVIAYEXa9_efneu2.webp')",
         }}
       />
 

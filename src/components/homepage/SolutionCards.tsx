@@ -53,7 +53,7 @@ const ProgramCard = memo(
       <div className="flex flex-col h-full">
         <Link
           to={program.link}
-          className="relative bg-black h-[400px] ring-2 ring-purple-600 rounded-t-lg shadow-lg overflow-hidden group [will-change:transform] focus:outline-none focus:ring-4 focus:ring-purple-500"
+          className="relative bg-black h-[400px] ring-2 ring-red-600 rounded-t-lg shadow-lg overflow-hidden group [will-change:transform] focus:outline-none focus:ring-4 focus:ring-red-500"
           tabIndex={0}
         >
           {/* Background Image */}
@@ -83,7 +83,7 @@ const ProgramCard = memo(
             {program.categories.map((category, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 bg-purple-600 bg-opacity-90 text-white text-xs font-medium rounded-full"
+                className="px-3 py-1 bg-red-600 bg-opacity-90 text-white text-xs font-medium rounded-full"
               >
                 {category}
               </span>
@@ -91,8 +91,8 @@ const ProgramCard = memo(
           </div>
 
           {/* Title and Line */}
-          <div className="absolute bottom-6 left-6 right-6 text-white group-hover:text-purple-600 group-focus:text-purple-600 transition-colors duration-300 ease-in-out z-10">
-            <hr className="border-t border-4 border-white/80 mb-3 w-12 group-hover:border-purple-600 group-focus:border-purple-600 transition-colors duration-300 ease-in-out [will-change:border-color]" />
+          <div className="absolute bottom-6 left-6 right-6 text-white group-hover:text-red-600 group-focus:text-red-600 transition-colors duration-300 ease-in-out z-10">
+            <hr className="border-t border-4 border-white/80 mb-3 w-12 group-hover:border-red-600 group-focus:border-red-600 transition-colors duration-300 ease-in-out [will-change:border-color]" />
             <h3 className="text-start text-2xl md:text-3xl font-semibold leading-tight">
               {program.title}
             </h3>
@@ -100,7 +100,7 @@ const ProgramCard = memo(
         </Link>
 
         {/* Description Box */}
-        <div className="bg-black/60 text-orange-600 p-4 ring-2 ring-purple-600 rounded-b-lg flex-1">
+        <div className="bg-black/60 text-orange-600 p-4 ring-2 ring-red-600 rounded-b-lg flex-1">
           <p className="text-sm font-medium">{program.description}</p>
         </div>
       </div>
@@ -135,7 +135,7 @@ const Programs: React.FC = () => {
         <div className="text-center mt-12">
           <Link
             to="/dashboard"
-            className="px-8 py-4 bg-purple-500 text-white font-semibold rounded-lg ring-2 ring-purple-600 hover:bg-purple-700 hover:ring-2 hover:ring-purple-400/70 focus-visible:ring-2 focus-visible:ring-purple-400 transition-all duration-300"
+            className="px-8 py-4 bg-red-500 text-white font-semibold rounded-lg ring-2 ring-red-600 hover:bg-red-700 hover:ring-2 hover:ring-red-400/70 focus-visible:ring-2 focus-visible:ring-red-400 transition-all duration-300"
             aria-label="Explore Skill and Jobs Dashboard"
           >
             Explore Skill & Jobs Dashboard

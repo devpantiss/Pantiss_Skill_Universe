@@ -115,7 +115,7 @@ const JobDetails: React.FC = () => {
 
       <div className="container bg-transparent mx-auto z-10 bg-black px-4 max-w-7xl">
         {/* Header Section */}
-        <div className="bg-purple-600 text-white p-6 rounded-t-lg shadow-md">
+        <div className="bg-red-600 text-white p-6 rounded-t-lg shadow-md">
           <h1 className="text-2xl md:text-3xl font-bold">{job.title}</h1>
           <p className="text-sm mt-2 flex items-center">
             <svg
@@ -141,8 +141,8 @@ const JobDetails: React.FC = () => {
           {/* Job Details Section */}
           <div className="flex-1">
             {/* Job Details Card */}
-            <div className="ring-2 ring-purple-600 rounded-lg p-6 mb-6">
-              <h2 className="text-xl font-semibold text-purple-600 mb-4">
+            <div className="ring-2 ring-red-600 rounded-lg p-6 mb-6">
+              <h2 className="text-xl font-semibold text-red-600 mb-4">
                 Job Details
               </h2>
               <h3 className="text-lg font-medium text-gray-100 mb-2">
@@ -151,7 +151,7 @@ const JobDetails: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
                 <div className="flex items-center text-white">
                   <svg
-                    className="w-5 h-5 mr-2 text-purple-600"
+                    className="w-5 h-5 mr-2 text-red-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -168,7 +168,7 @@ const JobDetails: React.FC = () => {
                 </div>
                 <div className="flex items-center text-white">
                   <svg
-                    className="w-5 h-5 mr-2 text-purple-600"
+                    className="w-5 h-5 mr-2 text-red-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -185,7 +185,7 @@ const JobDetails: React.FC = () => {
                 </div>
                 <div className="flex items-center text-white">
                   <svg
-                    className="w-5 h-5 mr-2 text-purple-600"
+                    className="w-5 h-5 mr-2 text-red-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -202,7 +202,7 @@ const JobDetails: React.FC = () => {
                 </div>
                 <div className="flex items-center text-white">
                   <svg
-                    className="w-5 h-5 mr-2 text-purple-600"
+                    className="w-5 h-5 mr-2 text-red-600"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
@@ -221,14 +221,14 @@ const JobDetails: React.FC = () => {
                   {job.function} | PWD: {job.pwd}
                 </p>
               </div>
-              <button className="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+              <button className="mt-4 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors duration-300">
                 Apply
               </button>
             </div>
 
             {/* Job Description Card */}
-            <div className="ring-2 ring-purple-600 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-purple-600 mb-4">
+            <div className="ring-2 ring-red-600 rounded-lg p-6">
+              <h2 className="text-xl font-semibold text-red-600 mb-4">
                 Job Description
               </h2>
               <p className="text-gray-50 mb-4">{job.description[0]}</p>
@@ -242,7 +242,7 @@ const JobDetails: React.FC = () => {
 
           {/* Company Details Section */}
           <div className="lg:w-1/3">
-            <div className="ring-2 ring-purple-600 rounded-lg p-6 sticky top-24">
+            <div className="ring-2 ring-red-600 rounded-lg p-6 sticky top-24">
               <div className="flex items-center mb-4">
                 <img
                   src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1743255049/ffsclogo_txufun.svg" // Replace with actual company logo
@@ -250,7 +250,7 @@ const JobDetails: React.FC = () => {
                   className="w-12 h-12 mr-3"
                 />
                 <div>
-                  <h3 className="text-lg font-semibold text-purple-600">
+                  <h3 className="text-lg font-semibold text-red-600">
                     Company:
                   </h3>
                   <p className="text-gray-50">{job.company}</p>
@@ -267,7 +267,7 @@ const JobDetails: React.FC = () => {
                   <strong>Email:</strong>{" "}
                   <a
                     href={`mailto:${job.email}`}
-                    className="text-purple-600 hover:underline"
+                    className="text-red-600 hover:underline"
                   >
                     {job.email}
                   </a>
@@ -281,7 +281,7 @@ const JobDetails: React.FC = () => {
                     href={job.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-purple-600 hover:underline"
+                    className="text-red-600 hover:underline"
                   >
                     {job.website}
                   </a>
@@ -290,7 +290,7 @@ const JobDetails: React.FC = () => {
                   <strong>Address:</strong> {job.address}
                 </div>
               </div>
-              {/* <div className="px-2 py-4 bg-purple-600 mt-8 rounded-md text-center text-white hover:bg-purple-800">
+              {/* <div className="px-2 py-4 bg-red-600 mt-8 rounded-md text-center text-white hover:bg-red-800">
                 <Link to="/job-search-engine/job/applicants">View Applicants</Link>
               </div> */}
             </div>
@@ -316,7 +316,7 @@ const JobDetails: React.FC = () => {
               </a>
             ))}
           </div>
-          <button className="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+          <button className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition-colors duration-300">
             Apply
           </button>
         </div>

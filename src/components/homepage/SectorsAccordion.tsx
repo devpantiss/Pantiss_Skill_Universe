@@ -45,7 +45,7 @@ const campusLifeData: CampusLife[] = [
   },
   {
     title: "Extra Curriculars",
-    color: "bg-purple-600",
+    color: "bg-red-600",
     description:
       "Clubs in music, dance, drama, tech, leadership, and debate. Campus fests and cultural celebrations make every semester lively and give you chances to perform, create, and lead.",
     icon: FaTheaterMasks,
@@ -190,7 +190,7 @@ const LifeOnCampusAccordion: React.FC = () => {
       {/* Small Blurry Circles */}
       <div className="absolute top-10 right-10 w-32 h-32 bg-blue-600 rounded-full blur-3xl opacity-30 z-0" />
       <div className="absolute bottom-10 left-10 w-32 h-32 bg-yellow-600 rounded-full blur-3xl opacity-30 z-0" />
-      <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-purple-600 rounded-full blur-3xl opacity-30 z-0" />
+      <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
       <div className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-pink-600 rounded-full blur-3xl opacity-30 z-0" />
       <div className="absolute top-1/4 right-1/3 w-32 h-32 bg-cyan-600 rounded-full blur-3xl opacity-30 z-0" />
       <div className="absolute bottom-1/4 left-1/3 w-32 h-32 bg-orange-600 rounded-full blur-3xl opacity-30 z-0" />

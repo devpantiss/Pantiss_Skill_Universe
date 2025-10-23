@@ -49,14 +49,14 @@ const Why: React.FC = () => {
           <source src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743490676/12900822_1920_1080_30fps_ldejrt.mp4" type="video/mp4" />
         </video>
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/30 to-black bg-opacity-30 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-red-900/30 to-black bg-opacity-30 backdrop-blur-sm"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Title & Description */}
         <h2 className="text-4xl font-bold text-white text-transparent  mb-6">
-          Why Choose <span className="text-purple-600">SkillNet?</span>
+          Why Choose <span className="text-red-600">SkillNet?</span>
         </h2>
         <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-12">
           SkillNet is committed to providing cutting-edge training, career advancement, and an inclusive environment. Discover why professionals trust us.
@@ -67,13 +67,13 @@ const Why: React.FC = () => {
           {/* Scroll Buttons */}
           <button
             onClick={scrollLeft}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-900 z-50 text-white p-3 rounded-full shadow-lg hover:bg-purple-500 transition"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-900 z-50 text-white p-3 rounded-full shadow-lg hover:bg-red-500 transition"
           >
             ◀
           </button>
           <button
             onClick={scrollRight}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-900 z-50 text-white p-3 rounded-full shadow-lg hover:bg-purple-500 transition"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-900 z-50 text-white p-3 rounded-full shadow-lg hover:bg-red-500 transition"
           >
             ▶
           </button>
@@ -87,7 +87,7 @@ const Why: React.FC = () => {
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="relative w-72 h-96 flex-shrink-0 rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-purple-600/50 snap-center"
+                className="relative w-72 h-96 flex-shrink-0 rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-red-600/50 snap-center"
               >
                 {/* Background Image */}
                 <div

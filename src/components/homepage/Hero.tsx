@@ -20,7 +20,7 @@ const colors = [
   "text-indigo-400",
   "text-red-400",
   "text-teal-400",
-  "text-purple-400",
+  "text-red-400",
 ];
 
 const HeroSection: React.FC = () => {

@@ -59,7 +59,7 @@ const OverLappingCards: React.FC = () => {
         </div>
 
         {/* Card 3 – HSCoE */}
-        <div className="absolute top-[500px] right-[500px] bg-purple-900 text-white p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
+        <div className="absolute top-[500px] right-[500px] bg-red-900 text-white p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
           <h3 className="text-xl font-bold mb-2">HSCoE</h3>
           <h4 className="text-lg font-semibold mb-4">
             Hybrid Skill Center of Excellence

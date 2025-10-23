@@ -129,12 +129,12 @@ const VehicleCard = memo(
 
     return (
       <div
-        className="relative w-80 h-[500px] group cursor-pointer bg-gradient-to-b from-black to-purple-900 rounded-xl overflow-hidden shadow-2xl border-2 border-orange-600 flex flex-col"
+        className="relative w-80 h-[500px] group cursor-pointer bg-gradient-to-b from-black to-red-900 rounded-xl overflow-hidden shadow-2xl border-2 border-orange-600 flex flex-col"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
         {/* Top: Vehicle Name and Quantity */}
-        <div className="bg-purple-600/30 text-white text-center py-3">
+        <div className="bg-red-600/30 text-white text-center py-3">
           <h3 className="text-xl font-bold">{vehicle.title}</h3>
           <p className="text-sm text-orange-400">Numbers: {vehicle.quantity}</p>
         </div>
@@ -157,19 +157,19 @@ const VehicleCard = memo(
           ) : (
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <p className="font-semibold text-purple-400">Registration No:</p>
+                <p className="font-semibold text-red-400">Registration No:</p>
                 <p>{vehicle.registrationNo}</p>
               </div>
               <div>
-                <p className="font-semibold text-purple-400">Asset No:</p>
+                <p className="font-semibold text-red-400">Asset No:</p>
                 <p>{vehicle.assetNo}</p>
               </div>
               <div>
-                <p className="font-semibold text-purple-400">Engine No:</p>
+                <p className="font-semibold text-red-400">Engine No:</p>
                 <p>{vehicle.engineNo}</p>
               </div>
               <div>
-                <p className="font-semibold text-purple-400">Chassis No:</p>
+                <p className="font-semibold text-red-400">Chassis No:</p>
                 <p>{vehicle.chassisNo}</p>
               </div>
             </div>
@@ -228,7 +228,7 @@ const FleetSection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-black via-purple-900 to-black overflow-hidden">
+    <section className="py-16 bg-gradient-to-b from-black via-red-900 to-black overflow-hidden">
       {/* Heading */}
       <div className="text-center mb-12">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -264,7 +264,7 @@ const FleetSection: React.FC = () => {
 
       {/* CTA */}
       <div className="text-center mt-10">
-        <button className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-full hover:bg-purple-700 transition-colors duration-300">
+        <button className="px-6 py-3 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors duration-300">
           Explore Our Operations
         </button>
       </div>

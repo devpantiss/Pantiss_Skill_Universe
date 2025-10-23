@@ -6,7 +6,7 @@ const NewsLetterPlusHowCards: React.FC = () => {
             {/* Section 1: Learn how we work */}
             {/* <div className="work-section mb-10">
                 <h2 className="text-2xl font-semibold text-gray-50">
-                    Learn how <span className="text-purple-500">we work</span>
+                    Learn how <span className="text-red-500">we work</span>
                 </h2>
                 <div className="cards-container flex justify-center gap-6 mt-6">
                     {[
@@ -38,9 +38,9 @@ const NewsLetterPlusHowCards: React.FC = () => {
                     <input
                         type="email"
                         placeholder="Enter your email"
-                        className="px-4 py-2 w-80 rounded-l-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="px-4 py-2 w-80 rounded-l-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
                     />
-                    <button className="px-6 py-2 bg-purple-700 text-white font-semibold rounded-r-full hover:bg-purple-800 transition">
+                    <button className="px-6 py-2 bg-red-700 text-white font-semibold rounded-r-full hover:bg-red-800 transition">
                         Submit
                     </button>
                 </div>

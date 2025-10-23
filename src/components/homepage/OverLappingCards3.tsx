@@ -27,12 +27,12 @@ const OverLappingCards3: React.FC = () => {
         <div className="text-center lg:text-left mb-10">
           <h1 className="text-3xl lg:text-5xl font-bold text-white leading-snug">
             Shape Your Mining Future <br />
-            with <span className="text-purple-500">CAREER PATH</span>
+            with <span className="text-red-500">CAREER PATH</span>
           </h1>
         </div>
 
         {/* Card 1 */}
-        <div className="absolute top-0 right-0 bg-purple-900 text-white p-6 rounded-bl-lg rounded-br-lg shadow-lg w-[400px] h-[350px]">
+        <div className="absolute top-0 right-0 bg-red-900 text-white p-6 rounded-bl-lg rounded-br-lg shadow-lg w-[400px] h-[350px]">
           <h3 className="text-lg font-bold mb-4">Career Exploration</h3>
           <h4 className="text-xl font-semibold mb-2">
             Discover Mining Opportunities

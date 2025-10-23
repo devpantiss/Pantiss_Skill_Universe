@@ -89,7 +89,7 @@ const schools: School[] = [
     shortName: "Tech & EV",
     description: "Competency-based apprenticeships in chip fabrication and EV systems with industry mentors",
     image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-purple-400/20 via-green-400/20 to-cyan-400/20",
+    gradient: "from-red-400/20 via-green-400/20 to-cyan-400/20",
     totalStudents: 1540,
     successRate: 97,
     courses: [
@@ -216,7 +216,7 @@ const DualTrainingSchoolsCarousel: React.FC = () => {
         
         {/* Animated Overlay Effects */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-purple-600/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-green-600/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-red-600/20 to-orange-600/20 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
@@ -225,7 +225,7 @@ const DualTrainingSchoolsCarousel: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-purple-100 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-red-100 bg-clip-text text-transparent">
             Apprenticeship & Dual Training Schools
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">

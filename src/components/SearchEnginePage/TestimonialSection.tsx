@@ -27,7 +27,7 @@ const testimonials = [
 
 const TestimonialSection: React.FC = () => {
   return (
-    <section className="bg-gradient-to-b from-purple-900 via-black to-black py-16">
+    <section className="bg-gradient-to-b from-red-900 via-black to-black py-16">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-white text-center mb-12">
           Trusted by the <span className="text-[#FF6A3D]">Best</span>

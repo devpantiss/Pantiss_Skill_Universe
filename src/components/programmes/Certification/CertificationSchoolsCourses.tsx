@@ -109,7 +109,7 @@ const schools: School[] = [
       "Industry-driven certifications in semiconductor fabrication, EV technology, and advanced manufacturing to prepare talent for future tech jobs.",
     image:
       "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-purple-400/20 via-green-400/20 to-cyan-400/20",
+    gradient: "from-red-400/20 via-green-400/20 to-cyan-400/20",
     totalStudents: 1540,
     successRate: 97,
     courses: [
@@ -143,7 +143,7 @@ const schools: School[] = [
       "Certification programs in garment production, textile engineering, and apparel quality control tailored to global fashion and apparel industries.",
     image:
       "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-pink-400/20 via-purple-400/20 to-indigo-400/20",
+    gradient: "from-pink-400/20 via-red-400/20 to-indigo-400/20",
     totalStudents: 2100,
     successRate: 91,
     courses: [
@@ -160,7 +160,7 @@ const schools: School[] = [
       "Short-term certifications in public health, rural development, and community leadership for careers in social impact and development sectors.",
     image:
       "https://images.unsplash.com/photo-1559027615-cd4628902d85?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-blue-400/20 via-indigo-400/20 to-purple-400/20",
+    gradient: "from-blue-400/20 via-indigo-400/20 to-red-400/20",
     totalStudents: 1500,
     successRate: 88,
     courses: [
@@ -266,7 +266,7 @@ const CertificationSchoolsCarousel: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-purple-100 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-red-100 bg-clip-text text-transparent">
             Industry-Aligned Certification Schools
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">

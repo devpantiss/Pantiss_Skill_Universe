@@ -37,14 +37,14 @@ const PartnerSection: React.FC<PartnerSectionProps> = memo(
       <div className="w-full relative z-10">
         <div className="flex flex-col items-center justify-center">
           <div
-            className={`absolute z-20 h-44 w-44 rounded-full bg-transparent border-${borderSide}-4 border-purple-600 -top-10 flex flex-col justify-center items-center`}
+            className={`absolute z-20 h-44 w-44 rounded-full bg-transparent border-${borderSide}-4 border-red-600 -top-10 flex flex-col justify-center items-center`}
           >
             <div
-              className={`absolute top-0 left-0 w-full h-full border-purple-600 rounded-full`}
+              className={`absolute top-0 left-0 w-full h-full border-red-600 rounded-full`}
             ></div>
-            <div className="absolute -top-[5px] h-3 w-3 rounded-full bg-purple-600"></div>
-            <div className="absolute -bottom-[5px] h-3 w-3 rounded-full bg-purple-600"></div>
-            <div className="w-32 h-32 py-16 px-8 bg-purple-600 rounded-full flex justify-center items-center">
+            <div className="absolute -top-[5px] h-3 w-3 rounded-full bg-red-600"></div>
+            <div className="absolute -bottom-[5px] h-3 w-3 rounded-full bg-red-600"></div>
+            <div className="w-32 h-32 py-16 px-8 bg-red-600 rounded-full flex justify-center items-center">
               <span className="text-xl text-white font-bold">{title}</span>
             </div>
           </div>
@@ -90,7 +90,7 @@ const OurPartners: React.FC = () => {
         />
         Your browser does not support the video tag.
       </video>
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-purple-900 via-white/30 to-black z-1"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-900 via-white/30 to-black z-1"></div>
       <div className="flex flex-col justify-center items-center container mx-auto py-14 px-4 sm:px-12 relative z-10">
         <div className="flex justify-center mb-6">
         <h1 className="text-white text-4xl font-bold">
@@ -98,7 +98,7 @@ const OurPartners: React.FC = () => {
           </h1>
         </div>
         <div className="relative my-12 w-full">
-          <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-[3px] h-[550px] border-l-[3px] border-dashed border-purple-600 z-0"></div>
+          <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-[3px] h-[550px] border-l-[3px] border-dashed border-red-600 z-0"></div>
           <PartnerSection
             title="Government"
             partners={governmentPartners}

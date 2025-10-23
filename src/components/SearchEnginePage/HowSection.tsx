@@ -10,16 +10,16 @@ const Card: React.FC<CardProps> = ({ icon, title, description }) => {
   return (
     <div className="bg-black shadow-md rounded-lg p-6 flex flex-col items-center text-center">
       <div className="mb-4">{icon}</div>
-      <h3 className="text-lg font-semibold text-purple-600 mb-2">{title}</h3>
+      <h3 className="text-lg font-semibold text-red-600 mb-2">{title}</h3>
       <p className="text-gray-200 mb-4">{description}</p>
-      <div className="h-1 w-16 bg-purple-600 self-center"></div>
+      <div className="h-1 w-16 bg-red-600 self-center"></div>
     </div>
   );
 };
 
 const HowSection: React.FC = () => {
   return (
-    <section className="bg-purple-900 py-16">
+    <section className="bg-red-900 py-16">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-white mb-12 text-center">
           LabourNet is <span className="text-orange-600">How</span>

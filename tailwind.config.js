@@ -7,9 +7,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#7c3aed', // purple-600
+        primary: '#7c3aed', // red-600
         secondary: '#000000', // black
-        accent: '#c4b5fd', // purple-300
+        accent: '#c4b5fd', // red-300
         dark: '#1f2937', // gray-800
       },
       animation: {

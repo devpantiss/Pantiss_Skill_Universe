@@ -61,7 +61,7 @@ const JobTabs: React.FC = () => {
             <Link
               to={role.path}
               key={index}
-              className="job-card bg-transparent p-6 rounded-lg border-2 border-purple-600/60 shadow-lg hover:shadow-purple-600/50 transition-all duration-300 animate-fade-in"
+              className="job-card bg-transparent p-6 rounded-lg border-2 border-red-600/60 shadow-lg hover:shadow-red-600/50 transition-all duration-300 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <img
@@ -77,7 +77,7 @@ const JobTabs: React.FC = () => {
                 {role.jobs}
               </div>
               {role.isNew && (
-                <span className="bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full glow-purple">
+                <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full glow-purple">
                   New
                 </span>
               )}
@@ -89,8 +89,8 @@ const JobTabs: React.FC = () => {
       {/* Scoped CSS */}
       <style>{`
         .glow-purple {
-          text-shadow: 0 0 10px var(--purple-600), 0 0 20px var(--purple-600);
-          box-shadow: 0 0 10px var(--purple-600), 0 0 20px var(--purple-600);
+          text-shadow: 0 0 10px var(--red-600), 0 0 20px var(--red-600);
+          box-shadow: 0 0 10px var(--red-600), 0 0 20px var(--red-600);
         }
 
         .job-card {

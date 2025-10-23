@@ -10,7 +10,7 @@ const ExplorePrograms: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 bg-gradient-to-b from-black via-purple-900 to-black">
+    <section className="py-12 bg-gradient-to-b from-black via-red-900 to-black">
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center">
         {/* Left Content - Image & Heading */}
         <div className="md:w-1/2 pr-8 flex flex-col items-center md:items-start">

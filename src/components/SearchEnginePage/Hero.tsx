@@ -39,7 +39,7 @@ const HeroSection: React.FC = memo(() => {
             </p>
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <select
-                className="px-4 py-2 rounded-md bg-black/80 border border-purple-600/50 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-all duration-300"
+                className="px-4 py-2 rounded-md bg-black/80 border border-red-600/50 text-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600 transition-all duration-300"
                 aria-label="Select Job Role"
               >
                 <option>Select Job Role</option>
@@ -47,14 +47,14 @@ const HeroSection: React.FC = memo(() => {
                 <option>Project Manager</option>
               </select>
               <select
-                className="px-4 py-2 rounded-md bg-black/80 border border-purple-600/50 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-all duration-300"
+                className="px-4 py-2 rounded-md bg-black/80 border border-red-600/50 text-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600 transition-all duration-300"
                 aria-label="Select City"
               >
                 <option>Select City</option>
                 <option>Bangalore</option>
                 <option>Mumbai</option>
               </select>
-              <button className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-md transition-all duration-300">
+              <button className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition-all duration-300">
                 Search
               </button>
             </div>
@@ -63,19 +63,19 @@ const HeroSection: React.FC = memo(() => {
           {/* Lower Section: Key Features */}
           <h2 className="text-3xl lg:text-4xl text-center lg:text-left font-bold text-white">
             Discover a new way <br />
-            to <span className="text-purple-600">get work done.</span>
+            to <span className="text-red-600">get work done.</span>
           </h2>
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
             <Link
               to="/job-search-engine/for-businesses"
-              className="px-6 py-3 bg-black/80 border border-purple-600/50 text-white font-medium rounded-md hover:bg-purple-600/20 transition-all duration-300"
+              className="px-6 py-3 bg-black/80 border border-red-600/50 text-white font-medium rounded-md hover:bg-red-600/20 transition-all duration-300"
             >
               For Businesses
             </Link>
-            {/* <Link className="px-6 py-3 bg-black/80 border border-purple-600/50 text-white font-medium rounded-md hover:bg-purple-600/20 transition-all duration-300">
+            {/* <Link className="px-6 py-3 bg-black/80 border border-red-600/50 text-white font-medium rounded-md hover:bg-red-600/20 transition-all duration-300">
               For Nano-Contractors
             </Link>
-            <Link className="px-6 py-3 bg-black/80 border border-purple-600/50 text-white font-medium rounded-md hover:bg-purple-600/20 transition-all duration-300">
+            <Link className="px-6 py-3 bg-black/80 border border-red-600/50 text-white font-medium rounded-md hover:bg-red-600/20 transition-all duration-300">
               For Skilled Workers
             </Link> */}
           </div>
@@ -97,8 +97,8 @@ const HeroSection: React.FC = memo(() => {
       <style>{`
         /* Purple Color Definitions */
         :root {
-          --purple-600: #9333ea;
-          --purple-700: #7e22ce;
+          --red-600: #9333ea;
+          --red-700: #7e22ce;
         }
 
         /* Fade-In Animation for Content */

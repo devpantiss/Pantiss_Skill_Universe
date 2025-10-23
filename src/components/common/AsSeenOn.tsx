@@ -40,7 +40,7 @@ const AsSeenOn: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-black via-purple-900 to-black py-10 px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-y-8">
+    <div className="bg-gradient-to-b from-black via-red-900 to-black py-10 px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-y-8">
       {/* Header section */}
       <div className="relative text-left w-full lg:w-1/2">
         <h2 className="text-2xl text-white lg:text-4xl font-bold relative inline-block">

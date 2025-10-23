@@ -57,11 +57,11 @@ const HorizontalScrollComponent: React.FC = () => {
               <h1 className="text-white mt-2 text-2xl uppercase font-bold">AVAILABLE</h1>
               <p className="text-white max-w-[350px] text-2xl text-left">
                 Building supply in{" "}
-                <strong className="text-purple-600">350+ schools</strong> and{" "}
-                <strong className="text-purple-600">03 colleges,</strong> and
+                <strong className="text-red-600">350+ schools</strong> and{" "}
+                <strong className="text-red-600">03 colleges,</strong> and
                 connecting it to demand in{" "}
-                <strong className="text-purple-600">23 states</strong> and{" "}
-                <strong className="text-purple-600">5 union territories.</strong>
+                <strong className="text-red-600">23 states</strong> and{" "}
+                <strong className="text-red-600">5 union territories.</strong>
               </p>
             </div>
           </div>
@@ -84,12 +84,12 @@ const HorizontalScrollComponent: React.FC = () => {
               />
               <h1 className="text-white mt-2 text-2xl uppercase font-bold">Reliable</h1>
               <p className="text-white max-w-[350px] text-2xl text-left">
-                <strong className="text-purple-600">12+ years</strong> of work to
-                <strong className="text-purple-600">uplift,</strong> informal
+                <strong className="text-red-600">12+ years</strong> of work to
+                <strong className="text-red-600">uplift,</strong> informal
                 workers,
-                <strong className="text-purple-600">grow real wages</strong> and
+                <strong className="text-red-600">grow real wages</strong> and
                 enable{" "}
-                <strong className="text-purple-600">
+                <strong className="text-red-600">
                   decent working conditions.
                 </strong>
               </p>
@@ -115,13 +115,13 @@ const HorizontalScrollComponent: React.FC = () => {
               <h1 className="text-white mt-2 uppercase text-2xl font-bold">INNOVATIVE</h1>
               <p className="text-white max-w-[350px] text-2xl text-left">
                 Pioneer in{" "}
-                <strong className="text-purple-600">
+                <strong className="text-red-600">
                   Vocational EdTech, Mobile Micro-learning
                 </strong>{" "}
                 for Blue-Collar Trades,{" "}
-                <strong className="text-purple-600">B2B2C Gig-staffing</strong>{" "}
+                <strong className="text-red-600">B2B2C Gig-staffing</strong>{" "}
                 and
-                <strong className="text-purple-600">WCaaS technology.</strong>
+                <strong className="text-red-600">WCaaS technology.</strong>
               </p>
             </div>
           </div>
@@ -147,8 +147,8 @@ const HorizontalScrollComponent: React.FC = () => {
               </h1>
               <p className="text-white max-w-[350px] text-2xl text-left">
                 Models built for{" "}
-                <strong className="text-purple-600">cost resilience</strong> and{" "}
-                <strong className="text-purple-600">capital efficiency.</strong>
+                <strong className="text-red-600">cost resilience</strong> and{" "}
+                <strong className="text-red-600">capital efficiency.</strong>
               </p>
             </div>
           </div>

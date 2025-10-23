@@ -152,7 +152,7 @@ const JobTabs: React.FC = () => {
               key={tab}
               className={`relative px-6 py-3 font-semibold text-lg transition-colors duration-300 ${
                 activeTab === tab
-                  ? "text-purple-600 glow-purple"
+                  ? "text-red-600 glow-purple"
                   : "text-gray-400 hover:text-gray-200"
               }`}
               onClick={() => setActiveTab(tab)}
@@ -163,7 +163,7 @@ const JobTabs: React.FC = () => {
               {tab === "businesses" && "For Businesses"}
               {tab === "nanoContractors" && "For Nano-Contractors"}
               {activeTab === tab && (
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-purple-600 glow-purple animate-underline"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-red-600 glow-purple animate-underline"></span>
               )}
             </button>
           ))}
@@ -177,7 +177,7 @@ const JobTabs: React.FC = () => {
               {jobRoles.map((role, index) => (
                 <div
                   key={index}
-                  className="job-card bg-transparent p-6 rounded-lg border-2 border-purple-600/60 shadow-lg hover:shadow-purple-600/50 transition-all duration-300 animate-fade-in"
+                  className="job-card bg-transparent p-6 rounded-lg border-2 border-red-600/60 shadow-lg hover:shadow-red-600/50 transition-all duration-300 animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <img
@@ -193,7 +193,7 @@ const JobTabs: React.FC = () => {
                     {role.jobs}
                   </div>
                   {role.isNew && (
-                    <span className="bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full glow-purple">
+                    <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full glow-purple">
                       New
                     </span>
                   )}
@@ -206,7 +206,7 @@ const JobTabs: React.FC = () => {
           {activeTab === "businesses" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Form Section */}
-              <div className="bg-transparent p-8 rounded-lg border-2 border-purple-600/60 shadow-lg animate-slide-in-left">
+              <div className="bg-transparent p-8 rounded-lg border-2 border-red-600/60 shadow-lg animate-slide-in-left">
                 <h2 className="text-3xl font-semibold text-white mb-6">
                   Post a Job
                 </h2>
@@ -222,7 +222,7 @@ const JobTabs: React.FC = () => {
                       value={formData.companyName}
                       onChange={handleFormChange}
                       placeholder="Enter company name"
-                      className="w-full p-3 rounded-lg bg-transparent text-white border border-purple-600 focus:border-2 focus:border-purple-600 focus:ring-2 focus:ring-purple-600 transition-all"
+                      className="w-full p-3 rounded-lg bg-transparent text-white border border-red-600 focus:border-2 focus:border-red-600 focus:ring-2 focus:ring-red-600 transition-all"
                       required
                     />
                   </div>
@@ -235,7 +235,7 @@ const JobTabs: React.FC = () => {
                       name="sector"
                       value={formData.sector}
                       onChange={handleFormChange}
-                      className="w-full p-3 rounded-lg bg-transparent text-white border border-purple-600 focus:border-2 focus:border-purple-600 focus:ring-2 focus:ring-purple-600 transition-all"
+                      className="w-full p-3 rounded-lg bg-transparent text-white border border-red-600 focus:border-2 focus:border-red-600 focus:ring-2 focus:ring-red-600 transition-all"
                       required
                     >
                       <option value="">Select Sector</option>
@@ -255,7 +255,7 @@ const JobTabs: React.FC = () => {
                       name="jobType"
                       value={formData.jobType}
                       onChange={handleFormChange}
-                      className="w-full p-3 rounded-lg bg-transparent text-white border border-purple-600 focus:border-2 focus:border-purple-600 focus:ring-2 focus:ring-purple-600 transition-all"
+                      className="w-full p-3 rounded-lg bg-transparent text-white border border-red-600 focus:border-2 focus:border-red-600 focus:ring-2 focus:ring-red-600 transition-all"
                       required
                     >
                       <option value="">Select Job Type</option>
@@ -274,7 +274,7 @@ const JobTabs: React.FC = () => {
                       value={formData.description}
                       onChange={handleFormChange}
                       placeholder="Enter job description"
-                      className="w-full p-3 rounded-lg bg-transparent text-white border border-purple-600 focus:border-2 focus:border-purple-600 focus:ring-2 focus:ring-purple-600 transition-all h-32 resize-none"
+                      className="w-full p-3 rounded-lg bg-transparent text-white border border-red-600 focus:border-2 focus:border-red-600 focus:ring-2 focus:ring-red-600 transition-all h-32 resize-none"
                       required
                     />
                   </div>
@@ -288,7 +288,7 @@ const JobTabs: React.FC = () => {
                       value={formData.qualifications}
                       onChange={handleFormChange}
                       placeholder="Enter qualifications"
-                      className="w-full p-3 rounded-lg bg-transparent text-white border border-purple-600 focus:border-2 focus:border-purple-600 focus:ring-2 focus:ring-purple-600 transition-all h-32 resize-none"
+                      className="w-full p-3 rounded-lg bg-transparent text-white border border-red-600 focus:border-2 focus:border-red-600 focus:ring-2 focus:ring-red-600 transition-all h-32 resize-none"
                       required
                     />
                   </div>
@@ -303,7 +303,7 @@ const JobTabs: React.FC = () => {
                       value={formData.contactDetails}
                       onChange={handleFormChange}
                       placeholder="Enter contact details"
-                      className="w-full p-3 rounded-lg bg-transparent text-white border border-purple-600 focus:border-2 focus:border-purple-600 focus:ring-2 focus:ring-purple-600 transition-all"
+                      className="w-full p-3 rounded-lg bg-transparent text-white border border-red-600 focus:border-2 focus:border-red-600 focus:ring-2 focus:ring-red-600 transition-all"
                       required
                     />
                   </div>
@@ -318,7 +318,7 @@ const JobTabs: React.FC = () => {
                       value={formData.location}
                       onChange={handleFormChange}
                       placeholder="Enter location"
-                      className="w-full p-3 rounded-lg bg-transparent text-white border border-purple-600 focus:border-2 focus:border-purple-600 focus:ring-2 focus:ring-purple-600 transition-all"
+                      className="w-full p-3 rounded-lg bg-transparent text-white border border-red-600 focus:border-2 focus:border-red-600 focus:ring-2 focus:ring-red-600 transition-all"
                       required
                     />
                   </div>
@@ -332,13 +332,13 @@ const JobTabs: React.FC = () => {
                       type="date"
                       value={formData.date}
                       onChange={handleFormChange}
-                      className="w-full p-3 rounded-lg bg-transparent text-white border border-purple-600 focus:border-2 focus:border-purple-600 focus:ring-2 focus:ring-purple-600 transition-all"
+                      className="w-full p-3 rounded-lg bg-transparent text-white border border-red-600 focus:border-2 focus:border-red-600 focus:ring-2 focus:ring-red-600 transition-all"
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-lg bg-gradient-to-br from-purple-600 to-purple-700 text-white font-semibold text-lg hover:scale-105 transition-transform glow-purple"
+                    className="w-full py-3 rounded-lg bg-gradient-to-br from-red-600 to-red-700 text-white font-semibold text-lg hover:scale-105 transition-transform glow-purple"
                   >
                     Submit Job Posting
                   </button>
@@ -470,14 +470,14 @@ const JobTabs: React.FC = () => {
       <style>{`
         /* Purple Color Definitions */
         :root {
-          --purple-600: #9333ea;
-          --purple-700: #7e22ce;
+          --red-600: #9333ea;
+          --red-700: #7e22ce;
         }
 
         /* Purple Glow Effect */
         .glow-purple {
-          text-shadow: 0 0 10px var(--purple-600), 0 0 20px var(--purple-600);
-          box-shadow: 0 0 10px var(--purple-600), 0 0 20px var(--purple-600);
+          text-shadow: 0 0 10px var(--red-600), 0 0 20px var(--red-600);
+          box-shadow: 0 0 10px var(--red-600), 0 0 20px var(--red-600);
         }
 
         /* Job Card Styling */
