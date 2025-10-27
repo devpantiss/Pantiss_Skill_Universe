@@ -157,7 +157,7 @@ const ContactPage: React.FC = () => {
   );
 
   return (
-    <section className="relative mt-36 py-16 px-6 sm:px-10 lg:px-16 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
+    <section className="relative mt-28 py-16 px-6 sm:px-10 lg:px-16 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
       {/* Background circles - brighter */}
       <div className="absolute inset-0">
         {[...Array(14)].map((_, i) => (

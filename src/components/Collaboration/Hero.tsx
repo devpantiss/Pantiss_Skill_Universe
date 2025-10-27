@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection: React.FC = memo(() => {
   return (
-    <div className="relative mt-36 text-white overflow-hidden">
+    <div className="relative mt-28 text-white overflow-hidden">
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
