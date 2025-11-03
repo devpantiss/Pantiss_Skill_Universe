@@ -21,36 +21,32 @@ const campuses = [
 const schoolLogos = [
   {
     name: "School for Mines, Steel & Aluminium",
-    src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812463/Pantiss_School__11_-removebg-preview_klz9oz.png",
+    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_MINES-removebg-preview_airmxv.png",
   },
   {
-    name: "School for Power & Energy",
-    src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812472/Pantiss_School__16_-removebg-preview_orjaul.png",
+    name: "School for Steel & Aluminium",
+    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_STEEL___ALUMINIUM-removebg-preview_lqtpri.png",
+  },
+  {
+    name: "School for Power & Green Energy",
+    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_POWER___GREEN_ENERGY-removebg-preview_tinr0w.png",
   },
   {
     name: "School for Shipping & Logistics",
-    src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812475/Pantiss_School__17_-removebg-preview_atj0qf.png",
+    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_SHIPPING___LOGISTICS-removebg-preview_ktlsje.png",
   },
+  // {
+  //   name: "School for Semiconductors & Robotics",
+  //   src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812463/Pantiss_School__12_-removebg-preview_akcpud.png",
+  // },
   {
-    name: "School for Green Jobs",
-    src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812466/Pantiss_School__13_-removebg-preview_sbdhnc.png",
-  },
-  {
-    name: "School for Semiconductors & Robotics",
-    src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812463/Pantiss_School__12_-removebg-preview_akcpud.png",
-  },
-  {
-    name: "School for Infra & Facility Management",
+    name: "School for Construction Tech & Infra Equipments",
     src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812468/Pantiss_School__14_-removebg-preview_ayzfu7.png",
   },
-  
   {
-    name: "School for Textiles & Apparals",
-    src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812470/Pantiss_School__15_-removebg-preview_oaihyc.png",
-  },{
-    name: "School for Social Development",
-    src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812477/Pantiss_School__18_-removebg-preview_d0ekr8.png",
-  },
+    name: "School for Water, Sanitation & Facility Management",
+    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_WASH-removebg-preview_s8wofi.png",
+  }
 ];
 
 export default function WhyPantissSkillUniversity() {

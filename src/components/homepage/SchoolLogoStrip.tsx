@@ -3,24 +3,32 @@ import React from "react";
 const SchoolLogoStrip: React.FC = () => {
   const schoolLogos = [
     {
-      name: "School of Mines & Shipping",
-      src: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1754995492/Pantiss_School__9_-removebg-preview_fdnur9.png",
+      name: "School for Mines, Steel & Aluminium",
+      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_MINES-removebg-preview_airmxv.png",
     },
     {
-      name: "School of Green Jobs",
-      src: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1754649629/Pantiss_School__6_-removebg-preview_esbuhn.png",
+      name: "School for Steel & Aluminium",
+      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_STEEL___ALUMINIUM-removebg-preview_lqtpri.png",
     },
     {
-      name: "School of Semiconductors & Robotics",
-      src: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1754649629/Pantiss_School__5_-removebg-preview_sqdizv.png",
+      name: "School for Power & Green Energy",
+      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_POWER___GREEN_ENERGY-removebg-preview_tinr0w.png",
     },
     {
-      name: "School of Construction Tech.",
-      src: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1754649629/Pantiss_School__7_-removebg-preview_hmbcvw.png",
+      name: "School for Shipping & Logistics",
+      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_SHIPPING___LOGISTICS-removebg-preview_ktlsje.png",
+    },
+    // {
+    //   name: "School for Semiconductors & Robotics",
+    //   src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812463/Pantiss_School__12_-removebg-preview_akcpud.png",
+    // },
+    {
+      name: "School for Construction Tech & Infra Equipments",
+      src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812468/Pantiss_School__14_-removebg-preview_ayzfu7.png",
     },
     {
-      name: "School of Textiles & Apparals",
-      src: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1754649630/Pantiss_School__8_-removebg-preview_ieapit.png",
+      name: "School for Water, Sanitation & Facility Management",
+      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_WASH-removebg-preview_s8wofi.png",
     },
   ];
 

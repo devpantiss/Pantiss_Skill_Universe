@@ -15,7 +15,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Futuristic Skill on Wheels",
     image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746022829/WhatsApp_Image_2025-04-30_at_5.37.40_PM_s3tcrn.jpg",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158693/WhatsApp_Image_2025-04-30_at_5.37.40_PM_nhoxqa.jpg",
     description:
       "A state-of-the-art mobile lab equipped with AR/VR-based skill development modules, delivering immersive learning to remote areas.",
     quantity: "3",
@@ -26,7 +26,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Advanced Operator Training Simulators",
     image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746023415/WhatsApp_Image_2025-03-03_at_10.47.37_PM_1_ng3dvl.jpg",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158602/WhatsApp_Image_2025-03-03_at_10.47.37_PM_ex1zpe.jpg",
     description:
       "Realistic simulators that replicate heavy machinery controls, helping trainees master equipment handling in a safe virtual environment.",
     quantity: "2",
@@ -37,7 +37,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Large Scale Shipping Simulator",
     image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746023414/WhatsApp_Image_2025-02-28_at_5.00.19_PM_l7dq7p.jpg",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158602/WhatsApp_Image_2025-02-28_at_5.00.19_PM_frl41v.jpg",
     description:
       "A maritime simulation module designed for hands-on logistics and port operations training using realistic AR-based controls.",
     quantity: "4",
@@ -48,7 +48,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Infrastructure Equipment Simulator",
     image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746023907/WhatsApp_Image_2025-02-28_at_5.00.19_PM_1_ov0z9z.jpg",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762159262/crane_empyz0.png",
     description:
       "Simulator module for construction site operations including bulldozers, backhoes, and graders to simulate field work conditions.",
     quantity: "Coming soon",
@@ -59,7 +59,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Highend Welding Machinaries",
     image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_crop,w_1000,h_1000/v1746022829/welding_pfnxjr.webp",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762157793/welding_pjajxn.webp",
     description:
       "Precision welding units integrated with simulation feedback for real-time skill correction and performance enhancement.",
     quantity: "3",
@@ -68,11 +68,11 @@ const fleetData: Vehicle[] = [
       "Robotic Weld Arm, Real-Time Feedback Sensors, Laser Guidance, Ergonomic Controls",
   },
   {
-    title: "Electrician Training Simulators",
+    title: "Electrician Training AR/VR",
     image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_crop,w_600,h_1000/v1746022828/electrician_kdeqet.webp",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762160341/WhatsApp_Image_2025-11-03_at_2.21.32_PM_cepy4c.jpg",
     description:
-      "Interactive simulators for wiring, circuit assembly, and troubleshooting exercises using AR overlays and guided steps.",
+      "Interactive AR/VR for wiring, circuit assembly, and troubleshooting exercises using AR overlays and guided steps.",
     quantity: "1",
     importFrom: "Singapore",
     techSpecs:

@@ -25,7 +25,7 @@ const EventsTable: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1754069725/welder_jshef4.jpg')",
+            "url('https://res.cloudinary.com/dxzhnns58/image/upload/v1762162427/edwin-andrade-6liebVeAfrY-unsplash_cqzgpn.jpg')",
         }}
       />
       {/* Overlay - vertical gradient */}

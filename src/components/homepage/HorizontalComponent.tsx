@@ -17,110 +17,98 @@ type School = {
 
 const schools: School[] = [
   {
-    title: "Pantiss School of Mines, Steel and Aluminium",
+    title: "Pantiss School for Mines",
     description:
-      "Specialized training in mining operations, maritime logistics, heavy machinery, and safety standards to empower skilled professionals.",
-    logo: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812463/Pantiss_School__11_-removebg-preview_klz9oz.png",
-    video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756755056/VN20250902_005536_c5eudz.mp4", // sample video
+      "Equipping future mining professionals with advanced skills in exploration, mineral processing, and sustainable extraction practices.",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_MINES-removebg-preview_airmxv.png",
+    video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756755056/VN20250902_005536_c5eudz.mp4",
     impact: [
-      { label: "Courses", value: 25 },
-      { label: "Students", value: "3,500+" },
-      { label: "Partner Companies", value: 12 },
+      { label: "Courses", value: 20 },
+      { label: "Students", value: "3,200+" },
+      { label: "Industry Partners", value: 10 },
     ],
-    programs: ["Mining Technician", "Maritime Logistics Coordinator"],
+    programs: ["Mining Technician", "Mine Safety Supervisor"],
   },
   {
-    title: "Pantiss School of Power & Energy",
+    title: "Pantiss School for Steel & Aluminium",
     description:
-      "Focused on cutting-edge construction techniques, equipment operation, and safety management for infrastructure projects.",
-    logo: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812472/Pantiss_School__16_-removebg-preview_orjaul.png",
+      "Focused on metallurgical innovation, process engineering, and sustainability in steel and aluminium production.",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_STEEL___ALUMINIUM-removebg-preview_lqtpri.png",
     video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756794883/VN20250902_010449_pztskt.mp4",
     impact: [
       { label: "Courses", value: 18 },
-      { label: "Students", value: "2,800+" },
-      { label: "Partner Sites", value: 8 },
+      { label: "Students", value: "2,700+" },
+      { label: "Research Labs", value: 6 },
     ],
-    programs: ["Construction Manager", "BIM Specialist"],
+    programs: ["Metallurgical Engineer", "Plant Process Controller"],
   },
   {
-    title: "Pantiss School of Shipping & Logistics",
+    title: "Pantiss School for Power & Green Energy",
     description:
-      "Focused on cutting-edge construction techniques, equipment operation, and safety management for infrastructure projects.",
-    logo: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812475/Pantiss_School__17_-removebg-preview_atj0qf.png",
+      "Building expertise in renewable energy, grid management, and sustainable power technologies for the future.",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_POWER___GREEN_ENERGY-removebg-preview_tinr0w.png",
+    video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756795877/VN20250902_121823_amqd0h.mp4",
+    impact: [
+      { label: "Courses", value: 22 },
+      { label: "Students", value: "2,500+" },
+      { label: "Energy Labs", value: 7 },
+    ],
+    programs: ["Renewable Energy Technician", "Smart Grid Engineer"],
+  },
+  {
+    title: "Pantiss School for Shipping & Logistics",
+    description:
+      "Training in maritime logistics, port operations, supply chain optimization, and global freight management.",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_SHIPPING___LOGISTICS-removebg-preview_ktlsje.png",
     video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756796198/VN20250902_122323_uebp1a.mp4",
     impact: [
-      { label: "Courses", value: 18 },
-      { label: "Students", value: "2,800+" },
-      { label: "Partner Sites", value: 8 },
+      { label: "Courses", value: 16 },
+      { label: "Students", value: "2,400+" },
+      { label: "Partner Ports", value: 5 },
     ],
-    programs: ["Construction Manager", "BIM Specialist"],
+    programs: ["Maritime Logistics Officer", "Port Operations Manager"],
   },
   {
-    title: "Pantiss School of Infra & Facility Management",
+    title: "Pantiss School for Electric Vehicles",
     description:
-      "Focused on cutting-edge construction techniques, equipment operation, and safety management for infrastructure projects.",
-    logo: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812468/Pantiss_School__14_-removebg-preview_ayzfu7.png",
-    video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756796295/10810481-hd_1920_1080_30fps_psg3sc.mp4",
-    impact: [
-      { label: "Courses", value: 18 },
-      { label: "Students", value: "2,800+" },
-      { label: "Partner Sites", value: 8 },
-    ],
-    programs: ["Construction Manager", "BIM Specialist"],
-  },
-  {
-    title: "Pantiss School of Semiconductors & EV Tech",
-    description:
-      "Cutting-edge programs on semiconductor fabrication, robotics engineering, and embedded systems development.",
+      "Focused on EV design, battery technology, and electric mobility systems to drive the clean transportation revolution.",
     logo: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812463/Pantiss_School__12_-removebg-preview_akcpud.png",
     video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756795877/VN20250902_121823_amqd0h.mp4",
     impact: [
-      { label: "Courses", value: 20 },
+      { label: "Courses", value: 19 },
       { label: "Students", value: "2,100+" },
-      { label: "Research Labs", value: 5 },
+      { label: "EV Labs", value: 5 },
     ],
-    programs: ["Semiconductor Fabricator", "Robotics Engineer"],
+    programs: ["EV Technician", "Battery Design Engineer"],
   },
   {
-    title: "Pantiss School of Green Jobs",
+    title: "Pantiss School for Construction Tech & Infra Equipment",
     description:
-      "Preparing the workforce for emerging green sectors including renewable energy, environmental tech, and sustainable mining.",
-    logo: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812466/Pantiss_School__13_-removebg-preview_sbdhnc.png",
-    video: "https://www.w3schools.com/html/movie.mp4",
+      "Developing professionals in construction technologies, heavy equipment management, and smart infrastructure systems.",
+    logo: "hhttps://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_CONSTRUCTION___INFRA_EQUIPMENT-removebg-preview_rpgnjo.png",
+    video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756796295/10810481-hd_1920_1080_30fps_psg3sc.mp4",
     impact: [
-      { label: "Courses", value: 15 },
-      { label: "Students", value: "1,700+" },
-      { label: "Green Certifications", value: 10 },
+      { label: "Courses", value: 21 },
+      { label: "Students", value: "2,900+" },
+      { label: "Construction Sites", value: 9 },
     ],
-    programs: ["Renewable Energy Technician", "Environmental Consultant"],
+    programs: ["Construction Manager", "Infrastructure Equipment Specialist"],
   },
   {
-    title: "Pantiss School of Textiles & Apparels",
+    title: "Pantiss School for Water, Sanitation & Facility Management",
     description:
-      "Programs centered on modern textile manufacturing, apparel design, quality control, and sustainable materials.",
-    logo: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812470/Pantiss_School__15_-removebg-preview_oaihyc.png",
+      "Specializing in water resource management, sanitation engineering, and sustainable facility operations for a cleaner tomorrow.",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_WASH-removebg-preview_s8wofi.png",
     video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756795583/13386003_3840_2160_50fps_jtj4ls.mp4",
     impact: [
-      { label: "Courses", value: 22 },
-      { label: "Students", value: "2,300+" },
-      { label: "Design Studios", value: 4 },
+      { label: "Courses", value: 17 },
+      { label: "Students", value: "2,000+" },
+      { label: "Partner Municipalities", value: 4 },
     ],
-    programs: ["Textile Designer", "Apparel Manufacturing Specialist"],
-  },
-  {
-    title: "Pantiss School of Social Development",
-    description:
-      "Programs centered on modern textile manufacturing, apparel design, quality control, and sustainable materials.",
-    logo: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812477/Pantiss_School__18_-removebg-preview_d0ekr8.png",
-    video: "https://res.cloudinary.com/djtzx6wo7/video/upload/v1756795583/13386003_3840_2160_50fps_jtj4ls.mp4",
-    impact: [
-      { label: "Courses", value: 22 },
-      { label: "Students", value: "2,300+" },
-      { label: "Design Studios", value: 4 },
-    ],
-    programs: ["Textile Designer", "Apparel Manufacturing Specialist"],
+    programs: ["Water Treatment Specialist", "Facility Operations Manager"],
   },
 ];
+
 
 const HorizontalScrollComponent: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

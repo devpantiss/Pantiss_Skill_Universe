@@ -1,5 +1,4 @@
 import React, { memo, useMemo } from "react";
-// import Heading from "../../Common/Heading";
 import { MdEventAvailable, MdCampaign } from "react-icons/md";
 import { FaMicrophoneAlt, FaBlog, FaAward } from "react-icons/fa";
 import { SiStorybook } from "react-icons/si";
@@ -46,82 +45,80 @@ const categoryIcons: Record<NewsCategory, JSX.Element> = {
 };
 
 // ====================
-// News Items
+// News Items — Pantiss Skill Universe Highlights
 // ====================
 const newsItems: NewsItem[] = [
   {
     category: "Events",
-    title:
-      "Pantiss Representation at COP 29: Just Transition for Abandoned Mines in Baku",
+    title: "Pantiss Skill Universe Hosts National Skill Conclave 2025",
     description:
-      "Pantiss proudly participated in COP 29 in Baku, Azerbaijan, presenting innovative strategies for a just transition in communities impacted by abandoned mines.",
+      "Pantiss brought together policy leaders, industry experts, and students for the National Skill Conclave 2025 — a platform to discuss India's journey towards Industry 4.0 and future-ready skill ecosystems.",
     imageUrl:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_400/v1735192166/events_2_e7pyqc.jpg",
-    linkText: "View More",
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735192166/events_2_e7pyqc.jpg",
+    linkText: "Read More",
   },
   {
     category: "Stories",
-    title: "Empowering Futures: Youth Tribal Dormitories Initiative",
+    title: "Transforming Lives: From Trainee to Technician",
     description:
-      "Providing a safe and nurturing environment, the Youth Tribal Dormitories initiative supports education and skill development for tribal youth.",
+      "Meet Sushil from Jharsuguda — a Pantiss trainee who transitioned from an informal worker to a certified instrumentation technician through Pantiss’ blended skilling programs.",
     imageUrl:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_400/v1735192516/tribal_Youth_dormitories_radqjp.jpg",
-    linkText: "View More",
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735192516/tribal_Youth_dormitories_radqjp.jpg",
+    linkText: "Explore Story",
   },
   {
     category: "News",
-    title: "Inauguration of Mining Skill Development Program in T. Rampur",
+    title: "Pantiss Recognized as a Deemed-to-be Skill University by UGC",
     description:
-      "The Mining Skill Development Program was successfully inaugurated in T. Rampur, empowering local youth with industry-relevant skills.",
+      "Pantiss Skill Universe achieves a major milestone as it is officially recognized as a Deemed-to-be University by the University Grants Commission, becoming India’s pioneer in integrated skill-based higher education.",
     imageUrl:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_400/v1735192305/news_vftigf.jpg",
-    linkText: "View More",
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735192305/news_vftigf.jpg",
+    linkText: "Learn More",
   },
   {
     category: "Awards",
-    title:
-      "Listed on India Book of Records for Largest Hand Washing at one Place",
+    title: "Pantiss Wins 'Best Skill Innovation Institute 2025'",
     description:
-      "Recognized by the India Book of Records for organizing the largest handwashing event at a single location, promoting hygiene awareness.",
+      "Awarded by the Ministry of Skill Development & Entrepreneurship, Pantiss was honored for excellence in integrating sustainability, technology, and vocational training.",
     imageUrl:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_400/v1735191971/Awards_bbpnu5.jpg",
-    linkText: "View More",
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735191971/Awards_bbpnu5.jpg",
+    linkText: "See Details",
   },
   {
     category: "Blogs",
-    title: "Breaking Barriers: Empowering Tribal Women Miners in Sukinda",
+    title: "Skilling for Sustainability: The Pantiss Green Campus Model",
     description:
-      "In the heart of the Sukinda Chromite region, tribal women are redefining the mining industry through skill-building and empowerment.",
+      "How Pantiss Skill Universe is embedding green technologies and circular economy principles into its curriculum, promoting eco-conscious skilling for future industries.",
     imageUrl:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_400/v1735192753/blogs_copltg.jpg",
-    linkText: "View More",
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735192753/blogs_copltg.jpg",
+    linkText: "Read Blog",
   },
   {
     category: "Campaigns",
-    title: "Skill on Wheels: Driving Hi-Tech Mining in the Eastern Ghats",
+    title: "Skill on Wheels: Taking Learning to Rural India",
     description:
-      "The 'Skill on Wheels' campaign empowers rural communities with mobile training units, bridging technology and opportunity in the Eastern Ghats.",
+      "Pantiss’ mobile training units are empowering youth in remote districts through skill-on-wheels initiatives, bridging the access gap for rural learners.",
     imageUrl:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_400/v1735193450/WhatsApp_Image_2024-12-26_at_11.39.49_AM_hzpigw.jpg",
-    linkText: "View More",
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735193450/WhatsApp_Image_2024-12-26_at_11.39.49_AM_hzpigw.jpg",
+    linkText: "View Campaign",
   },
   {
     category: "Podcasts",
-    title: "Just Transition: A Conversation with Shipra Saxena",
+    title: "Skill Futures: A Talk with Prof. A. K. Mishra",
     description:
-      "An insightful podcast with Shipra Saxena, exploring just transition and sustainable practices for climate resilience and environmental justice.",
+      "Join Prof. Mishra, Vice Chancellor of Pantiss, as he shares insights on how the university is reshaping the skilling landscape and creating pathways for dignified employment.",
     imageUrl:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_400/v1735192862/podcast_qpq54k.jpg",
-    linkText: "View More",
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735192862/podcast_qpq54k.jpg",
+    linkText: "Listen Now",
   },
   {
     category: "Reports",
-    title: "Bridging the Gap: Skill Gap Study of Project-Affected Beneficiaries",
+    title: "The Skill Advantage: India’s Workforce 2030 Report by Pantiss",
     description:
-      "A study exploring skill gaps in mining-affected communities of Odisha, Jharkhand, and Chhattisgarh, identifying opportunities for growth.",
+      "A comprehensive research publication by Pantiss, highlighting the role of skill universities in driving equitable, green, and digital transitions across India.",
     imageUrl:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_400/v1735193655/billy-albert-5lNKe_pE3oA-unsplash_xcpi6h.jpg",
-    linkText: "View More",
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735193655/billy-albert-5lNKe_pE3oA-unsplash_xcpi6h.jpg",
+    linkText: "Download Report",
   },
 ];
 
@@ -149,7 +146,6 @@ const NewsCard: React.FC<NewsCardProps> = memo(({ item }) => (
       </a>
     </div>
 
-    {/* Image Section */}
     {item.imageUrl && (
       <div
         className="h-48 relative bg-cover bg-center"
@@ -166,38 +162,36 @@ NewsCard.displayName = "NewsCard";
 // Highlights Component
 // ====================
 const Highlights: React.FC = () => {
-    const newsList = useMemo(() => newsItems, []);
-  
-    return (
-      <div className="relative bg-black overflow-hidden px-4 sm:px-10">
-        {/* Subtle blurred circles */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-pink-500 rounded-full blur-3xl opacity-40"></div>
+  const newsList = useMemo(() => newsItems, []);
+
+  return (
+    <div className="relative bg-black overflow-hidden px-4 sm:px-10">
+      {/* Background circles for gradient depth */}
+      <div className="absolute top-20 left-10 w-32 h-32 bg-pink-500 rounded-full blur-3xl opacity-40"></div>
       <div className="absolute bottom-32 right-20 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-30"></div>
       <div className="absolute top-1/2 left-1/4 w-28 h-28 bg-green-400 rounded-full blur-2xl opacity-30"></div>
       <div className="absolute bottom-10 left-1/3 w-24 h-24 bg-yellow-500 rounded-full blur-2xl opacity-20"></div>
 
-      {/* Extra small blurred circles for depth */}
+      {/* Smaller glowing circles */}
       <div className="absolute top-10 right-1/3 w-16 h-16 bg-red-500 rounded-full blur-xl opacity-40"></div>
       <div className="absolute top-1/4 right-10 w-12 h-12 bg-red-500 rounded-full blur-lg opacity-40"></div>
       <div className="absolute bottom-20 left-10 w-14 h-14 bg-blue-400 rounded-full blur-lg opacity-30"></div>
       <div className="absolute bottom-1/4 right-1/2 w-10 h-10 bg-green-500 rounded-full blur-md opacity-40"></div>
-      <div className="absolute top-2/3 left-1/5 w-20 h-20 bg-orange-500 rounded-full blur-2xl opacity-30"></div>
-  
-        <section className="relative container mx-auto py-10 z-10">
-          <div className="flex justify-center mb-8">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mt-2">
-              Spotlight
-            </h1>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-8">
-            {newsList.map((item, index) => (
-              <NewsCard key={index} item={item} />
-            ))}
-          </div>
-        </section>
-      </div>
-    );
-  };
-  
+
+      <section className="relative container mx-auto py-10 z-10">
+        <div className="flex justify-center mb-8">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mt-2">
+            Spotlight
+          </h1>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-8">
+          {newsList.map((item, index) => (
+            <NewsCard key={index} item={item} />
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
 
 export default memo(Highlights);

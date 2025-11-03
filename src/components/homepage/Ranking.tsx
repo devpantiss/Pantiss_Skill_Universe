@@ -26,39 +26,54 @@ const RankingCard: React.FC<RankingCardProps> = ({ logo, description }) => {
 const Ranking: React.FC = () => {
   const accreditations = [
     {
-      logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746099074/SCMS_yjzmgs.png",
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153774/AICTE_xarfut.png",
       rank: "NAAC A+",
-      description: "Skill Council for Mining Sector",
+      description: "AICTe",
     },
     {
-      logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746104823/LSC-logo-removebg-preview_tzg0qq.png",
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/iisssc-removebg-preview_1_nif3qf.png",
       rank: "NBA",
-      description: "Logistics Sector Council",
+      description: "IISSSC",
     },
     {
-      logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_crop,w_400,h_100/v1746104823/Rubber-removebg-preview_jg5caq.png",
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/UGC-removebg-preview_l5xzoo.png",
       rank: "NBA",
-      description: "Rubber, Chemical & Petrochemical Skill Development Council",
+      description: "UGC",
     },
     {
-      logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746099064/Power_jqvk3e.png",
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681320/SCMS_ehl7t2.png",
       rank: "NBA",
-      description: "Power Sector Skill Council",
+      description: "SCMS",
     },
     {
-      logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746104823/IESC-removebg-preview_ra8pvj.png",
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/pssclogoBlack_waqzas.png",
       rank: "NBA",
-      description: "Infrastructure Equipments Skill Council",
+      description: "PSSC",
     },
     {
-      logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746104823/Hydrocarbon-removebg-preview_nqzwz3.png",
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681341/RCPSDC_ag2fwu.png",
       rank: "NBA",
-      description: "Hydrocarbon Sector Skill Council",
+      description: "RCPSDC",
     },
     {
-      logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746104822/IISSSC-removebg-preview_o0qz4s.png",
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153704/NSDC-Preview-removebg-preview_ztn40e.png",
       rank: "NBA",
-      description: "Indian Iron & Steel Sector Skill Council",
+      description: "NSDC",
+    },
+    {
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/mepsc-png-cropped_1_rquk2z.png",
+      rank: "NBA",
+      description: "MEPSC",
+    },
+    {
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/NCVET-removebg-preview_rnzmxe.png",
+      rank: "NBA",
+      description: "NCVET",
+    },
+    {
+      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/LSC-logo-300x138-removebg-preview_fefyvr.png",
+      rank: "NBA",
+      description: "LSC",
     },
   ];
 
@@ -70,7 +85,7 @@ const Ranking: React.FC = () => {
       className="relative bg-fixed bg-center bg-cover bg-no-repeat py-12 px-4"
       style={{
         backgroundImage:
-          "url(https://res.cloudinary.com/dgtc2fvgu/image/upload/v1742820278/2cf04226-46c3-4820-90e4-61a001350d8b_l1cetk.jpg)",
+          "url(https://res.cloudinary.com/dxzhnns58/image/upload/v1761895733/AdobeStock_55775771_Preview_zaohly.jpg)",
       }}
     >
       <style>

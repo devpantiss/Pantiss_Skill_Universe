@@ -28,6 +28,8 @@ import SchoolSection from "../components/homepage/SchoolSection";
 import OurPartners from "../components/homepage/OurPartners";
 import ActivityAndEvents from "../components/homepage/Events";
 import Highlights from "../components/homepage/Highlights";
+import SkillOnWheelsBanner from "../components/homepage/SkillOnWheelBanner";
+import WomenInMining from "../components/homepage/WomenInMining";
 
 const HomePage: React.FC = () => {
   return (
@@ -53,8 +55,10 @@ const HomePage: React.FC = () => {
       {/* <CampusExperienceSection /> */}
       {/* <Ranking /> */}
       <SectorsAccordion />
+      <WomenInMining />
       <PlacementsSection />
       {/* <BentoGrid /> */}
+      <SkillOnWheelsBanner />
       <OurPartners />
       <SocialGalleryCalendarSection />
       <Highlights />

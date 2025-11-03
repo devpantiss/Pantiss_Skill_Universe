@@ -13,7 +13,7 @@ const OverLappingCards3: React.FC = () => {
         aria-hidden="true"
       >
         <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742994000/16498883-hd_1920_1080_24fps_zb7mxr.mp4" // Kept the same video; replace if needed
+          src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762160507/12791129_1920_1080_30fps_iwboue.mp4" // Kept the same video; replace if needed
           type="video/mp4"
         />
         Your browser does not support the video tag.
