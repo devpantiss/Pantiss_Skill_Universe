@@ -17,21 +17,21 @@ const founders: Founder[] = [
     subtitle:
       "Founder & MD of Medhavi Foundation, NSDC Advisor, IIT Kharagpur, Stanford University",
     image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735040843/stalin_sir_wbrcxh.jpg",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761685978/stalinsir_l53ura.jpg",
     description:
       "Mr. Pravesh Dudani, Founder and Chancellor of Medhavi Skills University (MSU), Sikkim, is a visionary leader in the field of higher education and skill development. With an unwavering commitment to bridging the gap between academia and industry, he has dedicated his life to creating opportunities that enhance employability and empower the Indian youth. As Managing Director of Medhavi Foundation, the sponsoring body of MSU, he has played a pivotal role in reshaping the education and skilling landscape in India.",
     readMore: true,
   },
-  {
-    name: "Mr. Sanjay Pradhan",
-    title: "Founder & Vice-Chancellor of Pantiss Skills Universe",
-    subtitle: "Co-Founder & MD of Medhavi Foundation, NSDC Advisor",
-    image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735040837/Sanjay_sir_b5cld1.jpg",
-    description:
-      "Mr. Kuldip Sarma stands as a beacon of visionary leadership within the realm of higher education, wielding his dynamic presence as both the Co-Founder & Pro-Chancellor of Medhavi Skills University. His contribution and leadership mark a transformative era in educational paradigms. Under his stewardship, the institution has burgeoned, guided by a steadfast commitment to accessible and purpose-driven education.",
-    readMore: true,
-  },
+  // {
+  //   name: "Mr. Sanjay Pradhan",
+  //   title: "Founder & Vice-Chancellor of Pantiss Skills Universe",
+  //   subtitle: "Co-Founder & MD of Medhavi Foundation, NSDC Advisor",
+  //   image:
+  //     "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735040837/Sanjay_sir_b5cld1.jpg",
+  //   description:
+  //     "Mr. Kuldip Sarma stands as a beacon of visionary leadership within the realm of higher education, wielding his dynamic presence as both the Co-Founder & Pro-Chancellor of Medhavi Skills University. His contribution and leadership mark a transformative era in educational paradigms. Under his stewardship, the institution has burgeoned, guided by a steadfast commitment to accessible and purpose-driven education.",
+  //   readMore: true,
+  // },
 ];
 
 const FoundersSection: React.FC = () => {

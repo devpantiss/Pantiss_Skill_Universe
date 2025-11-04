@@ -3,39 +3,33 @@ import Marquee from "react-fast-marquee";
 
 // Partner arrays
 const governmentPartners: string[] = [
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042390/Ministry_of_Heavy_Industries_India.svg_fhp1cc.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042392/ombadc_rmdidp.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042389/Ministry_of_Coal_India.svg_fyx0tc.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735041145/NSDC_luqbyd.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042390/Ministry_of_Mines_India.svg_hpnvzl.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042395/IISSSc_zizo9i.jpg",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042391/Ministry_of_Skill_Development_and_Entrepreneurship.svg_sbogu0.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042394/logo_1_gmmcfc.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042396/scms_arwl5f.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042585/Screenshot_2024-12-24_at_5.37.59_PM_eyqoun.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042586/Screenshot_2024-12-24_at_5.35.44_PM_c0akgs.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188053/msde_jzjwry.jpg",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153704/NSDC-Preview-removebg-preview_ztn40e.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188284/DGT_fgtetb.jpg",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188424/ministry_of_mines_y3mkst.jpg",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188627/ministry_of_heavy_industry_ttauzk.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188693/OSDA_qxy5qr.png",
 ];
 
 const corporatePartners: string[] = [
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735042701/asci_xexfdv.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735041141/JINDAL_STEEL_wpau1m.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735041151/TATA_STEEL_hoirtn.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735041150/TATA_POWER_uayv1g.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735043985/Coal_India_Logo.svg_wwns1e.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735043985/Adani_2012_logo_tt0z21.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735044118/mcl_kjvbs7.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735044295/NLC_India_Limited.svg_ks2rjp.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735044515/Tata_Chemicals_Limited_-_Logo.svg_s5e9qn.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735044527/pngwing.com_bt3ngg.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163613/dhoot-trans-removebg-preview_rz6kgo.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762187763/hitachi-removebg-preview_uby3ku.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762187905/pngwing.com_xhrrhe.png"
 ];
 
 const multilateralPartners: string[] = [
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735041153/UNICEF_bgidzk.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735041138/GIZ_bsb7es.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735045063/United_Nations_Environment_Programme_Logo.svg_rp7oev.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735045063/UNIDO_Logo.svg_khx62n.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735045063/International_Labour_Organization_Logo.svg_fukuuq.png",
-  "https://res.cloudinary.com/dgtc2fvgu/image/upload/c_scale,w_200/v1735045062/undp-logo-blue_wrebhi.svg",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/pssclogoBlack_waqzas.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/mepsc-png-cropped_1_rquk2z.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/LSC-logo-300x138-removebg-preview_fefyvr.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/asci-removebg-preview_xn0nuq.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/iisssc-removebg-preview_1_nif3qf.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188977/WMPSC_adgkmq.png",
+  "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681320/SCMS_ehl7t2.png"
 ];
 
 interface PartnerSectionProps {
@@ -131,13 +125,13 @@ const OurPartners: React.FC = () => {
           borderSide="r"
         />
         <PartnerSection
-          title="Corporate"
+          title="Industry"
           partners={corporatePartners}
           direction="right"
           borderSide="l"
         />
         <PartnerSection
-          title="Multilaterals"
+          title="SSC's"
           partners={multilateralPartners}
           direction="left"
           borderSide="r"

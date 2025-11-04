@@ -39,27 +39,27 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
 
   const demo: ChromaItem[] = [
     {
-      image: "https://i.pravatar.cc/300?img=8",
-      title: "Alex Rivera",
-      subtitle: "Full Stack Developer",
+      image: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760095558/jalandhar_2_1_b8x99s.jpg",
+      title: "Mr. Jalandhar Mohanty",
+      subtitle: "Lead, Center of Excellence, Mining",
       handle: "@alexrivera",
       borderColor: "#ff3366",
       gradient: "linear-gradient(145deg, #ff3366, #000)",
       url: "https://github.com/",
     },
     {
-      image: "https://i.pravatar.cc/300?img=11",
-      title: "Jordan Chen",
-      subtitle: "DevOps Engineer",
+      image: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760619794/Sudarshan_2_geimdd.jpg",
+      title: "Mr. Sudarshan Barik",
+      subtitle: "Lead, Center of Excellence, Steel & Aluminium",
       handle: "@jordanchen",
       borderColor: "#ffbe0b",
       gradient: "linear-gradient(210deg, #ffbe0b, #000)",
       url: "https://linkedin.com/in/",
     },
     {
-      image: "https://i.pravatar.cc/300?img=3",
-      title: "Morgan Blake",
-      subtitle: "UI/UX Designer",
+      image: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096195/bikram_2_ufeeka.jpg",
+      title: "Mr. Bikram Keshari Gouda",
+      subtitle: "Lead, Center of Excellence, Shipping & Logistics",
       handle: "@morganblake",
       borderColor: "linear-gradient(165deg, #ff3366, #ffbe0b)",
       gradient: "linear-gradient(165deg, #ff3366, #ffbe0b)",
@@ -195,22 +195,22 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
                 src={c.image}
                 alt={c.title}
                 loading="lazy"
-                className="w-full h-full object-cover rounded-[10px]"
+                className="w-full h-[350px] object-cover rounded-[10px]"
               />
             </div>
-            <footer className="relative z-10 p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">
+            <footer className="flex flex-col z-10 p-3 text-white font-sans gap-x-3 gap-y-1">
               <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
-              {c.handle && (
+              {/* {c.handle && (
                 <span className="text-[0.95rem] opacity-80 text-right">
                   {c.handle}
                 </span>
-              )}
+              )} */}
               <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
-              {c.location && (
+              {/* {c.location && (
                 <span className="text-[0.85rem] opacity-85 text-right">
                   {c.location}
                 </span>
-              )}
+              )} */}
             </footer>
           </article>
         ))}
