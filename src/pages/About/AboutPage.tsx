@@ -8,6 +8,7 @@ import { ThreeDMarquee } from "../../components/about/ThreeDMarqueeDemo";
 import OurFaculty from "../../components/about/OurFaculty";
 // import OurFacilities from "../../components/about/OurFacilities";
 import ScrollVelocityImages from "../../components/common/ScrollVelocityImages";
+import Certifications from "../../components/about/Certifications/Certifications";
 
 const AboutPage: React.FC = () => {
   // const images = [
@@ -44,7 +45,7 @@ const AboutPage: React.FC = () => {
     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761769356/Theoryofchange_deta48.jpg",
     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745317/vocational_x4fu5b.jpg",
     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761740136/blogs_oulxwa.jpg",
-    
+
   ];
   const Faculty = [
     {
@@ -110,6 +111,68 @@ const AboutPage: React.FC = () => {
   ];
   
   
+  const AdvisoryBoard = [
+    {
+      image:
+        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760095558/jalandhar_2_1_b8x99s.jpg",
+      title: "Mr. Jalandhar Mohanty",
+      subtitle: "Lead, CoE, Mining",
+      handle: "@alexrivera",
+      borderColor: "#10B981", // emerald accent
+      gradient: "linear-gradient(145deg, #1F2937, #111827)", // subtle gray blend
+      url: "https://github.com/",
+    },
+    {
+      image:
+        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760619794/Sudarshan_2_geimdd.jpg",
+      title: "Mr. Sudarshan Barik",
+      subtitle: "Lead, CoE, Steel & Aluminium",
+      handle: "@jordanchen",
+      borderColor: "#10B981",
+      gradient: "linear-gradient(145deg, #1F2937, #111827)",
+      url: "https://linkedin.com/in/",
+    },
+    {
+      image:
+        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096195/bikram_2_ufeeka.jpg",
+      title: "Mr. Bikram K. Gouda",
+      subtitle: "Lead, CoE, Shipping & Logistics",
+      handle: "@morganblake",
+      borderColor: "#10B981",
+      gradient: "linear-gradient(145deg, #1F2937, #111827)",
+      url: "https://dribbble.com/",
+    },
+    {
+      image:
+        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096329/yagnesh_2_lmjxag.jpg",
+      title: "Mr. Yagnesh K. Nanda",
+      subtitle: "Lead, CoE, Power & Green Energy",
+      handle: "@morganblake",
+      borderColor: "#10B981",
+      gradient: "linear-gradient(145deg, #1F2937, #111827)",
+      url: "https://dribbble.com/",
+    },
+    {
+      image:
+        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760097703/mukessh_2_p4kfmr.jpg",
+      title: "Mr. Mukesh Singh",
+      subtitle: "Lead, CoE, Construction & Infrastructure Equipment",
+      handle: "@morganblake",
+      borderColor: "#10B981",
+      gradient: "linear-gradient(145deg, #1F2937, #111827)",
+      url: "https://dribbble.com/",
+    },
+    {
+      image:
+        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760618334/basanta_2_adg0rh.jpg",
+      title: "Mr. Basant K. Sahoo",
+      subtitle: "Lead, CoE, Water & Waste Water Treatment",
+      handle: "@morganblake",
+      borderColor: "#10B981",
+      gradient: "linear-gradient(145deg, #1F2937, #111827)",
+      url: "https://dribbble.com/",
+    },
+  ];
   
   // const Faculty = [
   //   {
@@ -210,6 +273,17 @@ const AboutPage: React.FC = () => {
       >
         <ThreeDMarquee images={images} />
       </div>
+      <div id="faculty" className="h-full relative">
+        <OurFaculty
+          heading="Our Advisory Board"
+          items={AdvisoryBoard}
+          radius={300}
+          damping={0.45}
+          fadeOut={0.6}
+          ease="power3.out"
+        />
+      </div>
+      <Certifications />
       <div id="faculty" className="h-full relative">
         <OurFaculty
           heading="Our Faculties"

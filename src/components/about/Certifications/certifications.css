@@ -1,0 +1,25 @@
+.certifications-slider .slick-track {
+    display: flex !important;
+    gap: 0 !important;
+  }
+  
+  .certifications-slider .slick-slide {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .certifications-slider .slick-dots {
+    bottom: -35px;
+  }
+  
+  .certifications-slider .slick-dots li button:before {
+    font-size: 10px;
+    color: #9ca3af;
+    opacity: 0.5;
+  }
+  
+  .certifications-slider .slick-dots li.slick-active button:before {
+    color: #dc2626; /* red-600 */
+    opacity: 1;
+  }
+  
