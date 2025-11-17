@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 
-const GlobalPlacements = () => {
+const GlobalPlacements: React.FC = () => {
   return (
     <section
       className="relative w-full overflow-hidden flex items-center justify-center"
