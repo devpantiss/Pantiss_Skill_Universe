@@ -7,11 +7,8 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-
-      "compilerOptions": {
-        "typeRoots": ["./node_modules/@types", "./types"],
-          "types": []},
-    
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "types": [],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
