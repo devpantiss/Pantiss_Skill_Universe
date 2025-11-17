@@ -17,6 +17,10 @@ import ApprenticeshipAndDualTrainingPage from "./pages/Programmes/Apprenticeship
 import DiplomaAndAdvancedDiplomaPage from "./pages/Programmes/DiplomaAndAdvancedDiplomaPage";
 import UpskillingAndReskillingPage from "./pages/Programmes/UpskillingAndReskillingPage";
 import IndustryAllignedCertificationPage from "./pages/Programmes/IndustryAllignedCertificationPage";
+import FuturisticSkillOnWheels from "./pages/FuturisticSkillOnWheels";
+import ITIPage from "./pages/Programmes/ITIPage";
+import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
+import WorkIntegratedTrainingPage from "./pages/Programmes/WorkIntegratedTrainingPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -36,11 +40,16 @@ function LayoutWrapper() {
         <Route path="/collaborations" element={<Collaborations />} />
         <Route path="/contact-us" element={<ContactPage />} />
         <Route path="/our-programmes" element={<ProgramsPage />} />
+        <Route path="/futuristic-skill-on-wheels" element={<FuturisticSkillOnWheels />} />
+
         <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} />
         <Route path="/our-programmes/apprenticeship-and-dual-training" element={<ApprenticeshipAndDualTrainingPage />} />
         <Route path="/our-programmes/diploma-programs" element={<DiplomaAndAdvancedDiplomaPage />} />
         <Route path="/our-programmes/upskilling-and-reskilling-program" element={<UpskillingAndReskillingPage />} />
         <Route path="/our-programmes/industry-alligned-certification" element={<IndustryAllignedCertificationPage />} />
+        <Route path="/our-programmes/iti-program" element={<ITIPage />} />
+        <Route path="/our-programmes/advanced-diploma-program" element={<AdvancedDiplomaPage />} />
+        <Route path="/our-programmes/work-integrated-training-program" element={<WorkIntegratedTrainingPage />} />
 
       </Routes>
       {!hideLayout && <Footer />}

@@ -2,7 +2,7 @@ import React, { memo, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import Slider from "react-slick";
 
-// Define interfaces for type safety
+// Interfaces
 interface ImpactData {
   courses: number;
   trained: number;
@@ -20,83 +20,65 @@ interface Sector {
 
 interface DiplomaOverviewProps {}
 
-// Define sectors data with unique impact data for each
+// Updated sectors: Blue-Collar Focused Diploma Programs
 const sectors: Sector[] = [
   {
     name: "Mines, Steel & Aluminium",
     description:
-      "Comprehensive diploma programs in mining engineering, steel technology, and aluminium processing with advanced safety protocols and industrial management.",
-    icon: "⚒️",
-    impact: { courses: 12, trained: 2500, placed: 1800 },
-    certificationLevel: "Level 4-6",
-    skills: ["Mining Engineering", "Steel Technology", "Safety Management"],
+      "Diploma in Mining & Steel Technology with hands-on training in drilling, blasting, material handling, and safety for blue-collar roles in mines and steel plants.",
+    icon: "⛏️",
+    impact: { courses: 16, trained: 3800, placed: 3400 },
+    certificationLevel: "NSQF Level 4-5",
+    skills: ["Drilling", "Blasting", "Material Handling", "Mine Safety"],
   },
   {
-    name: "Power & Energy",
+    name: "Power & Green Energy",
     description:
-      "Advanced diploma courses in power systems, renewable energy engineering, and grid management with hands-on laboratory training and industry projects.",
+      "Polytechnic diploma in Power Plant Operation & Renewable Energy focusing on turbine maintenance, solar panel installation, and grid safety for field technicians.",
     icon: "⚡",
-    impact: { courses: 15, trained: 3200, placed: 2400 },
-    certificationLevel: "Level 5-7",
-    skills: ["Power Systems", "Renewable Energy", "Grid Management"],
+    impact: { courses: 14, trained: 3200, placed: 2900 },
+    certificationLevel: "NSQF Level 4-6",
+    skills: ["Turbine Maintenance", "Solar Installation", "Grid Safety", "Wind Tech"],
   },
   {
     name: "Shipping & Logistics",
     description:
-      "Diploma programs in supply chain management, port operations, and international trade with practical training in modern logistics facilities.",
+      "Diploma in Port Operations & Logistics Management with training in crane operation, cargo handling, forklift driving, and warehouse safety.",
     icon: "🚢",
-    impact: { courses: 10, trained: 1800, placed: 1500 },
-    certificationLevel: "Level 3-5",
-    skills: ["Supply Chain Mgmt", "Port Operations", "International Trade"],
+    impact: { courses: 12, trained: 2600, placed: 2400 },
+    certificationLevel: "NSQF Level 3-5",
+    skills: ["Crane Operation", "Forklift Driving", "Cargo Handling", "Warehouse Mgmt"],
   },
   {
-    name: "Infrastructure & Facility Management",
+    name: "Electric Vehicles",
     description:
-      "Advanced diploma courses in civil engineering, construction management, and facility operations with real-world project experience.",
+      "Diploma in EV Technology & Battery Systems with practical training in battery assembly, charging station setup, and electric drivetrain maintenance.",
+    icon: "🔋",
+    impact: { courses: 10, trained: 1800, placed: 1600 },
+    certificationLevel: "NSQF Level 5-6",
+    skills: ["Battery Assembly", "Charging Station", "EV Drivetrain", "Diagnostics"],
+  },
+  {
+    name: "Construction Tech & Infra Equipment",
+    description:
+      "Diploma in Heavy Equipment Operation & Maintenance covering excavators, dozers, cranes, and concrete machinery for construction site roles.",
     icon: "🏗️",
-    impact: { courses: 18, trained: 4000, placed: 3000 },
-    certificationLevel: "Level 4-6",
-    skills: ["Civil Engineering", "Construction Mgmt", "Facility Operations"],
+    impact: { courses: 18, trained: 4200, placed: 3800 },
+    certificationLevel: "NSQF Level 4-5",
+    skills: ["Excavator Operation", "Crane Handling", "Dozer Maintenance", "Site Safety"],
   },
   {
-    name: "Semiconductors & EV Tech",
+    name: "Water, Sanitation & Facility Management",
     description:
-      "Diploma programs in semiconductor technology, electric vehicle systems, and advanced manufacturing with state-of-the-art equipment training.",
-    icon: "🔬",
-    impact: { courses: 8, trained: 1200, placed: 900 },
-    certificationLevel: "Level 6-8",
-    skills: ["Semiconductor Tech", "EV Systems", "Advanced Manufacturing"],
-  },
-  {
-    name: "Green Jobs",
-    description:
-      "Advanced diploma courses in environmental engineering, sustainable agriculture, and renewable energy systems with field-based learning.",
-    icon: "🌱",
-    impact: { courses: 14, trained: 2800, placed: 2200 },
-    certificationLevel: "Level 3-5",
-    skills: ["Environmental Engineering", "Sustainable Agriculture", "Renewable Systems"],
-  },
-  {
-    name: "Textiles & Apparels",
-    description:
-      "Diploma programs in textile engineering, fashion technology, and production management with modern manufacturing techniques.",
-    icon: "🧵",
-    impact: { courses: 11, trained: 2100, placed: 1600 },
-    certificationLevel: "Level 3-4",
-    skills: ["Textile Engineering", "Fashion Technology", "Production Mgmt"],
-  },
-  {
-    name: "Social Development",
-    description:
-      "Advanced diploma courses in social work, community development, and public health with practical fieldwork and research projects.",
-    icon: "🤝",
-    impact: { courses: 9, trained: 1500, placed: 1200 },
-    certificationLevel: "Level 4-5",
-    skills: ["Social Work", "Community Development", "Public Health"],
+      "Diploma in Plumbing, Sanitation & Facility Operations with training in water pipeline installation, sewage systems, and building maintenance.",
+    icon: "🚰",
+    impact: { courses: 13, trained: 2900, placed: 2600 },
+    certificationLevel: "NSQF Level 3-5",
+    skills: ["Pipeline Installation", "Sewage Systems", "Plumbing", "Facility Maintenance"],
   },
 ];
 
-// Animation variants
+// Animation variants (unchanged)
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -135,7 +117,7 @@ const fadeInRight = {
   },
 };
 
-// Custom arrow components for react-slick
+// Custom Arrows (unchanged)
 interface CustomArrowProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -146,18 +128,8 @@ const CustomPrevArrow = ({ onClick }: CustomArrowProps) => (
     onClick={onClick}
     aria-label="Previous sector"
   >
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M15 19l-7-7 7-7"
-      />
+    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
     </svg>
   </button>
 );
@@ -168,27 +140,15 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
     onClick={onClick}
     aria-label="Next sector"
   >
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 5l7 7-7 7"
-      />
+    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
     </svg>
   </button>
 );
 
 const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
-  // State to track current slide for dynamic impact data
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Slider settings for react-slick
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -213,22 +173,19 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
       "slick-dots !bottom-[-30px] sm:!bottom-[-40px] !flex !justify-center !space-x-2",
   };
 
-  // Get current sector's impact data
   const currentImpact = sectors[currentSlide]?.impact;
   const currentSector = sectors[currentSlide];
 
   return (
     <section className="relative min-h-screen py-8 sm:py-12 lg:py-20 bg-black overflow-hidden">
-      {/* Enhanced Background Elements */}
+      {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* Large background circles */}
         <div className="absolute top-10 left-4 sm:left-16 w-48 sm:w-96 h-48 sm:h-96 bg-gradient-to-br from-red-600/30 to-green-500/30 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-16 right-4 sm:right-20 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-br from-green-500/30 to-red-600/30 rounded-full blur-3xl animate-pulse delay-1000" />
         <div className="absolute top-1/3 right-1/4 w-36 sm:w-72 h-36 sm:h-72 bg-gradient-to-br from-red-600/25 to-green-500/25 rounded-full blur-3xl animate-pulse delay-700" />
         <div className="absolute bottom-1/4 left-1/5 w-32 sm:w-64 h-32 sm:h-64 bg-gradient-to-br from-green-500/25 to-red-600/25 rounded-full blur-3xl animate-pulse delay-1400" />
       </div>
 
-      {/* Subtle grid pattern overlay */}
       <div
         className="absolute inset-0 opacity-5 z-0"
         style={{
@@ -237,7 +194,6 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
         }}
       />
 
-      {/* Content Container */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -252,62 +208,53 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
             <span className="bg-white bg-clip-text text-transparent">
-              Program{" "}
+              Blue-Collar{" "}
             </span>
-            <span className="text-white/90">Overview</span>
+            <span className="text-white/90">Diploma Programs</span>
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
-            Comprehensive diploma and advanced diploma programs across core sectors, combining theoretical knowledge with practical training for professional career advancement.
+            3-year NSQF-aligned diploma programs designed for hands-on blue-collar jobs in core industries, with 100% placement support and industry training.
           </p>
         </motion.div>
 
-        {/* Main Content Grid - Enhanced for Equal Heights */}
+        {/* Main Grid */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 mb-8 sm:mb-12 lg:mb-16">
-          {/* Video Section - Enhanced Responsiveness */}
+          {/* Video Section */}
           <motion.div
             variants={fadeInLeft as Variants}
             className="order-2 xl:order-1 w-full flex flex-col"
           >
             <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 group flex-1 flex flex-col">
-              {/* Decorative corner elements - Hidden on mobile */}
               <div className="hidden sm:block absolute top-4 left-4 w-6 sm:w-8 h-6 sm:h-8 border-l-2 border-t-2 border-red-600/50 rounded-tl-lg" />
               <div className="hidden sm:block absolute top-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-t-2 border-green-500/50 rounded-tr-lg" />
               <div className="hidden sm:block absolute bottom-4 left-4 w-6 sm:w-8 h-6 sm:h-8 border-l-2 border-b-2 border-red-600/50 rounded-bl-lg" />
               <div className="hidden sm:block absolute bottom-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-b-2 border-green-500/50 rounded-br-lg" />
 
-              {/* Video Title */}
               <div className="mb-4">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
-                  Program{" "}
+                  Blue-Collar Career{" "}
                   <span className="bg-green-500 bg-clip-text text-transparent">
-                    Introduction
+                    Pathway
                   </span>
                 </h3>
                 <p className="text-white/70 text-sm sm:text-base">
-                  Discover how Diploma & Advanced Diploma programs build professional careers across industries
+                  From classroom to worksite: Train for high-demand blue-collar roles with real equipment and industry mentors.
                 </p>
               </div>
 
-              {/* Video Container - Flexible Height */}
               <div className="flex-1 flex flex-col min-h-0">
                 <div className="aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-black/50 relative flex-1 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
                   <iframe
                     src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    title="Diploma & Advanced Diploma Overview Video"
+                    title="Blue-Collar Diploma Training"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
                   />
-
-                  {/* Play button overlay for better mobile UX */}
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                     <div className="w-12 sm:w-16 h-12 sm:h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                      <svg
-                        className="w-6 sm:w-8 h-6 sm:h-8 text-white ml-1"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
+                      <svg className="w-6 sm:w-8 h-6 sm:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
@@ -315,72 +262,45 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                 </div>
               </div>
 
-              {/* Video Stats/Info */}
               <div className="mt-4 pt-4 border-t border-white/10">
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white/60">
-                  <span>📺 Watch our program overview</span>
+                  <span>Watch training in action</span>
                   <span>⏱️ 3 min overview</span>
                 </div>
               </div>
 
-              {/* Glow effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-green-500/10 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
           </motion.div>
 
-          {/* Carousel Section - Enhanced Responsiveness */}
+          {/* Carousel Section */}
           <motion.div
             variants={fadeInRight as Variants}
             className="order-1 xl:order-2 w-full flex flex-col"
           >
             <div className="flex-1 flex flex-col">
-              {/* Section Header */}
               <div className="mb-4 sm:mb-6">
                 <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
-                  Programs Across{" "}
+                  Training in{" "}
                   <span className="bg-green-500 bg-clip-text text-transparent">
-                    8 Key Sectors
+                    8 Core Sectors
                   </span>
                 </h3>
                 <p className="text-white/70 text-sm sm:text-base lg:text-lg leading-relaxed">
-                  Diploma and Advanced Diploma programs provide comprehensive education across diverse industries, aligned with NSQF standards and industry requirements.
+                  Job-ready diploma programs with 6-month on-site training, NSQF certification, and direct placement in leading companies.
                 </p>
               </div>
 
-              {/* React Slick Carousel - Enhanced Container */}
               <div className="relative flex-1 flex flex-col min-h-0">
                 <style>{`
-                  .slick-dots li button:before {
-                    display: none;
-                  }
-                  .slick-track {
-                    display: flex;
-                    align-items: stretch;
-                  }
-                  .slick-slide > div {
-                    height: 100%;
-                  }
-                  .slick-slide > div > div {
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                  }
-                  .equal-height-slider .slick-list {
-                    height: 100%;
-                  }
-                  .equal-height-slider .slick-track {
-                    height: 100%;
-                  }
-                  @media (max-width: 640px) {
-                    .slick-dots {
-                      bottom: -25px !important;
-                    }
-                  }
-                  @media (min-width: 641px) {
-                    .equal-height-slider {
-                      height: calc(100% - 50px); /* Account for dots space */
-                    }
-                  }
+                  .slick-dots li button:before { display: none; }
+                  .slick-track { display: flex; align-items: stretch; }
+                  .slick-slide > div { height: 100%; }
+                  .slick-slide > div > div { height: 100%; display: flex; flex-direction: column; }
+                  .equal-height-slider .slick-list { height: 100%; }
+                  .equal-height-slider .slick-track { height: 100%; }
+                  @media (max-width: 640px) { .slick-dots { bottom: -25px !important; } }
+                  @media (min-width: 641px) { .equal-height-slider { height: calc(100% - 50px); } }
                 `}</style>
 
                 <div className="equal-height-slider flex-1 min-h-[350px] sm:min-h-[400px] lg:min-h-[450px]">
@@ -388,7 +308,6 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                     {sectors.map((sector, index) => (
                       <div key={index} className="px-1 sm:px-2 h-full">
                         <div className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/10 hover:border-gradient transition-all duration-500 hover:shadow-xl hover:shadow-green-500/10 group h-full flex flex-col">
-                          {/* Header */}
                           <div className="flex items-start space-x-3 sm:space-x-4 mb-4">
                             <div className="text-2xl sm:text-3xl lg:text-4xl p-2 sm:p-3 bg-white/10 rounded-xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                               {sector.icon}
@@ -403,15 +322,13 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                             </div>
                           </div>
 
-                          {/* Description */}
                           <p className="text-white/80 leading-relaxed text-xs sm:text-sm lg:text-base mb-4 flex-grow">
                             {sector.description}
                           </p>
 
-                          {/* Skills Tags */}
                           <div className="mt-auto">
                             <h5 className="text-xs sm:text-sm font-semibold text-white/90 mb-2">
-                              Key Skills:
+                              Key Blue-Collar Skills:
                             </h5>
                             <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
                               {sector.skills.map((skill, skillIndex) => (
@@ -424,7 +341,6 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                               ))}
                             </div>
 
-                            {/* Animated bottom border */}
                             <div className="h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                           </div>
                         </div>
@@ -437,7 +353,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
           </motion.div>
         </div>
 
-        {/* Dynamic Impact Data - Enhanced Responsiveness */}
+        {/* Dynamic Impact */}
         {currentImpact && (
           <motion.div
             key={`impact-${currentSlide}`}
@@ -451,13 +367,13 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
           >
             <div className="mb-4 sm:mb-6 text-center">
               <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
-                <span className="text-white/70">Impact for </span>
+                <span className="text-white/70">Impact in </span>
                 <span className="bg-green-500 bg-clip-text text-transparent">
                   {currentSector?.name}
                 </span>
               </h4>
               <p className="text-white/60 text-xs sm:text-sm lg:text-base">
-                Current sector performance metrics
+                Real jobs created through hands-on training
               </p>
             </div>
 
@@ -477,9 +393,9 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                   {currentImpact.courses}
                 </motion.div>
                 <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Diploma Programs
+                  Practical Modules
                 </div>
-                <div className="text-xs text-white/50 mt-1">Available</div>
+                <div className="text-xs text-white/50 mt-1">Hands-on Training</div>
               </motion.div>
 
               <motion.div
@@ -497,9 +413,9 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                   {currentImpact.trained.toLocaleString()}
                 </motion.div>
                 <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Students Graduated
+                  Youth Trained
                 </div>
-                <div className="text-xs text-white/50 mt-1">Cumulative</div>
+                <div className="text-xs text-white/50 mt-1">From Mining Villages</div>
               </motion.div>
 
               <motion.div
@@ -517,57 +433,53 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                   {currentImpact.placed.toLocaleString()}
                 </motion.div>
                 <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Placements
+                  Placed in Jobs
                 </div>
-                <div className="text-xs text-white/50 mt-1">Across Partners</div>
+                <div className="text-xs text-white/50 mt-1">With Stipend & ESI</div>
               </motion.div>
             </div>
           </motion.div>
         )}
 
-        {/* Additional Information Section - Responsive Cards */}
+        {/* Info Cards */}
         <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-          {/* Card 1 */}
           <motion.div
             variants={itemVariants as Variants}
             className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
           >
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Comprehensive Curriculum</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">100% Job Guarantee</h4>
             <p className="text-white/70 text-sm sm:text-base">
-              Industry-aligned coursework combining theoretical foundations with practical applications and real-world projects.
+              Placement tie-ups with top companies in mining, power, logistics, and EV sectors.
             </p>
           </motion.div>
 
-          {/* Card 2 */}
           <motion.div
             variants={itemVariants as Variants}
             className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
           >
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Professional Credentials</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Live Equipment Training</h4>
             <p className="text-white/70 text-sm sm:text-base">
-              NSQF-aligned diplomas and advanced diplomas recognized by industry and government for career advancement.
+              Train on real excavators, cranes, solar panels, and EV charging stations.
             </p>
           </motion.div>
 
-          {/* Card 3 */}
           <motion.div
             variants={itemVariants as Variants}
             className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
           >
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Industry Partnerships</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">6-Month Paid Internship</h4>
             <p className="text-white/70 text-sm sm:text-base">
-              Strong collaboration with leading companies for internships, projects, and direct placement opportunities.
+              Earn while you learn with stipend, food, and accommodation during training.
             </p>
           </motion.div>
 
-          {/* Card 4 */}
           <motion.div
             variants={itemVariants as Variants}
             className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
           >
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Career Advancement</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">NSQF Certified</h4>
             <p className="text-white/70 text-sm sm:text-base">
-              Structured pathways from diploma to advanced diploma, enabling continuous professional growth and specialization.
+              Government-recognized diploma valid for jobs in PSUs and MNCs.
             </p>
           </motion.div>
         </div>

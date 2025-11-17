@@ -21,143 +21,125 @@ interface School {
   courses: Course[];
 }
 
-
-// Enhanced schools data with realistic content
+// Updated schools data — 7 sectors for Upskilling & Reskilling
 const schools: School[] = [
   {
-    id: "mines-steel",
-    name: "Skilling in Mines, Steel & Aluminium",
-    shortName: "Mines & Steel",
+    id: "mines",
+    name: "Upskilling in Mines",
+    shortName: "Mines",
     description:
-      "Hands-on training in mining operations, steel plant processes, and aluminium fabrication. Programs emphasize workplace safety and operational excellence.",
+      "Short modules for mine-site supervisors, HEMM assistants and safety officers — practical training on digital checklists, predictive maintenance basics and safety behaviour change.",
     image:
-      "https://images.unsplash.com/photo-1504917595217/d4dc5ebe6122?w=800&h=600&fit=crop&crop=entropy",
+      "https://images.unsplash.com/photo-1532545321809-3a8c3f6a1d7a?w=1200&h=800&fit=crop&crop=entropy",
     gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
-    totalParticipants: 2840,
-    successRate: 94,
+    totalParticipants: 2400,
+    successRate: 93,
     courses: [
-      { name: "Mining Equipment Operations", skillLevel: "Intermediate", duration: "6 months", participants: 485 },
-      { name: "Steel Manufacturing Techniques", skillLevel: "Advanced", duration: "9 months", participants: 620 },
-      { name: "Aluminium Fabrication & Safety", skillLevel: "Basic", duration: "4 months", participants: 380 },
+      { name: "HEMM Basics & Monitoring (Micro)", skillLevel: "Basic", duration: "4 weeks", participants: 320 },
+      { name: "Predictive Maintenance Fundamentals", skillLevel: "Intermediate", duration: "8 weeks", participants: 210 },
+      { name: "Mine Safety Behaviour & Systems", skillLevel: "Intermediate", duration: "6 weeks", participants: 180 },
     ],
   },
   {
-    id: "power-energy",
-    name: "Skilling in Power & Energy",
-    shortName: "Power & Energy",
+    id: "steel-aluminium",
+    name: "Upskilling in Steel & Aluminium",
+    shortName: "Steel & Aluminium",
     description:
-      "Programs designed for power plant operation, renewable energy systems, and electrical maintenance, blending classroom learning with live lab practice.",
+      "Reskilling tracks for furnace assistants, advanced welding processes and metallurgical QA focused on process optimisation and energy efficiency.",
     image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-yellow-400/20 via-orange-400/20 to-red-400/20",
-    totalParticipants: 3250,
-    successRate: 96,
+      "https://images.unsplash.com/photo-1549921296-3b0be7a9d3b4?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-gray-600/20 via-slate-500/20 to-red-600/20",
+    totalParticipants: 3000,
+    successRate: 92,
     courses: [
-      { name: "Power Plant Operations", skillLevel: "Advanced", duration: "1 year", participants: 720 },
-      { name: "Renewable Energy Technician", skillLevel: "Intermediate", duration: "8 months", participants: 890 },
-      { name: "Electrical Systems Maintenance", skillLevel: "Basic", duration: "6 months", participants: 450 },
+      { name: "Advanced Welding Techniques (Short)", skillLevel: "Intermediate", duration: "6 weeks", participants: 420 },
+      { name: "Metallurgical QA & Defect Reduction", skillLevel: "Intermediate", duration: "8 weeks", participants: 300 },
+      { name: "Energy Efficient Furnace Ops", skillLevel: "Basic", duration: "4 weeks", participants: 200 },
+    ],
+  },
+  {
+    id: "power-green",
+    name: "Upskilling in Power & Green Energy",
+    shortName: "Power & Green Energy",
+    description:
+      "Targeted modules in solar PV maintenance, inverter diagnostics, energy auditing and storage basics to support the green transition.",
+    image:
+      "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-yellow-400/20 via-green-400/20 to-teal-400/20",
+    totalParticipants: 3400,
+    successRate: 95,
+    courses: [
+      { name: "Solar PV Installation & Maintenance", skillLevel: "Basic", duration: "6 weeks", participants: 720 },
+      { name: "Inverter & Battery Diagnostics (Hands-on)", skillLevel: "Intermediate", duration: "8 weeks", participants: 540 },
+      { name: "Energy Auditing Essentials", skillLevel: "Basic", duration: "4 weeks", participants: 380 },
     ],
   },
   {
     id: "shipping-logistics",
-    name: "Skilling in Shipping & Logistics",
-    shortName: "Logistics",
+    name: "Upskilling in Shipping & Logistics",
+    shortName: "Shipping & Logistics",
     description:
-      "Skill development programs in port management, shipping operations, and supply chain systems with strong industry partnerships for practical exposure.",
+      "Practical short courses for warehouse digitisation, cold-chain handling, last-mile optimisation and inventory analytics to improve throughput.",
     image:
-      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-green-400/20 via-cyan-400/20 to-teal-400/20",
-    totalParticipants: 1980,
-    successRate: 92,
-    courses: [
-      { name: "Supply Chain Coordination", skillLevel: "Advanced", duration: "9 months", participants: 420 },
-      { name: "Port & Cargo Handling", skillLevel: "Basic", duration: "5 months", participants: 680 },
-      { name: "International Trade Practices", skillLevel: "Intermediate", duration: "7 months", participants: 290 },
-    ],
-  },
-  {
-    id: "infra-facility",
-    name: "Skilling in Infrastructure & Facility Management",
-    shortName: "Infrastructure",
-    description:
-      "Upskilling programs covering civil construction, facility operations, and project management with real-world projects and site training.",
-    image:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-gray-400/20 via-slate-400/20 to-zinc-400/20",
-    totalParticipants: 2760,
-    successRate: 89,
-    courses: [
-      { name: "Civil Construction Practices", skillLevel: "Intermediate", duration: "10 months", participants: 540 },
-      { name: "Facility Operations Management", skillLevel: "Advanced", duration: "1 year", participants: 780 },
-      { name: "Project Planning & Supervision", skillLevel: "Basic", duration: "6 months", participants: 320 },
-    ],
-  },
-  {
-    id: "semiconductors-ev",
-    name: "Skilling in Semiconductors & EV Technology",
-    shortName: "Tech & EV",
-    description:
-      "Future-ready training on semiconductor fabrication, EV powertrains, and advanced manufacturing processes with global industry standards.",
-    image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-red-400/20 via-green-400/20 to-cyan-400/20",
-    totalParticipants: 1540,
-    successRate: 97,
-    courses: [
-      { name: "Semiconductor Fabrication", skillLevel: "Advanced", duration: "1 year", participants: 280 },
-      { name: "EV Technology Training", skillLevel: "Intermediate", duration: "9 months", participants: 520 },
-      { name: "Smart Manufacturing Systems", skillLevel: "Intermediate", duration: "8 months", participants: 340 },
-    ],
-  },
-  {
-    id: "green-jobs",
-    name: "Skilling in Green Jobs",
-    shortName: "Green Jobs",
-    description:
-      "Sustainability-focused skilling programs in organic farming, waste management, and renewable energy installations for a greener workforce.",
-    image:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-green-400/20 via-emerald-400/20 to-teal-400/20",
-    totalParticipants: 2240,
-    successRate: 93,
-    courses: [
-      { name: "Sustainable Agriculture Practices", skillLevel: "Basic", duration: "6 months", participants: 680 },
-      { name: "Renewable Energy Installations", skillLevel: "Intermediate", duration: "8 months", participants: 380 },
-      { name: "Waste Management & Recycling", skillLevel: "Advanced", duration: "9 months", participants: 450 },
-    ],
-  },
-  {
-    id: "textiles-apparels",
-    name: "Skilling in Textiles & Apparels",
-    shortName: "Textiles",
-    description:
-      "Practical training in textile production, garment manufacturing, and fashion technology with focus on quality standards and export readiness.",
-    image:
-      "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-pink-400/20 via-red-400/20 to-indigo-400/20",
-    totalParticipants: 2100,
+      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-cyan-400/20 via-blue-400/20 to-indigo-400/20",
+    totalParticipants: 1900,
     successRate: 91,
     courses: [
-      { name: "Garment Manufacturing", skillLevel: "Basic", duration: "6 months", participants: 480 },
-      { name: "Textile Engineering Basics", skillLevel: "Intermediate", duration: "9 months", participants: 350 },
-      { name: "Fashion & Apparel Technology", skillLevel: "Advanced", duration: "1 year", participants: 420 },
+      { name: "Warehouse Digital Tools (WMS) — Intro", skillLevel: "Basic", duration: "3 weeks", participants: 460 },
+      { name: "Cold-chain Operations & Safety", skillLevel: "Intermediate", duration: "6 weeks", participants: 320 },
+      { name: "Last-mile Efficiency Practices", skillLevel: "Basic", duration: "4 weeks", participants: 250 },
     ],
   },
   {
-    id: "social-development",
-    name: "Skilling in Social Development",
-    shortName: "Social Dev.",
+    id: "ev",
+    name: "Upskilling in Electric Vehicles",
+    shortName: "Electric Vehicles",
     description:
-      "Programs that equip learners with skills in community development, rural project management, and public health outreach for social change.",
+      "Reskilling modules for EV service technicians: battery health diagnostics, BMS basics, charging safety and retrofit workflows for legacy workshops.",
     image:
-      "https://images.unsplash.com/photo-1559027615-cd4628902d85?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-blue-400/20 via-indigo-400/20 to-red-400/20",
-    totalParticipants: 1500,
-    successRate: 88,
+      "https://images.unsplash.com/photo-1549921296-1c8a0b5c7eab?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-indigo-500/20 via-violet-400/20 to-pink-400/20",
+    totalParticipants: 1600,
+    successRate: 94,
     courses: [
-      { name: "Community Development Practices", skillLevel: "Basic", duration: "6 months", participants: 480 },
-      { name: "Public Health Outreach", skillLevel: "Intermediate", duration: "8 months", participants: 380 },
-      { name: "Rural Project Management", skillLevel: "Advanced", duration: "1 year", participants: 320 },
+      { name: "Battery Health & Diagnostics (Short)", skillLevel: "Basic", duration: "4 weeks", participants: 420 },
+      { name: "EV Service Workflow & Safety", skillLevel: "Intermediate", duration: "6 weeks", participants: 380 },
+      { name: "Charging Infrastructure Basics", skillLevel: "Basic", duration: "3 weeks", participants: 220 },
+    ],
+  },
+  {
+    id: "construction",
+    name: "Upskilling in Construction Tech & Infra Equipment",
+    shortName: "Construction Tech",
+    description:
+      "Short upskilling on equipment telematics, GPS-assisted layout, preventive maintenance and digital quality checks to raise on-site productivity.",
+    image:
+      "https://images.unsplash.com/photo-1505765055195-5f6b6a1f6b6d?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-yellow-600/20 via-amber-500/20 to-rose-500/20",
+    totalParticipants: 3800,
+    successRate: 90,
+    courses: [
+      { name: "Equipment Telematics & Data Basics", skillLevel: "Basic", duration: "5 weeks", participants: 740 },
+      { name: "GPS Site Layout & Digitisation", skillLevel: "Intermediate", duration: "6 weeks", participants: 520 },
+      { name: "Preventive Maintenance for Infra Equipment", skillLevel: "Basic", duration: "4 weeks", participants: 380 },
+    ],
+  },
+  {
+    id: "water-sanitation",
+    name: "Upskilling in Water, Sanitation & Facility Management",
+    shortName: "Water & Facilities",
+    description:
+      "Practical reskilling for pump diagnostics, water quality monitoring, smart sanitation systems and efficient facility operations for institutions and municipalities.",
+    image:
+      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-teal-400/20 via-green-400/20 to-blue-500/20",
+    totalParticipants: 2100,
+    successRate: 92,
+    courses: [
+      { name: "Pump Operation & Diagnostics (Short)", skillLevel: "Basic", duration: "4 weeks", participants: 520 },
+      { name: "Water Quality Testing Fundamentals", skillLevel: "Basic", duration: "3 weeks", participants: 340 },
+      { name: "Facility Efficiency & Ops", skillLevel: "Intermediate", duration: "6 weeks", participants: 260 },
     ],
   },
 ];
@@ -234,7 +216,7 @@ const UpskillingReskillingSchoolsCourses: React.FC = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
       role="region"
-      aria-label="Diploma & Advanced Diploma Schools Carousel"
+      aria-label="Upskilling & Reskilling Schools Carousel"
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
@@ -244,17 +226,11 @@ const UpskillingReskillingSchoolsCourses: React.FC = () => {
           loop
           playsInline
           className="w-full h-full object-cover"
-        //   poster="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1920&h=1080&fit=crop&crop=entropy"
         >
           <source
-            src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742994033/12700136_1920_1080_30fps_zajh9b.mp4"
+            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1763201620/2792967-uhd_2160_1440_25fps_u4mo5l.mp4"
             type="video/mp4"
           />
-          {/* <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-working-in-a-factory-with-heavy-machinery-4129-large.mp4"
-            type="video/mp4"
-          /> */}
-          {/* Fallback for browsers that don't support video */}
           <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black"></div>
         </video>
         
@@ -273,10 +249,10 @@ const UpskillingReskillingSchoolsCourses: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-red-100 bg-clip-text text-transparent">
-            Diploma & Advanced Diploma Schools
+            Upskilling & Reskilling Schools
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Comprehensive academic programs with industry-aligned curriculum, practical training, and professional credentials across core sectors
+            Short, industry-aligned upskilling and reskilling modules that rapidly upgrade on-job capabilities across core sectors.
           </p>
           <div className="mt-6 flex items-center justify-center space-x-4">
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-green-500"></div>
@@ -325,10 +301,9 @@ const UpskillingReskillingSchoolsCourses: React.FC = () => {
                       <Award className="w-4 h-4 mr-1" />
                       {currentSchool.successRate}% Success
                     </div>
-                    {/* <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                      <Users className="w-4 h-4 mr-1" />
-                      {currentSchool.totalStudents.toLocaleString()} Students
-                    </div> */}
+                    <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                      {currentSchool.totalParticipants.toLocaleString()} Participants
+                    </div>
                   </div>
 
                   {/* School Badge */}
@@ -346,7 +321,7 @@ const UpskillingReskillingSchoolsCourses: React.FC = () => {
                 <div className="p-8">
                   <h4 className="text-xl font-semibold text-white mb-6 flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
-                    NSQF-Aligned Diploma Programs
+                    Short Stackable Upskilling Modules
                   </h4>
                   
                   <div className="grid gap-4">
@@ -363,17 +338,17 @@ const UpskillingReskillingSchoolsCourses: React.FC = () => {
                         </div>
                         
                         <div className="flex items-center space-x-4 text-sm text-gray-300">
-                          {/* <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded-lg font-medium">
-                            Level {course.nsqfLevel}
-                          </span> */}
+                          <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded-lg font-medium">
+                            {course.skillLevel}
+                          </span>
                           <span className="flex items-center">
                             <Clock className="w-3 h-3 mr-1" />
                             {course.duration}
                           </span>
-                          {/* <span className="flex items-center">
-                            <Users className="w-3 h-3 mr-1" />
-                            {course.enrolled} enrolled
-                          </span> */}
+                          <span className="flex items-center">
+                            <Award className="w-3 h-3 mr-1" />
+                            {course.participants} trained
+                          </span>
                         </div>
                       </div>
                     ))}

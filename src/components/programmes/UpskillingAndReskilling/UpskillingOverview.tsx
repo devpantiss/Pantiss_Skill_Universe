@@ -18,81 +18,72 @@ interface Sector {
   skills: string[];
 }
 
-interface DiplomaOverviewProps {}
+interface UpskillingOverviewProps {}
 
-// Define sectors data with unique impact data for each
+// Upskilling & Reskilling — 7 sectors requested
 const sectors: Sector[] = [
   {
-    name: "Mines, Steel & Aluminium",
+    name: "Mines",
     description:
-      "Hands-on skilling modules in mining operations, steel technology, and aluminium processing with strong emphasis on safety and productivity.",
-    icon: "⚒️",
-    impact: { courses: 12, trained: 2500, placed: 1800 },
-    certificationLevel: "Skill Levels 4-6",
-    skills: ["Mining Ops", "Steel Processing", "Industrial Safety"],
+      "Short upskilling modules for mine-site supervisors, HEMM assistants and safety officers — focused on digital checklists, predictive maintenance basics and improved safety behaviours.",
+    icon: "⛏️",
+    impact: { courses: 8, trained: 1200, placed: 850 },
+    certificationLevel: "Short Courses & Microcredentials",
+    skills: ["HEMM Basics", "Predictive Maintenance", "Safety Behaviour"],
   },
   {
-    name: "Power & Energy",
+    name: "Steel & Aluminium",
     description:
-      "Upskilling in power systems, renewable energy, and smart grid management with real lab simulations and industry-linked projects.",
+      "Reskilling tracks for furnace operators, welding upgrades, quality inspection with emphasis on process optimization, energy efficiency and defect reduction.",
+    icon: "🏭",
+    impact: { courses: 10, trained: 1600, placed: 1200 },
+    certificationLevel: "Short Courses & Microcredentials",
+    skills: ["Advanced Welding", "Metallurgical QA", "Process Efficiency"],
+  },
+  {
+    name: "Power & Green Energy",
+    description:
+      "Targeted upskilling in solar PV maintenance, inverter diagnostics, energy auditing and basic grid-interactive concepts to support the green transition.",
     icon: "⚡",
-    impact: { courses: 15, trained: 3200, placed: 2400 },
-    certificationLevel: "Skill Levels 5-7",
-    skills: ["Power Systems", "Renewables", "Grid Management"],
+    impact: { courses: 12, trained: 2000, placed: 1500 },
+    certificationLevel: "Short Courses & Microcredentials",
+    skills: ["Solar PV", "Inverter Diagnostics", "Energy Auditing"],
   },
   {
     name: "Shipping & Logistics",
     description:
-      "Training in supply chain, port operations, and global logistics, preparing workforce for fast-growing logistics & e-commerce sectors.",
+      "Practical short courses for cold-chain handlers, digital warehouse tools, last-mile logistics and inventory analytics to improve throughput and traceability.",
     icon: "🚢",
-    impact: { courses: 10, trained: 1800, placed: 1500 },
-    certificationLevel: "Skill Levels 3-5",
-    skills: ["Supply Chain", "Port Ops", "International Trade"],
+    impact: { courses: 7, trained: 900, placed: 700 },
+    certificationLevel: "Short Courses & Microcredentials",
+    skills: ["Cold-Chain", "WMS Tools", "Last-mile Ops"],
   },
   {
-    name: "Infrastructure & Facility Management",
+    name: "Electric Vehicles",
     description:
-      "Skill development in construction, civil works, and facility operations through project-based learning and site simulations.",
+      "Reskilling modules for EV service technicians, battery health diagnostics, fast-charging safety and retrofit/upcycle workflows for legacy workshops.",
+    icon: "🔋",
+    impact: { courses: 9, trained: 1100, placed: 820 },
+    certificationLevel: "Short Courses & Microcredentials",
+    skills: ["Battery Diagnostics", "EV Drivetrain", "Charging Safety"],
+  },
+  {
+    name: "Construction Tech & Infra Equipment",
+    description:
+      "Upskilling on equipment telematics, GPS-assisted site layout, preventive maintenance and digital quality checks to raise productivity on site.",
     icon: "🏗️",
-    impact: { courses: 18, trained: 4000, placed: 3000 },
-    certificationLevel: "Skill Levels 4-6",
-    skills: ["Civil Works", "Construction Mgmt", "Facility Ops"],
+    impact: { courses: 11, trained: 1800, placed: 1400 },
+    certificationLevel: "Short Courses & Microcredentials",
+    skills: ["Telematics Ops", "Site Digitisation", "Preventive Maintenance"],
   },
   {
-    name: "Semiconductors & EV Tech",
+    name: "Water, Sanitation & Facility Management",
     description:
-      "Future-ready skilling in semiconductor manufacturing, EV systems, and advanced assembly with cutting-edge lab exposure.",
-    icon: "🔬",
-    impact: { courses: 8, trained: 1200, placed: 900 },
-    certificationLevel: "Skill Levels 6-8",
-    skills: ["Semiconductors", "EV Systems", "Advanced Assembly"],
-  },
-  {
-    name: "Green Jobs",
-    description:
-      "Upskilling for sustainability careers in clean energy, eco-friendly agriculture, and green technologies with field training.",
-    icon: "🌱",
-    impact: { courses: 14, trained: 2800, placed: 2200 },
-    certificationLevel: "Skill Levels 3-5",
-    skills: ["Enviro Tech", "Green Farming", "Renewable Systems"],
-  },
-  {
-    name: "Textiles & Apparels",
-    description:
-      "Practical skilling for textile production, fashion technology, and apparel management aligned with modern manufacturing.",
-    icon: "🧵",
-    impact: { courses: 11, trained: 2100, placed: 1600 },
-    certificationLevel: "Skill Levels 3-4",
-    skills: ["Textiles", "Fashion Tech", "Production Mgmt"],
-  },
-  {
-    name: "Social Development",
-    description:
-      "Capacity building for careers in community work, public health, and social programs through applied field-based training.",
-    icon: "🤝",
-    impact: { courses: 9, trained: 1500, placed: 1200 },
-    certificationLevel: "Skill Levels 4-5",
-    skills: ["Community Dev", "Public Health", "Social Impact"],
+      "Practical reskilling for pump diagnostics, water quality monitoring, smart sanitation systems and efficient facility operations.",
+    icon: "🚰",
+    impact: { courses: 6, trained: 850, placed: 620 },
+    certificationLevel: "Short Courses & Microcredentials",
+    skills: ["Pump Diagnostics", "Water Testing", "Facility Optimisation"],
   },
 ];
 
@@ -146,18 +137,8 @@ const CustomPrevArrow = ({ onClick }: CustomArrowProps) => (
     onClick={onClick}
     aria-label="Previous sector"
   >
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M15 19l-7-7 7-7"
-      />
+    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
     </svg>
   </button>
 );
@@ -168,23 +149,13 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
     onClick={onClick}
     aria-label="Next sector"
   >
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 5l7 7-7 7"
-      />
+    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
     </svg>
   </button>
 );
 
-const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
+const DiplomaOverview: React.FC<UpskillingOverviewProps> = () => {
   // State to track current slide for dynamic impact data
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -251,14 +222,12 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
           className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-            <span className="bg-white bg-clip-text text-transparent">
-              Program{" "}
-            </span>
-            <span className="text-white/90">Overview</span>
+            <span className="bg-white bg-clip-text text-transparent">Upskilling &</span>{" "}
+            <span className="text-white/90">Reskilling Program</span>
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
-            Comprehensive diploma and advanced diploma programs across core sectors, combining theoretical knowledge with practical training for professional career advancement.
+            Short, industry-aligned upskilling and reskilling modules across core sectors — designed to rapidly upgrade workforce skills for current job requirements.
           </p>
         </motion.div>
 
@@ -270,22 +239,13 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             className="order-2 xl:order-1 w-full flex flex-col"
           >
             <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 group flex-1 flex flex-col">
-              {/* Decorative corner elements - Hidden on mobile */}
-              <div className="hidden sm:block absolute top-4 left-4 w-6 sm:w-8 h-6 sm:h-8 border-l-2 border-t-2 border-red-600/50 rounded-tl-lg" />
-              <div className="hidden sm:block absolute top-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-t-2 border-green-500/50 rounded-tr-lg" />
-              <div className="hidden sm:block absolute bottom-4 left-4 w-6 sm:w-8 h-6 sm:h-8 border-l-2 border-b-2 border-red-600/50 rounded-bl-lg" />
-              <div className="hidden sm:block absolute bottom-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-b-2 border-green-500/50 rounded-br-lg" />
-
               {/* Video Title */}
               <div className="mb-4">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
-                  Program{" "}
-                  <span className="bg-green-500 bg-clip-text text-transparent">
-                    Introduction
-                  </span>
+                  Program <span className="bg-green-500 bg-clip-text text-transparent">Snapshot</span>
                 </h3>
                 <p className="text-white/70 text-sm sm:text-base">
-                  Discover how Diploma & Advanced Diploma programs build professional careers across industries
+                  Rapid upskilling and stackable micro-credentials to close skill gaps and improve on-site productivity.
                 </p>
               </div>
 
@@ -294,7 +254,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                 <div className="aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-black/50 relative flex-1 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
                   <iframe
                     src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    title="Diploma & Advanced Diploma Overview Video"
+                    title="Upskilling & Reskilling Overview Video"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
@@ -318,8 +278,8 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
               {/* Video Stats/Info */}
               <div className="mt-4 pt-4 border-t border-white/10">
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white/60">
-                  <span>📺 Watch our program overview</span>
-                  <span>⏱️ 3 min overview</span>
+                  <span>📺 Watch our upskilling snapshot</span>
+                  <span>⏱️ ~3 minute overview</span>
                 </div>
               </div>
 
@@ -337,13 +297,11 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
               {/* Section Header */}
               <div className="mb-4 sm:mb-6">
                 <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
-                  Programs Across{" "}
-                  <span className="bg-green-500 bg-clip-text text-transparent">
-                    8 Key Sectors
-                  </span>
+                  Modules Across{" "}
+                  <span className="bg-green-500 bg-clip-text text-transparent">7 Key Sectors</span>
                 </h3>
                 <p className="text-white/70 text-sm sm:text-base lg:text-lg leading-relaxed">
-                  Diploma and Advanced Diploma programs provide comprehensive education across diverse industries, aligned with NSQF standards and industry requirements.
+                  Short, practical modules tailored to industry needs — stackable credentials that fit employer requirements.
                 </p>
               </div>
 
@@ -411,7 +369,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                           {/* Skills Tags */}
                           <div className="mt-auto">
                             <h5 className="text-xs sm:text-sm font-semibold text-white/90 mb-2">
-                              Key Skills:
+                              Key Competencies:
                             </h5>
                             <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
                               {sector.skills.map((skill, skillIndex) => (
@@ -437,7 +395,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
           </motion.div>
         </div>
 
-        {/* Dynamic Impact Data - Enhanced Responsiveness */}
+        {/* Dynamic Impact Data - Updated labels for Upskilling */}
         {currentImpact && (
           <motion.div
             key={`impact-${currentSlide}`}
@@ -457,7 +415,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                 </span>
               </h4>
               <p className="text-white/60 text-xs sm:text-sm lg:text-base">
-                Current sector performance metrics
+                Current sector metrics for Upskilling & Reskilling
               </p>
             </div>
 
@@ -477,7 +435,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                   {currentImpact.courses}
                 </motion.div>
                 <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Diploma Programs
+                  Upskilling Modules
                 </div>
                 <div className="text-xs text-white/50 mt-1">Available</div>
               </motion.div>
@@ -497,7 +455,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                   {currentImpact.trained.toLocaleString()}
                 </motion.div>
                 <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Students Graduated
+                  Workers Upskilled
                 </div>
                 <div className="text-xs text-white/50 mt-1">Cumulative</div>
               </motion.div>
@@ -517,9 +475,9 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                   {currentImpact.placed.toLocaleString()}
                 </motion.div>
                 <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Placements
+                  Job Transitions
                 </div>
-                <div className="text-xs text-white/50 mt-1">Across Partners</div>
+                <div className="text-xs text-white/50 mt-1">Through Partners</div>
               </motion.div>
             </div>
           </motion.div>
@@ -532,9 +490,9 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             variants={itemVariants as Variants}
             className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
           >
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Comprehensive Curriculum</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Stackable Microcredentials</h4>
             <p className="text-white/70 text-sm sm:text-base">
-              Industry-aligned coursework combining theoretical foundations with practical applications and real-world projects.
+              Short modules stack into competencies employers recognise — learn what you need, when you need it.
             </p>
           </motion.div>
 
@@ -543,9 +501,9 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             variants={itemVariants as Variants}
             className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
           >
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Professional Credentials</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Industry-Focused Content</h4>
             <p className="text-white/70 text-sm sm:text-base">
-              NSQF-aligned diplomas and advanced diplomas recognized by industry and government for career advancement.
+              Curriculum co-designed with employers to ensure immediate on-job applicability and reduced training-to-hire time.
             </p>
           </motion.div>
 
@@ -554,9 +512,9 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             variants={itemVariants as Variants}
             className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
           >
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Industry Partnerships</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Blended Delivery</h4>
             <p className="text-white/70 text-sm sm:text-base">
-              Strong collaboration with leading companies for internships, projects, and direct placement opportunities.
+              Short classroom bursts + workplace coaching and remote micro-learning for flexible upskilling at scale.
             </p>
           </motion.div>
 
@@ -565,9 +523,9 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             variants={itemVariants as Variants}
             className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
           >
-            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Career Advancement</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Employer Pathways</h4>
             <p className="text-white/70 text-sm sm:text-base">
-              Structured pathways from diploma to advanced diploma, enabling continuous professional growth and specialization.
+              Direct pathways to employers for task-based hiring, trial projects and faster deployment on live sites.
             </p>
           </motion.div>
         </div>

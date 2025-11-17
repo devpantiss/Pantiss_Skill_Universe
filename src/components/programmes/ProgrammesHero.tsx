@@ -4,21 +4,22 @@ import { motion } from "framer-motion";
 const ProgrammesHero: React.FC = () => {
   return (
     <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1743679033/pilmo-kang-H72SCCTZPE8-unsplash_ru8urx.jpg')",
-        }}
-      />
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source
+          src="https://res.cloudinary.com/dxzhnns58/video/upload/v1763201687/6618336-uhd_3840_2160_24fps_yb7cwg.mp4"
+          type="video/mp4"
+        />
+      </video>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60" />
-
-      {/* Floating blurry circles for effect */}
-      {/* <div className="absolute -top-20 -left-20 w-96 h-96 bg-red-600/30 rounded-full blur-3xl animate-pulse" /> */}
-      {/* <div className="absolute top-40 right-10 w-72 h-72 bg-green-500/30 rounded-full blur-3xl animate-pulse" /> */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black" />
 
       {/* Content */}
       <motion.div

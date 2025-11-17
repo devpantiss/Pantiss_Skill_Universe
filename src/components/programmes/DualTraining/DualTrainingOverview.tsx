@@ -20,79 +20,70 @@ interface Sector {
 
 interface DualTrainingOverviewProps {}
 
-// Define sectors data with unique impact data for each
+// Apprenticeship & Dual Training — 7 sectors requested
 const sectors: Sector[] = [
   {
-    name: "Mines, Steel & Aluminium",
+    name: "Mines",
     description:
-      "Apprenticeship pathways in mining operations, steel fabrication, and aluminium processing with on-the-job mentoring and safety-first training.",
-    icon: "⚒️",
-    impact: { courses: 12, trained: 2500, placed: 1800 },
-    certificationLevel: "Level 4-6",
-    skills: ["Safety Operations", "Equipment Handling", "Quality Control"],
+      "Apprenticeship pathways in mining site operations, HEMM handling, mine safety systems and on-site preventive maintenance with workplace mentors.",
+    icon: "⛏️",
+    impact: { courses: 10, trained: 2000, placed: 1500 },
+    certificationLevel: "NSQF Levels 4-6",
+    skills: ["Site Ops", "HEMM Handling", "Mine Safety"],
   },
   {
-    name: "Power & Energy",
+    name: "Steel & Aluminium",
     description:
-      "Dual training in power plant operations and renewable energy systems, combining lab learning with real plant exposure.",
+      "Dual training in welding, furnace/shop-floor practices, metallurgical handling and quality control with rotations across fabrication and mill shops.",
+    icon: "🏭",
+    impact: { courses: 12, trained: 2600, placed: 2000 },
+    certificationLevel: "NSQF Levels 4-6",
+    skills: ["Welding", "Fabrication", "Quality Control"],
+  },
+  {
+    name: "Power & Green Energy",
+    description:
+      "Apprenticeship and on-site training in power plant operations, solar PV installation, energy storage basics and safe electrical practice.",
     icon: "⚡",
-    impact: { courses: 15, trained: 3200, placed: 2400 },
-    certificationLevel: "Level 5-7",
-    skills: ["Plant Operations", "Renewable Systems", "Grid Management"],
+    impact: { courses: 14, trained: 3000, placed: 2300 },
+    certificationLevel: "NSQF Levels 5-7",
+    skills: ["Plant Ops", "Solar PV", "Energy Safety"],
   },
   {
     name: "Shipping & Logistics",
     description:
-      "Hands-on apprenticeship in warehouse management, freight forwarding, and port operations with rotating workplace assignments.",
+      "Hands-on dual training covering port & cargo handling, warehouse operations, cold-chain basics and freight operations with employer placements.",
     icon: "🚢",
-    impact: { courses: 10, trained: 1800, placed: 1500 },
-    certificationLevel: "Level 3-5",
-    skills: ["Warehouse Mgmt", "Freight Operations", "Port Handling"],
+    impact: { courses: 9, trained: 1700, placed: 1350 },
+    certificationLevel: "NSQF Levels 3-5",
+    skills: ["Port Ops", "Warehouse Mgmt", "Cold-Chain"],
   },
   {
-    name: "Infrastructure & Facility Management",
+    name: "Electric Vehicles",
     description:
-      "Dual training for construction supervision, plumbing, and facility maintenance aligned to site-based learning and classroom modules.",
+      "Workplace apprenticeships in EV servicing, battery handling, BMS basics and diagnostics tailored to e-mobility workshops and OEM service centers.",
+    icon: "🔋",
+    impact: { courses: 8, trained: 1400, placed: 1000 },
+    certificationLevel: "NSQF Levels 5-7",
+    skills: ["EV Servicing", "Battery Handling", "Diagnostics"],
+  },
+  {
+    name: "Construction Tech & Infra Equipment",
+    description:
+      "Dual training on construction machinery operation, equipment maintenance, formwork and site supervision with structured on-site rotations.",
     icon: "🏗️",
-    impact: { courses: 18, trained: 4000, placed: 3000 },
-    certificationLevel: "Level 4-6",
-    skills: ["Construction", "Maintenance", "Project Mgmt"],
+    impact: { courses: 16, trained: 3600, placed: 2800 },
+    certificationLevel: "NSQF Levels 4-6",
+    skills: ["Equipment Ops", "Maintenance", "Formwork"],
   },
   {
-    name: "Semiconductors & EV Tech",
+    name: "Water, Sanitation & Facility Management",
     description:
-      "Apprenticeship routes in chip fabrication and EV assembly with competency-based assessments on industry equipment.",
-    icon: "🔬",
-    impact: { courses: 8, trained: 1200, placed: 900 },
-    certificationLevel: "Level 6-8",
-    skills: ["Chip Fabrication", "EV Assembly", "Quality Testing"],
-  },
-  {
-    name: "Green Jobs",
-    description:
-      "Dual training for solar installation, waste management, and sustainable practices with community and field projects.",
-    icon: "🌱",
-    impact: { courses: 14, trained: 2800, placed: 2200 },
-    certificationLevel: "Level 3-5",
-    skills: ["Solar Installation", "Waste Mgmt", "Sustainable Farming"],
-  },
-  {
-    name: "Textiles & Apparels",
-    description:
-      "Apprenticeship programs in textile manufacturing and garment production with supervised shop-floor learning.",
-    icon: "🧵",
-    impact: { courses: 11, trained: 2100, placed: 1600 },
-    certificationLevel: "Level 3-4",
-    skills: ["Pattern Making", "Quality Control", "Production Mgmt"],
-  },
-  {
-    name: "Social Development",
-    description:
-      "Apprenticeship opportunities in community mobilization and social health services with field immersion and mentorship.",
-    icon: "🤝",
-    impact: { courses: 9, trained: 1500, placed: 1200 },
-    certificationLevel: "Level 4-5",
-    skills: ["Community Work", "Health Services", "Social Research"],
+      "Apprenticeships in pump operation, water treatment basics, sanitation systems and facility services with community & institutional placements.",
+    icon: "🚰",
+    impact: { courses: 10, trained: 1900, placed: 1400 },
+    certificationLevel: "NSQF Levels 3-5",
+    skills: ["Pump Ops", "Water Treatment", "Facility Mgmt"],
   },
 ];
 
@@ -146,18 +137,8 @@ const CustomPrevArrow = ({ onClick }: CustomArrowProps) => (
     onClick={onClick}
     aria-label="Previous sector"
   >
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M15 19l-7-7 7-7"
-      />
+    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
     </svg>
   </button>
 );
@@ -168,18 +149,8 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
     onClick={onClick}
     aria-label="Next sector"
   >
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 5l7 7-7 7"
-      />
+    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
     </svg>
   </button>
 );
@@ -209,8 +180,7 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
         aria-label={`Go to slide ${i + 1}`}
       />
     ),
-    dotsClass:
-      "slick-dots !bottom-[-30px] sm:!bottom-[-40px] !flex !justify-center !space-x-2",
+    dotsClass: "slick-dots !bottom-[-30px] sm:!bottom-[-40px] !flex !justify-center !space-x-2",
   };
 
   // Get current sector's impact data
@@ -246,50 +216,31 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
         className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10"
       >
         {/* Header Section */}
-        <motion.div
-          variants={itemVariants as Variants}
-          className="text-center mb-8 sm:mb-12 lg:mb-16"
-        >
+        <motion.div variants={itemVariants as Variants} className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-            <span className="bg-white bg-clip-text text-transparent">
-              Program{" "}
-            </span>
-            <span className="text-white/90">Overview</span>
+            <span className="bg-white bg-clip-text text-transparent">Apprenticeship & Dual Training</span>{" "}
+            <span className="text-white/90">Program Overview</span>
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
-            Earn-while-you-learn Apprenticeship and Dual Training across core sectors, blending classroom instruction with real workplace experience for job-ready skills.
+            Earn-while-you-learn apprenticeship and dual training across core sectors — classroom instruction paired with workplace rotations to build job-ready skills.
           </p>
         </motion.div>
 
         {/* Main Content Grid - Enhanced for Equal Heights */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 mb-8 sm:mb-12 lg:mb-16">
-          {/* Video Section - Enhanced Responsiveness */}
-          <motion.div
-            variants={fadeInLeft as Variants}
-            className="order-2 xl:order-1 w-full flex flex-col"
-          >
+          {/* Video Section */}
+          <motion.div variants={fadeInLeft as Variants} className="order-2 xl:order-1 w-full flex flex-col">
             <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 group flex-1 flex flex-col">
-              {/* Decorative corner elements - Hidden on mobile */}
-              <div className="hidden sm:block absolute top-4 left-4 w-6 sm:w-8 h-6 sm:h-8 border-l-2 border-t-2 border-red-600/50 rounded-tl-lg" />
-              <div className="hidden sm:block absolute top-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-t-2 border-green-500/50 rounded-tr-lg" />
-              <div className="hidden sm:block absolute bottom-4 left-4 w-6 sm:w-8 h-6 sm:h-8 border-l-2 border-b-2 border-red-600/50 rounded-bl-lg" />
-              <div className="hidden sm:block absolute bottom-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-b-2 border-green-500/50 rounded-br-lg" />
-
-              {/* Video Title */}
               <div className="mb-4">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
-                  Program{" "}
-                  <span className="bg-green-500 bg-clip-text text-transparent">
-                    Introduction
-                  </span>
+                  Program <span className="bg-green-500 bg-clip-text text-transparent">Introduction</span>
                 </h3>
                 <p className="text-white/70 text-sm sm:text-base">
-                  Discover how Apprenticeship & Dual Training builds careers across industries
+                  Learn how Apprenticeship & Dual Training combine real workplace learning with classroom fundamentals to accelerate employability.
                 </p>
               </div>
 
-              {/* Video Container - Flexible Height */}
               <div className="flex-1 flex flex-col min-h-0">
                 <div className="aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-black/50 relative flex-1 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
                   <iframe
@@ -300,14 +251,9 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
                     className="w-full h-full"
                   />
 
-                  {/* Play button overlay for better mobile UX */}
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                     <div className="w-12 sm:w-16 h-12 sm:h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                      <svg
-                        className="w-6 sm:w-8 h-6 sm:h-8 text-white ml-1"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
+                      <svg className="w-6 sm:w-8 h-6 sm:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
@@ -315,72 +261,39 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
                 </div>
               </div>
 
-              {/* Video Stats/Info */}
               <div className="mt-4 pt-4 border-t border-white/10">
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white/60">
-                  <span>📺 Watch our program overview</span>
-                  <span>⏱️ 3 min overview</span>
+                  <span>📺 Apprenticeship & Dual Training intro</span>
+                  <span>⏱️ ~3 minute overview</span>
                 </div>
               </div>
 
-              {/* Glow effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-green-500/10 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
           </motion.div>
 
-          {/* Carousel Section - Enhanced Responsiveness */}
-          <motion.div
-            variants={fadeInRight as Variants}
-            className="order-1 xl:order-2 w-full flex flex-col"
-          >
+          {/* Carousel Section */}
+          <motion.div variants={fadeInRight as Variants} className="order-1 xl:order-2 w-full flex flex-col">
             <div className="flex-1 flex flex-col">
-              {/* Section Header */}
               <div className="mb-4 sm:mb-6">
                 <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
-                  Skills Across{" "}
-                  <span className="bg-green-500 bg-clip-text text-transparent">
-                    8 Key Sectors
-                  </span>
+                  Skills Across <span className="bg-green-500 bg-clip-text text-transparent">7 Key Sectors</span>
                 </h3>
                 <p className="text-white/70 text-sm sm:text-base lg:text-lg leading-relaxed">
-                  Apprenticeship and Dual Training programs build job-ready skills across diverse industries, aligned with NSQF and industry standards.
+                  Apprenticeship & Dual Training programs build job-ready skills across essential industries with employer mentorship and competency assessments.
                 </p>
               </div>
 
-              {/* React Slick Carousel - Enhanced Container */}
               <div className="relative flex-1 flex flex-col min-h-0">
                 <style>{`
-                  .slick-dots li button:before {
-                    display: none;
-                  }
-                  .slick-track {
-                    display: flex;
-                    align-items: stretch;
-                  }
-                  .slick-slide > div {
-                    height: 100%;
-                  }
-                  .slick-slide > div > div {
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                  }
-                  .equal-height-slider .slick-list {
-                    height: 100%;
-                  }
-                  .equal-height-slider .slick-track {
-                    height: 100%;
-                  }
-                  @media (max-width: 640px) {
-                    .slick-dots {
-                      bottom: -25px !important;
-                    }
-                  }
-                  @media (min-width: 641px) {
-                    .equal-height-slider {
-                      height: calc(100% - 50px); /* Account for dots space */
-                    }
-                  }
+                  .slick-dots li button:before { display: none; }
+                  .slick-track { display: flex; align-items: stretch; }
+                  .slick-slide > div { height: 100%; }
+                  .slick-slide > div > div { height: 100%; display: flex; flex-direction: column; }
+                  .equal-height-slider .slick-list { height: 100%; }
+                  .equal-height-slider .slick-track { height: 100%; }
+                  @media (max-width: 640px) { .slick-dots { bottom: -25px !important; } }
+                  @media (min-width: 641px) { .equal-height-slider { height: calc(100% - 50px); } }
                 `}</style>
 
                 <div className="equal-height-slider flex-1 min-h-[350px] sm:min-h-[400px] lg:min-h-[450px]">
@@ -410,9 +323,7 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
 
                           {/* Skills Tags */}
                           <div className="mt-auto">
-                            <h5 className="text-xs sm:text-sm font-semibold text-white/90 mb-2">
-                              Key Skills:
-                            </h5>
+                            <h5 className="text-xs sm:text-sm font-semibold text-white/90 mb-2">Key Skills:</h5>
                             <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
                               {sector.skills.map((skill, skillIndex) => (
                                 <span
@@ -437,28 +348,20 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
           </motion.div>
         </div>
 
-        {/* Dynamic Impact Data - Enhanced Responsiveness */}
+        {/* Dynamic Impact Data - Apprenticeship & Dual Training labels */}
         {currentImpact && (
           <motion.div
             key={`impact-${currentSlide}`}
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              transition: { duration: 0.5, ease: [0.42, 0, 0.58, 1] },
-            }}
+            animate={{ opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.42, 0, 0.58, 1] } }}
             className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/10"
           >
             <div className="mb-4 sm:mb-6 text-center">
               <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
                 <span className="text-white/70">Impact for </span>
-                <span className="bg-green-500 bg-clip-text text-transparent">
-                  {currentSector?.name}
-                </span>
+                <span className="bg-green-500 bg-clip-text text-transparent">{currentSector?.name}</span>
               </h4>
-              <p className="text-white/60 text-xs sm:text-sm lg:text-base">
-                Current sector performance metrics
-              </p>
+              <p className="text-white/60 text-xs sm:text-sm lg:text-base">Current sector performance metrics (Apprenticeship & Dual Training)</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
@@ -476,9 +379,7 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
                 >
                   {currentImpact.courses}
                 </motion.div>
-                <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Courses
-                </div>
+                <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">Apprenticeship Courses</div>
                 <div className="text-xs text-white/50 mt-1">Available</div>
               </motion.div>
 
@@ -496,9 +397,7 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
                 >
                   {currentImpact.trained.toLocaleString()}
                 </motion.div>
-                <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Learners Trained
-                </div>
+                <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">Learners Trained</div>
                 <div className="text-xs text-white/50 mt-1">Cumulative</div>
               </motion.div>
 
@@ -516,10 +415,8 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
                 >
                   {currentImpact.placed.toLocaleString()}
                 </motion.div>
-                <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">
-                  Placements
-                </div>
-                <div className="text-xs text-white/50 mt-1">Across Partners</div>
+                <div className="text-xs sm:text-sm lg:text-base text-white/70 font-medium">Placements</div>
+                <div className="text-xs text-white/50 mt-1">Through Partners</div>
               </motion.div>
             </div>
           </motion.div>
@@ -527,48 +424,24 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
 
         {/* Additional Information Section - Responsive Cards */}
         <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-          {/* Card 1 */}
-          <motion.div
-            variants={itemVariants as Variants}
-            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
-          >
+          <motion.div variants={itemVariants as Variants} className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300">
             <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Structured Rotations</h4>
-            <p className="text-white/70 text-sm sm:text-base">
-              Weekly split between classroom learning and workplace projects ensures fast, practical skill development.
-            </p>
+            <p className="text-white/70 text-sm sm:text-base">Weekly split between classroom learning and workplace projects ensures fast, practical skill development.</p>
           </motion.div>
 
-          {/* Card 2 */}
-          <motion.div
-            variants={itemVariants as Variants}
-            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
-          >
+          <motion.div variants={itemVariants as Variants} className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300">
             <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Earn While You Learn</h4>
-            <p className="text-white/70 text-sm sm:text-base">
-              Stipend-backed apprenticeships with progression to higher responsibilities based on competency.
-            </p>
+            <p className="text-white/70 text-sm sm:text-base">Stipend-backed apprenticeships with progression to higher responsibilities based on competency.</p>
           </motion.div>
 
-          {/* Card 3 */}
-          <motion.div
-            variants={itemVariants as Variants}
-            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
-          >
+          <motion.div variants={itemVariants as Variants} className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300">
             <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Mentorship & Assessment</h4>
-            <p className="text-white/70 text-sm sm:text-base">
-              Guided by industry mentors with competency-based evaluations aligned to standards.
-            </p>
+            <p className="text-white/70 text-sm sm:text-base">Guided by industry mentors with competency-based evaluations aligned to national standards.</p>
           </motion.div>
 
-          {/* Card 4 */}
-          <motion.div
-            variants={itemVariants as Variants}
-            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
-          >
+          <motion.div variants={itemVariants as Variants} className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300">
             <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Placement Pathways</h4>
-            <p className="text-white/70 text-sm sm:text-base">
-              Strong partner network across sectors enables direct placement opportunities on completion.
-            </p>
+            <p className="text-white/70 text-sm sm:text-base">Strong partner network across sectors enables direct placement opportunities on completion.</p>
           </motion.div>
         </div>
       </motion.div>

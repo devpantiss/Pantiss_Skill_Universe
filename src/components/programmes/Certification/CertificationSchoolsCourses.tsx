@@ -1,7 +1,5 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
 import {
-//   ChevronLeft,
-//   ChevronRight,
   CheckCircle,
   Play,
   Pause,
@@ -31,40 +29,57 @@ interface School {
   successRate: number;
 }
 
-// Updated schools data with certification focus
+// Updated schools data — exactly the 7 sectors you requested
 const schools: School[] = [
   {
-    id: "mines-steel",
-    name: "School of Mining, Steel & Aluminium",
-    shortName: "Mines & Steel",
+    id: "mines",
+    name: "School of Mines",
+    shortName: "Mines",
     description:
-      "Industry-certified programs in mining safety, steel plant operations, and aluminium processing designed for fast-track workforce readiness.",
+      "Industry-certified programs in mine-site operations, HEMM assistance, mine safety and surveying — designed for rapid workforce readiness on-site.",
     image:
-      "https://images.unsplash.com/photo-1504917595217/d4dc5ebe6122?w=800&h=600&fit=crop&crop=entropy",
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=800&fit=crop&crop=entropy",
     gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
-    totalStudents: 2840,
-    successRate: 94,
+    totalStudents: 2300,
+    successRate: 92,
     courses: [
-      { name: "Certification in Mining Operations", level: "Level 3", duration: "6 months", enrolled: 485 },
-      { name: "Steel Plant Operations Certification", level: "Level 4", duration: "9 months", enrolled: 620 },
-      { name: "Aluminium Fabrication Certificate", level: "Level 3", duration: "6 months", enrolled: 380 },
+      { name: "Certification in Mine Operations", level: "Level 4", duration: "6 months", enrolled: 520 },
+      { name: "HEMM Assistance Certificate", level: "Level 3", duration: "4 months", enrolled: 410 },
+      { name: "Mine Safety & Surveying", level: "Level 4", duration: "6 months", enrolled: 360 },
     ],
   },
   {
-    id: "power-energy",
-    name: "School of Power & Energy",
-    shortName: "Power & Energy",
+    id: "steel-aluminium",
+    name: "School of Steel & Aluminium",
+    shortName: "Steel & Aluminium",
     description:
-      "Specialized certifications in renewable energy, power plant operations, and electrical systems aligned with emerging energy industry needs.",
+      "Certifications focused on furnace operations, rolling mills, welding, metallurgical quality and energy-efficiency improvements for smelters and mills.",
     image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-yellow-400/20 via-orange-400/20 to-red-400/20",
-    totalStudents: 3250,
+      "https://images.unsplash.com/photo-1581091870622-3b1b2e38c2d8?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-gray-500/20 via-slate-400/20 to-indigo-500/20",
+    totalStudents: 2800,
+    successRate: 94,
+    courses: [
+      { name: "Furnace & Melt Shop Certificate", level: "Level 4", duration: "9 months", enrolled: 650 },
+      { name: "Welding & Fabrication Certification", level: "Level 3", duration: "6 months", enrolled: 520 },
+      { name: "Metallurgical QA Certificate", level: "Level 4", duration: "6 months", enrolled: 430 },
+    ],
+  },
+  {
+    id: "power-green",
+    name: "School of Power & Green Energy",
+    shortName: "Power & Green",
+    description:
+      "Industry-aligned certifications in power plant operations, solar PV & wind technician tracks, energy auditing and battery storage basics for the green transition.",
+    image:
+      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-yellow-400/20 via-green-400/20 to-cyan-400/20",
+    totalStudents: 3400,
     successRate: 96,
     courses: [
-      { name: "Certification in Power Plant Operations", level: "Level 4", duration: "9 months", enrolled: 720 },
-      { name: "Renewable Energy Technician Certificate", level: "Level 3", duration: "6 months", enrolled: 890 },
-      { name: "Electrical Maintenance Certification", level: "Level 2", duration: "3 months", enrolled: 450 },
+      { name: "Power Plant Operations Certificate", level: "Level 5", duration: "9 months", enrolled: 720 },
+      { name: "Solar PV Installer Certification", level: "Level 3", duration: "6 months", enrolled: 900 },
+      { name: "Energy Audit & Storage Basics", level: "Level 4", duration: "6 months", enrolled: 480 },
     ],
   },
   {
@@ -72,101 +87,67 @@ const schools: School[] = [
     name: "School of Shipping & Logistics",
     shortName: "Shipping & Logistics",
     description:
-      "Hands-on certification courses in supply chain, port operations, and customs management to support global trade and logistics careers.",
+      "Short-term and advanced certifications in warehouse management, port & cargo handling, cold-chain and freight forwarding tailored for modern supply chains.",
     image:
-      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop&crop=entropy",
+      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1200&h=800&fit=crop&crop=entropy",
     gradient: "from-green-400/20 via-cyan-400/20 to-teal-400/20",
-    totalStudents: 1980,
-    successRate: 92,
-    courses: [
-      { name: "Supply Chain Management Certificate", level: "Level 4", duration: "8 months", enrolled: 420 },
-      { name: "Port Operations Certification", level: "Level 3", duration: "6 months", enrolled: 680 },
-      { name: "International Trade Certificate", level: "Level 3", duration: "6 months", enrolled: 290 },
-    ],
-  },
-  {
-    id: "infra-facility",
-    name: "School of Infrastructure & Facility Management",
-    shortName: "Infrastructure",
-    description:
-      "Certification programs in construction, facility operations, and project management with a focus on workplace safety and efficiency.",
-    image:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-gray-400/20 via-slate-400/20 to-zinc-400/20",
-    totalStudents: 2760,
-    successRate: 89,
-    courses: [
-      { name: "Civil Construction Certificate", level: "Level 4", duration: "9 months", enrolled: 540 },
-      { name: "Facility Management Certification", level: "Level 3", duration: "6 months", enrolled: 780 },
-      { name: "Project Planning Certificate", level: "Level 3", duration: "6 months", enrolled: 320 },
-    ],
-  },
-  {
-    id: "semiconductors-ev",
-    name: "School of Semiconductors & EV Technology",
-    shortName: "Tech & EV",
-    description:
-      "Industry-driven certifications in semiconductor fabrication, EV technology, and advanced manufacturing to prepare talent for future tech jobs.",
-    image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-red-400/20 via-green-400/20 to-cyan-400/20",
-    totalStudents: 1540,
-    successRate: 97,
-    courses: [
-      { name: "Semiconductor Technology Certification", level: "Level 5", duration: "12 months", enrolled: 280 },
-      { name: "Electric Vehicle Systems Certificate", level: "Level 4", duration: "9 months", enrolled: 520 },
-      { name: "Advanced Manufacturing Certificate", level: "Level 4", duration: "9 months", enrolled: 340 },
-    ],
-  },
-  {
-    id: "green-jobs",
-    name: "School of Green Jobs",
-    shortName: "Green Jobs",
-    description:
-      "Programs offering certifications in sustainable agriculture, renewable energy installations, and waste management for eco-friendly careers.",
-    image:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-green-400/20 via-emerald-400/20 to-teal-400/20",
-    totalStudents: 2240,
-    successRate: 93,
-    courses: [
-      { name: "Environmental Engineering Certificate", level: "Level 4", duration: "9 months", enrolled: 450 },
-      { name: "Sustainable Agriculture Certification", level: "Level 3", duration: "6 months", enrolled: 680 },
-      { name: "Renewable Energy Technician Certificate", level: "Level 3", duration: "6 months", enrolled: 380 },
-    ],
-  },
-  {
-    id: "textiles-apparels",
-    name: "School of Textiles & Apparels",
-    shortName: "Textiles & Apparels",
-    description:
-      "Certification programs in garment production, textile engineering, and apparel quality control tailored to global fashion and apparel industries.",
-    image:
-      "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-pink-400/20 via-red-400/20 to-indigo-400/20",
-    totalStudents: 2100,
+    totalStudents: 2000,
     successRate: 91,
     courses: [
-      { name: "Textile Engineering Certificate", level: "Level 4", duration: "9 months", enrolled: 350 },
-      { name: "Fashion Technology Certification", level: "Level 3", duration: "6 months", enrolled: 480 },
-      { name: "Production Management Certificate", level: "Level 4", duration: "9 months", enrolled: 420 },
+      { name: "Warehouse Management Certification", level: "Level 4", duration: "6 months", enrolled: 480 },
+      { name: "Port & Cargo Handling Certificate", level: "Level 3", duration: "5 months", enrolled: 700 },
+      { name: "Freight Forwarding & Customs", level: "Level 3", duration: "6 months", enrolled: 320 },
     ],
   },
   {
-    id: "social-development",
-    name: "School of Social Development",
-    shortName: "Social Development",
+    id: "electric-vehicles",
+    name: "School of Electric Vehicles",
+    shortName: "Electric Vehicles",
     description:
-      "Short-term certifications in public health, rural development, and community leadership for careers in social impact and development sectors.",
+      "Industry certificates for EV service technicians, battery diagnostics, BMS fundamentals and charging infrastructure safety for electric mobility roles.",
     image:
-      "https://images.unsplash.com/photo-1559027615-cd4628902d85?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-blue-400/20 via-indigo-400/20 to-red-400/20",
-    totalStudents: 1500,
-    successRate: 88,
+      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-red-400/20 via-purple-400/20 to-blue-400/20",
+    totalStudents: 1600,
+    successRate: 95,
     courses: [
-      { name: "Community Development Certificate", level: "Level 3", duration: "6 months", enrolled: 480 },
-      { name: "Public Health Certification", level: "Level 4", duration: "9 months", enrolled: 380 },
-      { name: "Social Work Leadership Certificate", level: "Level 4", duration: "9 months", enrolled: 320 },
+      { name: "EV Systems Technician Certificate", level: "Level 4", duration: "9 months", enrolled: 530 },
+      { name: "Battery Diagnostics & BMS", level: "Level 5", duration: "6 months", enrolled: 420 },
+      { name: "Charging Infrastructure Tech", level: "Level 4", duration: "4 months", enrolled: 310 },
+    ],
+  },
+  {
+    id: "construction-tech",
+    name: "School of Construction Tech & Infra Equipment",
+    shortName: "Construction Tech",
+    description:
+      "Applied certifications on construction equipment ops, telematics, GPS-assisted layout, preventive maintenance and digital quality control for higher site productivity.",
+    image:
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-orange-400/20 via-amber-400/20 to-red-400/20",
+    totalStudents: 3700,
+    successRate: 90,
+    courses: [
+      { name: "Infra Equipment Operator Certificate", level: "Level 4", duration: "8 months", enrolled: 780 },
+      { name: "Telematics & Preventive Maintenance", level: "Level 4", duration: "6 months", enrolled: 620 },
+      { name: "GPS Layout & Site QA", level: "Level 3", duration: "4 months", enrolled: 340 },
+    ],
+  },
+  {
+    id: "water-sanitation-fm",
+    name: "School of Water, Sanitation & Facility Management",
+    shortName: "Water & FM",
+    description:
+      "Certification courses in pump & pipeline diagnostics, water quality monitoring, sanitation tech and efficient facility operations for urban and institutional settings.",
+    image:
+      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-teal-400/20 via-green-400/20 to-cyan-400/20",
+    totalStudents: 2100,
+    successRate: 92,
+    courses: [
+      { name: "Pump & Pipeline Diagnostics", level: "Level 3", duration: "4 months", enrolled: 610 },
+      { name: "Water Quality & Treatment Certificate", level: "Level 4", duration: "6 months", enrolled: 520 },
+      { name: "Facility Operations & Sanitation", level: "Level 3", duration: "5 months", enrolled: 380 },
     ],
   },
 ];
@@ -255,7 +236,7 @@ const CertificationSchoolsCarousel: React.FC = () => {
           className="w-full h-full object-cover"
         >
           <source
-            src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742994033/12700136_1920_1080_30fps_zajh9b.mp4"
+            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1763201620/2792967-uhd_2160_1440_25fps_u4mo5l.mp4"
             type="video/mp4"
           />
           <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black"></div>
@@ -270,9 +251,7 @@ const CertificationSchoolsCarousel: React.FC = () => {
             Industry-Aligned Certification Schools
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Short-term and advanced certifications co-designed with
-            industry, offering hands-on training and recognized
-            credentials for future-ready careers.
+            Short-term and advanced certifications co-designed with industry, offering hands-on training and recognized credentials for future-ready careers.
           </p>
         </div>
 
@@ -360,6 +339,7 @@ const CertificationSchoolsCarousel: React.FC = () => {
           <button
             onClick={() => setIsPlaying(!isPlaying)}
             className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-300 hover:scale-110"
+            aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
           >
             {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
           </button>
@@ -374,6 +354,7 @@ const CertificationSchoolsCarousel: React.FC = () => {
                     ? "w-8 h-3 bg-green-500"
                     : "w-3 h-3 bg-white/30 hover:bg-white/50"
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>

@@ -20,79 +20,70 @@ interface Sector {
 
 interface CertificationOverviewProps {}
 
-// Define sectors data with unique impact data for each
+// Updated sectors — 7 industry-aligned certification programmes
 const sectors: Sector[] = [
   {
-    name: "Mines, Steel & Aluminium",
+    name: "Mines",
     description:
-      "Industry-certified programs in mining operations, steel manufacturing, and aluminium processing with advanced safety and automation practices.",
-    icon: "⚒️",
-    impact: { courses: 12, trained: 2500, placed: 1800 },
+      "Industry-aligned certifications for mine-site roles: HEMM operation assistants, safety officers and mine supervision with modules on risk management, digital checklists and predictive maintenance basics.",
+    icon: "⛏️",
+    impact: { courses: 10, trained: 2100, placed: 1600 },
     certificationLevel: "Level 4-6",
-    skills: ["Mining Ops", "Steel Production", "Safety Standards"],
+    skills: ["HEMM Ops", "Mine Safety", "Predictive Maintenance"],
   },
   {
-    name: "Power & Energy",
+    name: "Steel & Aluminium",
     description:
-      "Certification courses in power plant operations, renewable energy systems, and smart grid technologies with applied lab training.",
+      "Certifications focused on furnace operations, rolling mill processes, welding & metallurgical QA, and energy-efficiency improvements tailored for steel and aluminium plants.",
+    icon: "🏭",
+    impact: { courses: 12, trained: 2800, placed: 2200 },
+    certificationLevel: "Level 4-6",
+    skills: ["Furnace Ops", "Welding", "Metallurgical QA"],
+  },
+  {
+    name: "Power & Green Energy",
+    description:
+      "Certification tracks for power plant operation, solar PV & wind maintenance, energy auditing and storage systems — equipping technicians for the green transition.",
     icon: "⚡",
-    impact: { courses: 15, trained: 3200, placed: 2400 },
+    impact: { courses: 14, trained: 3300, placed: 2600 },
     certificationLevel: "Level 5-7",
-    skills: ["Renewable Energy", "Grid Management", "Power Systems"],
+    skills: ["Power Systems", "Solar PV", "Energy Auditing"],
   },
   {
     name: "Shipping & Logistics",
     description:
-      "Skill certifications in supply chain management, port operations, and logistics analytics aligned with global trade requirements.",
+      "Industry-recognised certifications in warehouse management, port & cargo handling, cold-chain best practices and logistics analytics for faster, safer supply chains.",
     icon: "🚢",
-    impact: { courses: 10, trained: 1800, placed: 1500 },
+    impact: { courses: 9, trained: 1700, placed: 1350 },
     certificationLevel: "Level 3-5",
-    skills: ["Logistics Mgmt", "Port Operations", "International Trade"],
+    skills: ["WMS", "Port Ops", "Cold-chain"],
   },
   {
-    name: "Infrastructure & Facility Management",
+    name: "Electric Vehicles",
     description:
-      "Certification programs in project management, facility operations, and sustainable infrastructure with live project experience.",
+      "Certifications for EV service technicians and charging infrastructure teams covering battery diagnostics, BMS basics, safety protocols and EV powertrains.",
+    icon: "🔋",
+    impact: { courses: 8, trained: 1400, placed: 1100 },
+    certificationLevel: "Level 5-7",
+    skills: ["Battery Diagnostics", "BMS", "EV Safety"],
+  },
+  {
+    name: "Construction Tech & Infra Equipment",
+    description:
+      "Applied certifications on equipment telematics, GPS-assisted layout, preventive maintenance and digital quality control to boost site productivity.",
     icon: "🏗️",
-    impact: { courses: 18, trained: 4000, placed: 3000 },
+    impact: { courses: 13, trained: 3600, placed: 2750 },
     certificationLevel: "Level 4-6",
-    skills: ["Construction Mgmt", "Facility Ops", "Project Delivery"],
+    skills: ["Telematics", "GPS Layout", "Preventive Maintenance"],
   },
   {
-    name: "Semiconductors & EV Tech",
+    name: "Water, Sanitation & Facility Management",
     description:
-      "Cutting-edge certifications in semiconductor design, EV systems, and advanced manufacturing aligned with future industry demand.",
-    icon: "🔬",
-    impact: { courses: 8, trained: 1200, placed: 900 },
-    certificationLevel: "Level 6-8",
-    skills: ["Chip Design", "EV Systems", "Advanced Manufacturing"],
-  },
-  {
-    name: "Green Jobs",
-    description:
-      "Courses in sustainability, renewable energy, and environmental management with certifications recognized by global green standards.",
-    icon: "🌱",
-    impact: { courses: 14, trained: 2800, placed: 2200 },
+      "Sector certifications for pump & pipeline diagnostics, water quality monitoring, sanitation technology and efficient facility operations for urban and institutional settings.",
+    icon: "🚰",
+    impact: { courses: 7, trained: 1900, placed: 1400 },
     certificationLevel: "Level 3-5",
-    skills: ["Sustainability", "Green Energy", "Eco Practices"],
-  },
-  {
-    name: "Textiles & Apparels",
-    description:
-      "Industry-focused certifications in textile design, modern apparel production, and fashion technology with practical workshops.",
-    icon: "🧵",
-    impact: { courses: 11, trained: 2100, placed: 1600 },
-    certificationLevel: "Level 3-4",
-    skills: ["Textile Design", "Fashion Tech", "Production Mgmt"],
-  },
-  {
-    name: "Social Development",
-    description:
-      "Certification courses in community leadership, social impact projects, and public health with field-based applications.",
-    icon: "🤝",
-    impact: { courses: 9, trained: 1500, placed: 1200 },
-    certificationLevel: "Level 4-5",
-    skills: ["Community Work", "Public Health", "Development Studies"],
+    skills: ["Pump Diagnostics", "Water Testing", "Facility Ops"],
   },
 ];
 
@@ -146,12 +137,7 @@ const CustomPrevArrow = ({ onClick }: CustomArrowProps) => (
     onClick={onClick}
     aria-label="Previous sector"
   >
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
+    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
     </svg>
   </button>
@@ -163,12 +149,7 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
     onClick={onClick}
     aria-label="Next sector"
   >
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
+    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
     </svg>
   </button>
@@ -198,7 +179,7 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
   };
 
   const currentImpact = sectors[currentSlide]?.impact;
-//   const currentSector = sectors[currentSlide];
+  const currentSector = sectors[currentSlide];
 
   return (
     <section className="relative min-h-screen py-12 lg:py-20 bg-black overflow-hidden">
@@ -215,8 +196,8 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
             Industry-Aligned <span className="text-green-500">Certification</span> Programs
           </h2>
           <p className="text-lg text-white/80 max-w-3xl mx-auto">
-            Specialized courses designed with industry input to upskill and reskill professionals, 
-            ensuring career readiness and placement opportunities across key sectors.
+            Modular, industry-designed certification programs to upskill and reskill professionals for immediate job-readiness across core sectors:
+            Mines; Steel & Aluminium; Power & Green Energy; Shipping & Logistics; Electric Vehicles; Construction Tech & Infra Equipment; Water, Sanitation & Facility Management.
           </p>
         </motion.div>
 
@@ -225,9 +206,7 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
           {/* Video */}
           <motion.div variants={fadeInLeft as Variants}>
             <div className="rounded-2xl bg-white/5 p-6 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Program Introduction
-              </h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Program Introduction</h3>
               <div className="aspect-video rounded-xl overflow-hidden bg-black">
                 <iframe
                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -281,18 +260,17 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
             <div className="bg-white/5 rounded-xl p-6 text-center">
               <div className="text-3xl font-bold text-red-500">{currentImpact.courses}</div>
               <div className="text-white/80">Courses Offered</div>
+              <div className="text-sm text-white/60 mt-1">{currentSector?.name}</div>
             </div>
             <div className="bg-white/5 rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-green-500">
-                {currentImpact.trained.toLocaleString()}
-              </div>
+              <div className="text-3xl font-bold text-green-500">{currentImpact.trained.toLocaleString()}</div>
               <div className="text-white/80">Professionals Upskilled</div>
+              <div className="text-sm text-white/60 mt-1">Industry-ready</div>
             </div>
             <div className="bg-white/5 rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-green-400">
-                {currentImpact.placed.toLocaleString()}
-              </div>
+              <div className="text-3xl font-bold text-green-400">{currentImpact.placed.toLocaleString()}</div>
               <div className="text-white/80">Career Transitions</div>
+              <div className="text-sm text-white/60 mt-1">Placement & Role Moves</div>
             </div>
           </motion.div>
         )}

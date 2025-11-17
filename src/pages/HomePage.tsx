@@ -30,42 +30,29 @@ import ActivityAndEvents from "../components/homepage/Events";
 import Highlights from "../components/homepage/Highlights";
 import SkillOnWheelsBanner from "../components/homepage/SkillOnWheelBanner";
 import WomenInMining from "../components/homepage/WomenInMining";
+import GlobalPlacements from "../components/homepage/GlobalPlacements";
 
 const HomePage: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-black via-[#FF3366] to-black">
       <HeroSection />
       <Impact />
-      {/* <Welcome /> */}
       <WhyPantissSkillUniversity />
       <SchoolLogoStrip />
-      {/* <HorizontalScrollComponent /> */}
       <SchoolSection />
       <Ranking />
-      {/* <ProgrammesSection /> */}
-      {/* <ParallaxSection /> */}
       <OurFuturisticApproach />
       <OverLappingCards2 />
       <ActivityAndEvents />
-      {/* <Why /> */}
-      {/* <SolutionCards /> */}
-      {/* <OverLappingCards2 /> */}
-      {/* <FleetSection /> */}
-      {/* <OurFuturisticApproach /> */}
-      {/* <CampusExperienceSection /> */}
-      {/* <Ranking /> */}
       <SectorsAccordion />
       <WomenInMining />
       <PlacementsSection />
-      {/* <BentoGrid /> */}
       <SkillOnWheelsBanner />
+      <GlobalPlacements />
       <OurPartners />
       <SocialGalleryCalendarSection />
       <Highlights />
       <TestimonialSection />
-      {/* <Notices /> */}
-      {/* <SkillDevelopmentSection /> */}
-      {/* <ExplorePrograms /> */}
     </div>
   );
 };

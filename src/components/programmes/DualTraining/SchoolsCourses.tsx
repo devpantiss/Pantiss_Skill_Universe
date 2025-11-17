@@ -21,96 +21,125 @@ interface School {
   successRate: number;
 }
 
-// Enhanced schools data with realistic content
+// Updated schools data — 7 sectors for Apprenticeship & Dual Training
 const schools: School[] = [
   {
-    id: "mines-steel",
-    name: "School of Mines, Steel & Aluminium",
-    shortName: "Mines & Steel",
-    description: "Apprenticeship and dual training in mining, steel production, and aluminium processing with on-site mentoring",
-    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
-    totalStudents: 2840,
-    successRate: 94,
+    id: "mines",
+    name: "School of Mines",
+    shortName: "Mines",
+    description:
+      "Apprenticeship pathways focused on mine-site operations, HEMM handling, blasting support, and mine safety systems with on-site mentors.",
+    image:
+      "https://images.unsplash.com/photo-1532545321809-3a8c3f6a1d7a?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-amber-600/20 via-orange-500/20 to-red-500/20",
+    totalStudents: 2400,
+    successRate: 93,
     courses: [
-      { name: "Mining Sirdar/Overman", nsqfLevel: 5, duration: "6 months", enrolled: 485 },
-      { name: "Steel Plant Operator", nsqfLevel: 4, duration: "4 months", enrolled: 620 },
-      { name: "Aluminium Smelter Technician", nsqfLevel: 4, duration: "5 months", enrolled: 380 },
+      { name: "Mining Site Supervisor (Apprenticeship)", nsqfLevel: 5, duration: "9 months", enrolled: 480 },
+      { name: "HEMM Operator (Excavator/Dumper)", nsqfLevel: 4, duration: "6 months", enrolled: 620 },
+      { name: "Mine Safety & Ventilation", nsqfLevel: 5, duration: "4 months", enrolled: 300 },
     ],
   },
   {
-    id: "power-energy",
-    name: "School of Power & Energy",
-    shortName: "Power & Energy",
-    description: "Earn-while-you-learn in power generation and renewables with lab + plant rotations",
-    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-yellow-400/20 via-orange-400/20 to-red-400/20",
-    totalStudents: 3250,
-    successRate: 96,
+    id: "steel-aluminium",
+    name: "School of Steel & Aluminium",
+    shortName: "Steel & Aluminium",
+    description:
+      "Dual training in furnace operations, plate fabrication, welding, quality assurance and shop-floor safety in steel and aluminium plants.",
+    image:
+      "https://images.unsplash.com/photo-1549921296-3b0be7a9d3b4?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-gray-600/20 via-slate-500/20 to-red-600/20",
+    totalStudents: 3000,
+    successRate: 92,
     courses: [
-      { name: "Power Plant Operator", nsqfLevel: 5, duration: "8 months", enrolled: 720 },
-      { name: "Solar PV Installer", nsqfLevel: 4, duration: "3 months", enrolled: 890 },
-      { name: "Wind Turbine Maintenance", nsqfLevel: 4, duration: "6 months", enrolled: 450 },
+      { name: "Welding & Fabrication Apprentice", nsqfLevel: 4, duration: "6 months", enrolled: 700 },
+      { name: "Rolling Mill Assistant (Apprenticeship)", nsqfLevel: 5, duration: "8 months", enrolled: 500 },
+      { name: "Quality Assurance in Metals", nsqfLevel: 5, duration: "5 months", enrolled: 420 },
+    ],
+  },
+  {
+    id: "power-green",
+    name: "School of Power & Green Energy",
+    shortName: "Power & Green Energy",
+    description:
+      "Earn-while-you-learn programs combining power plant rotations, solar PV installation, storage basics and safe electrical practices.",
+    image:
+      "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-yellow-400/20 via-green-400/20 to-teal-400/20",
+    totalStudents: 3400,
+    successRate: 95,
+    courses: [
+      { name: "Power Plant Technician (Apprenticeship)", nsqfLevel: 5, duration: "10 months", enrolled: 800 },
+      { name: "Solar PV Installer & Maintainer", nsqfLevel: 4, duration: "4 months", enrolled: 900 },
+      { name: "Energy Storage Assistant", nsqfLevel: 5, duration: "6 months", enrolled: 350 },
     ],
   },
   {
     id: "shipping-logistics",
     name: "School of Shipping & Logistics",
     shortName: "Shipping & Logistics",
-    description: "Apprenticeship tracks in supply chain operations with rotating workplace assignments",
-    image: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-green-400/20 via-cyan-400/20 to-teal-400/20",
-    totalStudents: 1980,
+    description:
+      "Hands-on dual training in port operations, warehouse systems, cold-chain logistics and freight operations with employer placements.",
+    image:
+      "https://images.unsplash.com/photo-1509395176047-4a66953fd231?ixlib=rb-1.2.1&q=80&w=1200&h=800&auto=format&fit=crop&crop=entropy",
+    gradient: "from-cyan-400/20 via-blue-400/20 to-indigo-400/20",
+    totalStudents: 1900,
+    successRate: 91,
+    courses: [
+      { name: "Port & Cargo Handling Apprentice", nsqfLevel: 4, duration: "5 months", enrolled: 650 },
+      { name: "Warehouse Supervisor Trainee", nsqfLevel: 5, duration: "6 months", enrolled: 420 },
+      { name: "Cold-chain Technician", nsqfLevel: 4, duration: "4 months", enrolled: 280 },
+    ],
+  },
+  {
+    id: "ev",
+    name: "School of Electric Vehicles",
+    shortName: "Electric Vehicles",
+    description:
+      "Workplace apprenticeships in EV diagnostics, battery handling, BMS fundamentals and charging infrastructure for emerging mobility services.",
+    image:
+      "https://images.unsplash.com/photo-1549921296-1c8a0b5c7eab?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-indigo-500/20 via-violet-400/20 to-pink-400/20",
+    totalStudents: 1600,
+    successRate: 94,
+    courses: [
+      { name: "EV Service Technician (Apprenticeship)", nsqfLevel: 5, duration: "8 months", enrolled: 520 },
+      { name: "Battery Assembly & Safety", nsqfLevel: 4, duration: "4 months", enrolled: 420 },
+      { name: "Charging Infrastructure Assistant", nsqfLevel: 4, duration: "3 months", enrolled: 260 },
+    ],
+  },
+  {
+    id: "construction",
+    name: "School of Construction Tech & Infra Equipment",
+    shortName: "Construction Tech",
+    description:
+      "Dual training in equipment operation, site supervision, formwork, concrete tech and preventive maintenance for infra projects.",
+    image:
+      "https://images.unsplash.com/photo-1505765055195-5f6b6a1f6b6d?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-yellow-600/20 via-amber-500/20 to-rose-500/20",
+    totalStudents: 3800,
+    successRate: 90,
+    courses: [
+      { name: "Construction Equipment Operator (Apprenticeship)", nsqfLevel: 4, duration: "6 months", enrolled: 900 },
+      { name: "Site Supervisor Trainee", nsqfLevel: 5, duration: "9 months", enrolled: 540 },
+      { name: "Concrete & Formwork Technician", nsqfLevel: 4, duration: "5 months", enrolled: 320 },
+    ],
+  },
+  {
+    id: "water-sanitation",
+    name: "School of Water, Sanitation & Facility Management",
+    shortName: "Water & Facilities",
+    description:
+      "Apprenticeships in pump operation, water treatment basics, sanitation services and facility maintenance for institutional and municipal settings.",
+    image:
+      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=800&fit=crop&crop=entropy",
+    gradient: "from-teal-400/20 via-green-400/20 to-blue-500/20",
+    totalStudents: 2100,
     successRate: 92,
     courses: [
-      { name: "Warehouse Supervisor", nsqfLevel: 5, duration: "4 months", enrolled: 420 },
-      { name: "Forklift Operator", nsqfLevel: 4, duration: "2 months", enrolled: 680 },
-      { name: "Customs Clearance Agent", nsqfLevel: 4, duration: "3 months", enrolled: 290 },
-    ],
-  },
-  {
-    id: "infra-facility",
-    name: "School of Infrastructure & Facility Management",
-    shortName: "Infrastructure",
-    description: "Dual training for construction, plumbing, and facility maintenance aligned to site learning",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-gray-400/20 via-slate-400/20 to-zinc-400/20",
-    totalStudents: 2760,
-    successRate: 89,
-    courses: [
-      { name: "Construction Supervisor", nsqfLevel: 5, duration: "6 months", enrolled: 540 },
-      { name: "Plumbing & Piping Technician", nsqfLevel: 4, duration: "4 months", enrolled: 780 },
-      { name: "Facility Management Executive", nsqfLevel: 4, duration: "5 months", enrolled: 320 },
-    ],
-  },
-  {
-    id: "semiconductors-ev",
-    name: "School of Semiconductors & EV Technology",
-    shortName: "Tech & EV",
-    description: "Competency-based apprenticeships in chip fabrication and EV systems with industry mentors",
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-red-400/20 via-green-400/20 to-cyan-400/20",
-    totalStudents: 1540,
-    successRate: 97,
-    courses: [
-      { name: "Semiconductor Fabrication", nsqfLevel: 5, duration: "8 months", enrolled: 280 },
-      { name: "EV Charging Station Tech", nsqfLevel: 4, duration: "4 months", enrolled: 520 },
-      { name: "Battery Assembly Operator", nsqfLevel: 4, duration: "3 months", enrolled: 340 },
-    ],
-  },
-  {
-    id: "green-jobs",
-    name: "School of Green Jobs",
-    shortName: "Green Jobs",
-    description: "Apprenticeship programs in solar, waste management, and sustainable operations",
-    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-green-400/20 via-emerald-400/20 to-teal-400/20",
-    totalStudents: 2240,
-    successRate: 93,
-    courses: [
-      { name: "Organic Farming Supervisor", nsqfLevel: 5, duration: "5 months", enrolled: 450 },
-      { name: "Solar Lighting Technician", nsqfLevel: 4, duration: "3 months", enrolled: 680 },
-      { name: "Waste Management Operator", nsqfLevel: 4, duration: "4 months", enrolled: 380 },
+      { name: "Water Treatment Operator (Apprenticeship)", nsqfLevel: 4, duration: "6 months", enrolled: 580 },
+      { name: "Sanitation Systems Technician", nsqfLevel: 4, duration: "4 months", enrolled: 420 },
+      { name: "Facility Services Assistant", nsqfLevel: 3, duration: "3 months", enrolled: 300 },
     ],
   },
 ];
@@ -197,17 +226,11 @@ const DualTrainingSchoolsCarousel: React.FC = () => {
           loop
           playsInline
           className="w-full h-full object-cover"
-        //   poster="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1920&h=1080&fit=crop&crop=entropy"
         >
           <source
-            src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742994033/12700136_1920_1080_30fps_zajh9b.mp4"
+            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1763201620/2792967-uhd_2160_1440_25fps_u4mo5l.mp4"
             type="video/mp4"
           />
-          {/* <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-working-in-a-factory-with-heavy-machinery-4129-large.mp4"
-            type="video/mp4"
-          /> */}
-          {/* Fallback for browsers that don't support video */}
           <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black"></div>
         </video>
         

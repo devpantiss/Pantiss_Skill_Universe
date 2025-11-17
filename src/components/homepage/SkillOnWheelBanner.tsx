@@ -50,7 +50,7 @@ const SkillOnWheelBanner: React.FC = () => {
         </motion.p>
 
         <motion.a
-          href="/skill-on-wheels"
+          href="/futuristic-skill-on-wheels"
           className="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-yellow-400 text-black font-semibold rounded-full shadow-lg transition-all duration-300 w-fit"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
