@@ -38,7 +38,7 @@ const schools: School[] = [
     description:
       "Industry-certified programs in mine-site operations, HEMM assistance, mine safety and surveying — designed for rapid workforce readiness on-site.",
     image:
-      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
     totalStudents: 2300,
     successRate: 92,
@@ -55,7 +55,7 @@ const schools: School[] = [
     description:
       "Certifications focused on furnace operations, rolling mills, welding, metallurgical quality and energy-efficiency improvements for smelters and mills.",
     image:
-      "https://images.unsplash.com/photo-1581091870622-3b1b2e38c2d8?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     gradient: "from-gray-500/20 via-slate-400/20 to-indigo-500/20",
     totalStudents: 2800,
     successRate: 94,
@@ -72,7 +72,7 @@ const schools: School[] = [
     description:
       "Industry-aligned certifications in power plant operations, solar PV & wind technician tracks, energy auditing and battery storage basics for the green transition.",
     image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
     gradient: "from-yellow-400/20 via-green-400/20 to-cyan-400/20",
     totalStudents: 3400,
     successRate: 96,
@@ -89,7 +89,7 @@ const schools: School[] = [
     description:
       "Short-term and advanced certifications in warehouse management, port & cargo handling, cold-chain and freight forwarding tailored for modern supply chains.",
     image:
-      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     gradient: "from-green-400/20 via-cyan-400/20 to-teal-400/20",
     totalStudents: 2000,
     successRate: 91,
@@ -106,7 +106,7 @@ const schools: School[] = [
     description:
       "Industry certificates for EV service technicians, battery diagnostics, BMS fundamentals and charging infrastructure safety for electric mobility roles.",
     image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
     gradient: "from-red-400/20 via-purple-400/20 to-blue-400/20",
     totalStudents: 1600,
     successRate: 95,
@@ -140,7 +140,7 @@ const schools: School[] = [
     description:
       "Certification courses in pump & pipeline diagnostics, water quality monitoring, sanitation tech and efficient facility operations for urban and institutional settings.",
     image:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
     gradient: "from-teal-400/20 via-green-400/20 to-cyan-400/20",
     totalStudents: 2100,
     successRate: 92,

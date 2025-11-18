@@ -29,7 +29,7 @@ const schools: School[] = [
     shortName: "Mines",
     description:
       "Hands-on diploma in mining operations, drilling, blasting, rock mechanics, and underground safety for entry-level mining technicians.",
-    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     gradient: "from-orange-600/20 via-amber-600/20 to-red-600/20",
     totalStudents: 3200,
     successRate: 93,
@@ -45,7 +45,7 @@ const schools: School[] = [
     shortName: "Steel & Aluminium",
     description:
       "Practical training in steel rolling, aluminium smelting, furnace operation, and quality testing for plant floor technicians.",
-    image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     gradient: "from-gray-500/20 via-zinc-500/20 to-slate-500/20",
     totalStudents: 2900,
     successRate: 95,
@@ -61,7 +61,7 @@ const schools: School[] = [
     shortName: "Power & Green Energy",
     description:
       "Training in turbine operation, solar panel installation, wind turbine maintenance, and electrical safety for renewable energy technicians.",
-    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
     gradient: "from-yellow-500/20 via-lime-500/20 to-green-500/20",
     totalStudents: 3400,
     successRate: 96,
@@ -77,7 +77,7 @@ const schools: School[] = [
     shortName: "Shipping & Logistics",
     description:
       "Training in crane operation, forklift driving, cargo handling, and port safety for blue-collar logistics and shipping roles.",
-    image: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     gradient: "from-cyan-500/20 via-teal-500/20 to-blue-500/20",
     totalStudents: 2600,
     successRate: 91,
@@ -93,7 +93,7 @@ const schools: School[] = [
     shortName: "EV",
     description:
       "Practical diploma in battery assembly, charging station setup, EV motor repair, and diagnostics for electric vehicle technicians.",
-    image: "https://images.unsplash.com/photo-1617788138017-80ad8e9d5e2c?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
     gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
     totalStudents: 2100,
     successRate: 97,
@@ -109,7 +109,7 @@ const schools: School[] = [
     shortName: "Construction & Infra",
     description:
       "Training on excavators, dozers, cranes, concrete pumps, and site safety for heavy equipment operators and technicians.",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
     gradient: "from-amber-600/20 via-orange-600/20 to-red-600/20",
     totalStudents: 3800,
     successRate: 94,
@@ -125,7 +125,7 @@ const schools: School[] = [
     shortName: "Water & Sanitation",
     description:
       "Diploma in plumbing, pipeline installation, sewage systems, water treatment, and building maintenance for sanitation technicians.",
-    image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
     gradient: "from-blue-500/20 via-cyan-500/20 to-teal-500/20",
     totalStudents: 2400,
     successRate: 90,

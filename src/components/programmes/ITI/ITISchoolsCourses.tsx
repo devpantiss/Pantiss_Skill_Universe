@@ -30,7 +30,7 @@ const schools: School[] = [
     description:
       "Practical ITI trades focused on safe mining operations, HEMM (heavy earth-moving machinery) operation & basic mine maintenance — built for quick industry entry.",
     image:
-      "https://images.unsplash.com/photo-1504917595217/d4dc5ebe6122?w=800&h=600&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
     totalParticipants: 1620,
     successRate: 92,
@@ -47,7 +47,7 @@ const schools: School[] = [
     description:
       "ITI trades for plate work, welding, furnace practices and aluminium fabrication — focused on shop-floor skills and industrial safety for foundries and rolling mills.",
     image:
-      "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&h=600&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     gradient: "from-gray-600/20 via-slate-500/20 to-red-500/20",
     totalParticipants: 1840,
     successRate: 90,
@@ -64,7 +64,7 @@ const schools: School[] = [
     description:
       "Trades covering electrical installation, solar PV installation, and basic power plant assistance — bridging conventional power with renewable systems.",
     image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
     gradient: "from-yellow-400/20 via-green-400/20 to-cyan-400/20",
     totalParticipants: 2060,
     successRate: 94,
@@ -81,7 +81,7 @@ const schools: School[] = [
     description:
       "ITI-level programs in port handling, basic refrigeration & cargo operations, and warehouse logistics designed for rapid placement in supply chain roles.",
     image:
-      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     gradient: "from-blue-400/20 via-cyan-400/20 to-teal-400/20",
     totalParticipants: 1380,
     successRate: 91,
@@ -98,7 +98,7 @@ const schools: School[] = [
     description:
       "Skill programmes for EV servicing, battery handling, and electric drivetrain basics — focused on the growing e-mobility ecosystem and service workforce needs.",
     image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
     gradient: "from-indigo-500/20 via-purple-500/20 to-pink-400/20",
     totalParticipants: 1260,
     successRate: 95,
@@ -115,7 +115,7 @@ const schools: School[] = [
     description:
       "Trades that train on construction machinery operation, concrete practices, formwork, and maintenance of infra equipment suitable for site-ready roles.",
     image:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
     gradient: "from-amber-300/20 via-rose-300/20 to-slate-400/20",
     totalParticipants: 1720,
     successRate: 89,
@@ -132,7 +132,7 @@ const schools: School[] = [
     description:
       "Trades focused on water system operations, sanitation maintenance, pump house operation, and basic facility services for institutional and community settings.",
     image:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
     gradient: "from-teal-400/20 via-emerald-400/20 to-blue-400/20",
     totalParticipants: 1480,
     successRate: 90,

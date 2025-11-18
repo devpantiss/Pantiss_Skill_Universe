@@ -30,7 +30,7 @@ const schools: School[] = [
     description:
       "Apprenticeship pathways focused on mine-site operations, HEMM handling, blasting support, and mine safety systems with on-site mentors.",
     image:
-      "https://images.unsplash.com/photo-1532545321809-3a8c3f6a1d7a?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     gradient: "from-amber-600/20 via-orange-500/20 to-red-500/20",
     totalStudents: 2400,
     successRate: 93,
@@ -47,7 +47,7 @@ const schools: School[] = [
     description:
       "Dual training in furnace operations, plate fabrication, welding, quality assurance and shop-floor safety in steel and aluminium plants.",
     image:
-      "https://images.unsplash.com/photo-1549921296-3b0be7a9d3b4?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     gradient: "from-gray-600/20 via-slate-500/20 to-red-600/20",
     totalStudents: 3000,
     successRate: 92,
@@ -64,7 +64,7 @@ const schools: School[] = [
     description:
       "Earn-while-you-learn programs combining power plant rotations, solar PV installation, storage basics and safe electrical practices.",
     image:
-      "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
     gradient: "from-yellow-400/20 via-green-400/20 to-teal-400/20",
     totalStudents: 3400,
     successRate: 95,
@@ -81,7 +81,7 @@ const schools: School[] = [
     description:
       "Hands-on dual training in port operations, warehouse systems, cold-chain logistics and freight operations with employer placements.",
     image:
-      "https://images.unsplash.com/photo-1509395176047-4a66953fd231?ixlib=rb-1.2.1&q=80&w=1200&h=800&auto=format&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     gradient: "from-cyan-400/20 via-blue-400/20 to-indigo-400/20",
     totalStudents: 1900,
     successRate: 91,
@@ -98,7 +98,7 @@ const schools: School[] = [
     description:
       "Workplace apprenticeships in EV diagnostics, battery handling, BMS fundamentals and charging infrastructure for emerging mobility services.",
     image:
-      "https://images.unsplash.com/photo-1549921296-1c8a0b5c7eab?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
     gradient: "from-indigo-500/20 via-violet-400/20 to-pink-400/20",
     totalStudents: 1600,
     successRate: 94,
@@ -115,7 +115,7 @@ const schools: School[] = [
     description:
       "Dual training in equipment operation, site supervision, formwork, concrete tech and preventive maintenance for infra projects.",
     image:
-      "https://images.unsplash.com/photo-1505765055195-5f6b6a1f6b6d?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
     gradient: "from-yellow-600/20 via-amber-500/20 to-rose-500/20",
     totalStudents: 3800,
     successRate: 90,
@@ -132,7 +132,7 @@ const schools: School[] = [
     description:
       "Apprenticeships in pump operation, water treatment basics, sanitation services and facility maintenance for institutional and municipal settings.",
     image:
-      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
     gradient: "from-teal-400/20 via-green-400/20 to-blue-500/20",
     totalStudents: 2100,
     successRate: 92,

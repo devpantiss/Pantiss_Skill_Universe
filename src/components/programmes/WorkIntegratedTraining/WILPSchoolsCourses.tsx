@@ -30,7 +30,7 @@ const schools: School[] = [
     description:
       "Work-integrated attachments for HEMM operations, drilling support, ventilation & mine safety — prepared with mine operators for on-site readiness.",
     image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=900&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     gradient: "from-amber-500/20 via-yellow-500/20 to-orange-600/20",
     totalStudents: 2300,
     successRate: 93,
@@ -47,7 +47,7 @@ const schools: School[] = [
     description:
       "On-site rotations in furnace operations, rolling mills, finishing, and metallurgical quality control with industry mentors.",
     image:
-      "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1600&h=900&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     gradient: "from-gray-600/20 via-red-500/20 to-rose-500/20",
     totalStudents: 2950,
     successRate: 95,
@@ -64,7 +64,7 @@ const schools: School[] = [
     description:
       "Plant attachments, renewable installation practicum and energy-efficiency projects to skill technicians for modern power assets.",
     image:
-      "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1600&h=900&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
     gradient: "from-yellow-400/20 via-green-400/20 to-cyan-400/20",
     totalStudents: 3400,
     successRate: 96,
@@ -81,7 +81,7 @@ const schools: School[] = [
     description:
       "Workplace rotations in port operations, cargo handling, warehousing and first-mile/last-mile logistics with partner ports & integrators.",
     image:
-      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&h=900&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     gradient: "from-teal-400/20 via-cyan-400/20 to-blue-500/20",
     totalStudents: 2100,
     successRate: 92,
@@ -98,7 +98,7 @@ const schools: School[] = [
     description:
       "Hands-on workplace training for EV assembly, battery handling, charging infra and diagnostics for service technicians and operatives.",
     image:
-      "https://images.unsplash.com/photo-1549924231-f129b911e442?w=1600&h=900&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
     gradient: "from-indigo-400/20 via-purple-400/20 to-pink-400/20",
     totalStudents: 1600,
     successRate: 94,
@@ -115,7 +115,7 @@ const schools: School[] = [
     description:
       "On-site attachments for heavy equipment operation, surveying, civil execution and preventive maintenance tailored to infrastructure projects.",
     image:
-      "https://images.unsplash.com/photo-1525253086316-d0c936c814f8?w=1600&h=900&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
     gradient: "from-orange-400/20 via-amber-400/20 to-rose-400/20",
     totalStudents: 4300,
     successRate: 90,
@@ -132,7 +132,7 @@ const schools: School[] = [
     description:
       "Practical placements in water systems operations, sanitation services, plumbing and facility maintenance for urban & rural ecosystems.",
     image:
-      "https://images.unsplash.com/photo-1504275107627-0c1a4a7ae37c?w=1600&h=900&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
     gradient: "from-cyan-400/20 via-green-400/20 to-emerald-400/20",
     totalStudents: 2000,
     successRate: 91,

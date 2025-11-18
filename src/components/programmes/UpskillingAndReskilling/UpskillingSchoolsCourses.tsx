@@ -30,7 +30,7 @@ const schools: School[] = [
     description:
       "Short modules for mine-site supervisors, HEMM assistants and safety officers — practical training on digital checklists, predictive maintenance basics and safety behaviour change.",
     image:
-      "https://images.unsplash.com/photo-1532545321809-3a8c3f6a1d7a?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
     totalParticipants: 2400,
     successRate: 93,
@@ -47,7 +47,7 @@ const schools: School[] = [
     description:
       "Reskilling tracks for furnace assistants, advanced welding processes and metallurgical QA focused on process optimisation and energy efficiency.",
     image:
-      "https://images.unsplash.com/photo-1549921296-3b0be7a9d3b4?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     gradient: "from-gray-600/20 via-slate-500/20 to-red-600/20",
     totalParticipants: 3000,
     successRate: 92,
@@ -64,7 +64,7 @@ const schools: School[] = [
     description:
       "Targeted modules in solar PV maintenance, inverter diagnostics, energy auditing and storage basics to support the green transition.",
     image:
-      "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
     gradient: "from-yellow-400/20 via-green-400/20 to-teal-400/20",
     totalParticipants: 3400,
     successRate: 95,
@@ -81,7 +81,7 @@ const schools: School[] = [
     description:
       "Practical short courses for warehouse digitisation, cold-chain handling, last-mile optimisation and inventory analytics to improve throughput.",
     image:
-      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     gradient: "from-cyan-400/20 via-blue-400/20 to-indigo-400/20",
     totalParticipants: 1900,
     successRate: 91,
@@ -98,7 +98,7 @@ const schools: School[] = [
     description:
       "Reskilling modules for EV service technicians: battery health diagnostics, BMS basics, charging safety and retrofit workflows for legacy workshops.",
     image:
-      "https://images.unsplash.com/photo-1549921296-1c8a0b5c7eab?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
     gradient: "from-indigo-500/20 via-violet-400/20 to-pink-400/20",
     totalParticipants: 1600,
     successRate: 94,
@@ -115,7 +115,7 @@ const schools: School[] = [
     description:
       "Short upskilling on equipment telematics, GPS-assisted layout, preventive maintenance and digital quality checks to raise on-site productivity.",
     image:
-      "https://images.unsplash.com/photo-1505765055195-5f6b6a1f6b6d?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
     gradient: "from-yellow-600/20 via-amber-500/20 to-rose-500/20",
     totalParticipants: 3800,
     successRate: 90,
@@ -132,7 +132,7 @@ const schools: School[] = [
     description:
       "Practical reskilling for pump diagnostics, water quality monitoring, smart sanitation systems and efficient facility operations for institutions and municipalities.",
     image:
-      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=800&fit=crop&crop=entropy",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
     gradient: "from-teal-400/20 via-green-400/20 to-blue-500/20",
     totalParticipants: 2100,
     successRate: 92,

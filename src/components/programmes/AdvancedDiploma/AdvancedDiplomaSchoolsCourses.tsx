@@ -29,7 +29,7 @@ const schools: School[] = [
     shortName: "Mines",
     description:
       "3-year advanced diploma with 1-year paid internship in underground mining, blasting, rock mechanics, and mine safety systems.",
-    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     gradient: "from-orange-600/20 via-amber-600/20 to-red-600/20",
     totalParticipants: 2100,
     successRate: 95,
@@ -45,7 +45,7 @@ const schools: School[] = [
     shortName: "Steel & Aluminium",
     description:
       "Industry-integrated training in steel rolling, aluminium smelting, furnace automation, and quality control with live plant exposure.",
-    image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     gradient: "from-gray-600/20 via-zinc-600/20 to-slate-600/20",
     totalParticipants: 1980,
     successRate: 96,
@@ -61,7 +61,7 @@ const schools: School[] = [
     shortName: "Power & Green Energy",
     description:
       "Advanced training in power plant O&M, solar PV systems, wind turbine technology, and grid integration with 6-month live project.",
-    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
     gradient: "from-yellow-500/20 via-lime-500/20 to-green-500/20",
     totalParticipants: 2300,
     successRate: 97,
@@ -77,7 +77,7 @@ const schools: School[] = [
     shortName: "Shipping & Logistics",
     description:
       "Port-centric advanced diploma in crane operations, cargo handling, supply chain automation, and international logistics.",
-    image: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     gradient: "from-cyan-500/20 via-teal-500/20 to-blue-500/20",
     totalParticipants: 1760,
     successRate: 93,
@@ -93,7 +93,7 @@ const schools: School[] = [
     shortName: "EV",
     description:
       "Future-ready diploma in EV battery systems, charging infrastructure, motor control, and vehicle diagnostics with OEM partnerships.",
-    image: "https://images.unsplash.com/photo-1617788138017-80ad8e9d5e2c?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
     gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
     totalParticipants: 1540,
     successRate: 98,
@@ -109,7 +109,7 @@ const schools: School[] = [
     shortName: "Construction & Infra",
     description:
       "Heavy equipment operator training with excavators, cranes, dozers, and concrete machinery plus site safety and project execution.",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
     gradient: "from-amber-600/20 via-orange-600/20 to-red-600/20",
     totalParticipants: 2800,
     successRate: 94,
@@ -125,7 +125,7 @@ const schools: School[] = [
     shortName: "Water & Sanitation",
     description:
       "Specialized training in water treatment, sewage systems, plumbing design, and facility maintenance with urban infra focus.",
-    image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&h=600&fit=crop&crop=entropy",
+    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
     gradient: "from-blue-500/20 via-cyan-500/20 to-teal-500/20",
     totalParticipants: 1680,
     successRate: 91,
