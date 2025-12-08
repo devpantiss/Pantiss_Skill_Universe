@@ -193,7 +193,7 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
         {/* Header */}
         <motion.div variants={itemVariants as Variants} className="text-center mb-12 lg:mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Industry-Aligned <span className="text-green-500">Certification</span> Programs
+            Program <span className="text-green-500"></span> Introduction
           </h2>
           <p className="text-lg text-white/80 max-w-3xl mx-auto">
             Modular, industry-designed certification programs to upskill and reskill professionals for immediate job-readiness across core sectors:

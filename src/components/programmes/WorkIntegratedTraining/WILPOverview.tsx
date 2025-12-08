@@ -233,9 +233,9 @@ const WILPOverview: React.FC<WILPOverviewProps> = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
             <span className="bg-white bg-clip-text text-transparent">
-              Work-Integrated{" "}
+              Program{" "}
             </span>
-            <span className="text-white/90">Learning Program (WILP)</span>
+            <span className="text-white/90">Introduction</span>
           </h2>
           <div className="w-20 sm:w-28 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">

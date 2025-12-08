@@ -4,9 +4,15 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 const slides = [
-  "https://www.amity.edu/backoffice/uploads/HomeBanner/2fblg_lucknow.jpg",
-  "https://www.amity.edu/backoffice/uploads/HomeBanner/6fblg_mumbai.jpg",
-  "https://www.amity.edu/backoffice/uploads/HomeBanner/10fblg_ranchi.jpg",
+  "/Homepage/why/mines.jpg",
+  "/Homepage/why/steel.jpg",
+  "/Homepage/why/greenenergy.jpg",
+  "/Homepage/why/shippingandlogistics.jpg",
+  "/Homepage/why/construction.jpg",
+  "/Homepage/why/greenjobs.jpg"
+//   "https://www.amity.edu/backoffice/uploads/HomeBanner/2fblg_lucknow.jpg",
+//   "https://www.amity.edu/backoffice/uploads/HomeBanner/6fblg_mumbai.jpg",
+//   "https://www.amity.edu/backoffice/uploads/HomeBanner/10fblg_ranchi.jpg",
 ];
 
 const campuses = [

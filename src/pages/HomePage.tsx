@@ -11,7 +11,7 @@ import PlacementsSection from "../components/homepage/PlacementsSection";
 // import OurFuturisticApproach from "../components/homepage/OurFuturisticApproach";
 // import Why from "../components/Academics/Why";
 // import SkillDevelopmentSection from "../components/homepage/SkillDevelopmentSection";
-import TestimonialSection from "../components/homepage/TestimonialSection";
+// import TestimonialSection from "../components/homepage/TestimonialSection";
 // import Welcome from "../components/homepage/Welcome";
 import WhyPantissSkillUniversity from "../components/homepage/WhyPantissSkillUniversity";
 // import ParallaxSection from "../components/homepage/ParallaxSection";
@@ -24,13 +24,14 @@ import OurFuturisticApproach from "../components/homepage/OurFuturisticApproach"
 import Ranking from "../components/homepage/Ranking";
 import Impact from "../components/homepage/Impact";
 // import BentoGrid from "../components/homepage/BentoGrid";
-import SchoolSection from "../components/homepage/SchoolSection";
+// import SchoolSection from "../components/homepage/SchoolSection";
 import OurPartners from "../components/homepage/OurPartners";
-import ActivityAndEvents from "../components/homepage/Events";
-import Highlights from "../components/homepage/Highlights";
+// import ActivityAndEvents from "../components/homepage/Events";
+// import Highlights from "../components/homepage/Highlights";
 import SkillOnWheelsBanner from "../components/homepage/SkillOnWheelBanner";
 import WomenInMining from "../components/homepage/WomenInMining";
 import GlobalPlacements from "../components/homepage/GlobalPlacements";
+import AlumniPortal from "../components/homepage/AlumniPortal";
 
 const HomePage: React.FC = () => {
   return (
@@ -39,20 +40,21 @@ const HomePage: React.FC = () => {
       <Impact />
       <WhyPantissSkillUniversity />
       <SchoolLogoStrip />
-      <SchoolSection />
+      {/* <SchoolSection /> */}
       <Ranking />
-      <OurFuturisticApproach />
       <OverLappingCards2 />
-      <ActivityAndEvents />
-      <SectorsAccordion />
       <WomenInMining />
-      <PlacementsSection />
+      <OurFuturisticApproach />
       <SkillOnWheelsBanner />
+      {/* <ActivityAndEvents /> */}
+      <SectorsAccordion />
+      <PlacementsSection />
       <GlobalPlacements />
       <OurPartners />
       <SocialGalleryCalendarSection />
-      <Highlights />
-      <TestimonialSection />
+      <AlumniPortal />
+      {/* <Highlights /> */}
+      {/* <TestimonialSection /> */}
     </div>
   );
 };

@@ -13,7 +13,7 @@ const OverLappingCards3: React.FC = () => {
         aria-hidden="true"
       >
         <source
-          src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762160507/12791129_1920_1080_30fps_iwboue.mp4" // Kept the same video; replace if needed
+          src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762160507/12791129_1920_1080_30fps_iwboue.mp4"
           type="video/mp4"
         />
         Your browser does not support the video tag.
@@ -26,44 +26,42 @@ const OverLappingCards3: React.FC = () => {
       <div className="hidden lg:block relative max-w-6xl h-[900px] bg-transparent mx-auto p-8">
         <div className="text-center lg:text-left mb-10">
           <h1 className="text-3xl lg:text-5xl font-bold text-white leading-snug">
-            Shape Your Future <br />
-            with <span className="text-red-500">OUR PROGRAMS</span>
+            Shape Your Future with <br />
+            <span className="text-red-500">OUR INHOUSE <br />ENTERPRISES</span>
           </h1>
         </div>
 
         {/* Card 1 */}
         <div className="absolute top-0 right-0 bg-red-600 text-white p-6 rounded-bl-lg rounded-br-lg shadow-lg w-[400px] h-[350px]">
-          <h3 className="text-lg font-bold mb-4">Career Exploration</h3>
-          <h4 className="text-xl font-semibold mb-2">
-            Discover Mining Opportunities
-          </h4>
+          <h3 className="text-lg font-bold mb-4">LMS Solution</h3>
+          <h4 className="text-xl font-semibold mb-2">Empowering Student Learning</h4>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Explore Mining Career Options</li>
-            <li>Personalized Career Assessments</li>
-            <li>Guidance on Skill Requirements</li>
+            <li>Access structured mining curriculum</li>
+            <li>Interactive learning modules & quizzes</li>
+            <li>Track progress & performance analytics</li>
           </ul>
           <div className="relative">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" // Icon: Compass (exploration)
-              alt="exploration-icon"
-              className="absolute right-4 -bottom-32 w-24 h-24"
+              src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png"
+              alt="lms-icon"
+              className="absolute right-4 -bottom-28 w-24 h-24"
             />
           </div>
         </div>
 
         {/* Card 2 */}
         <div className="absolute top-64 right-60 bg-orange-500/60 text-white p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
-          <h3 className="text-lg font-bold mb-4">Skill Development</h3>
+          <h3 className="text-lg font-bold mb-4">Employee Support & Payrolling</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Mining Skill Workshops</li>
-            <li>Resume Building Support</li>
-            <li>Interview Preparation</li>
-            <li>Certification Guidance</li>
+            <li>Social security and compliance support</li>
+            <li>Efficient payroll management</li>
+            <li>Employee benefits advisory</li>
+            <li>Workforce onboarding support</li>
           </ul>
           <div className="relative">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/2040/2040730.png" // Icon: Graduation cap (skill development)
-              alt="skill-development-icon"
+              src="https://cdn-icons-png.flaticon.com/512/942/942748.png"
+              alt="support-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
             />
           </div>
@@ -71,19 +69,19 @@ const OverLappingCards3: React.FC = () => {
 
         {/* Card 3 */}
         <div className="absolute top-[500px] right-[500px] bg-green-600 text-gray-50 p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
-          <h3 className="text-lg font-bold mb-4">Job Placement Support</h3>
+          <h3 className="text-lg font-bold mb-4">Class C Govt Job Preparation</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Connect with Mining Employers</li>
-            <li>Job Opportunity Alerts</li>
-            <li>Mentorship from Industry Experts</li>
-            <li>Career Path Planning</li>
-            <li>Post-Placement Guidance</li>
+            <li>Targeted coaching for competitive exams</li>
+            <li>Study materials and mock tests</li>
+            <li>Experienced faculty mentorship</li>
+            <li>Regular performance evaluation</li>
+            <li>Career guidance & exam strategies</li>
           </ul>
           <div className="relative">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Icon: Career path (job placement)
-              alt="job-placement-icon"
-              className="absolute right-4 -bottom-32 w-24 h-24"
+              src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+              alt="govt-job-icon"
+              className="absolute right-4 -bottom-28 w-24 h-24"
             />
           </div>
         </div>

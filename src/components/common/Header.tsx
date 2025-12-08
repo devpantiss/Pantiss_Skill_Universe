@@ -66,45 +66,45 @@ const navLinks: NavLink[] = [
       },
     ],
   },
-  {
-    name: "Campus Life",
-    subLinks: [
-      {
-        name: "Campus Life",
-        children: [
-          { name: "Entrepreneurship", path: "#" },
-          { name: "Sports", path: "#" },
-          { name: "Art and Culture", path: "#" },
-          { name: "Campus Events", path: "#" },
-          { name: "Student Organizations", path: "#" },
-          { name: "Community Service", path: "#" },
-          { name: "Visitors", path: "#" },
-          { name: "Diversity", path: "#" },
-          { name: "Inclusivity", path: "#" },
-          { name: "On Campus Jobs", path: "#" },
-          { name: "Career Enhancement Initiatives", path: "#" },
-          { name: "Student Ambassadors", path: "#" },
-        ],
-        path: ""
-      },
-      {
-        name: "Student Services",
-        children: [
-          { name: "Campus Security", path: "#" },
-          { name: "UNI Health Centre", path: "#" },
-          { name: "University Management System", path: "#" },
-          { name: "Residential Facilities", path: "#" },
-          { name: "Transportation Facilities", path: "#" },
-          { name: "UNI Communications", path: "#" },
-          { name: "Shopping and Dining", path: "#" },
-          { name: "Banking and Postal Services", path: "#" },
-          { name: "Education Loan Assistance", path: "#" },
-          { name: "Placements", path: "#" },
-        ],
-        path: ""
-      },
-    ],
-  },
+  // {
+  //   name: "Campus Life",
+  //   subLinks: [
+  //     {
+  //       name: "Campus Life",
+  //       children: [
+  //         { name: "Entrepreneurship", path: "#" },
+  //         { name: "Sports", path: "#" },
+  //         { name: "Art and Culture", path: "#" },
+  //         { name: "Campus Events", path: "#" },
+  //         { name: "Student Organizations", path: "#" },
+  //         { name: "Community Service", path: "#" },
+  //         { name: "Visitors", path: "#" },
+  //         { name: "Diversity", path: "#" },
+  //         { name: "Inclusivity", path: "#" },
+  //         { name: "On Campus Jobs", path: "#" },
+  //         { name: "Career Enhancement Initiatives", path: "#" },
+  //         { name: "Student Ambassadors", path: "#" },
+  //       ],
+  //       path: ""
+  //     },
+  //     {
+  //       name: "Student Services",
+  //       children: [
+  //         { name: "Campus Security", path: "#" },
+  //         { name: "UNI Health Centre", path: "#" },
+  //         { name: "University Management System", path: "#" },
+  //         { name: "Residential Facilities", path: "#" },
+  //         { name: "Transportation Facilities", path: "#" },
+  //         { name: "UNI Communications", path: "#" },
+  //         { name: "Shopping and Dining", path: "#" },
+  //         { name: "Banking and Postal Services", path: "#" },
+  //         { name: "Education Loan Assistance", path: "#" },
+  //         { name: "Placements", path: "#" },
+  //       ],
+  //       path: ""
+  //     },
+  //   ],
+  // },
   {
     name: "Programs",
     subLinks: [
@@ -130,10 +130,13 @@ const secondaryLinks = [
       { name: "General Staff", path: "/campus-login/general-staff" },
     ],
   },
-  { name: "LMS", path: "/aspire", icon: FaStar },
+  { name: "Career Counselling", path: "/counselling", icon: FaStar },
+  { name: "LMS", path: "/lms", icon: FaStar },
+  { name: "ERP", path: "/erp", icon: FaStar },
   { name: "Competitives", path: "#", icon: FaAward },
+  { name: "Job Search", path: "/wise", icon: FaBrain },
   { name: "Alumni Portal", path: "/wise", icon: FaBrain },
-  { name: "Collaborations", path: "/collaborations", icon: Handshake },
+  // { name: "Collaborations", path: "/collaborations", icon: Handshake },
   { name: "Library", path: "/collaborations", icon: Notebook },
 ];
 

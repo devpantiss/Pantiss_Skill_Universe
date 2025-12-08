@@ -7,7 +7,7 @@ const SkillOnWheelBanner: React.FC = () => {
     <section className="w-full bg-black text-white flex flex-col md:flex-row items-stretch overflow-hidden relative">
       {/* Left Section (Parallax Background Image) */}
       <motion.div
-        className="w-full md:w-2/3 relative h-[400px] md:h-[500px] bg-fixed bg-center bg-cover md:rounded-r-3xl shadow-2xl"
+        className="w-full md:w-2/3 relative h-[400px] md:h-[500px] bg-fixed bg-center bg-cover shadow-2xl"
         style={{
           backgroundImage:
             "url('https://res.cloudinary.com/dxzhnns58/image/upload/v1762166427/WhatsApp_Image_2025-04-30_at_5.49.15_PM_xnmamh_2_ma665l.jpg')",

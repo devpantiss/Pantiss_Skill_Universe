@@ -218,8 +218,8 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
         {/* Header Section */}
         <motion.div variants={itemVariants as Variants} className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-            <span className="bg-white bg-clip-text text-transparent">Apprenticeship & Dual Training</span>{" "}
-            <span className="text-white/90">Program Overview</span>
+            {/* <span className="bg-white bg-clip-text text-transparent">Apprenticeship & Dual Training</span>{" "} */}
+            <span className="text-white/90">Program Introduction</span>
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">

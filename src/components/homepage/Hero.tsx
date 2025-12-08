@@ -60,7 +60,8 @@ const HeroSection: React.FC = () => {
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="https://res.cloudinary.com/djtzx6wo7/video/upload/v1756733216/VN20250901_165205_yy2bdd.mp4"
+        // src="https://res.cloudinary.com/djtzx6wo7/video/upload/v1756733216/VN20250901_165205_yy2bdd.mp4"
+        src="/Homepage/HomePage_Hero.mp4"
         autoPlay
         muted
         loop

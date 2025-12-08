@@ -225,7 +225,7 @@ const OurFuturisticApproach: React.FC = () => {
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Our <span className="text-green-600">Futuristic Approach</span>
+            Our <span className="text-green-600">Futuristic Approach</span> (AR/VR/SIMULATORS)
           </h2>
           <p className="mt-4 text-lg text-gray-50 max-w-3xl mx-auto">
             A Glimpse into our Next-Gen Lab Equipments — powered by Advanced
