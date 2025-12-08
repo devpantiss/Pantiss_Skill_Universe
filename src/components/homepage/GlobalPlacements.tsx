@@ -43,7 +43,7 @@ const GlobalPlacements: React.FC = () => {
 
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="/global-placements"
+                href="https://blue-global-force.vercel.app/"
                 className="inline-flex items-center px-5 py-3 bg-green-600 hover:bg-green-500 text-white rounded-full font-semibold shadow-md transition"
               >
                 Explore Opportunities
