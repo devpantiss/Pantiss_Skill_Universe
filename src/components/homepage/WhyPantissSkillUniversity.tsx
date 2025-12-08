@@ -119,7 +119,7 @@ export default function WhyPantissSkillUniversity() {
             transition={{ duration: 0.8 }}
           >
             WHY <span className="text-red-600">PANTISS SKILL</span>{" "}
-            <span className="text-green-600">UNIVERSITY</span>?
+            <span className="text-green-600">UNIVERSE</span>?
           </motion.h2>
           <motion.p
             className="text-base sm:text-lg mb-4 leading-relaxed text-gray-100"
