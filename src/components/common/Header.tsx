@@ -9,7 +9,7 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
-import { Handshake, Notebook } from "lucide-react";
+import { Notebook } from "lucide-react";
 
 interface NavSubLink {
   name: string;
