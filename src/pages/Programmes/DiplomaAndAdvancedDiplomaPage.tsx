@@ -1,11 +1,11 @@
-import React from 'react'
-import DiplomaHero from '../../components/programmes/DiplomaAndAdvancedDiploma/Hero'
-import DiplomaOverview from '../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaOverview'
-import DiplomaSchoolsCourses from '../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaSchoolsCourses'
-import DiplomaHighlights from '../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaHighlights'
-import TestimonialSectionDiploma from '../../components/programmes/DiplomaAndAdvancedDiploma/Testimonials'
-import LogoMarquee from '../../components/common/LogoMaequee'
-
+import React from "react";
+import DiplomaHero from "../../components/programmes/DiplomaAndAdvancedDiploma/Hero";
+import DiplomaOverview from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaOverview";
+import DiplomaSchoolsCourses from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaSchoolsCourses";
+import DiplomaHighlights from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaHighlights";
+import TestimonialSectionDiploma from "../../components/programmes/DiplomaAndAdvancedDiploma/Testimonials";
+import LogoMarquee from "../../components/common/LogoMaequee";
+import DiplomaBenefits from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaBenefits";
 
 const schoolLogos = [
   {
@@ -41,17 +41,18 @@ const DiplomaAndAdvancedDiplomaPage: React.FC = () => {
       <DiplomaOverview />
       <DiplomaSchoolsCourses />
       <LogoMarquee
-      logos={schoolLogos}
-      height="h-16"
-      speed="25s"
-      gap="mx-8"
-      bg="bg-black"
-      className="py-3"
-    />
+        logos={schoolLogos}
+        height="h-16"
+        speed="25s"
+        gap="mx-8"
+        bg="bg-black"
+        className="py-3"
+      />
       <DiplomaHighlights />
+      <DiplomaBenefits />
       <TestimonialSectionDiploma />
     </div>
-  )
-}
+  );
+};
 
-export default DiplomaAndAdvancedDiplomaPage
+export default DiplomaAndAdvancedDiplomaPage;
