@@ -12,17 +12,17 @@ interface Vehicle {
 }
 
 const fleetData: Vehicle[] = [
-  {
-    title: "Futuristic Skill on Wheels",
-    image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158693/WhatsApp_Image_2025-04-30_at_5.37.40_PM_nhoxqa.jpg",
-    description:
-      "A state-of-the-art mobile lab equipped with AR/VR-based skill development modules, delivering immersive learning to remote areas.",
-    quantity: "3",
-    importFrom: "Germany",
-    techSpecs:
-      "AR/VR Modules, 4G+ Router, Battery Backup, Climate Control, Modular Interior",
-  },
+  // {
+  //   title: "Futuristic Skill on Wheels",
+  //   image:
+  //     "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158693/WhatsApp_Image_2025-04-30_at_5.37.40_PM_nhoxqa.jpg",
+  //   description:
+  //     "A state-of-the-art mobile lab equipped with AR/VR-based skill development modules, delivering immersive learning to remote areas.",
+  //   quantity: "3",
+  //   importFrom: "Germany",
+  //   techSpecs:
+  //     "AR/VR Modules, 4G+ Router, Battery Backup, Climate Control, Modular Interior",
+  // },
   {
     title: "Advanced Operator Training Simulators",
     image:

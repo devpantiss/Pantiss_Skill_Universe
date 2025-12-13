@@ -41,6 +41,7 @@ const AdvancedDiplomaPage: React.FC = () => {
       <AdvancedDiplomaOverview />
       <AdvancedDiplomaSchoolsCourses />
       <LogoMarquee
+        heading="Our Trusted Placement Partners"
         logos={schoolLogos}
         height="h-16"
         speed="25s"

@@ -24,10 +24,14 @@ const ITIHero: React.FC = () => {
         className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto"
       >
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight font-sans">
-          Industrial Training Institute (ITI) Programs
+          Program Introduction{" "}
         </h1>
         <p className="text-lg md:text-xl text-gray-100 drop-shadow-md leading-relaxed">
-          Hands-on technical training designed to build strong vocational skills for aspiring technicians and craftsmen. Our ITI programs offer practical workshops, industry-standard tools, and expert guidance to prepare students for careers across trades like Electrical, Fitter, Welding, Mechanical, and more.
+          Hands-on technical training designed to build strong vocational skills
+          for aspiring technicians and craftsmen. Our ITI programs offer
+          practical workshops, industry-standard tools, and expert guidance to
+          prepare students for careers across trades like Electrical, Fitter,
+          Welding, Mechanical, and more.
         </p>
       </motion.div>
 

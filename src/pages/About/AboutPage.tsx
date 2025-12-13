@@ -47,68 +47,68 @@ const AboutPage: React.FC = () => {
     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761740136/blogs_oulxwa.jpg",
 
   ];
-  const Faculty = [
-    {
-      image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760095558/jalandhar_2_1_b8x99s.jpg",
-      title: "Mr. Jalandhar Mohanty",
-      subtitle: "Lead, CoE, Mining",
-      handle: "@alexrivera",
-      borderColor: "#10B981", // emerald accent
-      gradient: "linear-gradient(145deg, #1F2937, #111827)", // subtle gray blend
-      url: "https://github.com/",
-    },
-    {
-      image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760619794/Sudarshan_2_geimdd.jpg",
-      title: "Mr. Sudarshan Barik",
-      subtitle: "Lead, CoE, Steel & Aluminium",
-      handle: "@jordanchen",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://linkedin.com/in/",
-    },
-    {
-      image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096195/bikram_2_ufeeka.jpg",
-      title: "Mr. Bikram K. Gouda",
-      subtitle: "Lead, CoE, Shipping & Logistics",
-      handle: "@morganblake",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://dribbble.com/",
-    },
-    {
-      image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096329/yagnesh_2_lmjxag.jpg",
-      title: "Mr. Yagnesh K. Nanda",
-      subtitle: "Lead, CoE, Power & Green Energy",
-      handle: "@morganblake",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://dribbble.com/",
-    },
-    {
-      image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760097703/mukessh_2_p4kfmr.jpg",
-      title: "Mr. Mukesh Singh",
-      subtitle: "Lead, CoE, Construction & Infrastructure Equipment",
-      handle: "@morganblake",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://dribbble.com/",
-    },
-    {
-      image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760618334/basanta_2_adg0rh.jpg",
-      title: "Mr. Basant K. Sahoo",
-      subtitle: "Lead, CoE, Water & Waste Water Treatment",
-      handle: "@morganblake",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://dribbble.com/",
-    },
-  ];
+  // const Faculty = [
+  //   {
+  //     image:
+  //       "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760095558/jalandhar_2_1_b8x99s.jpg",
+  //     title: "Mr. Jalandhar Mohanty",
+  //     subtitle: "Lead, CoE, Mining",
+  //     handle: "@alexrivera",
+  //     borderColor: "#10B981", // emerald accent
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)", // subtle gray blend
+  //     url: "https://github.com/",
+  //   },
+  //   {
+  //     image:
+  //       "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760619794/Sudarshan_2_geimdd.jpg",
+  //     title: "Mr. Sudarshan Barik",
+  //     subtitle: "Lead, CoE, Steel & Aluminium",
+  //     handle: "@jordanchen",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://linkedin.com/in/",
+  //   },
+  //   {
+  //     image:
+  //       "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096195/bikram_2_ufeeka.jpg",
+  //     title: "Mr. Bikram K. Gouda",
+  //     subtitle: "Lead, CoE, Shipping & Logistics",
+  //     handle: "@morganblake",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://dribbble.com/",
+  //   },
+  //   {
+  //     image:
+  //       "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096329/yagnesh_2_lmjxag.jpg",
+  //     title: "Mr. Yagnesh K. Nanda",
+  //     subtitle: "Lead, CoE, Power & Green Energy",
+  //     handle: "@morganblake",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://dribbble.com/",
+  //   },
+  //   {
+  //     image:
+  //       "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760097703/mukessh_2_p4kfmr.jpg",
+  //     title: "Mr. Mukesh Singh",
+  //     subtitle: "Lead, CoE, Construction & Infrastructure Equipment",
+  //     handle: "@morganblake",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://dribbble.com/",
+  //   },
+  //   {
+  //     image:
+  //       "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760618334/basanta_2_adg0rh.jpg",
+  //     title: "Mr. Basant K. Sahoo",
+  //     subtitle: "Lead, CoE, Water & Waste Water Treatment",
+  //     handle: "@morganblake",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://dribbble.com/",
+  //   },
+  // ];
   
   
   const AdvisoryBoard = [
@@ -162,16 +162,16 @@ const AboutPage: React.FC = () => {
       gradient: "linear-gradient(145deg, #1F2937, #111827)",
       url: "https://dribbble.com/",
     },
-    {
-      image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760618334/basanta_2_adg0rh.jpg",
-      title: "Mr. Basant K. Sahoo",
-      subtitle: "Lead, CoE, Water & Waste Water Treatment",
-      handle: "@morganblake",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://dribbble.com/",
-    },
+    // {
+    //   image:
+    //     "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760618334/basanta_2_adg0rh.jpg",
+    //   title: "Mr. Basant K. Sahoo",
+    //   subtitle: "Lead, CoE, Water & Waste Water Treatment",
+    //   handle: "@morganblake",
+    //   borderColor: "#10B981",
+    //   gradient: "linear-gradient(145deg, #1F2937, #111827)",
+    //   url: "https://dribbble.com/",
+    // },
   ];
   
   // const Faculty = [
@@ -273,7 +273,7 @@ const AboutPage: React.FC = () => {
       >
         <ThreeDMarquee images={images} />
       </div>
-      <div id="faculty" className="h-full relative">
+      <div id="faculty" className="h-full px-8 relative">
         <OurFaculty
           heading="Our Advisory Board"
           items={AdvisoryBoard}
@@ -284,7 +284,7 @@ const AboutPage: React.FC = () => {
         />
       </div>
       <Certifications />
-      <div id="faculty" className="h-full relative">
+      {/* <div id="faculty" className="h-full relative">
         <OurFaculty
           heading="Our Faculties"
           items={Faculty}
@@ -293,7 +293,7 @@ const AboutPage: React.FC = () => {
           fadeOut={0.6}
           ease="power3.out"
         />
-      </div>
+      </div> */}
       <ScrollVelocityImages 
         images={[
           "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_WASH-removebg-preview_s8wofi.png",

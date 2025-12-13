@@ -41,6 +41,7 @@ const ApprenticeshipAndDualTrainingPage: React.FC = () => {
       <DualTrainingOverview />
       <DualTrainingSchoolsCarousel />
       <LogoMarquee
+        heading="Our Trusted Placement Partners"
         logos={schoolLogos}
         height="h-16"
         speed="25s"

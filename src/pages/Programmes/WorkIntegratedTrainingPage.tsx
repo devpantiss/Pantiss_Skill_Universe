@@ -1,10 +1,10 @@
-import React from 'react'
-import WILPHero from '../../components/programmes/WorkIntegratedTraining/WILPHero'
-import WILPOverview from '../../components/programmes/WorkIntegratedTraining/WILPOverview'
-import WILPHighlights from '../../components/programmes/WorkIntegratedTraining/WILPHighlights'
-import WILPSchoolsCourses from '../../components/programmes/WorkIntegratedTraining/WILPSchoolsCourses'
-import TestimonialSectionWILP from '../../components/programmes/WorkIntegratedTraining/Testimonials'
-import LogoMarquee from '../../components/common/LogoMaequee'
+import React from "react";
+import WILPHero from "../../components/programmes/WorkIntegratedTraining/WILPHero";
+import WILPOverview from "../../components/programmes/WorkIntegratedTraining/WILPOverview";
+import WILPHighlights from "../../components/programmes/WorkIntegratedTraining/WILPHighlights";
+import WILPSchoolsCourses from "../../components/programmes/WorkIntegratedTraining/WILPSchoolsCourses";
+import TestimonialSectionWILP from "../../components/programmes/WorkIntegratedTraining/Testimonials";
+import LogoMarquee from "../../components/common/LogoMaequee";
 
 const schoolLogos = [
   {
@@ -31,7 +31,7 @@ const schoolLogos = [
     name: "School for Water, Sanitation & Facility Management",
     src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
   },
-]; 
+];
 
 const WorkIntegratedTrainingPage: React.FC = () => {
   return (
@@ -41,6 +41,7 @@ const WorkIntegratedTrainingPage: React.FC = () => {
       <WILPHighlights />
       <WILPSchoolsCourses />
       <LogoMarquee
+        heading="Our Trusted Placement Partners"
         logos={schoolLogos}
         height="h-16"
         speed="25s"
@@ -50,7 +51,7 @@ const WorkIntegratedTrainingPage: React.FC = () => {
       />
       <TestimonialSectionWILP />
     </div>
-  )
-}
+  );
+};
 
-export default WorkIntegratedTrainingPage
+export default WorkIntegratedTrainingPage;

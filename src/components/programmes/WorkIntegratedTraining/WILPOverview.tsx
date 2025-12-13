@@ -34,7 +34,7 @@ const sectors: Sector[] = [
   {
     name: "Steel & Aluminium",
     description:
-      "On-site training in furnace operations, rolling and finishing, metallurgical safety and quality control for steel & aluminium plants.",
+      "On-site Our furnace operations, rolling and finishing, metallurgical safety and quality control for steel & aluminium plants.",
     icon: "🏭",
     impact: { courses: 14, trained: 3000, placed: 2400 },
     certificationLevel: "Level 4-6",

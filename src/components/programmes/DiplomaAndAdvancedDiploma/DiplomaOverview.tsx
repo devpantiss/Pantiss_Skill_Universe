@@ -25,7 +25,7 @@ const sectors: Sector[] = [
   {
     name: "Mines, Steel & Aluminium",
     description:
-      "Diploma in Mining & Steel Technology with hands-on training in drilling, blasting, material handling, and safety for blue-collar roles in mines and steel plants.",
+      "Diploma in Mining & Steel Technology with hands-on Our drilling, blasting, material handling, and safety for blue-collar roles in mines and steel plants.",
     icon: "⛏️",
     impact: { courses: 16, trained: 3800, placed: 3400 },
     certificationLevel: "NSQF Level 4-5",
@@ -43,7 +43,7 @@ const sectors: Sector[] = [
   {
     name: "Shipping & Logistics",
     description:
-      "Diploma in Port Operations & Logistics Management with training in crane operation, cargo handling, forklift driving, and warehouse safety.",
+      "Diploma in Port Operations & Logistics Management with Our crane operation, cargo handling, forklift driving, and warehouse safety.",
     icon: "🚢",
     impact: { courses: 12, trained: 2600, placed: 2400 },
     certificationLevel: "NSQF Level 3-5",
@@ -52,7 +52,7 @@ const sectors: Sector[] = [
   {
     name: "Electric Vehicles",
     description:
-      "Diploma in EV Technology & Battery Systems with practical training in battery assembly, charging station setup, and electric drivetrain maintenance.",
+      "Diploma in EV Technology & Battery Systems with practical Our battery assembly, charging station setup, and electric drivetrain maintenance.",
     icon: "🔋",
     impact: { courses: 10, trained: 1800, placed: 1600 },
     certificationLevel: "NSQF Level 5-6",
@@ -70,7 +70,7 @@ const sectors: Sector[] = [
   {
     name: "Water, Sanitation & Facility Management",
     description:
-      "Diploma in Plumbing, Sanitation & Facility Operations with training in water pipeline installation, sewage systems, and building maintenance.",
+      "Diploma in Plumbing, Sanitation & Facility Operations with Our water pipeline installation, sewage systems, and building maintenance.",
     icon: "🚰",
     impact: { courses: 13, trained: 2900, placed: 2600 },
     certificationLevel: "NSQF Level 3-5",
@@ -206,12 +206,12 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
           variants={itemVariants as Variants}
           className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
+          {/* <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
             <span className="bg-white bg-clip-text text-transparent">
               Program{" "}
             </span>
             <span className="text-white/90">Introduction</span>
-          </h2>
+          </h2> */}
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
             3-year NSQF-aligned diploma programs designed for hands-on blue-collar jobs in core industries, with 100% placement support and industry training.
@@ -264,7 +264,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
 
               <div className="mt-4 pt-4 border-t border-white/10">
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white/60">
-                  <span>Watch training in action</span>
+                  <span>Watch Our action</span>
                   <span>⏱️ 3 min overview</span>
                 </div>
               </div>
@@ -281,7 +281,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             <div className="flex-1 flex flex-col">
               <div className="mb-4 sm:mb-6">
                 <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
-                  Training in{" "}
+                  Our{" "}
                   <span className="bg-green-500 bg-clip-text text-transparent">
                     8 Core Sectors
                   </span>

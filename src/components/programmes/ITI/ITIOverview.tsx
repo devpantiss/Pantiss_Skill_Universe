@@ -52,7 +52,7 @@ const sectors: Sector[] = [
   {
     name: "Shipping & Logistics",
     description:
-      "ITI-level training in cargo handling, cold-chain basics, warehouse operations and port-support roles designed for quick placement.",
+      "ITI-level Our cargo handling, cold-chain basics, warehouse operations and port-support roles designed for quick placement.",
     icon: "🚢",
     impact: { courses: 12, trained: 2600, placed: 2000 },
     certificationLevel: "NSQF Levels 3-5",
@@ -228,11 +228,11 @@ const ITIOverview: React.FC<ITIOverviewProps> = () => {
         <motion.div variants={itemVariants as Variants} className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
             {/* <span className="bg-white bg-clip-text text-transparent">ITI</span>{" "} */}
-            <span className="text-white/90">Program Introduction</span>
+            <span className="text-white/90"></span>
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
-            Short-term ITI trades and certificate programs across core sectors — job-ready skill training with strong focus on hands-on practice and apprenticeships.
+            Short-term ITI trades and certificate Our core sectors — job-ready skill training with strong focus on hands-on practice and apprenticeships.
           </p>
         </motion.div>
 
@@ -254,7 +254,7 @@ const ITIOverview: React.FC<ITIOverviewProps> = () => {
                 <div className="aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-black/50 relative flex-1 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
                   <iframe
                     src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    title="ITI Program Introduction Video"
+                    title="ITI  Video"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
@@ -286,7 +286,7 @@ const ITIOverview: React.FC<ITIOverviewProps> = () => {
             <div className="flex-1 flex flex-col">
               <div className="mb-4 sm:mb-6">
                 <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
-                  Programs Across <span className="bg-green-500 bg-clip-text text-transparent">7 Key Sectors</span>
+                  Our <span className="bg-green-500 bg-clip-text text-transparent">7 Key Sectors</span>
                 </h3>
                 <p className="text-white/70 text-sm sm:text-base lg:text-lg leading-relaxed">
                   ITI trades tailored to industry needs, aligned with NSQF and focused on hands-on training and placement pathways.

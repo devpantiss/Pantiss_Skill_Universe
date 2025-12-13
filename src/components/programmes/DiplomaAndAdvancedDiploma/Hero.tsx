@@ -24,14 +24,16 @@ const DiplomaHero: React.FC = () => {
         className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto"
       >
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight font-sans">
-          Diploma & Polytechnic Courses
+          Program Introduction{" "}
         </h1>
 
         <p className="text-lg md:text-xl text-gray-100 drop-shadow-md leading-relaxed">
-          Industry-aligned Diploma and Polytechnic programs designed to equip learners with strong technical skills
-          across Mines, Steel & Aluminium, Power & Energy, Shipping & Logistics, Infrastructure & Facility Management,
-          Semiconductors & EV Technology, Green Jobs, Textiles & Apparels, and Social Development. Gain hands-on
-          expertise and career-ready training aligned with national skill standards.
+          Industry-aligned Diploma and Polytechnic programs designed to equip
+          learners with strong technical skills across Mines, Steel & Aluminium,
+          Power & Energy, Shipping & Logistics, Infrastructure & Facility
+          Management, Semiconductors & EV Technology, Green Jobs, Textiles &
+          Apparels, and Social Development. Gain hands-on expertise and
+          career-ready training aligned with national skill standards.
         </p>
       </motion.div>
 

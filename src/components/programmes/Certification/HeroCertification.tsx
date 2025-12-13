@@ -24,15 +24,15 @@ const HeroCertification: React.FC = () => {
         className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto"
       >
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight font-sans">
-          Industry-Aligned Certification Courses
+          Program Introduction{" "}
         </h1>
         <p className="text-lg md:text-xl text-gray-100 drop-shadow-md leading-relaxed">
-          Specialized certification programs co-designed with industry experts, 
-          equipping learners with cutting-edge skills across Mines, Steel & Aluminium, 
-          Power & Energy, Shipping & Logistics, Infrastructure, Semiconductors & EV Tech, 
-          Green Jobs, Textiles & Apparels, and Social Development. 
-          Build capabilities that employers demand and fast-track your career growth 
-          with globally recognized credentials.
+          Specialized certification programs co-designed with industry experts,
+          equipping learners with cutting-edge skills across Mines, Steel &
+          Aluminium, Power & Energy, Shipping & Logistics, Infrastructure,
+          Semiconductors & EV Tech, Green Jobs, Textiles & Apparels, and Social
+          Development. Build capabilities that employers demand and fast-track
+          your career growth with globally recognized credentials.
         </p>
       </motion.div>
 

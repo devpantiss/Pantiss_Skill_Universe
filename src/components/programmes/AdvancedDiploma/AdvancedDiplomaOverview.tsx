@@ -216,13 +216,13 @@ const AdvancedDiplomaOverview: React.FC<AdvancedDiplomaOverviewProps> = () => {
       >
         {/* Header Section */}
         <motion.div variants={itemVariants as Variants} className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
+          {/* <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
             <span className="bg-white bg-clip-text text-transparent">Program</span>{" "}
             <span className="text-white/90">Introduction</span>
-          </h2>
+          </h2> */}
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
-            Advanced Diploma and specialization programs across key industrial sectors — deep technical theory combined with extended lab hours, industry projects and pathways to leadership roles.
+            Advanced Diploma and specialization Our key industrial sectors — deep technical theory combined with extended lab hours, industry projects and pathways to leadership roles.
           </p>
         </motion.div>
 
@@ -276,7 +276,7 @@ const AdvancedDiplomaOverview: React.FC<AdvancedDiplomaOverviewProps> = () => {
             <div className="flex-1 flex flex-col">
               <div className="mb-4 sm:mb-6">
                 <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
-                  Programs Across <span className="bg-green-500 bg-clip-text text-transparent">7 Key Sectors</span>
+                  Our <span className="bg-green-500 bg-clip-text text-transparent">7 Key Sectors</span>
                 </h3>
                 <p className="text-white/70 text-sm sm:text-base lg:text-lg leading-relaxed">
                   Advanced Diploma specializations designed for industry needs, aligned with higher NSQF levels and practical employer projects.

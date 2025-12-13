@@ -41,6 +41,7 @@ const ITIPage: React.FC = () => {
       <ITIOverview />
       <ITISchoolsCourses />
       <LogoMarquee
+        heading="Our Trusted Placement Partners"
         logos={schoolLogos}
         height="h-16"
         speed="25s"

@@ -32,6 +32,7 @@ import SkillOnWheelsBanner from "../components/homepage/SkillOnWheelBanner";
 import WomenInMining from "../components/homepage/WomenInMining";
 import GlobalPlacements from "../components/homepage/GlobalPlacements";
 import AlumniPortal from "../components/homepage/AlumniPortal";
+import TrainingUSP from "../components/homepage/TrainingUSP";
 
 const HomePage: React.FC = () => {
   return (
@@ -43,16 +44,17 @@ const HomePage: React.FC = () => {
       {/* <SchoolSection /> */}
       <Ranking />
       <OverLappingCards2 />
-      <WomenInMining />
+      {/* <WomenInMining /> */}
       <OurFuturisticApproach />
-      <SkillOnWheelsBanner />
+      {/* <SkillOnWheelsBanner /> */}
       {/* <ActivityAndEvents /> */}
       <SectorsAccordion />
       <PlacementsSection />
-      <GlobalPlacements />
+      <TrainingUSP />
+      {/* <GlobalPlacements /> */}
       <OurPartners />
       <SocialGalleryCalendarSection />
-      <AlumniPortal />
+      {/* <AlumniPortal /> */}
       {/* <Highlights /> */}
       {/* <TestimonialSection /> */}
     </div>

@@ -1,10 +1,10 @@
-import React from 'react'
-import HeroCertification from '../../components/programmes/Certification/HeroCertification'
-import CertificationOverview from '../../components/programmes/Certification/CertificationOverview'
-import CertificationHighlights from '../../components/programmes/Certification/CertificationHighlights'
-import CertificationSchoolsCourses from '../../components/programmes/Certification/CertificationSchoolsCourses'
-import TestimonialSectionCertification from '../../components/programmes/Certification/Testimonials'
-import LogoMarquee from '../../components/common/LogoMaequee'
+import React from "react";
+import HeroCertification from "../../components/programmes/Certification/HeroCertification";
+import CertificationOverview from "../../components/programmes/Certification/CertificationOverview";
+import CertificationHighlights from "../../components/programmes/Certification/CertificationHighlights";
+import CertificationSchoolsCourses from "../../components/programmes/Certification/CertificationSchoolsCourses";
+import TestimonialSectionCertification from "../../components/programmes/Certification/Testimonials";
+import LogoMarquee from "../../components/common/LogoMaequee";
 
 const schoolLogos = [
   {
@@ -31,7 +31,7 @@ const schoolLogos = [
     name: "School for Water, Sanitation & Facility Management",
     src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
   },
-]; 
+];
 
 const IndustryAllignedCertificationPage: React.FC = () => {
   return (
@@ -41,6 +41,7 @@ const IndustryAllignedCertificationPage: React.FC = () => {
       <CertificationHighlights />
       <CertificationSchoolsCourses />
       <LogoMarquee
+        heading="Our Trusted Placement Partners"
         logos={schoolLogos}
         height="h-16"
         speed="25s"
@@ -50,7 +51,7 @@ const IndustryAllignedCertificationPage: React.FC = () => {
       />
       <TestimonialSectionCertification />
     </div>
-  )
-}
+  );
+};
 
 export default IndustryAllignedCertificationPage;

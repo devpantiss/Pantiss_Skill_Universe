@@ -24,15 +24,15 @@ const WILPHero: React.FC = () => {
         className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto"
       >
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight font-sans">
-          Work-Integrated Learning Program (WILP)
+          Program Introduction{" "}
         </h1>
 
         <p className="text-lg md:text-xl text-gray-100 drop-shadow-md leading-relaxed max-w-3xl mx-auto">
-          Industry-embedded, earn-while-you-learn pathways that combine on-the-job
-          training with targeted classroom modules — designed specifically for
-          blue-collar roles. Our WILP certifies practical competency, shortens
-          recruitment cycles, and builds job-ready workers who can step on-site
-          from day one.
+          Industry-embedded, earn-while-you-learn pathways that combine
+          on-the-job training with targeted classroom modules — designed
+          specifically for blue-collar roles. Our WILP certifies practical
+          competency, shortens recruitment cycles, and builds job-ready workers
+          who can step on-site from day one.
         </p>
 
         {/* Sectors list */}

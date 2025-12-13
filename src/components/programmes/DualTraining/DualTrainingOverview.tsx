@@ -34,7 +34,7 @@ const sectors: Sector[] = [
   {
     name: "Steel & Aluminium",
     description:
-      "Dual training in welding, furnace/shop-floor practices, metallurgical handling and quality control with rotations across fabrication and mill shops.",
+      "Dual Our welding, furnace/shop-floor practices, metallurgical handling and quality control with rotations across fabrication and mill shops.",
     icon: "🏭",
     impact: { courses: 12, trained: 2600, placed: 2000 },
     certificationLevel: "NSQF Levels 4-6",
@@ -43,7 +43,7 @@ const sectors: Sector[] = [
   {
     name: "Power & Green Energy",
     description:
-      "Apprenticeship and on-site training in power plant operations, solar PV installation, energy storage basics and safe electrical practice.",
+      "Apprenticeship and on-site Our power plant operations, solar PV installation, energy storage basics and safe electrical practice.",
     icon: "⚡",
     impact: { courses: 14, trained: 3000, placed: 2300 },
     certificationLevel: "NSQF Levels 5-7",
@@ -219,7 +219,7 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
         <motion.div variants={itemVariants as Variants} className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
             {/* <span className="bg-white bg-clip-text text-transparent">Apprenticeship & Dual Training</span>{" "} */}
-            <span className="text-white/90">Program Introduction</span>
+            <span className="text-white/90"></span>
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
@@ -263,7 +263,7 @@ const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
 
               <div className="mt-4 pt-4 border-t border-white/10">
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white/60">
-                  <span>📺 Apprenticeship & Dual Training intro</span>
+                  <span>📺 Apprenticeship & Dual Ourtro</span>
                   <span>⏱️ ~3 minute overview</span>
                 </div>
               </div>

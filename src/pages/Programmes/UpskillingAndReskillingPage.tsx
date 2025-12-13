@@ -1,10 +1,10 @@
-import React from 'react';
-import UpskillingHero from '../../components/programmes/UpskillingAndReskilling/Hero';
-import UpskillReskillHighlights from '../../components/programmes/UpskillingAndReskilling/UpskillingHighlights';
-import UpskillReskillOverview from '../../components/programmes/UpskillingAndReskilling/UpskillingOverview';
-import UpskillingReskillingSchoolsCourses from '../../components/programmes/UpskillingAndReskilling/UpskillingSchoolsCourses'
-import TestimonialSectionUpskilling from '../../components/programmes/UpskillingAndReskilling/Testimonials';
-import LogoMarquee from '../../components/common/LogoMaequee';
+import React from "react";
+import UpskillingHero from "../../components/programmes/UpskillingAndReskilling/Hero";
+import UpskillReskillHighlights from "../../components/programmes/UpskillingAndReskilling/UpskillingHighlights";
+import UpskillReskillOverview from "../../components/programmes/UpskillingAndReskilling/UpskillingOverview";
+import UpskillingReskillingSchoolsCourses from "../../components/programmes/UpskillingAndReskilling/UpskillingSchoolsCourses";
+import TestimonialSectionUpskilling from "../../components/programmes/UpskillingAndReskilling/Testimonials";
+import LogoMarquee from "../../components/common/LogoMaequee";
 
 const schoolLogos = [
   {
@@ -31,7 +31,7 @@ const schoolLogos = [
     name: "School for Water, Sanitation & Facility Management",
     src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
   },
-]; 
+];
 
 const UpskillingAndReskillingPage: React.FC = () => {
   return (
@@ -41,6 +41,7 @@ const UpskillingAndReskillingPage: React.FC = () => {
       <UpskillReskillHighlights />
       <UpskillingReskillingSchoolsCourses />
       <LogoMarquee
+        heading="Our Trusted Placement Partners"
         logos={schoolLogos}
         height="h-16"
         speed="25s"
@@ -50,7 +51,7 @@ const UpskillingAndReskillingPage: React.FC = () => {
       />
       <TestimonialSectionUpskilling />
     </div>
-  )
-}
+  );
+};
 
-export default UpskillingAndReskillingPage
+export default UpskillingAndReskillingPage;

@@ -192,9 +192,9 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
       >
         {/* Header */}
         <motion.div variants={itemVariants as Variants} className="text-center mb-12 lg:mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+          {/* <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
             Program <span className="text-green-500"></span> Introduction
-          </h2>
+          </h2> */}
           <p className="text-lg text-white/80 max-w-3xl mx-auto">
             Modular, industry-designed certification programs to upskill and reskill professionals for immediate job-readiness across core sectors:
             Mines; Steel & Aluminium; Power & Green Energy; Shipping & Logistics; Electric Vehicles; Construction Tech & Infra Equipment; Water, Sanitation & Facility Management.
@@ -206,7 +206,7 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
           {/* Video */}
           <motion.div variants={fadeInLeft as Variants}>
             <div className="rounded-2xl bg-white/5 p-6 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-4">Program Introduction</h3>
+              <h3 className="text-2xl font-bold text-white mb-4"></h3>
               <div className="aspect-video rounded-xl overflow-hidden bg-black">
                 <iframe
                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"

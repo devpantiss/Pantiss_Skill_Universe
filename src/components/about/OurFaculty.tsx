@@ -131,21 +131,18 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
       <div
         className="absolute top-[-15%] left-[-10%] bg-green-500 w-[350px] h-[350px] rounded-full opacity-40 pointer-events-none"
         style={{
-          // background: "#ff3366",
           filter: "blur(120px)",
         }}
       ></div>
       <div
         className="absolute bottom-[-20%] right-[-10%] bg-red-600 w-[450px] h-[450px] rounded-full opacity-35 pointer-events-none"
         style={{
-          // background: "#ffbe0b",
           filter: "blur(140px)",
         }}
       ></div>
       <div
         className="absolute top-[25%] left-[20%] bg-gradient-to-tr from-red-600 to-green-500 w-[250px] h-[250px] rounded-full opacity-30 pointer-events-none"
         style={{
-          // background: "linear-gradient(135deg, #ff3366, #ffbe0b)",
           filter: "blur(100px)",
         }}
       ></div>
@@ -159,7 +156,7 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
       <div
         ref={rootRef}
         onPointerMove={handleMove}
-        className={`relative z-10 w-full h-full flex flex-wrap justify-center items-start gap-3 ${className}`}
+        className={`relative z-10 w-full h-full ${className}`}
         style={
           {
             "--r": `${radius}px`,
@@ -168,52 +165,45 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
           } as React.CSSProperties
         }
       >
-        {data.map((c, i) => (
-          <article
-            key={i}
-            onMouseMove={handleCardMove}
-            onClick={() => handleCardClick(c.url)}
-            className="group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer hover:border-[var(--card-border)]"
-            style={
-              {
-                "--card-border": c.borderColor || "transparent",
-                background: c.gradient,
-                "--spotlight-color": "rgba(255,255,255,0.3)",
-              } as React.CSSProperties
-            }
-          >
-            {/* Spotlight hover */}
-            <div
-              className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
-              style={{
-                background:
-                  "radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)",
-              }}
-            />
-            <div className="relative z-10 flex-1 p-[10px] box-border">
-              <img
-                src={c.image}
-                alt={c.title}
-                loading="lazy"
-                className="w-full h-[350px] object-cover rounded-[10px]"
+        {/* GRID: mobile 1 col, md 3 cols, lg 5 cols */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center">
+          {data.map((c, i) => (
+            <article
+              key={i}
+              onMouseMove={handleCardMove}
+              onClick={() => handleCardClick(c.url)}
+              className="group relative flex flex-col w-full rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer hover:border-[var(--card-border)]"
+              style={
+                {
+                  "--card-border": c.borderColor || "transparent",
+                  background: c.gradient,
+                  "--spotlight-color": "rgba(255,255,255,0.3)",
+                } as React.CSSProperties
+              }
+            >
+              {/* Spotlight hover */}
+              <div
+                className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
+                style={{
+                  background:
+                    "radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)",
+                }}
               />
-            </div>
-            <footer className="flex flex-col z-10 p-3 text-white font-sans gap-x-3 gap-y-1">
-              <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
-              {/* {c.handle && (
-                <span className="text-[0.95rem] opacity-80 text-right">
-                  {c.handle}
-                </span>
-              )} */}
-              <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
-              {/* {c.location && (
-                <span className="text-[0.85rem] opacity-85 text-right">
-                  {c.location}
-                </span>
-              )} */}
-            </footer>
-          </article>
-        ))}
+              <div className="relative z-10 flex-1 p-[10px] box-border">
+                <img
+                  src={c.image}
+                  alt={c.title}
+                  loading="lazy"
+                  className="w-full h-[350px] object-cover rounded-[10px]"
+                />
+              </div>
+              <footer className="flex flex-col z-10 p-3 text-white font-sans gap-x-3 gap-y-1">
+                <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
+                <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
+              </footer>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );

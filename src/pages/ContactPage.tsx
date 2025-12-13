@@ -114,9 +114,9 @@ const ContactPage: React.FC = () => {
   ];
 
   // State
-  const [activeTab, setActiveTab] = useState<
-    "headOffice" | "schools" | "coe"
-  >("headOffice");
+  const [activeTab, setActiveTab] = useState<"headOffice" | "schools" | "coe">(
+    "headOffice"
+  );
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   // Contact Info Component
@@ -211,7 +211,7 @@ const ContactPage: React.FC = () => {
                     : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                 }`}
               >
-                Head Office
+                Corporate Office{" "}
               </button>
               <button
                 onClick={() => setActiveTab("schools")}

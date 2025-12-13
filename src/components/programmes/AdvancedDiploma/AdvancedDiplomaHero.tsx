@@ -24,16 +24,22 @@ const AdvancedDiplomaHero: React.FC = () => {
         className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto"
       >
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight font-sans">
-          Advanced Diploma & Specialization Program
+          Program Introduction{" "}
         </h1>
 
         <p className="text-lg md:text-xl text-gray-100 drop-shadow-md leading-relaxed">
-          Intensive Advanced Diploma pathways designed for career progression and technical leadership. These programs combine deep specialist theory with extended hands-on labs, real
-          industry projects and employer-led modules — preparing learners for supervisory roles, specialist technician positions and further professional accreditation.
+          Intensive Advanced Diploma pathways designed for career progression
+          and technical leadership. These programs combine deep specialist
+          theory with extended hands-on labs, real industry projects and
+          employer-led modules — preparing learners for supervisory roles,
+          specialist technician positions and further professional
+          accreditation.
         </p>
 
         <p className="mt-4 text-sm md:text-base text-gray-300">
-          Aligned to higher NSQF levels (specialization & advanced trade credits), with strong industry partnerships, apprenticeship pipelines and pathways to higher technical study.
+          Aligned to higher NSQF levels (specialization & advanced trade
+          credits), with strong industry partnerships, apprenticeship pipelines
+          and pathways to higher technical study.
         </p>
       </motion.div>
 

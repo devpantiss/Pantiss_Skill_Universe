@@ -85,7 +85,7 @@ const Ranking: React.FC = () => {
       className="relative bg-fixed bg-center bg-cover bg-no-repeat py-12 px-4"
       style={{
         backgroundImage:
-          "url(https://res.cloudinary.com/dxzhnns58/image/upload/v1761895733/AdobeStock_55775771_Preview_zaohly.jpg)",
+          "url(/Homepage/accredition.jpg)",
       }}
     >
       <style>

@@ -24,13 +24,15 @@ const DualTrainingHero: React.FC = () => {
         className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto"
       >
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight font-sans">
-          Apprenticeship & Dual Training for Blue-Collar Careers
+          Program Introduction{" "}
         </h1>
         <p className="text-lg md:text-xl text-gray-100 drop-shadow-md leading-relaxed">
-          Job-ready, paid learning pathways combining classroom instruction and on-the-job training across
-          Mines, Power & Energy, Shipping & Logistics, Infrastructure & Facility Management, Semiconductors & EV Tech,
-          Green Jobs, Textiles & Apparels, and Social Development. Build skills, earn while you learn, and step
-          into high-demand roles with industry partners.
+          Job-ready, paid learning pathways combining classroom instruction and
+          on-the-job training across Mines, Power & Energy, Shipping &
+          Logistics, Infrastructure & Facility Management, Semiconductors & EV
+          Tech, Green Jobs, Textiles & Apparels, and Social Development. Build
+          skills, earn while you learn, and step into high-demand roles with
+          industry partners.
         </p>
       </motion.div>
 
