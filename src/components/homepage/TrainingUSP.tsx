@@ -1,35 +1,35 @@
 // TrainingUSP.tsx
 import React from "react";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import WomenInMining from "./WomenInMining";
 import SkillOnWheelBanner from "./SkillOnWheelBanner";
 import GlobalPlacements from "./GlobalPlacements";
 
-const previews = [
-  {
-    id: "women",
-    title: "Women in Mining",
-    subtitle: "HEMM vehicle operator tracks",
-    Component: WomenInMining,
-  },
-  {
-    id: "skillonwheels",
-    title: "Skill on Wheels",
-    subtitle: "Mobile units delivering hands-on training",
-    Component: SkillOnWheelBanner,
-  },
-  {
-    id: "global",
-    title: "Global Placements",
-    subtitle: "International placement & employer links",
-    Component: GlobalPlacements,
-  },
-];
+// const previews = [
+//   {
+//     id: "women",
+//     title: "Women in Mining",
+//     subtitle: "HEMM vehicle operator tracks",
+//     Component: WomenInMining,
+//   },
+//   {
+//     id: "skillonwheels",
+//     title: "Skill on Wheels",
+//     subtitle: "Mobile units delivering hands-on training",
+//     Component: SkillOnWheelBanner,
+//   },
+//   {
+//     id: "global",
+//     title: "Global Placements",
+//     subtitle: "International placement & employer links",
+//     Component: GlobalPlacements,
+//   },
+// ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08 } }),
-};
+// const cardVariants = {
+//   hidden: { opacity: 0, y: 12 },
+//   visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08 } }),
+// };
 
 const TrainingUSP: React.FC = () => {
   return (
