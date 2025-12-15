@@ -28,10 +28,10 @@ import Impact from "../components/homepage/Impact";
 import OurPartners from "../components/homepage/OurPartners";
 // import ActivityAndEvents from "../components/homepage/Events";
 // import Highlights from "../components/homepage/Highlights";
-import SkillOnWheelsBanner from "../components/homepage/SkillOnWheelBanner";
-import WomenInMining from "../components/homepage/WomenInMining";
-import GlobalPlacements from "../components/homepage/GlobalPlacements";
-import AlumniPortal from "../components/homepage/AlumniPortal";
+// import SkillOnWheelsBanner from "../components/homepage/SkillOnWheelBanner";
+// import WomenInMining from "../components/homepage/WomenInMining";
+// import GlobalPlacements from "../components/homepage/GlobalPlacements";
+// import AlumniPortal from "../components/homepage/AlumniPortal";
 import TrainingUSP from "../components/homepage/TrainingUSP";
 
 const HomePage: React.FC = () => {
