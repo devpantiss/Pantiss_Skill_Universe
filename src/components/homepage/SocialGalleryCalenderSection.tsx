@@ -101,7 +101,7 @@ const DashboardSection: React.FC = () => {
 
   return (
     <section
-      className="w-full py-20 relative overflow-hidden bg-[length:cover] bg-center bg-no-repeat bg-fixed bg-[url('https://www.worldskillcenter.org/assets/user/images/parallax/5.jpg')]"
+      className="w-full py-20 relative overflow-hidden bg-[length:cover] bg-center bg-no-repeat bg-fixed bg-[url('/Homepage/announcements_bg.jpg')]"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-0"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

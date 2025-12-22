@@ -36,31 +36,30 @@ const navLinks: NavLink[] = [
           { name: "Pantiss School for Steel & Aluminium", path: "https://pantiss-school-for-mines-steel-alum.vercel.app" },
           { name: "Pantiss School for Power & Green Energy", path: "https://pantiss-school-for-power-green-energy.vercel.app" },
           { name: "Pantiss School for Shipping & Logistics", path: "https://pantiss-school-for-shipping-logistics.vercel.app" },
-          { name: "Pantiss School for Electric Vehicle", path: "https://pantiss-school-for-ev.vercel.app" },
+          // { name: "Pantiss School for Electric Vehicle", path: "https://pantiss-school-for-ev.vercel.app" },
           { name: "Pantiss School for Construction Tech & Infra Equipment", path: "https://pantiss-school-for-construction-infra.vercel.app" },
-          { name: "Pantiss School for Water, Sanitation & Facility Management", path: "https://pantiss-school-for-wash-facility.vercel.app" },
+          { name: "Pantiss School for Green Jobs", path: "https://pantiss-school-for-wash-facility.vercel.app" },
         ],
         path: ""
       },
       {
         name: "Locations",
         children: [
-          { name: "Center of Excellence for Mining", path: "https://pantiss-coe-mining.vercel.app" },
-          { name: "Center of Excellence for Steel & Aluminium", path: "https://pantiss-coe-steel-aluminium.vercel.app" },
-          { name: "Center of Excellence for Energy", path: "https://pantiss-coe-energy.vercel.app" },
-          { name: "Center of Excellence for Shipping", path: "https://pantiss-coe-shipping.vercel.app" },
-          { name: "Center of Excellence for Electric Vehicle", path: "https://pantiss-coe-ev.vercel.app" },
-          { name: "Center of Excellence for Infrastructure", path: "https://pantiss-coe-infrastructure.vercel.app" },
-          { name: "Center of Excellence for WASH", path: "https://pantiss-coe-wash.vercel.app" },
+          { name: "Pantiss Skill Resort, Anugul (For Mining)", path: "https://pantiss-coe-mining.vercel.app" },
+          { name: "Pantiss Skill Resort, Kalahandi (For Aviation)", path: "https://pantiss-coe-steel-aluminium.vercel.app" },
+          { name: "Pantiss Skill Resort, Paradip (For Shipping & Logistics)", path: "https://pantiss-coe-energy.vercel.app" },
+          { name: "Pantiss Skill Resort, Jharsuguda (For Construction Tech & Infra Equipments)", path: "https://pantiss-coe-shipping.vercel.app" },
+          { name: "Pantiss Skill Resort, Sukinda (For Power & Green Energy)", path: "https://pantiss-coe-ev.vercel.app" },
+          { name: "Pantiss Skill Resort, Joda (For Green Jobs)", path: "https://pantiss-coe-infrastructure.vercel.app" },
         ],
         path: ""
       },
       {
         name: "Global",
         children: [
-          { name: "Botswana Mining Institute", path: "#" },
-          { name: "Namibia Resource Academy", path: "#" },
-          { name: "Zambia Mining University", path: "#" },
+          { name: "Botswana Mining Institute (Coming Soon!)", path: "#" },
+          { name: "Namibia Resource Academy (Coming Soon!)", path: "#" },
+          { name: "Zambia Mining University (Coming Soon!)", path: "#" },
         ],
         path: ""
       },

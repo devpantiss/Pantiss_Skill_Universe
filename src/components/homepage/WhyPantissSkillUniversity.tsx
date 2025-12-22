@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { FaMapMarkerAlt } from "react-icons/fa";
+// import { FaMapMarkerAlt } from "react-icons/fa";
 
 const slides = [
   "/Homepage/why/mines.jpg",
@@ -15,14 +15,14 @@ const slides = [
 //   "https://www.amity.edu/backoffice/uploads/HomeBanner/10fblg_ranchi.jpg",
 ];
 
-const campuses = [
-  "Talcher",
-  "Bhawanipatna",
-  "Sukinda",
-  "Paradip",
-  "Jharsuguda",
-  "Joda",
-];
+// const campuses = [
+//   "Talcher",
+//   "Bhawanipatna",
+//   "Sukinda",
+//   "Paradip",
+//   "Jharsuguda",
+//   "Joda",
+// ];
 
 const schoolLogos = [
   {
@@ -214,20 +214,19 @@ export default function WhyPantissSkillUniversity() {
       </div>
 
       {/* Campus Bar */}
-      {/* Campus Bar */}
-      <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-7xl bg-black/90 py-6 px-6 flex flex-col lg:flex-row gap-6 items-center justify-between text-white font-semibold z-20 rounded-t-lg shadow-lg">
+      {/* <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-7xl bg-black/90 py-6 px-6 flex flex-col lg:flex-row gap-6 items-center justify-between text-white font-semibold z-20 rounded-t-lg shadow-lg"> */}
         {/* Heading */}
-        <motion.h2
+        {/* <motion.h2
           className="md:text-3xl text-2xl font-extrabold leading-tight tracking-tight text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           OUR <span className="text-red-600">CAMPUSES</span>
-        </motion.h2>
+        </motion.h2> */}
 
         {/* Locations */}
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-2">
+        {/* <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-2">
           {campuses.map((campus, idx) => (
             <motion.div
               key={idx}
@@ -240,8 +239,8 @@ export default function WhyPantissSkillUniversity() {
               <span className="text-sm sm:text-base">{campus}</span>
             </motion.div>
           ))}
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
 
       {/* Subscribe Tag */}
       <motion.div

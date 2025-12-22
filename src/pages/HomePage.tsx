@@ -20,7 +20,7 @@ import SocialGalleryCalendarSection from "../components/homepage/SocialGalleryCa
 // import HorizontalScrollComponent from "../components/homepage/HorizontalComponent";
 // import Notices from "../components/homepage/Notices";
 import SchoolLogoStrip from "../components/homepage/SchoolLogoStrip";
-import OurFuturisticApproach from "../components/homepage/OurFuturisticApproach";
+// import OurFuturisticApproach from "../components/homepage/OurFuturisticApproach";
 import Ranking from "../components/homepage/Ranking";
 import Impact from "../components/homepage/Impact";
 // import BentoGrid from "../components/homepage/BentoGrid";
@@ -33,6 +33,7 @@ import OurPartners from "../components/homepage/OurPartners";
 // import GlobalPlacements from "../components/homepage/GlobalPlacements";
 // import AlumniPortal from "../components/homepage/AlumniPortal";
 import TrainingUSP from "../components/homepage/TrainingUSP";
+import Campuses from "../components/homepage/Campuses";
 
 const HomePage: React.FC = () => {
   return (
@@ -44,8 +45,9 @@ const HomePage: React.FC = () => {
       {/* <SchoolSection /> */}
       <Ranking />
       <OverLappingCards2 />
+      <Campuses />
       {/* <WomenInMining /> */}
-      <OurFuturisticApproach />
+      {/* <OurFuturisticApproach /> */}
       {/* <SkillOnWheelsBanner /> */}
       {/* <ActivityAndEvents /> */}
       <SectorsAccordion />

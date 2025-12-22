@@ -9,7 +9,7 @@ interface RankingCardProps {
 const RankingCard: React.FC<RankingCardProps> = ({ logo, description }) => {
   return (
     <motion.div
-      className="w-64 p-6 border border-green-600 rounded-lg bg-black/70 hover:bg-green-700/80 transition-all shadow-lg flex flex-col items-center gap-6"
+      className="w-64 p-6  rounded-lg transition-all shadow-lg flex flex-col items-center gap-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -101,7 +101,7 @@ const Ranking: React.FC = () => {
         `}
       </style>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/20 to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="mb-8 text-center">

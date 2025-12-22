@@ -1,5 +1,5 @@
 import React, { memo, useMemo, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { FaGlobe, FaTools } from "react-icons/fa";
 
 interface Vehicle {
@@ -257,10 +257,10 @@ const OurFuturisticApproach: React.FC = () => {
           ))}
         </div>
         {/* CTA */}
-        <div className="text-center mt-10 flex items-center justify-center gap-4">
+        {/* <div className="text-center mt-10 flex items-center justify-center gap-4"> */}
           {/* Left image */}
-          <img
-            src="https://res.cloudinary.com/djtzx6wo7/image/upload/v1756890438/19362653-removebg-preview_gudzua.png"
+          {/* <img
+            src="/Homepage/dash_image_1.png"
             alt="Dashboard Icon"
             className="w-36 lg:w-44 h-36 lg:h-44 object-contain drop-shadow-md animate-bounce"
             aria-hidden="true"
@@ -271,15 +271,15 @@ const OurFuturisticApproach: React.FC = () => {
             aria-label="Explore Skill and Jobs Dashboard"
           >
             Explore Skill & Jobs Dashboard
-          </Link>
+          </Link> */}
           {/* Right image */}
-          <img
-            src="https://res.cloudinary.com/djtzx6wo7/image/upload/v1756890439/4421964-removebg-preview_nu0dk9.png"
+          {/* <img
+            src="/Homepage/dash_image_2.png"
             alt="Go Icon"
             className="w-36 lg:w-44 h-36 lg:h-44 object-contain drop-shadow-md animate-bounce"
             aria-hidden="true"
-          />
-        </div>
+          /> */}
+        {/* </div> */}
       </div>
     </section>
   );

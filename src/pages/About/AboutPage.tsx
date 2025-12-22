@@ -1,7 +1,7 @@
 import React from "react";
 import AboutHero from "../../components/about/AboutHero";
 import VisionMissionGoal from "../../components/about/VisionMissionGoal";
-import ScrollVelocity from "../../components/common/ScrollVelocity";
+// import ScrollVelocity from "../../components/common/ScrollVelocity";
 import AboutImpact from "../../components/about/AboutImpact";
 import HeroInfoSection from "../../components/about/FoundersSection";
 import { ThreeDMarquee } from "../../components/about/ThreeDMarqueeDemo";
@@ -9,6 +9,8 @@ import OurFaculty from "../../components/about/OurFaculty";
 // import OurFacilities from "../../components/about/OurFacilities";
 import ScrollVelocityImages from "../../components/common/ScrollVelocityImages";
 import Certifications from "../../components/about/Certifications/Certifications";
+import Milestones from "../../components/about/Milestones/Milestones";
+import Awards from "../../components/about/Awards";
 
 const AboutPage: React.FC = () => {
   // const images = [
@@ -114,7 +116,7 @@ const AboutPage: React.FC = () => {
   const AdvisoryBoard = [
     {
       image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760095558/jalandhar_2_1_b8x99s.jpg",
+        "/teams/jalandhar.png",
       title: "Mr. Jalandhar Mohanty",
       subtitle: "Lead, CoE, Mining",
       handle: "@alexrivera",
@@ -124,7 +126,7 @@ const AboutPage: React.FC = () => {
     },
     {
       image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760619794/Sudarshan_2_geimdd.jpg",
+      "/teams/sudarshan.png",
       title: "Mr. Sudarshan Barik",
       subtitle: "Lead, CoE, Steel & Aluminium",
       handle: "@jordanchen",
@@ -134,7 +136,7 @@ const AboutPage: React.FC = () => {
     },
     {
       image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096195/bikram_2_ufeeka.jpg",
+      "/teams/bikram.png",
       title: "Mr. Bikram K. Gouda",
       subtitle: "Lead, CoE, Shipping & Logistics",
       handle: "@morganblake",
@@ -144,7 +146,7 @@ const AboutPage: React.FC = () => {
     },
     {
       image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760096329/yagnesh_2_lmjxag.jpg",
+      "/teams/yagnesh.png",
       title: "Mr. Yagnesh K. Nanda",
       subtitle: "Lead, CoE, Power & Green Energy",
       handle: "@morganblake",
@@ -154,7 +156,7 @@ const AboutPage: React.FC = () => {
     },
     {
       image:
-        "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760097703/mukessh_2_p4kfmr.jpg",
+      "/teams/mukessh.png",
       title: "Mr. Mukesh Singh",
       subtitle: "Lead, CoE, Construction & Infrastructure Equipment",
       handle: "@morganblake",
@@ -252,7 +254,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className="bg-black">
       <AboutHero />
-      <ScrollVelocity
+      {/* <ScrollVelocity
         texts={[
           "Odisha's First Institution Focused on Blue Collar Industry",
           "Pantiss Skill Universe",
@@ -262,7 +264,7 @@ const AboutPage: React.FC = () => {
         colors={["text-green-600", "text-red-600"]}
         parallaxClassName="bg-black py-4"
         scrollerClassName="tracking-tight"
-      />
+      /> */}
       <VisionMissionGoal />
       <AboutImpact />
       <div id="founders">
@@ -273,7 +275,8 @@ const AboutPage: React.FC = () => {
       >
         <ThreeDMarquee images={images} />
       </div>
-      <div id="faculty" className="h-full px-8 relative">
+      <Milestones />
+      <div id="faculty" className="h-full relative">
         <OurFaculty
           heading="Our Advisory Board"
           items={AdvisoryBoard}
@@ -283,6 +286,7 @@ const AboutPage: React.FC = () => {
           ease="power3.out"
         />
       </div>
+      <Awards />
       <Certifications />
       {/* <div id="faculty" className="h-full relative">
         <OurFaculty

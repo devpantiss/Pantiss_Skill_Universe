@@ -8,7 +8,7 @@ const AboutHero: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://www.msu.edu.in/frontend_assets/images/who-we-are-cover.png')",
+            "url('/About/about_hero.jpg')",
         }}
       />
 

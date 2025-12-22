@@ -82,7 +82,7 @@ const WomenInMining: React.FC = () => {
       aria-labelledby="women-operators-heading"
     >
       {/* overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/20 to-black" />
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-6">
         {/* Central headings */}
