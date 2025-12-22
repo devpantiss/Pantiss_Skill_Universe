@@ -20,8 +20,10 @@ const testimonials: Testimonial[] = [
     logo: "https://labournet.in/wp-content/uploads/2022/03/Hindustan_Unilever_Logo-1.png",
     text: `The work delivered by LabourNet has always been par excellence. Our association with LabourNet has only grown stronger over the years and has become an integral part of HUL’s Economic Empowerment work under the Prabhat program. We hope to pursue this relationship in the future too.`,
     name: "Kanikal Pal",
-    designation: "South Asia Head - Community Investment & Sustainability Programs",
-    photo: "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1.jpg",
+    designation:
+      "South Asia Head - Community Investment & Sustainability Programs",
+    photo:
+      "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1.jpg",
     category: "Industries",
   },
   {
@@ -29,7 +31,8 @@ const testimonials: Testimonial[] = [
     text: `We chose Labournet to ensure smooth roll out of our projects since it engages in effective planning, hires the right resources, assigns accountability, establishes clear communication between various stakeholders and monitors daily progress.`,
     name: "Sarita Bahl",
     designation: "Director - Bayer Foundation India",
-    photo: "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1-1.jpg",
+    photo:
+      "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1-1.jpg",
     category: "Industries",
   },
   {
@@ -37,7 +40,8 @@ const testimonials: Testimonial[] = [
     text: `I thank the LabourNet for the exemplary work of imparting training in the local language in a very understanding and interactive manner, and the trainers were completely dedicated and involved. I would also recommend LabourNet to other organizations for their training services.`,
     name: "Mahendra Dongre",
     designation: "Marketing Manager - BPCL",
-    photo: "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1-1.jpg",
+    photo:
+      "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1-1.jpg",
     category: "Industries",
   },
   // Students Testimonials (Placeholder)
@@ -73,7 +77,8 @@ const testimonials: Testimonial[] = [
 ];
 
 // Default image fallback
-const defaultImage = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+const defaultImage =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
 const NextArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
   <div
@@ -125,7 +130,9 @@ const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
 
 const TestimonialSectionWILP: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
-  const [activeTab, setActiveTab] = useState<"Students" | "Trainers" | "Industries">("Industries");
+  const [activeTab, setActiveTab] = useState<
+    "Students" | "Trainers" | "Industries"
+  >("Industries");
 
   const handleBeforeChange = (current: number, next: number) => {
     gsap.fromTo(
@@ -172,7 +179,9 @@ const TestimonialSectionWILP: React.FC = () => {
     }
   }, [activeTab]);
 
-  const filteredTestimonials = testimonials.filter(t => t.category === activeTab);
+  const filteredTestimonials = testimonials.filter(
+    (t) => t.category === activeTab
+  );
 
   return (
     <section className="relative w-full py-20">
@@ -184,9 +193,12 @@ const TestimonialSectionWILP: React.FC = () => {
           loop
           playsInline
           className="w-full h-full object-cover"
-          style={{ backgroundAttachment: "fixed", backgroundPosition: "center" }}
+          style={{
+            backgroundAttachment: "fixed",
+            backgroundPosition: "center",
+          }}
         >
-          <source src="https://www.worldskillcenter.org/assets/user/images/parallax/counterbg-video.mp4" type="video/mp4" />
+          <source src="/Homepage/HomePage_Hero.mp4" type="video/mp4" />
           <img
             src="https://www.w3schools.com/html/pic_trulli.jpg"
             alt="Video fallback"
@@ -209,7 +221,9 @@ const TestimonialSectionWILP: React.FC = () => {
                     ? "bg-red-600 text-white shadow"
                     : "bg-white/10 text-white/80 hover:bg-white/20"
                 }`}
-                onClick={() => setActiveTab(tab as "Students" | "Trainers" | "Industries")}
+                onClick={() =>
+                  setActiveTab(tab as "Students" | "Trainers" | "Industries")
+                }
               >
                 {tab}
               </button>
@@ -234,7 +248,9 @@ const TestimonialSectionWILP: React.FC = () => {
                         alt="Company Logo"
                         className="h-16 object-contain"
                         loading="lazy"
-                        onError={(e) => ((e.target as HTMLImageElement).src = defaultImage)}
+                        onError={(e) =>
+                          ((e.target as HTMLImageElement).src = defaultImage)
+                        }
                       />
                     </div>
 
@@ -251,12 +267,18 @@ const TestimonialSectionWILP: React.FC = () => {
                           alt={testimonial.name}
                           className="object-cover w-full h-full"
                           loading="lazy"
-                          onError={(e) => ((e.target as HTMLImageElement).src = defaultImage)}
+                          onError={(e) =>
+                            ((e.target as HTMLImageElement).src = defaultImage)
+                          }
                         />
                       </div>
                       <div>
-                        <p className="font-semibold text-white text-xl">{testimonial.name}</p>
-                        <p className="text-md text-gray-200">{testimonial.designation}</p>
+                        <p className="font-semibold text-white text-xl">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-md text-gray-200">
+                          {testimonial.designation}
+                        </p>
                       </div>
                     </div>
 

@@ -186,7 +186,7 @@ const TestimonialSectionUpskilling: React.FC = () => {
           className="w-full h-full object-cover"
           style={{ backgroundAttachment: "fixed", backgroundPosition: "center" }}
         >
-          <source src="https://www.worldskillcenter.org/assets/user/images/parallax/counterbg-video.mp4" type="video/mp4" />
+          <source src="/Homepage/HomePage_Hero.mp4" type="video/mp4" />
           <img
             src="https://www.w3schools.com/html/pic_trulli.jpg"
             alt="Video fallback"

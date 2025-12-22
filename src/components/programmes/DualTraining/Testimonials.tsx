@@ -21,7 +21,8 @@ const testimonials: Testimonial[] = [
     text: `Hosting apprentices through the dual training model boosted productivity and safety on our lines. The rotation between classroom and shop-floor makes new joiners job-ready from week one.`,
     name: "Kanikal Pal",
     designation: "South Asia Head – Community Investment & Sustainability, HUL",
-    photo: "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1.jpg",
+    photo:
+      "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1.jpg",
     category: "Industries",
   },
   {
@@ -29,7 +30,8 @@ const testimonials: Testimonial[] = [
     text: `The apprenticeship pipeline gives us skilled hands for green projects. Learners arrive with standards, safety, and tools discipline already ingrained through dual rotations.`,
     name: "Sarita Bahl",
     designation: "Director – Bayer Foundation India",
-    photo: "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1-1.jpg",
+    photo:
+      "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1-1.jpg",
     category: "Industries",
   },
   {
@@ -37,7 +39,8 @@ const testimonials: Testimonial[] = [
     text: `Mentored apprentices progressed to independent roles quickly. The competency-based assessments map directly to our SOPs and quality gates.`,
     name: "Mahendra Dongre",
     designation: "Marketing Manager – BPCL",
-    photo: "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1-1.jpg",
+    photo:
+      "https://labournet.in/wp-content/uploads/2022/03/1612287903181-1-1.jpg",
     category: "Industries",
   },
   // Students Testimonials
@@ -73,7 +76,8 @@ const testimonials: Testimonial[] = [
 ];
 
 // Default image fallback
-const defaultImage = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+const defaultImage =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
 const NextArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
   <div
@@ -125,7 +129,9 @@ const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
 
 const TestimonialSectionDualTraining: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
-  const [activeTab, setActiveTab] = useState<"Students" | "Trainers" | "Industries">("Industries");
+  const [activeTab, setActiveTab] = useState<
+    "Students" | "Trainers" | "Industries"
+  >("Industries");
 
   const handleBeforeChange = (current: number, next: number) => {
     gsap.fromTo(
@@ -172,10 +178,15 @@ const TestimonialSectionDualTraining: React.FC = () => {
     }
   }, [activeTab]);
 
-  const filteredTestimonials = testimonials.filter(t => t.category === activeTab);
+  const filteredTestimonials = testimonials.filter(
+    (t) => t.category === activeTab
+  );
 
   return (
-    <section className="relative w-full py-20" aria-label="Apprenticeship & Dual Training Testimonials">
+    <section
+      className="relative w-full py-20"
+      aria-label="Apprenticeship & Dual Training Testimonials"
+    >
       {/* Parallax Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -184,9 +195,12 @@ const TestimonialSectionDualTraining: React.FC = () => {
           loop
           playsInline
           className="w-full h-full object-cover"
-          style={{ backgroundAttachment: "fixed", backgroundPosition: "center" }}
+          style={{
+            backgroundAttachment: "fixed",
+            backgroundPosition: "center",
+          }}
         >
-          <source src="https://www.worldskillcenter.org/assets/user/images/parallax/counterbg-video.mp4" type="video/mp4" />
+          <source src="/Homepage/HomePage_Hero.mp4" type="video/mp4" />
           <img
             src="https://www.w3schools.com/html/pic_trulli.jpg"
             alt="Video fallback"
@@ -209,7 +223,9 @@ const TestimonialSectionDualTraining: React.FC = () => {
                     ? "bg-red-600 text-white shadow"
                     : "bg-white/10 text-white/80 hover:bg-white/20"
                 }`}
-                onClick={() => setActiveTab(tab as "Students" | "Trainers" | "Industries")}
+                onClick={() =>
+                  setActiveTab(tab as "Students" | "Trainers" | "Industries")
+                }
               >
                 {tab}
               </button>
@@ -234,7 +250,9 @@ const TestimonialSectionDualTraining: React.FC = () => {
                         alt="Company Logo"
                         className="h-16 object-contain"
                         loading="lazy"
-                        onError={(e) => ((e.target as HTMLImageElement).src = defaultImage)}
+                        onError={(e) =>
+                          ((e.target as HTMLImageElement).src = defaultImage)
+                        }
                       />
                     </div>
 
@@ -251,12 +269,18 @@ const TestimonialSectionDualTraining: React.FC = () => {
                           alt={testimonial.name}
                           className="object-cover w-full h-full"
                           loading="lazy"
-                          onError={(e) => ((e.target as HTMLImageElement).src = defaultImage)}
+                          onError={(e) =>
+                            ((e.target as HTMLImageElement).src = defaultImage)
+                          }
                         />
                       </div>
                       <div>
-                        <p className="font-semibold text-white text-xl">{testimonial.name}</p>
-                        <p className="text-md text-gray-200">{testimonial.designation}</p>
+                        <p className="font-semibold text-white text-xl">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-md text-gray-200">
+                          {testimonial.designation}
+                        </p>
                       </div>
                     </div>
 
