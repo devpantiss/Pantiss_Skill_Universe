@@ -25,18 +25,18 @@ const programmes = [
     highlights: ["Hands-On Workshops", "Industry Tools", "Placement Assistance"],
     path: "/our-programmes/iti-program",
   },
+  // {
+  //   title: "Advanced Diploma Programs",
+  //   description:
+  //     "Specialized advanced training for high-skill technical roles and leadership in industrial environments.",
+  //   comingSoon: false,
+  //   image:
+  //     "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421316/adv_diploma_gl7enc.jpg",
+  //   highlights: ["Advanced Skills", "Leadership Readiness", "Industry Endorsement"],
+  //   path: "/our-programmes/advanced-diploma-program",
+  // },
   {
-    title: "Advanced Diploma Programs",
-    description:
-      "Specialized advanced training for high-skill technical roles and leadership in industrial environments.",
-    comingSoon: false,
-    image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421316/adv_diploma_gl7enc.jpg",
-    highlights: ["Advanced Skills", "Leadership Readiness", "Industry Endorsement"],
-    path: "/our-programmes/advanced-diploma-program",
-  },
-  {
-    title: "Industry-Aligned Certification Programs",
+    title: "Industry-Aligned Skill Certification & Apprenticeship Programs",
     description:
       "Training and certification designed with direct input from industry partners to maximize employability.",
     comingSoon: false,
@@ -45,18 +45,18 @@ const programmes = [
     highlights: ["Industry Endorsed", "High Employability", "Global Standards"],
     path: "/our-programmes/industry-alligned-certification",
   },
+  // {
+  //   title: "Apprenticeship & Dual Training Programs",
+  //   description:
+  //     "Blending classroom learning with hands-on industrial training for real-world exposure and job readiness.",
+  //   comingSoon: false,
+  //   image:
+  //     "https://factly.in/wp-content/uploads//2022/04/National-Apprenticeship-Promotion-Scheme_Image-1.jpg",
+  //   highlights: ["On-the-Job Training", "Industry Exposure", "Skill Integration"],
+  //   path: "/our-programmes/apprenticeship-and-dual-training",
+  // },
   {
-    title: "Apprenticeship & Dual Training Programs",
-    description:
-      "Blending classroom learning with hands-on industrial training for real-world exposure and job readiness.",
-    comingSoon: false,
-    image:
-      "https://factly.in/wp-content/uploads//2022/04/National-Apprenticeship-Promotion-Scheme_Image-1.jpg",
-    highlights: ["On-the-Job Training", "Industry Exposure", "Skill Integration"],
-    path: "/our-programmes/apprenticeship-and-dual-training",
-  },
-  {
-    title: "Upskilling & Reskilling Programs",
+    title: "Workmen Upskilling & Reskilling Programs",
     description:
       "Helping the workforce adapt to evolving technologies, processes, and global industrial standards.",
     comingSoon: false,
@@ -65,16 +65,16 @@ const programmes = [
     highlights: ["Technology Adaptation", "Skill Enhancement", "Career Longevity"],
     path: "/our-programmes/upskilling-and-reskilling-program",
   },
-  {
-    title: "Work Integrated Training Programs (WITP)",
-    description:
-      "Structured programs allowing students to gain work experience while earning, bridging academia and industry.",
-    comingSoon: false,
-    image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761914537/workers_rjwzq5.jpg",
-    highlights: ["Earn While You Learn", "Industry Mentorship", "Career Pathways"],
-    path: "/our-programmes/work-integrated-training-program",
-  },
+  // {
+  //   title: "Work Integrated Training Programs (WITP)",
+  //   description:
+  //     "Structured programs allowing students to gain work experience while earning, bridging academia and industry.",
+  //   comingSoon: false,
+  //   image:
+  //     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761914537/workers_rjwzq5.jpg",
+  //   highlights: ["Earn While You Learn", "Industry Mentorship", "Career Pathways"],
+  //   path: "/our-programmes/work-integrated-training-program",
+  // },
 
   // ✅ Now also part of main grid (no more Coming Soon section)
   {

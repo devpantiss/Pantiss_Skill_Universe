@@ -1,11 +1,14 @@
 import React from "react";
 import DiplomaHero from "../../components/programmes/DiplomaAndAdvancedDiploma/Hero";
-import DiplomaOverview from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaOverview";
+// import DiplomaOverview from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaOverview";
 import DiplomaSchoolsCourses from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaSchoolsCourses";
-import DiplomaHighlights from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaHighlights";
+// import DiplomaHighlights from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaHighlights";
 import TestimonialSectionDiploma from "../../components/programmes/DiplomaAndAdvancedDiploma/Testimonials";
 import LogoMarquee from "../../components/common/LogoMaequee";
 import DiplomaBenefits from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaBenefits";
+import DiplomaImpact from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaImpact";
+import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
+import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
 
 const schoolLogos = [
   {
@@ -38,8 +41,11 @@ const DiplomaAndAdvancedDiplomaPage: React.FC = () => {
   return (
     <div>
       <DiplomaHero />
-      <DiplomaOverview />
+      <DiplomaImpact />
+      <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
+      {/* <DiplomaOverview /> */}
       <DiplomaSchoolsCourses />
+      <PlacementsShowcaseSection />
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}
@@ -49,7 +55,7 @@ const DiplomaAndAdvancedDiplomaPage: React.FC = () => {
         bg="bg-black"
         className="py-3"
       />
-      <DiplomaHighlights />
+      {/* <DiplomaHighlights /> */}
       <DiplomaBenefits />
       <TestimonialSectionDiploma />
     </div>

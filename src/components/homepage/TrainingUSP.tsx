@@ -1,6 +1,6 @@
 // TrainingUSP.tsx
 import React from "react";
-import WomenInMining from "./WomenInMining";
+// import WomenInMining from "./WomenInMining";
 import SkillOnWheelBanner from "./SkillOnWheelBanner";
 import GlobalPlacements from "./GlobalPlacements";
 import OurFuturisticApproach from "./OurFuturisticApproach";
@@ -29,9 +29,9 @@ const TrainingUSP: React.FC = () => {
 
         {/* Optional: full sections rendered below so View details anchors have targets */}
         <div className="space-y-10">
-          <div id="women-section" className="rounded-2xl overflow-hidden">
+          {/* <div id="women-section" className="rounded-2xl overflow-hidden">
             <WomenInMining />
-          </div>
+          </div> */}
 
           <div id="women-section" className="rounded-2xl overflow-hidden">
             <OurFuturisticApproach />

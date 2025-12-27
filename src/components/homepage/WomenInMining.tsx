@@ -96,8 +96,8 @@ const WomenInMining: React.FC = () => {
             id="women-operators-heading"
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"
           >
-            Women in Mining/Steel/Power -{" "}
-            <span className="text-green-400">HEMM Vehicle Operators</span>
+            Women in Mining
+            {/* <span className="text-green-400">HEMM Vehicle Operators</span> */}
           </h1>
 
           <h2 className="mt-4 text-lg md:text-xl text-gray-200 font-semibold">

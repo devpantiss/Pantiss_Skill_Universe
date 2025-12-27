@@ -21,6 +21,7 @@ import FuturisticSkillOnWheels from "./pages/FuturisticSkillOnWheels";
 import ITIPage from "./pages/Programmes/ITIPage";
 import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
 import WorkIntegratedTrainingPage from "./pages/Programmes/WorkIntegratedTrainingPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -40,6 +41,7 @@ function LayoutWrapper() {
         <Route path="/collaborations" element={<Collaborations />} />
         <Route path="/contact-us" element={<ContactPage />} />
         <Route path="/our-programmes" element={<ProgramsPage />} />
+        <Route path="/skill-dashboard" element={<DashboardPage />} />
         <Route path="/futuristic-skill-on-wheels" element={<FuturisticSkillOnWheels />} />
 
         <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} />

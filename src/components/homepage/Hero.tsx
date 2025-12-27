@@ -3,13 +3,10 @@ import { motion } from "framer-motion";
 
 const sectors = [
   "Mines, Steel & Aluminium",
-  "Power",
-  "Shipping",
-  "Infrastructure & Facility Management",
-  "Semiconductors & EV Tech",
-  "Textiles & Apparels",
+  "Power & Green Energy",
+  "Shipping & Logistics",
+  "Construction Tech & Infra Equipments",
   "Green Jobs",
-  "Social Development",
 ];
 
 const colors = [
@@ -18,9 +15,9 @@ const colors = [
   "text-blue-400",
   "text-pink-400",
   "text-indigo-400",
-  "text-red-400",
-  "text-teal-400",
-  "text-red-400",
+  // "text-red-400",
+  // "text-teal-400",
+  // "text-red-400",
 ];
 
 const HeroSection: React.FC = () => {

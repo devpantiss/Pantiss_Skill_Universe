@@ -8,36 +8,42 @@ const campuses = [
     name: "Pantiss Skill Resort",
     district: "Angul, Odisha",
     focus: "Mining",
+    bgImage: "/Homepage/campuses/mining.jpg",
   },
   {
     campus: "Kalahandi Campus",
     name: "Pantiss Skill Resort",
     district: "Kalahandi, Odisha",
     focus: "Aviation",
+    bgImage: "/Homepage/campuses/aviation.jpg",
   },
   {
     campus: "Paradip Campus",
     name: "Pantiss Skill Resort",
     district: "Jagatsinghpur, Odisha",
     focus: "Shipping & Logistics",
+    bgImage: "/Homepage/campuses/shipping.jpg",
   },
   {
     campus: "Jharsuguda Campus",
     name: "Pantiss Skill Resort",
     district: "Jharsuguda, Odisha",
     focus: "Construction Tech & Infra Equipment",
+    bgImage: "/Homepage/campuses/construct.jpg",
   },
   {
     campus: "Sukinda Campus",
     name: "Pantiss Skill Resort",
     district: "Jajpur, Odisha",
     focus: "Power & Green Energy",
+    bgImage: "/Homepage/campuses/greenenergy.jpg",
   },
   {
     campus: "Joda Campus",
     name: "Pantiss Skill Resort",
     district: "Keonjhar, Odisha",
     focus: "Green Jobs",
+    bgImage: "/Homepage/campuses/rise.JPG",
   },
 ];
 
@@ -73,41 +79,56 @@ const Campuses: React.FC = () => {
           {campuses.map((campus, index) => (
             <div
               key={index}
-              className="group relative rounded-2xl p-8
-                         backdrop-blur-md bg-white/10 border border-white/15
-                         transition-all duration-300
-                         hover:bg-white/15 hover:border-white/30 hover:-translate-y-1"
+              style={{ backgroundImage: `url(${campus.bgImage})` }}
+              className="
+                group relative rounded-2xl bg-transparent overflow-hidden
+                bg-cover bg-center
+                border border-white/15
+              "
             >
-              {/* Accent */}
-              <span className="absolute top-0 left-8 h-1 w-16 bg-red-500 rounded-full" />
+              <div
+                className="
+      absolute inset-0
+      bg-gradient-to-t
+      from-black/90 via-black/60 to-black/30
+      group-hover:from-black/95
+      transition-all duration-300
+    "
+              />
 
-              {/* Campus */}
-              <p className="text-xs uppercase tracking-wide text-neutral-400 mt-4">
-                {campus.campus}
-              </p>
+              {/* Content */}
+              <div className="relative p-8">
+                {/* Accent */}
+                <span className="absolute top-0 left-8 h-1 w-16 bg-red-500 rounded-full" />
 
-              <h3 className="text-xl font-semibold mt-1">
-                {campus.name}
-              </h3>
-
-              {/* Location */}
-              <div className="flex items-center gap-2 text-sm text-neutral-300 mt-2">
-                <MapPin className="w-4 h-4" />
-                {campus.district}
-              </div>
-
-              {/* Divider */}
-              <div className="h-px bg-white/20 my-5" />
-
-              {/* Focus */}
-              <div className="flex gap-3 text-sm text-neutral-200 leading-relaxed">
-                <Briefcase className="w-4 h-4 mt-1 text-neutral-300" />
-                <p>
-                  <span className="font-medium text-white">
-                    Sector focus:
-                  </span>{" "}
-                  {campus.focus}
+                {/* Campus */}
+                <p className="text-xs uppercase tracking-wide text-neutral-300 mt-4">
+                  {campus.campus}
                 </p>
+
+                <h3 className="text-xl font-semibold mt-1 text-white">
+                  {campus.name}
+                </h3>
+
+                {/* Location */}
+                <div className="flex items-center gap-2 text-sm text-neutral-200 mt-2">
+                  <MapPin className="w-4 h-4" />
+                  {campus.district}
+                </div>
+
+                {/* Divider */}
+                <div className="h-px bg-white/30 my-5" />
+
+                {/* Focus */}
+                <div className="flex gap-3 text-sm text-neutral-200 leading-relaxed">
+                  <Briefcase className="w-4 h-4 mt-1 text-neutral-300" />
+                  <p>
+                    <span className="font-medium text-white">
+                      Sector focus:
+                    </span>{" "}
+                    {campus.focus}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
@@ -123,7 +144,7 @@ const Campuses: React.FC = () => {
           />
 
           <Link
-            to="/dashboard"
+            to="/skill-dashboard"
             className="px-8 py-4 bg-green-600
                        text-white font-semibold rounded-xl
                        shadow-lg shadow-green-600/30

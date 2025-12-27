@@ -1,11 +1,14 @@
 import React from "react";
 import ITIHero from "../../components/programmes/ITI/ITIHero";
-import ITIOverview from "../../components/programmes/ITI/ITIOverview";
-import ITIHighlights from "../../components/programmes/ITI/ITIHighlights";
+// import ITIOverview from "../../components/programmes/ITI/ITIOverview";
+// import ITIHighlights from "../../components/programmes/ITI/ITIHighlights";
 import ITISchoolsCourses from "../../components/programmes/ITI/ITISchoolsCourses";
 import TestimonialSectionITI from "../../components/programmes/ITI/Testimonials";
 import LogoMarquee from "../../components/common/LogoMaequee";
 import ITIBenefitsCards from "../../components/programmes/ITI/ITIBenefitsCards";
+import ITIImpact from "../../components/programmes/ITI/ITIImpact";
+import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
+import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
 
 const schoolLogos = [
   {
@@ -38,8 +41,11 @@ const ITIPage: React.FC = () => {
   return (
     <div>
       <ITIHero />
-      <ITIOverview />
+      <ITIImpact />
+      <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
+      {/* <ITIOverview /> */}
       <ITISchoolsCourses />
+      <PlacementsShowcaseSection />
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}
@@ -49,7 +55,7 @@ const ITIPage: React.FC = () => {
         bg="bg-black"
         className="py-3"
       />
-      <ITIHighlights />
+      {/* <ITIHighlights /> */}
       <ITIBenefitsCards />
       <TestimonialSectionITI />
     </div>

@@ -1,10 +1,13 @@
 import React from "react";
 import UpskillingHero from "../../components/programmes/UpskillingAndReskilling/Hero";
-import UpskillReskillHighlights from "../../components/programmes/UpskillingAndReskilling/UpskillingHighlights";
-import UpskillReskillOverview from "../../components/programmes/UpskillingAndReskilling/UpskillingOverview";
+// import UpskillReskillHighlights from "../../components/programmes/UpskillingAndReskilling/UpskillingHighlights";
+// import UpskillReskillOverview from "../../components/programmes/UpskillingAndReskilling/UpskillingOverview";
 import UpskillingReskillingSchoolsCourses from "../../components/programmes/UpskillingAndReskilling/UpskillingSchoolsCourses";
 import TestimonialSectionUpskilling from "../../components/programmes/UpskillingAndReskilling/Testimonials";
 import LogoMarquee from "../../components/common/LogoMaequee";
+import WorkmenUpskillingImpactSection from "../../components/programmes/UpskillingAndReskilling/UpskillingImpact";
+import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
+import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
 
 const schoolLogos = [
   {
@@ -37,9 +40,12 @@ const UpskillingAndReskillingPage: React.FC = () => {
   return (
     <div>
       <UpskillingHero />
-      <UpskillReskillOverview />
-      <UpskillReskillHighlights />
+      <WorkmenUpskillingImpactSection />
+      <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
+      {/* <UpskillReskillOverview /> */}
+      {/* <UpskillReskillHighlights /> */}
       <UpskillingReskillingSchoolsCourses />
+      <PlacementsShowcaseSection />
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}

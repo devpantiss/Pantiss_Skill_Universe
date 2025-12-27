@@ -1,10 +1,13 @@
 import React from "react";
 import HeroCertification from "../../components/programmes/Certification/HeroCertification";
-import CertificationOverview from "../../components/programmes/Certification/CertificationOverview";
-import CertificationHighlights from "../../components/programmes/Certification/CertificationHighlights";
+// import CertificationOverview from "../../components/programmes/Certification/CertificationOverview";
+// import CertificationHighlights from "../../components/programmes/Certification/CertificationHighlights";
 import CertificationSchoolsCourses from "../../components/programmes/Certification/CertificationSchoolsCourses";
 import TestimonialSectionCertification from "../../components/programmes/Certification/Testimonials";
 import LogoMarquee from "../../components/common/LogoMaequee";
+import CertificationImpact from "../../components/programmes/Certification/CertificationImpact";
+import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
+import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
 
 const schoolLogos = [
   {
@@ -37,9 +40,12 @@ const IndustryAllignedCertificationPage: React.FC = () => {
   return (
     <div>
       <HeroCertification />
-      <CertificationOverview />
-      <CertificationHighlights />
+      <CertificationImpact />
+      <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
+      {/* <CertificationOverview /> */}
+      {/* <CertificationHighlights /> */}
       <CertificationSchoolsCourses />
+      <PlacementsShowcaseSection />
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}
