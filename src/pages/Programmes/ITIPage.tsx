@@ -44,6 +44,7 @@ const ITIPage: React.FC = () => {
       <ITIImpact />
       <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
       {/* <ITIOverview /> */}
+      <ITIBenefitsCards />
       <ITISchoolsCourses />
       <PlacementsShowcaseSection />
       <LogoMarquee
@@ -56,7 +57,6 @@ const ITIPage: React.FC = () => {
         className="py-3"
       />
       {/* <ITIHighlights /> */}
-      <ITIBenefitsCards />
       <TestimonialSectionITI />
     </div>
   );

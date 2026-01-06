@@ -44,6 +44,7 @@ const DiplomaAndAdvancedDiplomaPage: React.FC = () => {
       <DiplomaImpact />
       <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
       {/* <DiplomaOverview /> */}
+      <DiplomaBenefits />
       <DiplomaSchoolsCourses />
       <PlacementsShowcaseSection />
       <LogoMarquee
@@ -56,7 +57,6 @@ const DiplomaAndAdvancedDiplomaPage: React.FC = () => {
         className="py-3"
       />
       {/* <DiplomaHighlights /> */}
-      <DiplomaBenefits />
       <TestimonialSectionDiploma />
     </div>
   );

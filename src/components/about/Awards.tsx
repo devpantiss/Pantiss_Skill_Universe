@@ -57,7 +57,7 @@ const awardsData: Award[] = [
     year: "2023",
     title: "Best Performer Award",
     description:
-      "Striving towards making a difference in rural Odisha – Odisha Livelihood Mission",
+      "Building better livelihoods across rural Odisha",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761725434/GIU_AMA_199-06_ohmupk.png",
     orgLogo:
@@ -137,17 +137,17 @@ const Awards: React.FC = () => {
               <img
                 src={award.imageUrl}
                 alt={award.title}
-                className="absolute top-10 h-[350px] z-50 object-contain"
+                className="absolute top-10 h-[300px] z-50 object-contain"
                 loading="lazy"
               />
 
               {/* Content */}
               <div className="flex flex-col items-center">
-                <h3 className="text-white text-xl font-semibold">
+                <h3 className="text-white text-lg font-semibold">
                   {award.year} — {award.title}
                 </h3>
 
-                <p className="text-gray-300 mt-2 w-[220px]">
+                <p className="text-gray-300 mt-2 text-sm w-[160px]">
                   {award.description}
                 </p>
 

@@ -22,6 +22,8 @@ import ITIPage from "./pages/Programmes/ITIPage";
 import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
 import WorkIntegratedTrainingPage from "./pages/Programmes/WorkIntegratedTrainingPage";
 import DashboardPage from "./pages/DashboardPage";
+import CareersPage from "./pages/CareersPage";
+import JobsPage from "./pages/JobsPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -38,11 +40,14 @@ function LayoutWrapper() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/careers" element={<CareersPage />} />
         <Route path="/collaborations" element={<Collaborations />} />
         <Route path="/contact-us" element={<ContactPage />} />
         <Route path="/our-programmes" element={<ProgramsPage />} />
         <Route path="/skill-dashboard" element={<DashboardPage />} />
         <Route path="/futuristic-skill-on-wheels" element={<FuturisticSkillOnWheels />} />
+        <Route path="/careers/jobs" element={<JobsPage />} />{" "}
+
 
         <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} />
         <Route path="/our-programmes/apprenticeship-and-dual-training" element={<ApprenticeshipAndDualTrainingPage />} />

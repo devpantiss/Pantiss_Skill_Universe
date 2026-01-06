@@ -7,7 +7,8 @@ import TestimonialSectionUpskilling from "../../components/programmes/Upskilling
 import LogoMarquee from "../../components/common/LogoMaequee";
 import WorkmenUpskillingImpactSection from "../../components/programmes/UpskillingAndReskilling/UpskillingImpact";
 import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
-import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
+import UpskillingAndReskillingGallery from "../../components/programmes/UpskillingAndReskilling/UpskillingAndReskillingGallery";
+// import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
 
 const schoolLogos = [
   {
@@ -45,9 +46,9 @@ const UpskillingAndReskillingPage: React.FC = () => {
       {/* <UpskillReskillOverview /> */}
       {/* <UpskillReskillHighlights /> */}
       <UpskillingReskillingSchoolsCourses />
-      <PlacementsShowcaseSection />
+      {/* <PlacementsShowcaseSection /> */}
       <LogoMarquee
-        heading="Our Trusted Placement Partners"
+        heading="Our Candidates are from"
         logos={schoolLogos}
         height="h-16"
         speed="25s"
@@ -55,6 +56,7 @@ const UpskillingAndReskillingPage: React.FC = () => {
         bg="bg-black"
         className="py-3"
       />
+      <UpskillingAndReskillingGallery />
       <TestimonialSectionUpskilling />
     </div>
   );
