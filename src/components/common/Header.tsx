@@ -55,11 +55,9 @@ const navLinks: NavLink[] = [
         path: ""
       },
       {
-        name: "Global",
+        name: "Flagship Program",
         children: [
-          { name: "Botswana Mining Institute (Coming Soon!)", path: "#" },
-          { name: "Namibia Resource Academy (Coming Soon!)", path: "#" },
-          { name: "Zambia Mining University (Coming Soon!)", path: "#" },
+          { name: "Skill on Wheels", path: "/futuristic-skill-on-wheels" },
         ],
         path: ""
       },
