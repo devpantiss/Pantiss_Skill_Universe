@@ -8,6 +8,7 @@ import LogoMarquee from "../../components/common/LogoMaequee";
 import CertificationImpact from "../../components/programmes/Certification/CertificationImpact";
 import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
 import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
+import IndustryCertificationBenefitsCards from "../../components/programmes/Certification/IndustryCertificationBenefitsCards";
 
 const schoolLogos = [
   {
@@ -45,6 +46,7 @@ const IndustryAllignedCertificationPage: React.FC = () => {
       {/* <CertificationOverview /> */}
       {/* <CertificationHighlights /> */}
       <CertificationSchoolsCourses />
+      <IndustryCertificationBenefitsCards />
       <PlacementsShowcaseSection />
       <LogoMarquee
         heading="Our Trusted Placement Partners"

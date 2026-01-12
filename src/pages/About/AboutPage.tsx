@@ -47,7 +47,6 @@ const AboutPage: React.FC = () => {
     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761769356/Theoryofchange_deta48.jpg",
     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745317/vocational_x4fu5b.jpg",
     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761740136/blogs_oulxwa.jpg",
-
   ];
   // const Faculty = [
   //   {
@@ -111,12 +110,10 @@ const AboutPage: React.FC = () => {
   //     url: "https://dribbble.com/",
   //   },
   // ];
-  
-  
+
   const AdvisoryBoard = [
     {
-      image:
-        "/teams/jalandhar.png",
+      image: "/teams/jalandhar.png",
       title: "Mr. Jalandhar Mohanty",
       subtitle: "Lead, CoE, Mining",
       handle: "@alexrivera",
@@ -125,8 +122,7 @@ const AboutPage: React.FC = () => {
       url: "https://github.com/",
     },
     {
-      image:
-      "/teams/sudarshan.png",
+      image: "/teams/sudarshan.png",
       title: "Mr. Sudarshan Barik",
       subtitle: "Lead, CoE, Steel & Aluminium",
       handle: "@jordanchen",
@@ -135,8 +131,7 @@ const AboutPage: React.FC = () => {
       url: "https://linkedin.com/in/",
     },
     {
-      image:
-      "/teams/bikram.png",
+      image: "/teams/bikram.png",
       title: "Mr. Bikram K. Gouda",
       subtitle: "Lead, CoE, Shipping & Logistics",
       handle: "@morganblake",
@@ -145,8 +140,7 @@ const AboutPage: React.FC = () => {
       url: "https://dribbble.com/",
     },
     {
-      image:
-      "/teams/yagnesh.png",
+      image: "/teams/yagnesh.png",
       title: "Mr. Yagnesh K. Nanda",
       subtitle: "Lead, CoE, Power & Green Energy",
       handle: "@morganblake",
@@ -155,8 +149,7 @@ const AboutPage: React.FC = () => {
       url: "https://dribbble.com/",
     },
     {
-      image:
-      "/teams/mukessh.png",
+      image: "/teams/mukessh.png",
       title: "Mr. Mukesh Singh",
       subtitle: "Lead, CoE, Construction & Infrastructure Equipment",
       handle: "@morganblake",
@@ -175,7 +168,7 @@ const AboutPage: React.FC = () => {
     //   url: "https://dribbble.com/",
     // },
   ];
-  
+
   // const Faculty = [
   //   {
   //     image: "https://i.pravatar.cc/300?img=1",
@@ -254,25 +247,12 @@ const AboutPage: React.FC = () => {
   return (
     <div className="bg-black">
       <AboutHero />
-      {/* <ScrollVelocity
-        texts={[
-          "Odisha's First Institution Focused on Blue Collar Industry",
-          "Pantiss Skill Universe",
-        ]}
-        velocity={120}
-        className="text-4xl md:text-6xl"
-        colors={["text-green-600", "text-red-600"]}
-        parallaxClassName="bg-black py-4"
-        scrollerClassName="tracking-tight"
-      /> */}
       <VisionMissionGoal />
       <AboutImpact />
       <div id="founders">
         <HeroInfoSection />
       </div>
-      <div
-        className="w-full h-[700px] bg-black p-2 ring-1 ring-neutral-700/10 dark:bg-gradient-to-b dark:from-black dark:via-green-600 dark:to-black"
-      >
+      <div className="w-full h-[700px] bg-black p-2 ring-1 ring-neutral-700/10 dark:bg-gradient-to-b dark:from-black dark:via-green-600 dark:to-black">
         <ThreeDMarquee images={images} />
       </div>
       <Milestones />
@@ -298,21 +278,19 @@ const AboutPage: React.FC = () => {
           ease="power3.out"
         />
       </div> */}
-      <ScrollVelocityImages 
+      <ScrollVelocityImages
         images={[
           "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_WASH-removebg-preview_s8wofi.png",
           "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_STEEL___ALUMINIUM-removebg-preview_lqtpri.png",
           "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_SHIPPING___LOGISTICS-removebg-preview_ktlsje.png",
           "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_POWER___GREEN_ENERGY-removebg-preview_tinr0w.png",
           "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_MINES-removebg-preview_airmxv.png",
-          "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_CONSTRUCTION___INFRA_EQUIPMENT-removebg-preview_rpgnjo.png"
+          "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_CONSTRUCTION___INFRA_EQUIPMENT-removebg-preview_rpgnjo.png",
         ]}
         velocity={150}
         imageClassName="w-full h-24 object-cover rounded-xl"
         containerClassName="max-w-full"
       />
-
-      {/* <OurFacilities /> */}
     </div>
   );
 };

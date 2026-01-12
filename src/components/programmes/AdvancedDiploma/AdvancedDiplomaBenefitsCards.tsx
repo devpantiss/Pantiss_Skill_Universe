@@ -1,153 +1,116 @@
-// AdvancedDiplomaBenefitsCards.tsx
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  FaAward,
-  FaCertificate,
-  FaUniversity,
-  FaHandshake,
-  FaRupeeSign,
-  FaChartLine,
-//   FaUserShield,
-} from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 const benefits = [
   {
-    id: "endorsed",
-    title: "Industry-endorsed Curriculum",
-    subtitle: "Co-designed with employers to meet real job needs",
-    icon: <FaAward className="w-10 h-10" aria-hidden />,
-    colors: ["#00D4A2", "#00A3FF"],
+    id: "curriculum",
+    title: "Industry-Endorsed Curriculum",
+    tag: "CHALLENGE YOUR LIMITS",
+    description:
+      "Co-designed with mining, steel & aluminium employers to match real job roles.",
+    image:
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1742126787/E-FvYHdVIAYEXa9_efneu2.webp",
   },
   {
-    id: "advanced-cert",
-    title: "Advanced Diploma Certificate",
-    subtitle: "Higher technical qualification for leadership-ready roles",
-    icon: <FaCertificate className="w-10 h-10" aria-hidden />,
-    colors: ["#7BDFF6", "#6C63FF"],
-  },
-  {
-    id: "alumni",
-    title: "PSU Alumni Status",
-    subtitle: "Access to Pantiss alumni network and PSU recruitment pipelines",
-    icon: <FaUniversity className="w-10 h-10" aria-hidden />,
-    colors: ["#FFD166", "#FF7A59"],
+    id: "certification",
+    title: "Advanced Diploma Certification",
+    tag: "LEARN FROM THE BEST",
+    description:
+      "Higher technical qualification designed for leadership & supervisory roles.",
+    image:
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1742816194/2cf04226-46c3-4820-90e4-61a001350d8b_jkt1vh.jpg",
   },
   {
     id: "placement",
     title: "100% Placement Support",
-    subtitle: "Dedicated placement cell, drives & employer partnerships",
-    icon: <FaHandshake className="w-10 h-10" aria-hidden />,
-    colors: ["#4CE6B1", "#19A974"],
-  },
-  {
-    id: "expenditure",
-    title: "Avg. Expenditure",
-    subtitle: "₹80,000 - ₹1,50,000 / year per student",
-    icon: <FaRupeeSign className="w-10 h-10" aria-hidden />,
-    colors: ["#FF8DAA", "#FF5E5E"],
+    tag: "CAREER OUTCOMES",
+    description:
+      "Dedicated placement cell, PSU pipelines & private sector hiring.",
+    image:
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1740387857/7cf81b40-cb85-47b0-bc17-5ed47fa210ed_viwshh.jpg",
   },
   {
     id: "package",
-    title: "Avg. Package & Benefits",
-    subtitle: "₹4.0 LPA - ₹5.0 LPA (typical) + employee benefits",
-    icon: <FaChartLine className="w-10 h-10" aria-hidden />,
-    colors: ["#D6A0FF", "#FF77B5"],
+    title: "High Salary & Growth",
+    tag: "RETURN ON SKILL",
+    description:
+      "₹4–5 LPA average packages with long-term career progression.",
+    image:
+      "https://cdn.prod.website-files.com/67139b4944f3d6b890cda082/6720a95f025dc22684bab942_64f07126f5659751e457ca5a_workforce-management-system-mining-industry.jpeg",
   },
 ];
 
-const gridVariants = {
-  hidden: { opacity: 0, y: 8 },
-  visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.06 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 18, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } },
-};
-
-const AdvancedDiplomaBenefitsCards: React.FC<{ className?: string }> = ({ className = "" }) => {
+const AdvancedDiplomaBenefitsCards: React.FC = () => {
   return (
-    <section
-      aria-labelledby="advanced-diploma-benefits-heading"
-      className={`w-full px-4 md:px-8 lg:px-12 py-16 bg-black text-white ${className}`}
-    >
-      <div className="max-w-6xl mx-auto">
-        <header className="text-center mb-8">
-          <h2 id="advanced-diploma-benefits-heading" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold">
-            Advanced Diploma — Program Benefits
-          </h2>
-          <p className="text-gray-300 max-w-3xl mx-auto mt-3">
-            Advanced technical training with industry recognition, leadership pathways, and strong placement support.
+    <section className="relative bg-[#05070D] py-20 px-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <p className="uppercase tracking-widest text-sm text-[#00E5A8] mb-2">
+            Why Choose Pantiss
           </p>
-        </header>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white">
+            Advanced Diploma Benefits
+          </h2>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={gridVariants as any}
-        >
-          {benefits.map((b) => (
-            <motion.article
-              key={b.id}
-              className="relative flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-b from-white/3 to-white/2 border border-white/6 shadow-lg min-h-[300px] hover:-translate-y-3 hover:scale-1.02 transition-transform duration-300"
-              variants={cardVariants}
-              whileHover={{ translateY: -8, scale: 1.02 }}
-              role="article"
-              aria-labelledby={`title-${b.id}`}
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {benefits.map((item, i) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15 }}
+              className="
+                relative group rounded-3xl overflow-hidden
+                border border-[#FFD84D]/60
+                shadow-[0_0_40px_rgba(255,216,77,0.15)]
+                hover:shadow-[0_0_60px_rgba(0,229,168,0.35)]
+                transition-all duration-500
+              "
             >
-              {/* Icon circle */}
+              {/* Background Image */}
               <div
-                className="w-28 h-28 rounded-full flex items-center justify-center mb-5"
-                style={{
-                  background: `linear-gradient(135deg, ${b.colors[0]}, ${b.colors[1]})`,
-                  boxShadow: `0 12px 30px ${b.colors[0]}20`,
-                }}
-                aria-hidden
-              >
-                <div className="w-16 h-16 rounded-full bg-black/40 flex items-center justify-center ring-1 ring-white/8">
-                  {b.icon}
-                </div>
+                className="absolute inset-0 bg-cover bg-center scale-105 group-hover:scale-110 transition-transform duration-700"
+                style={{ backgroundImage: `url(${item.image})` }}
+              />
+
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+
+              {/* Content */}
+              <div className="relative z-10 p-8 flex flex-col justify-end h-[380px]">
+                <span className="text-xs uppercase tracking-widest text-[#FFD84D] mb-2">
+                  {item.tag}
+                </span>
+
+                <h3 className="text-3xl font-bold text-white mb-3">
+                  {item.title}
+                </h3>
+
+                <p className="text-gray-200 text-sm max-w-md mb-6">
+                  {item.description}
+                </p>
+
+                {/* CTA */}
+                <button
+                  className="
+                    inline-flex items-center gap-3 w-fit
+                    px-6 py-3 rounded-full
+                    bg-gradient-to-r from-[#00E5A8] to-[#7C4DFF]
+                    text-black font-semibold
+                    hover:scale-105 transition
+                  "
+                >
+                  Explore
+                  <FaArrowRight />
+                </button>
               </div>
-
-              {/* Title */}
-              <h3 id={`title-${b.id}`} className="text-xl font-semibold text-white mb-2">
-                {b.title}
-              </h3>
-
-              {/* Subtitle / detail */}
-              <p className="text-gray-200 text-sm max-w-[22rem]">{b.subtitle}</p>
-
-              {/* Optional stat row */}
-              <div className="mt-6">
-                {b.id === "expenditure" && (
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/30 border border-white/6 text-sm">
-                    Avg cost: <strong className="ml-1 text-white">₹80k - ₹1.5L / yr</strong>
-                  </div>
-                )}
-                {b.id === "package" && (
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/30 border border-white/6 text-sm">
-                    Avg package: <strong className="ml-1 text-white">₹4L - ₹5L</strong>
-                  </div>
-                )}
-              </div>
-            </motion.article>
+            </motion.div>
           ))}
-        </motion.div>
-
-        {/* CTA */}
-        <div className="mt-10 flex items-center justify-center gap-4">
-          <a
-            href="/our-programmes/advanced-diploma-program"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-400 to-pink-500 text-black font-semibold shadow-lg hover:scale-[1.02] transition"
-          >
-            View Advanced Diploma Programs
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
         </div>
       </div>
     </section>
