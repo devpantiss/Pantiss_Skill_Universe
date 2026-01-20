@@ -3,18 +3,18 @@ import { motion } from "framer-motion";
 
 const ITIHero: React.FC = () => {
   return (
-    <section className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{
           backgroundImage:
-            "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1740387857/7cf81b40-cb85-47b0-bc17-5ed47fa210ed_viwshh.jpg')",
+            "url('/programs/Hero/hero_3.jpg')",
         }}
       />
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-gray-900/60 to-black/80 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/10"></div>
 
       {/* Content */}
       <motion.div
@@ -34,16 +34,6 @@ const ITIHero: React.FC = () => {
           Welding, Mechanical, and more.
         </p>
       </motion.div>
-
-      {/* Decorative Borders */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-600 via-black to-red-600"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-green-600"></div>
-
-      {/* Background Accents */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-green-500/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-64 h-64 bg-red-500/20 rounded-full blur-3xl opacity-50 animate-pulse delay-1000"></div>
-      </div>
     </section>
   );
 };

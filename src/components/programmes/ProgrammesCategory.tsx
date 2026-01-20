@@ -84,7 +84,7 @@ const programmes = [
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1762423419/bootcamp_mzu2xy.jpg",
     highlights: ["Short-Term", "Job-Focused", "High Intensity"],
-    path: "/our-programmes/bootcamps",
+    path: "/our-programmes/skill-development-boot-camp-program",
   },
   {
     title: "International Mobility Programs",
@@ -94,7 +94,7 @@ const programmes = [
     image:
       "https://cdn.prod.website-files.com/67139b4944f3d6b890cda082/6720a95f025dc22684bab942_64f07126f5659751e457ca5a_workforce-management-system-mining-industry.jpeg",
     highlights: ["Global Standards", "Overseas Opportunities", "International Exposure"],
-    path: "/our-programmes/international-mobility",
+    path: "/our-programmes/international-mobility-program",
   },
 ];
 

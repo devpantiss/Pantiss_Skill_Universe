@@ -12,18 +12,20 @@ import AboutPage from "./pages/About/AboutPage";
 import Collaborations from "./pages/Collaborations";
 import ContactPage from "./pages/ContactPage";
 import ProgramsPage from "./pages/ProgramsPage";
-import RecognitionofPriorLearningPage from "./pages/Programmes/RecognitionofPriorLearningPage";
-import ApprenticeshipAndDualTrainingPage from "./pages/Programmes/ApprenticeshipAndDualTrainingPage";
+// import RecognitionofPriorLearningPage from "./pages/Programmes/RecognitionofPriorLearningPage";
+// import ApprenticeshipAndDualTrainingPage from "./pages/Programmes/ApprenticeshipAndDualTrainingPage";
 import DiplomaAndAdvancedDiplomaPage from "./pages/Programmes/DiplomaAndAdvancedDiplomaPage";
 import UpskillingAndReskillingPage from "./pages/Programmes/UpskillingAndReskillingPage";
 import IndustryAllignedCertificationPage from "./pages/Programmes/IndustryAllignedCertificationPage";
 import FuturisticSkillOnWheels from "./pages/FuturisticSkillOnWheels";
 import ITIPage from "./pages/Programmes/ITIPage";
-import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
-import WorkIntegratedTrainingPage from "./pages/Programmes/WorkIntegratedTrainingPage";
+// import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
+// import WorkIntegratedTrainingPage from "./pages/Programmes/WorkIntegratedTrainingPage";
 import DashboardPage from "./pages/DashboardPage";
 import CareersPage from "./pages/CareersPage";
 import JobsPage from "./pages/JobsPage";
+import InternationalMobilityPage from "./pages/Programmes/InternationalMobilityPage";
+import SkillDevBootCampPage from "./pages/Programmes/SkillDevBootCampPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -49,15 +51,16 @@ function LayoutWrapper() {
         <Route path="/careers/jobs" element={<JobsPage />} />{" "}
 
 
-        <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} />
-        <Route path="/our-programmes/apprenticeship-and-dual-training" element={<ApprenticeshipAndDualTrainingPage />} />
+        {/* <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} /> */}
+        {/* <Route path="/our-programmes/apprenticeship-and-dual-training" element={<ApprenticeshipAndDualTrainingPage />} /> */}
         <Route path="/our-programmes/diploma-programs" element={<DiplomaAndAdvancedDiplomaPage />} />
         <Route path="/our-programmes/upskilling-and-reskilling-program" element={<UpskillingAndReskillingPage />} />
         <Route path="/our-programmes/industry-alligned-certification" element={<IndustryAllignedCertificationPage />} />
         <Route path="/our-programmes/iti-program" element={<ITIPage />} />
-        <Route path="/our-programmes/advanced-diploma-program" element={<AdvancedDiplomaPage />} />
-        <Route path="/our-programmes/work-integrated-training-program" element={<WorkIntegratedTrainingPage />} />
-
+        {/* <Route path="/our-programmes/advanced-diploma-program" element={<AdvancedDiplomaPage />} /> */}
+        {/* <Route path="/our-programmes/work-integrated-training-program" element={<WorkIntegratedTrainingPage />} /> */}
+        <Route path="/our-programmes/international-mobility-program" element={<InternationalMobilityPage />} />
+        <Route path="/our-programmes/skill-development-boot-camp-program" element={<SkillDevBootCampPage />} />
       </Routes>
       {!hideLayout && <Footer />}
     </>
