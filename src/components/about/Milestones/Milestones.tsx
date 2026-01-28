@@ -30,12 +30,12 @@ const milestonesData: Milestone[] = [
     year: "2021",
     title: (
       <>
-        <span className="text-red-600">Rehabilitation</span> &{" "}
-        <span className="text-red-600">Resettlement</span>
+        <span className="text-red-500">Rehabilitation</span> &{" "}
+        <span className="text-red-500">Resettlement</span>
       </>
     ),
     description:
-      "We conducted an extensive Need Assessment Survey, Spatial Planning, and GIA Survey to facilitate the Rehabilitation and Resettlement (R&R) of 7,000 households across seven mines in the Chotanagpur Plateau...",
+      "Conducted extensive need assessment surveys, spatial planning, and GIA studies for rehabilitation and resettlement of 7,000 households across seven mines in the Chotanagpur Plateau.",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761721743/2021_1_uwndfp.jpg",
   },
@@ -43,12 +43,12 @@ const milestonesData: Milestone[] = [
     year: "2022",
     title: (
       <>
-        <span className="text-red-600">RPL</span> &{" "}
-        <span className="text-red-600">Mining Skill</span> Development Program
+        <span className="text-red-500">RPL</span> &{" "}
+        <span className="text-red-500">Mining Skill</span> Development
       </>
     ),
     description:
-      "We successfully mobilized, trained, and assessed 150 candidates as part of the Mining Skill Development Program in Jajpur...",
+      "Mobilized, trained, and assessed 150 youth under structured mining skill development programs in Jajpur district.",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761721734/2022_stq3rx.jpg",
   },
@@ -56,12 +56,12 @@ const milestonesData: Milestone[] = [
     year: "2023",
     title: (
       <>
-        <span className="text-red-600">Fisheries</span> Cluster in{" "}
-        <span className="text-red-600">Mining Pits</span>
+        <span className="text-red-500">Fisheries</span> Clusters in{" "}
+        <span className="text-red-500">Mining Pits</span>
       </>
     ),
     description:
-      "We proudly celebrate the establishment of fisheries clusters within mining pits, transforming livelihoods for 300 families...",
+      "Established fisheries clusters inside mining pits, positively impacting livelihoods of over 300 families.",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761721751/2023_new_wgvhrv.jpg",
   },
@@ -69,38 +69,42 @@ const milestonesData: Milestone[] = [
     year: "2024",
     title: (
       <>
-        <span className="text-red-600">Guava Plantation</span> in Abandoned Mining
-        Land in{" "}
-        <span className="text-red-600">Sukinda Chromite Region</span>
+        <span className="text-red-500">Guava Plantation</span> on{" "}
+        <span className="text-red-500">Abandoned Mining Land</span>
       </>
     ),
     description:
-      "We transformed 350 acres of abandoned mining land into thriving guava plantations...",
+      "Converted 350 acres of abandoned mining land into productive guava plantations in the Sukinda Chromite region.",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761721731/2024_zakmqr.jpg",
   },
 ];
 
 /* =======================
-   Custom Arrows
+   Real Slick Arrows
 ======================= */
 
-const PreviousArrow: React.FC<ArrowProps> = ({ onClick }) => (
-  <div
-    className="absolute -bottom-[70px] lg:-bottom-12 cursor-pointer left-[33%]"
+const ArrowBase =
+  "slick-arrow absolute bottom-[-70px] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-red-500/30 bg-black/70 text-red-400 backdrop-blur transition hover:bg-red-500 hover:text-black";
+
+const PrevArrow: React.FC<ArrowProps> = ({ onClick }) => (
+  <button
     onClick={onClick}
+    className={`${ArrowBase} left-[calc(50%-160px)]`}
+    aria-label="Previous"
   >
-    <FaChevronLeft className="text-red-600 hover:text-red-700 text-[30px] transition-all duration-300" />
-  </div>
+    <FaChevronLeft />
+  </button>
 );
 
 const NextArrow: React.FC<ArrowProps> = ({ onClick }) => (
-  <div
-    className="absolute -bottom-[70px] lg:-bottom-12 cursor-pointer right-[32%]"
+  <button
     onClick={onClick}
+    className={`${ArrowBase} left-[calc(50%+120px)]`}
+    aria-label="Next"
   >
-    <FaChevronRight className="text-red-600 hover:text-red-700 text-[30px] transition-all duration-300" />
-  </div>
+    <FaChevronRight />
+  </button>
 );
 
 /* =======================
@@ -111,53 +115,79 @@ const Milestones: React.FC = () => {
   const settings: Settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 700,
     autoplay: true,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 4200,
     slidesToShow: 1,
     slidesToScroll: 1,
-    customPaging: (index: number) => (
-      <button>{milestonesData[index].year}</button>
+    arrows: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    customPaging: (i: number) => (
+      <button className="text-xs font-semibold text-red-400 transition hover:text-red-300">
+        {milestonesData[i].year}
+      </button>
     ),
     dotsClass: "slick-dots custom-dots",
-    prevArrow: <PreviousArrow />,
-    nextArrow: <NextArrow />,
   };
 
   return (
-    <section className="container mx-auto py-16 mb-6">
-      {/* H1 Heading */}
-      <h1 className="text-3xl sm:text-4xl text-white md:text-4xl font-bold text-center mb-12">
-        Milestones
-      </h1>
+    <section className="relative overflow-hidden py-20">
+      {/* ===== Red Ambient Background ===== */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(239,68,68,0.22),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,38,38,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.85)_100%)]" />
+      </div>
 
-      <div className="flex justify-center items-center">
-        <Slider {...settings} className="w-[380px] bg-transparent lg:w-[1200px]">
+      <div className="relative mx-auto max-w-7xl px-5">
+        {/* Header */}
+        <div className="mb-14 text-center">
+          <p className="mb-2 text-xs uppercase tracking-widest text-red-400">
+            Our Journey
+          </p>
+          <h2 className="text-4xl font-semibold text-white md:text-5xl">
+            Milestones
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-white/60">
+            A timeline of impact-driven initiatives shaping sustainable
+            livelihoods and resilient communities.
+          </p>
+        </div>
+
+        {/* Slider */}
+        <Slider {...settings}>
           {milestonesData.map((milestone) => (
-            <div
-              key={milestone.year}
-              className="flex justify-center items-center"
-            >
-              <div className="flex flex-col lg:flex-row gap-x-10 items-center">
+            <div key={milestone.year} className="px-3">
+              <div className="grid items-center gap-10 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl lg:grid-cols-12 lg:p-10">
                 {/* Image */}
-                <div className="w-full lg:w-2/3">
+                <div className="relative overflow-hidden rounded-2xl lg:col-span-7">
                   <img
                     src={milestone.imageUrl}
                     alt={milestone.year}
-                    className="w-full h-44 lg:h-[450px] object-cover"
+                    className="h-52 w-full object-cover lg:h-[420px]"
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                  {/* Year Badge */}
+                  <div className="absolute left-5 top-5 rounded-full bg-red-500 px-4 py-1 text-sm font-semibold text-black shadow-lg">
+                    {milestone.year}
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="w-full lg:w-1/3 mt-5">
-                  <h3 className="text-lg font-bold">{milestone.year}</h3>
-                  <div className="text-2xl lg:text-3xl font-bold text-gray-700">
+                <div className="lg:col-span-5">
+                  <h3 className="text-2xl font-semibold text-white lg:text-3xl">
                     {milestone.title}
-                  </div>
-                  <p className="text-md text-gray-500 mt-2">
+                  </h3>
+
+                  <p className="mt-4 text-sm leading-relaxed text-white/70">
                     {milestone.description}
                   </p>
+
+                  <div className="mt-6 h-[2px] w-12 rounded-full bg-red-500" />
                 </div>
               </div>
             </div>

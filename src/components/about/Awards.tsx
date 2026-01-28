@@ -56,8 +56,7 @@ const awardsData: Award[] = [
   {
     year: "2023",
     title: "Best Performer Award",
-    description:
-      "Building better livelihoods across rural Odisha",
+    description: "Building better livelihoods across rural Odisha",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761725434/GIU_AMA_199-06_ohmupk.png",
     orgLogo:
@@ -69,22 +68,19 @@ const awardsData: Award[] = [
    Custom Arrows
 ======================= */
 
-const PreviousArrow: React.FC<ArrowProps> = ({ onClick }) => (
-  <div
-    className="absolute -left-5 top-1/2 -translate-y-1/2 cursor-pointer z-10"
-    onClick={onClick}
-  >
-    <FaChevronLeft className="text-white text-2xl hover:text-gray-300 transition" />
-  </div>
+const ArrowBase =
+  "absolute top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/60 backdrop-blur transition hover:bg-white hover:text-black";
+
+const PrevArrow: React.FC<ArrowProps> = ({ onClick }) => (
+  <button className={`${ArrowBase} -left-4`} onClick={onClick}>
+    <FaChevronLeft />
+  </button>
 );
 
 const NextArrow: React.FC<ArrowProps> = ({ onClick }) => (
-  <div
-    className="absolute -right-5 top-1/2 -translate-y-1/2 cursor-pointer z-10"
-    onClick={onClick}
-  >
-    <FaChevronRight className="text-white text-2xl hover:text-gray-300 transition" />
-  </div>
+  <button className={`${ArrowBase} -right-4`} onClick={onClick}>
+    <FaChevronRight />
+  </button>
 );
 
 /* =======================
@@ -96,72 +92,81 @@ const Awards: React.FC = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1000,
-    arrows: false,
-    prevArrow: <PreviousArrow />,
+    autoplaySpeed: 4000,
+    arrows: true,
+    prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 600,
-        settings: { slidesToShow: 1 },
-      },
-    ],
   };
 
   return (
-    <section className="relative px-10 bg-black py-6">
-      <div className="flex flex-col mx-auto max-w-7xl">
-        {/* H1 Heading */}
-        <h1 className="text-3xl sm:text-4xl text-white md:text-4xl font-bold text-center mb-12">
-          Awards
-        </h1>
-        <p className="text-white text-lg text-center mx-auto mb-12 max-w-3xl">
-          Our commitment to quality and reliability has earned us numerous
-          awards and accolades. These recognitions reflect the trust and
-          reputation we have built over the years.
-        </p>
-      </div>
+    <section className="relative bg-black py-16 text-white">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Header */}
+        <div className="mb-10">
+          <h2 className="text-4xl md:text-5xl font-light tracking-tight">
+            Awards & Recognition
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm md:text-base text-white/60">
+            Milestones that reflect our long-term commitment to excellence and
+            impact.
+          </p>
+        </div>
 
-      <Slider {...settings} className="h-[350px]">
-        {awardsData.map((award, index) => (
-          <div key={`${award.year}-${index}`} className="pb-16">
-            <div className="relative flex flex-col items-center text-center h-[300px] px-12">
-              {/* Award Image */}
-              <img
-                src={award.imageUrl}
-                alt={award.title}
-                className="absolute top-10 h-[300px] z-50 object-contain"
-                loading="lazy"
-              />
+        {/* Slider */}
+        <div className="relative">
+          <Slider {...settings}>
+            {awardsData.map((award, idx) => (
+              <div key={idx}>
+                {/* Rail Item */}
+                <div className="grid grid-cols-12 items-center gap-8 rounded-xl border border-white/10 bg-white/5 px-6 py-8">
+                  {/* Year */}
+                  <div className="col-span-2">
+                    <div className="text-4xl font-semibold tracking-tight text-white/90">
+                      {award.year}
+                    </div>
+                    <div className="mt-2 h-px w-10 bg-white/30" />
+                  </div>
 
-              {/* Content */}
-              <div className="flex flex-col items-center">
-                <h3 className="text-white text-lg font-semibold">
-                  {award.year} — {award.title}
-                </h3>
+                  {/* Golden Decor with Centered Logo */}
+                  <div className="col-span-3 flex justify-center">
+                    <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#FFD873] to-[#D4AF37] shadow-lg">
+                      <img
+                        src={award.orgLogo}
+                        alt={`${award.title} organisation`}
+                        className="h-16 w-16 object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
 
-                <p className="text-gray-300 mt-2 text-sm w-[160px]">
-                  {award.description}
-                </p>
+                  {/* Award Image */}
+                  <div className="col-span-3 flex justify-center">
+                    <img
+                      src={award.imageUrl}
+                      alt={award.title}
+                      className="h-32 object-contain"
+                      loading="lazy"
+                    />
+                  </div>
 
-                <img
-                  src={award.orgLogo}
-                  alt={`${award.title} organisation`}
-                  className="h-28 mt-6 object-contain"
-                  loading="lazy"
-                />
+                  {/* Content */}
+                  <div className="col-span-4">
+                    <h3 className="text-lg font-medium">
+                      {award.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-white/60">
+                      {award.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </Slider>
+            ))}
+          </Slider>
+        </div>
+      </div>
     </section>
   );
 };
