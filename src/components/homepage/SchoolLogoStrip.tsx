@@ -4,31 +4,27 @@ const SchoolLogoStrip: React.FC = () => {
   const schoolLogos = [
     {
       name: "School for Mines, Steel & Aluminium",
-      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_MINES-removebg-preview_airmxv.png",
+      src: "/SCHOOLS/MINES-BG.png",
     },
     {
-      name: "School for Steel & Aluminium",
-      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_STEEL___ALUMINIUM-removebg-preview_lqtpri.png",
+      name: "School for Furniture & Fitting",
+      src: "/SCHOOLS/FURNITURE-BG.png",
     },
     {
       name: "School for Power & Green Energy",
-      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928458/SCHOOL_FOR_POWER___GREEN_ENERGY-removebg-preview_tinr0w.png",
+      src: "/SCHOOLS/POEN-BG.png",
     },
     {
       name: "School for Shipping & Logistics",
-      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_SHIPPING___LOGISTICS-removebg-preview_ktlsje.png",
+      src: "/SCHOOLS/SHIPPIN-BG.png",
     },
-    // {
-    //   name: "School for Semiconductors & Robotics",
-    //   src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812463/Pantiss_School__12_-removebg-preview_akcpud.png",
-    // },
     {
       name: "School for Construction Tech & Infra Equipments",
-      src: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1756812468/Pantiss_School__14_-removebg-preview_ayzfu7.png",
+      src: "/SCHOOLS/INFRA-BG.png",
     },
     {
-      name: "School for Water, Sanitation & Facility Management",
-      src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_WASH-removebg-preview_s8wofi.png",
+      name: "School for Green Jobs",
+      src: "/SCHOOLS/GREENJOBS-BG.png",
     },
   ];
 

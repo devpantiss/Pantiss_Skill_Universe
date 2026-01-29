@@ -5,7 +5,7 @@ import VisionMissionGoal from "../../components/about/VisionMissionGoal";
 import AboutImpact from "../../components/about/AboutImpact";
 import HeroInfoSection from "../../components/about/FoundersSection";
 import { ThreeDMarquee } from "../../components/about/ThreeDMarqueeDemo";
-import OurFaculty from "../../components/about/OurFaculty";
+// import OurFaculty from "../../components/about/OurFaculty";
 // import OurFacilities from "../../components/about/OurFacilities";
 import ScrollVelocityImages from "../../components/common/ScrollVelocityImages";
 import Certifications from "../../components/about/Certifications/Certifications";
@@ -111,63 +111,63 @@ const AboutPage: React.FC = () => {
   //   },
   // ];
 
-  const AdvisoryBoard = [
-    {
-      image: "/teams/jalandhar.png",
-      title: "Mr. Jalandhar Mohanty",
-      subtitle: "Lead, CoE, Mining",
-      handle: "@alexrivera",
-      borderColor: "#10B981", // emerald accent
-      gradient: "linear-gradient(145deg, #1F2937, #111827)", // subtle gray blend
-      url: "https://github.com/",
-    },
-    {
-      image: "/teams/sudarshan.png",
-      title: "Mr. Sudarshan Barik",
-      subtitle: "Lead, CoE, Steel & Aluminium",
-      handle: "@jordanchen",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://linkedin.com/in/",
-    },
-    {
-      image: "/teams/bikram.png",
-      title: "Mr. Bikram K. Gouda",
-      subtitle: "Lead, CoE, Shipping & Logistics",
-      handle: "@morganblake",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://dribbble.com/",
-    },
-    {
-      image: "/teams/yagnesh.png",
-      title: "Mr. Yagnesh K. Nanda",
-      subtitle: "Lead, CoE, Power & Green Energy",
-      handle: "@morganblake",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://dribbble.com/",
-    },
-    {
-      image: "/teams/mukessh.png",
-      title: "Mr. Mukesh Singh",
-      subtitle: "Lead, CoE, Construction & Infrastructure Equipment",
-      handle: "@morganblake",
-      borderColor: "#10B981",
-      gradient: "linear-gradient(145deg, #1F2937, #111827)",
-      url: "https://dribbble.com/",
-    },
-    // {
-    //   image:
-    //     "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760618334/basanta_2_adg0rh.jpg",
-    //   title: "Mr. Basant K. Sahoo",
-    //   subtitle: "Lead, CoE, Water & Waste Water Treatment",
-    //   handle: "@morganblake",
-    //   borderColor: "#10B981",
-    //   gradient: "linear-gradient(145deg, #1F2937, #111827)",
-    //   url: "https://dribbble.com/",
-    // },
-  ];
+  // const AdvisoryBoard = [
+  //   {
+  //     image: "/teams/jalandhar.png",
+  //     title: "Mr. Jalandhar Mohanty",
+  //     subtitle: "Lead, CoE, Mining",
+  //     handle: "@alexrivera",
+  //     borderColor: "#10B981", // emerald accent
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)", // subtle gray blend
+  //     url: "https://github.com/",
+  //   },
+  //   {
+  //     image: "/teams/sudarshan.png",
+  //     title: "Mr. Sudarshan Barik",
+  //     subtitle: "Lead, CoE, Steel & Aluminium",
+  //     handle: "@jordanchen",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://linkedin.com/in/",
+  //   },
+  //   {
+  //     image: "/teams/bikram.png",
+  //     title: "Mr. Bikram K. Gouda",
+  //     subtitle: "Lead, CoE, Shipping & Logistics",
+  //     handle: "@morganblake",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://dribbble.com/",
+  //   },
+  //   {
+  //     image: "/teams/yagnesh.png",
+  //     title: "Mr. Yagnesh K. Nanda",
+  //     subtitle: "Lead, CoE, Power & Green Energy",
+  //     handle: "@morganblake",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://dribbble.com/",
+  //   },
+  //   {
+  //     image: "/teams/mukessh.png",
+  //     title: "Mr. Mukesh Singh",
+  //     subtitle: "Lead, CoE, Construction & Infrastructure Equipment",
+  //     handle: "@morganblake",
+  //     borderColor: "#10B981",
+  //     gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //     url: "https://dribbble.com/",
+  //   },
+  //   // {
+  //   //   image:
+  //   //     "https://res.cloudinary.com/djtzx6wo7/image/upload/v1760618334/basanta_2_adg0rh.jpg",
+  //   //   title: "Mr. Basant K. Sahoo",
+  //   //   subtitle: "Lead, CoE, Water & Waste Water Treatment",
+  //   //   handle: "@morganblake",
+  //   //   borderColor: "#10B981",
+  //   //   gradient: "linear-gradient(145deg, #1F2937, #111827)",
+  //   //   url: "https://dribbble.com/",
+  //   // },
+  // ];
 
   // const Faculty = [
   //   {
@@ -256,7 +256,7 @@ const AboutPage: React.FC = () => {
         <ThreeDMarquee images={images} />
       </div>
       <Milestones />
-      <div id="faculty" className="h-full relative">
+      {/* <div id="faculty" className="h-full relative">
         <OurFaculty
           heading="Our Advisory Board"
           items={AdvisoryBoard}
@@ -265,7 +265,7 @@ const AboutPage: React.FC = () => {
           fadeOut={0.6}
           ease="power3.out"
         />
-      </div>
+      </div> */}
       <Awards />
       <Certifications />
       {/* <div id="faculty" className="h-full relative">

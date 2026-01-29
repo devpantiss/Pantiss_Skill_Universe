@@ -1,6 +1,6 @@
 import React, { memo, useMemo, useEffect, useRef, useState } from "react";
 // import { Link } from "react-router-dom";
-import { FaGlobe, FaTools } from "react-icons/fa";
+import { FaGlobe } from "react-icons/fa";
 
 interface Vehicle {
   title: string;
@@ -90,11 +90,11 @@ interface VehicleCardProps {
 const VehicleCard = memo(
   ({ vehicle, onMouseEnter, onMouseLeave, index }: VehicleCardProps) => {
     // Prepare tech specs as array
-    const techList = vehicle.techSpecs.split(",").map((s) => s.trim());
+    // const techList = vehicle.techSpecs.split(",").map((s) => s.trim());
 
     return (
       <div
-        className="relative w-[400px] min-h-[630px] group cursor-pointer bg-gradient-to-b from-black via-red-700 to-black rounded-2xl overflow-hidden shadow-xl border border-green-500 flex flex-col transition-all duration-200 hover:shadow-2xl"
+        className="relative w-[400px] h-[450px] group cursor-pointer bg-gradient-to-b from-black via-red-700 to-black rounded-2xl overflow-hidden shadow-xl border border-green-500 flex flex-col transition-all duration-200 hover:shadow-2xl"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         tabIndex={0}
@@ -152,7 +152,7 @@ const VehicleCard = memo(
               {vehicle.importFrom}
             </span>
           </div>
-          <div className="flex items-center gap-2 mb-2">
+          {/* <div className="flex items-center gap-2 mb-2">
             <FaTools
               className="text-green-500 w-4 h-4"
               aria-label="Tech specifications"
@@ -160,13 +160,13 @@ const VehicleCard = memo(
             <span className="font-semibold text-green-500 text-xs uppercase">
               Tech Specs:
             </span>
-          </div>
+          </div> */}
           {/* Tech specs list */}
-          <ul className="list-disc list-inside text-gray-100 text-sm ml-7 space-y-1">
+          {/* <ul className="list-disc list-inside text-gray-100 text-sm ml-7 space-y-1">
             {techList.map((t, i) => (
               <li key={i}>{t}</li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
     );

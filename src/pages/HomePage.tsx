@@ -6,7 +6,6 @@ import SectorsAccordion from "../components/homepage/SectorsAccordion";
 // import FleetSection from "../components/homepage/FleetSection";
 import PlacementsSection from "../components/homepage/PlacementsSection";
 // import CampusExperienceSection from "../components/homepage/CampusExperienceSection";
-// import Ranking from "../components/homepage/Ranking";
 // import ExplorePrograms from "../components/homepage/ExplorePrograms";
 // import OurFuturisticApproach from "../components/homepage/OurFuturisticApproach";
 // import Why from "../components/Academics/Why";

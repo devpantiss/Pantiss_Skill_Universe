@@ -4,44 +4,54 @@ const VisionMissionGoal: React.FC = () => {
   const cards = [
     {
       title: "Our Philosophy",
-      text: "Our philosophy of youth development through Education lies in empowering the individual through Skills to explore the higher version of the self. Aligning passion and profession fosters creativity, dedication, and purpose, leading to a fulfilling career.",
-      bg: "url('https://www.msu.edu.in/frontend_assets/images/banner/our-philosphy.jpg')", // replace with actual
+      text: "We believe skill-driven education unlocks human potential. By aligning passion with profession, learners build purpose, confidence, and careers that are meaningful, sustainable, and future-ready.",
+      bg: "url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=80')", // abstract structure
     },
     {
       title: "Our Vision",
-      text: "Our vision is to be the beacon of excellence in higher education, empowering youth with skill-integrated learning pathways that seamlessly bridge the gap between academia, employability, and entrepreneurship. We envision a future where every student is equipped with the knowledge, skills, and innovative mindset to forge dignified careers and lead fulfilling lives, thereby contributing meaningfully to society and the global economy.",
-      bg: "url('https://www.msu.edu.in/frontend_assets/images/banner/our-vision.jpg')", // replace with actual
+      text: "To create a future where education seamlessly blends skills, innovation, and employability—empowering youth to thrive in industry, entrepreneurship, and the global workforce.",
+      bg: "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80')", // abstract horizon / light
     },
     {
       title: "Our Mission",
-      text: "We aim to revolutionize higher education by seamlessly integrating in-demand skills with academic learning through industry-immersive apprenticeships and on-the-job training to make students industry-ready. Our goal is to nurture learners with appropriate attitudes and ethics for a sustainable progress in career and life. Our commitment extends beyond technical skills. We focus on cultivating the right attitudes and ethical values in our learners, fostering a holistic development that prepares them for sustainable career growth and a balanced, fulfilling life.",
-      bg: "url('https://www.msu.edu.in/frontend_assets/images/banner/our-mision.jpg')", // replace with actual
+      text: "To transform learning through industry immersion, apprenticeships, and ethical training—shaping skilled professionals ready to adapt, perform, and lead in real-world environments.",
+      bg: "url('https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=1400&q=80')", // abstract industrial geometry
     },
   ];
 
   return (
-    <section className="w-full grid bg-black grid-cols-1 md:grid-cols-3 gap-4">
+    <section className="w-full bg-black grid grid-cols-1 md:grid-cols-3">
       {cards.map((card, idx) => (
         <div
           key={idx}
-          className="relative h-[500px] flex items-end p-6 text-white group"
+          className="relative h-[460px] flex items-end p-6 text-white group overflow-hidden"
           style={{
-            backgroundImage: `${card.bg}`,
+            backgroundImage: card.bg,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-all duration-300"></div>
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-red-600/20 opacity-0 transition-all duration-300 group-hover:opacity-100"></div>
+          {/* Base dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent transition-all duration-300" />
+
+          {/* red accent hover overlay */}
+          <div className="absolute inset-0 bg-red-600/20 opacity-0 transition-all duration-300 group-hover:opacity-100" />
+
+          {/* Subtle noise / texture */}
+          <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle,white_1px,transparent_1px)] bg-[length:14px_14px]" />
 
           {/* Content */}
           <div className="relative z-10">
-            <h3 className="text-2xl font-bold text-green-500 mb-3">
+            <h3 className="text-xl md:text-2xl font-semibold text-red-600 mb-3">
               {card.title}
             </h3>
-            <p className="text-sm md:text-base leading-relaxed">{card.text}</p>
+
+            <p className="text-sm md:text-base leading-relaxed text-white/85 max-w-md">
+              {card.text}
+            </p>
+
+            {/* Accent line */}
+            <div className="mt-5 h-[2px] w-10 rounded-full bg-red-500" />
           </div>
         </div>
       ))}

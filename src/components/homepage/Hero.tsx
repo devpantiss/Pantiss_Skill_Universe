@@ -53,7 +53,7 @@ const HeroSection: React.FC = () => {
   }, [typedText, isDeleting, currentSector]);
 
   return (
-    <section className="relative mt-28 w-full h-[90vh] overflow-hidden">
+    <section className="relative mt-28 w-full h-[100vh] overflow-hidden">
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -66,7 +66,7 @@ const HeroSection: React.FC = () => {
       />
 
       {/* Translucent Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/70" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">

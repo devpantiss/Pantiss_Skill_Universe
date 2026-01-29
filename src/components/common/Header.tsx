@@ -58,6 +58,7 @@ const navLinks: NavLink[] = [
         name: "Flagship Program",
         children: [
           { name: "Skill on Wheels", path: "/futuristic-skill-on-wheels" },
+          { name: "Global Placements", path: "/futuristic-skill-on-wheels" },
         ],
         path: ""
       },
@@ -95,7 +96,7 @@ const topRightMenu = [
     ],
   },
   { name: "Careers", path: "/careers" },
-  { name: "Blogs", path: "/blogs" },
+  { name: "Resources", path: "/resources" },
 ];
 
 const Header: React.FC = () => {

@@ -6,6 +6,7 @@ interface Certification {
   title: string;
   description: string;
   imageUrl: string;
+  logoUrl: string;
 }
 
 const certificationsData: Certification[] = [
@@ -14,12 +15,14 @@ const certificationsData: Certification[] = [
     description: "Quality Assured",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761729175/AdobeStock_636819188_Preview_fjxys3.jpg",
+    logoUrl: "/cert/iso.png",
   },
   {
     title: "NSDC (National Skill Development Council)",
     description: "Industry Engagement Partner",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761729202/hector-reyes-WRo7RQFpamA-unsplash_oyoxxb.jpg",
+    logoUrl: "/cert/NSDC.png",
   },
   {
     title:
@@ -27,45 +30,44 @@ const certificationsData: Certification[] = [
     description: "Industry Engagement Partner",
     imageUrl:
       "https://www.ualberta.ca/en/folio/media-library/2023/11/231109-women-entrepreneurs-main-16x9-3000px.jpg",
+    logoUrl: "/cert/MEPSC.png",
   },
   {
     title: "SCMS (Skill Council for Mining Sector)",
     description: "Authorized Training Partner",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761729210/matthew-de-livera-4Gf51uY0YQE-unsplash_j3ih5t.jpg",
+    logoUrl: "/cert/SCMS.png",
   },
   {
     title: "Indian Iron and Steel Sector Skill Council",
     description: "Authorized Training Partner",
     imageUrl:
       "https://www.man-es.com/images/default-source/default-album/iron-and-steel-applications-process-industry.jpg?sfvrsn=9667eca1_4",
+    logoUrl: "/cert/IISSSC.png",
   },
   {
     title: "Agriculture Skill Council of India",
     description: "Authorized Training Partner",
     imageUrl:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761729200/foto-murthy-lXVWulsnNQE-unsplash_evbtha.jpg",
+    logoUrl: "/cert/asci.png",
   },
 ];
 
 const settings: import("react-slick").Settings = {
   dots: true,
   infinite: true,
-  speed: 600,
+  speed: 700,
   slidesToShow: 4,
-  autoplay: true,
-  autoplaySpeed: 3000,
   slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3500,
   arrows: false,
   responsive: [
-    {
-      breakpoint: 1024,
-      settings: { slidesToShow: 2, slidesToScroll: 1 },
-    },
-    {
-      breakpoint: 600,
-      settings: { slidesToShow: 1, slidesToScroll: 1 },
-    },
+    { breakpoint: 1280, settings: { slidesToShow: 3 } },
+    { breakpoint: 1024, settings: { slidesToShow: 2 } },
+    { breakpoint: 640, settings: { slidesToShow: 1 } },
   ],
 };
 
@@ -76,51 +78,70 @@ const Certifications: React.FC = () => {
       style={{
         backgroundImage:
           "url('https://res.cloudinary.com/dxzhnns58/image/upload/v1762254177/peter-herrmann-z6DJJZ1-1Cg-unsplash_qxsfml.jpg')",
-        backgroundAttachment: "fixed",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* Overlay for better contrast */}
-      <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/75" />
 
       <div className="relative max-w-7xl mx-auto px-4 z-10">
-        {/* Title */}
-        <div className="text-left mb-10">
+        {/* ===== Logo Strip ===== */}
+        <div className="mb-10 flex flex-wrap items-center justify-center gap-8">
+          {certificationsData.map((c, i) => (
+            <img
+              key={i}
+              src={c.logoUrl}
+              alt={c.title}
+              className="h-12 object-contain grayscale opacity-80 hover:opacity-100 transition"
+            />
+          ))}
+        </div>
+
+        {/* ===== Heading ===== */}
+        <div className="text-left mb-12">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-3">
             <span className="border-l-4 border-red-600 pl-3">
               Certifications & Accreditations
             </span>
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl">
-            Our certifications reflect our commitment to skill excellence,
-            adherence to quality standards, and strong partnerships across
-            industries and councils.
+            Our certifications demonstrate adherence to quality, compliance, and
+            strong institutional partnerships across sectors.
           </p>
         </div>
 
-        {/* Slider */}
-        <Slider {...settings} className="certifications-slider w-full">
+        {/* ===== Slider ===== */}
+        <Slider {...settings}>
           {certificationsData.map((cert, index) => (
-            <div key={index} className="px-1">
-              <div className="bg-gray-900/80 backdrop-blur-md border border-gray-700 overflow-hidden shadow-md hover:shadow-[0_0_25px_rgba(220,38,38,0.5)] transition-all duration-300 flex flex-col h-[520px]">
-                <div className="relative flex-shrink-0">
+            <div key={index} className="">
+              <div className="flex h-[520px] flex-col overflow-hidden border border-gray-700 bg-gray-900/80 backdrop-blur transition hover:shadow-[0_0_28px_rgba(220,38,38,0.45)]">
+                {/* Image */}
+                <div className="relative h-[300px]">
                   <img
                     src={cert.imageUrl}
                     alt={cert.title}
-                    className="w-full h-[380px] object-cover ring-2 ring-red-600"
+                    className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-70"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>
 
-                <div className="flex-grow flex flex-col justify-between p-6">
+                {/* Content */}
+                <div className="flex flex-1 flex-col justify-between p-6">
+                  <div
+                    className="flex h-14 w-32 items-center justify-center rounded-md px-3 transition hover:scale-105"
+                  >
+                    <img
+                      src={cert.logoUrl}
+                      alt={cert.title}
+                      className="max-h-10 max-w-full object-contain"
+                    />
+                  </div>{" "}
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                      {cert.title}
-                    </h3>
-                    <p className="text-gray-300 text-sm">{cert.description}</p>
+                    <h3 className="text-lg font-semibold mb-2">{cert.title}</h3>
+                    <p className="text-sm text-gray-300">{cert.description}</p>
                   </div>
-                  <div className="h-1 w-20 mt-4 bg-gradient-to-r from-red-600 to-green-600 rounded-full"></div>
+                  <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-red-600 to-green-600" />
                 </div>
               </div>
             </div>
