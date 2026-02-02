@@ -26,6 +26,7 @@ import CareersPage from "./pages/CareersPage";
 import JobsPage from "./pages/JobsPage";
 import InternationalMobilityPage from "./pages/Programmes/InternationalMobilityPage";
 import SkillDevBootCampPage from "./pages/Programmes/SkillDevBootCampPage";
+import "leaflet/dist/leaflet.css";
 
 function LayoutWrapper() {
   const location = useLocation();

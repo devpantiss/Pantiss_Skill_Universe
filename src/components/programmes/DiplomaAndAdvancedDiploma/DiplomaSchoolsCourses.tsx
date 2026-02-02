@@ -1,7 +1,27 @@
-import React, { memo, useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, CheckCircle, Play, Pause, Users, Award, Clock, ArrowUpRight } from "lucide-react";
+import { memo, useEffect, useState } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Users,
+  Award,
+} from "lucide-react";
 
-// Define interfaces
+import {
+  MapContainer,
+  TileLayer,
+  GeoJSON,
+  Marker,
+  Tooltip,
+  useMap,
+} from "react-leaflet";
+
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
+/* ===============================
+   TYPES
+================================= */
+
 interface Course {
   name: string;
   nsqfLevel: number;
@@ -10,378 +30,286 @@ interface Course {
 }
 
 interface School {
-  id: string;
-  name: string;
   shortName: string;
   description: string;
   image: string;
-  gradient: string;
-  courses: Course[];
-  totalStudents: number;
   successRate: number;
+  totalStudents: number;
+  location: {
+    district: string;
+    coords: [number, number];
+  };
+  courses: Course[];
 }
 
-// Updated schools data - 7 schools focused on blue-collar job training
+/* ===============================
+   DATA
+================================= */
+
 const schools: School[] = [
   {
-    id: "mines",
-    name: "School for Mines",
-    shortName: "Mines",
+    shortName: "School for Mines",
     description:
-      "Hands-on diploma in mining operations, drilling, blasting, rock mechanics, and underground safety for entry-level mining technicians.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
-    gradient: "from-orange-600/20 via-amber-600/20 to-red-600/20",
-    totalStudents: 3200,
+      "Hands-on diploma programs for mining technicians covering drilling, blasting, underground safety and operations.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     successRate: 93,
+    totalStudents: 3200,
+    location: { district: "Angul", coords: [20.84, 85.15] },
     courses: [
-      { name: "Diploma in Underground Mining", nsqfLevel: 5, duration: "2 years", enrolled: 680 },
-      { name: "Advanced Diploma in Drilling & Blasting", nsqfLevel: 6, duration: "3 years", enrolled: 540 },
-      { name: "Diploma in Mine Safety & Rescue", nsqfLevel: 4, duration: "1.5 years", enrolled: 420 },
+      { name: "Underground Mining", nsqfLevel: 5, duration: "2 yrs", enrolled: 680 },
+      { name: "Mine Safety", nsqfLevel: 4, duration: "1.5 yrs", enrolled: 420 },
     ],
   },
   {
-    id: "steel-aluminium",
-    name: "School for Steel & Aluminium",
     shortName: "Steel & Aluminium",
     description:
-      "Practical training in steel rolling, aluminium smelting, furnace operation, and quality testing for plant floor technicians.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
-    gradient: "from-gray-500/20 via-zinc-500/20 to-slate-500/20",
-    totalStudents: 2900,
+      "Plant-floor training in smelting, rolling and furnace operations.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     successRate: 95,
+    totalStudents: 2900,
+    location: { district: "Angul", coords: [20.84, 85.15] },
     courses: [
-      { name: "Diploma in Steel Plant Operations", nsqfLevel: 5, duration: "2 years", enrolled: 720 },
-      { name: "Advanced Diploma in Aluminium Fabrication", nsqfLevel: 6, duration: "3 years", enrolled: 480 },
-      { name: "Diploma in Furnace & Quality Control", nsqfLevel: 4, duration: "1.5 years", enrolled: 380 },
+      { name: "Steel Plant Ops", nsqfLevel: 5, duration: "2 yrs", enrolled: 720 },
     ],
   },
   {
-    id: "power-green-energy",
-    name: "School for Power & Green Energy",
-    shortName: "Power & Green Energy",
-    description:
-      "Training in turbine operation, solar panel installation, wind turbine maintenance, and electrical safety for renewable energy technicians.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
-    gradient: "from-yellow-500/20 via-lime-500/20 to-green-500/20",
-    totalStudents: 3400,
-    successRate: 96,
-    courses: [
-      { name: "Diploma in Solar PV Installation", nsqfLevel: 4, duration: "1.5 years", enrolled: 980 },
-      { name: "Advanced Diploma in Wind Turbine Tech", nsqfLevel: 6, duration: "3 years", enrolled: 620 },
-      { name: "Diploma in Power Plant Maintenance", nsqfLevel: 5, duration: "2 years", enrolled: 780 },
-    ],
-  },
-  {
-    id: "shipping-logistics",
-    name: "School for Shipping & Logistics",
     shortName: "Shipping & Logistics",
     description:
-      "Training in crane operation, forklift driving, cargo handling, and port safety for blue-collar logistics and shipping roles.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
-    gradient: "from-cyan-500/20 via-teal-500/20 to-blue-500/20",
-    totalStudents: 2600,
+      "Crane operation, cargo handling and maritime logistics careers.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     successRate: 91,
+    totalStudents: 2600,
+    location: { district: "Jagatsinghapur", coords: [20.25, 86.17] },
     courses: [
-      { name: "Diploma in Crane & Forklift Operation", nsqfLevel: 4, duration: "1.5 years", enrolled: 820 },
-      { name: "Advanced Diploma in Port Logistics", nsqfLevel: 6, duration: "2.5 years", enrolled: 540 },
-      { name: "Diploma in Cargo Handling & Safety", nsqfLevel: 5, duration: "2 years", enrolled: 460 },
+      { name: "Crane Operations", nsqfLevel: 4, duration: "1.5 yrs", enrolled: 820 },
     ],
   },
   {
-    id: "ev",
-    name: "School for EV",
-    shortName: "EV",
+    shortName: "Power & Green Energy",
     description:
-      "Practical diploma in battery assembly, charging station setup, EV motor repair, and diagnostics for electric vehicle technicians.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
-    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
-    totalStudents: 2100,
-    successRate: 97,
+      "Solar, wind and power plant maintenance training.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
+    successRate: 96,
+    totalStudents: 3400,
+    location: { district: "Jajapur", coords: [20.85, 86.33] },
     courses: [
-      { name: "Diploma in EV Battery Systems", nsqfLevel: 5, duration: "2 years", enrolled: 680 },
-      { name: "Advanced Diploma in Charging Infrastructure", nsqfLevel: 6, duration: "3 years", enrolled: 420 },
-      { name: "Diploma in EV Drivetrain Repair", nsqfLevel: 4, duration: "1.5 years", enrolled: 510 },
+      { name: "Solar PV", nsqfLevel: 4, duration: "1.5 yrs", enrolled: 980 },
     ],
   },
   {
-    id: "construction-infra",
-    name: "School for Construction Tech & Infra Equipment",
-    shortName: "Construction & Infra",
+    shortName: "Construction Tech",
     description:
-      "Training on excavators, dozers, cranes, concrete pumps, and site safety for heavy equipment operators and technicians.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
-    gradient: "from-amber-600/20 via-orange-600/20 to-red-600/20",
-    totalStudents: 3800,
+      "Heavy equipment training including excavators and cranes.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
     successRate: 94,
+    totalStudents: 3800,
+    location: { district: "Kendujhar", coords: [21.63, 85.58] },
     courses: [
-      { name: "Diploma in Excavator & Dozer Operation", nsqfLevel: 4, duration: "1.5 years", enrolled: 980 },
-      { name: "Advanced Diploma in Crane Operations", nsqfLevel: 6, duration: "3 years", enrolled: 720 },
-      { name: "Diploma in Concrete Equipment Tech", nsqfLevel: 5, duration: "2 years", enrolled: 640 },
-    ],
-  },
-  {
-    id: "water-sanitation",
-    name: "School for Water, Sanitation & Facility Management",
-    shortName: "Water & Sanitation",
-    description:
-      "Diploma in plumbing, pipeline installation, sewage systems, water treatment, and building maintenance for sanitation technicians.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
-    gradient: "from-blue-500/20 via-cyan-500/20 to-teal-500/20",
-    totalStudents: 2400,
-    successRate: 90,
-    courses: [
-      { name: "Diploma in Plumbing & Pipeline Tech", nsqfLevel: 4, duration: "1.5 years", enrolled: 780 },
-      { name: "Advanced Diploma in Sewage Systems", nsqfLevel: 6, duration: "3 years", enrolled: 480 },
-      { name: "Diploma in Water Treatment Operations", nsqfLevel: 5, duration: "2 years", enrolled: 560 },
+      { name: "Excavator Ops", nsqfLevel: 4, duration: "1.5 yrs", enrolled: 980 },
     ],
   },
 ];
 
-const DiplomaSchoolsCarousel: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+/* ===============================
+   PULSE ICON
+================================= */
 
-  // Auto-scroll
+const pulseIcon = new L.DivIcon({
+  className: "",
+  html: `<div class="pulse-dot"></div>`,
+  iconSize: [16, 16],
+});
+
+/* ===============================
+   AUTO FLY MAP
+================================= */
+
+const FlyToDistrict = ({ coords }: { coords: [number, number] }) => {
+  const map = useMap();
+
   useEffect(() => {
-    if (!isPlaying || isPaused) return;
-    
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % schools.length);
-    }, 4000);
-    
-    return () => clearInterval(interval);
-  }, [isPlaying, isPaused]);
+    map.flyTo(coords, 8, {
+      duration: 1.4,
+    });
+  }, [coords]);
 
-  // Navigation
-  const handlePrev = useCallback(() => {
-    setCurrentIndex(prev => prev === 0 ? schools.length - 1 : prev - 1);
+  return null;
+};
+
+/* ===============================
+   COMPONENT
+================================= */
+
+const DiplomaSchoolsCourses = () => {
+  const [geoData, setGeoData] = useState<any>(null);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    fetch("/map/Orissa.geojson")
+      .then((res) => res.json())
+      .then(setGeoData);
   }, []);
 
-  const handleNext = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % schools.length);
-  }, []);
-
-  // Touch handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) handleNext();
-    if (isRightSwipe) handlePrev();
-  };
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') handlePrev();
-      if (e.key === 'ArrowRight') handleNext();
-      if (e.key === ' ') {
-        e.preventDefault();
-        setIsPlaying(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handlePrev, handleNext]);
-
-  const currentSchool = schools[currentIndex];
+  const school = schools[index];
 
   return (
-    <section 
-      className="relative py-20 overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      role="region"
-      aria-label="Blue-Collar Diploma Schools Carousel"
-    >
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source
-            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1763201620/2792967-uhd_2160_1440_25fps_u4mo5l.mp4"
-            type="video/mp4"
+    <section className="bg-black py-20 text-white relative overflow-hidden">
+      {/* INLINE PREMIUM CSS */}
+      <style>{`
+
+        .district-glow{
+          filter: drop-shadow(0 0 6px rgba(34,197,94,0.9))
+                  drop-shadow(0 0 14px rgba(34,197,94,0.6));
+        }
+
+        .pulse-dot{
+          width:14px;
+          height:14px;
+          border-radius:50%;
+          background:#22c55e;
+          position:relative;
+        }
+
+        .pulse-dot::after{
+          content:"";
+          position:absolute;
+          inset:0;
+          border-radius:50%;
+          border:2px solid #22c55e;
+          animation:pulseRing 1.8s infinite;
+        }
+
+        @keyframes pulseRing{
+          from{transform:scale(1);opacity:.8}
+          to{transform:scale(3);opacity:0}
+        }
+
+        .leaflet-tooltip{
+          background:rgba(2,6,23,.95);
+          border:1px solid rgba(34,197,94,.5);
+          color:#22c55e;
+          font-weight:600;
+          border-radius:8px;
+          backdrop-filter:blur(6px);
+        }
+
+      `}</style>
+
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center px-6">
+
+        {/* LEFT */}
+        <div>
+          <img
+            src={school.image}
+            className="rounded-3xl h-[380px] w-full object-cover"
           />
-          <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black"></div>
-        </video>
-        
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-black/50 to-black"></div>
-        
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-green-600/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-red-600/20 to-orange-600/20 rounded-full blur-3xl animate-pulse delay-500"></div>
-        </div>
-      </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-red-100 bg-clip-text text-transparent">
-            Blue-Collar Diploma Schools
-          </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Job-ready diploma programs with 6-month paid internships, NSQF certification, and 100% placement in core industries
+          <h3 className="text-3xl font-bold mt-6">
+            {school.shortName}
+          </h3>
+
+          <p className="text-gray-300 mt-3">
+            {school.description}
           </p>
-          <div className="mt-6 flex items-center justify-center space-x-4">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-green-500"></div>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-green-500"></div>
+
+          <div className="flex gap-6 mt-4 text-sm">
+            <span className="flex items-center gap-2">
+              <Award className="text-green-400 w-4" />
+              {school.successRate}% placement
+            </span>
+
+            <span className="flex items-center gap-2">
+              <Users className="text-green-400 w-4" />
+              {school.totalStudents}+ trained
+            </span>
           </div>
-        </div>
 
-        {/* Carousel */}
-        <div className="relative">
-          <button
-            onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-green-500"
-            aria-label="Previous school"
-          >
-            <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
-          </button>
-          
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-green-500"
-            aria-label="Next school"
-          >
-            <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
-          </button>
-
-          {/* Main Card */}
-          <div className="mx-auto max-w-5xl">
-            <div className="relative group">
-              <div className={`absolute inset-0 bg-gradient-to-r ${currentSchool.gradient} rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500`}></div>
-              
-              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
-                <div className="relative h-64 md:h-80 overflow-hidden">
-                  <img 
-                    src={currentSchool.image}
-                    alt={currentSchool.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  
-                  <div className="absolute top-6 right-6 flex flex-col space-y-2">
-                    <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                      <Award className="w-4 h-4 mr-1" />
-                      {currentSchool.successRate}% Placement
-                    </div>
-                    <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                      <Users className="w-4 h-4 mr-1" />
-                      {currentSchool.totalStudents.toLocaleString()} Trained
-                    </div>
-                  </div>
-
-                  <div className="absolute bottom-6 left-6">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                      {currentSchool.shortName}
-                    </h3>
-                    <p className="text-gray-200 text-sm md:text-base max-w-md">
-                      {currentSchool.description}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-8">
-                  <h4 className="text-xl font-semibold text-white mb-6 flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
-                    NSQF-Aligned Blue-Collar Diplomas
-                  </h4>
-                  
-                  <div className="grid gap-4">
-                    {currentSchool.courses.map((course, index) => (
-                      <div 
-                        key={index}
-                        className="group/course bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
-                      >
-                        <div className="flex items-center justify-between mb-2">
-                          <h5 className="font-medium text-white group-hover/course:text-green-300 transition-colors">
-                            {course.name}
-                          </h5>
-                          <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover/course:text-white transition-colors" />
-                        </div>
-                        
-                        <div className="flex items-center space-x-4 text-sm text-gray-300">
-                          <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded-lg font-medium">
-                            Level {course.nsqfLevel}
-                          </span>
-                          <span className="flex items-center">
-                            <Clock className="w-3 h-3 mr-1" />
-                            {course.duration}
-                          </span>
-                          <span className="flex items-center">
-                            <Users className="w-3 h-3 mr-1" />
-                            {course.enrolled} enrolled
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+          {/* COURSES */}
+          <div className="mt-6 grid gap-3">
+            {school.courses.map((c, i) => (
+              <div
+                key={i}
+                className="bg-white/5 border border-white/10 rounded-xl px-4 py-3"
+              >
+                {c.name} • Level {c.nsqfLevel}
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div className="flex items-center justify-center mt-8 space-x-6">
-          <button
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-300 hover:scale-110"
-            aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
-          >
-            {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-          </button>
-
-          <div className="flex space-x-2">
-            {schools.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  currentIndex === index
-                    ? "w-8 h-3 bg-green-500"
-                    : "w-3 h-3 bg-white/30 hover:bg-white/50"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
             ))}
           </div>
 
-          <div className="text-sm text-gray-400 font-medium">
-            {currentIndex + 1} / {schools.length}
+          {/* NAV */}
+          <div className="flex gap-4 mt-6">
+            <button
+              onClick={() =>
+                setIndex(prev =>
+                  prev === 0 ? schools.length - 1 : prev - 1
+                )
+              }
+              className="p-3 bg-white/10 rounded-full"
+            >
+              <ChevronLeft />
+            </button>
+
+            <button
+              onClick={() =>
+                setIndex(prev => (prev + 1) % schools.length)
+              }
+              className="p-3 bg-white/10 rounded-full"
+            >
+              <ChevronRight />
+            </button>
           </div>
         </div>
 
-        <div className="text-center mt-6 text-sm text-gray-400">
-          Use arrow keys to navigate • Hover to pause • Swipe on mobile
+        {/* RIGHT MAP */}
+        <div className="h-[600px] -z-0 rounded-3xl overflow-hidden border border-white/10">
+          {geoData && (
+            <MapContainer
+              center={[20.3, 85.8]}
+              zoom={7}
+              scrollWheelZoom={false}
+              style={{ height: "100%", background: "#020617" }}
+            >
+              <FlyToDistrict coords={school.location.coords} />
+
+              <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" />
+
+              <GeoJSON
+                key={school.location.district}
+                data={geoData}
+                style={(feature: any) => {
+                  const active =
+                    feature.properties.Dist_Name ===
+                    school.location.district;
+
+                  return {
+                    fillColor: active ? "transparent" : "#020617",
+                    fillOpacity: active ? 0 : 0.25,
+                    color: active ? "#22c55e" : "#334155",
+                    weight: active ? 3 : 1,
+                    className: active ? "district-glow" : "",
+                  };
+                }}
+              />
+
+              <Marker
+                position={school.location.coords}
+                icon={pulseIcon}
+              >
+                <Tooltip permanent direction="top">
+                  {school.location.district}
+                </Tooltip>
+              </Marker>
+            </MapContainer>
+          )}
         </div>
       </div>
     </section>
   );
 };
 
-export default memo(DiplomaSchoolsCarousel);
+export default memo(DiplomaSchoolsCourses);

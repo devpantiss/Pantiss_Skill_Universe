@@ -53,101 +53,96 @@ const benefits = [
   },
 ];
 
-const IntMobilityBenefitsCards: React.FC<{ className?: string }> = ({
-  className = "",
-}) => {
+const IntMobilityBenefitsCards: React.FC = () => {
   return (
-    <section
-      aria-labelledby="mobility-benefits-heading"
-      className={`relative bg-black py-20 px-6 text-white ${className}`}
-    >
+    <section className="relative bg-black py-20 px-6 text-white">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="uppercase tracking-widest text-sm text-blue-400 mb-2">
-            International Mobility
+        {/* ===== Header ===== */}
+        <div className="mb-16 text-center">
+          <p className="uppercase tracking-widest text-sm text-[#00E5A8] mb-2">
+            Industry Aligned
           </p>
-          <h2
-            id="mobility-benefits-heading"
-            className="text-4xl md:text-5xl font-extrabold"
-          >
-            Program Benefits
+          <h2 className="text-4xl md:text-5xl font-semibold">
+            Certification Program Benefits
           </h2>
-          <p className="text-gray-300 max-w-3xl mx-auto mt-4">
-            A structured pathway to overseas opportunities — combining skills,
-            communication, compliance, and employer readiness.
+          <p className="mt-4 max-w-3xl mx-auto text-gray-300 text-base">
+            Compact, employer-focused certification pathways designed for rapid
+            skilling and strong placement outcomes.
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* ===== Compact Cards Grid ===== */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
           {benefits.map((item, i) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12 }}
+              transition={{ delay: i * 0.07, duration: 0.4 }}
               className="
-                relative group rounded-3xl overflow-hidden
-                border border-blue-500/40
-                shadow-[0_0_40px_rgba(59,130,246,0.18)]
-                hover:shadow-[0_0_60px_rgba(59,130,246,0.35)]
-                transition-all duration-500
+                group relative overflow-hidden
+                border border-green-600/40
+                bg-black
+                transition-shadow duration-300
+                hover:shadow-[0_0_40px_rgba(0,229,168,0.25)]
               "
             >
-              {/* Background Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center scale-105 group-hover:scale-110 transition-transform duration-700"
-                style={{ backgroundImage: `url(${item.image})` }}
-              />
+              {/* Image */}
+              <div className="relative h-[240px]">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/45" />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/20" />
-
-              {/* Content */}
-              <div className="relative z-10 p-8 flex flex-col justify-end h-[360px]">
-                <span className="text-xs uppercase tracking-widest text-blue-400 mb-2">
+                {/* Tag */}
+                <span className="absolute left-4 top-4 text-[10px] tracking-widest text-[#FFD84D]">
                   {item.tag}
                 </span>
+              </div>
 
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  {item.title}
-                </h3>
+              {/* Content */}
+              <div className="p-5 flex flex-col justify-between min-h-[90px]">
+                <div>
+                  <h3 className="text-lg font-semibold mb-1">
+                    {item.title}
+                  </h3>
 
-                <p className="text-gray-200 text-sm mb-6 max-w-md">
-                  {item.subtitle}
-                </p>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    {item.subtitle}
+                  </p>
+                </div>
 
-                <button
+                {/* <button
                   className="
-                    inline-flex items-center gap-3 w-fit
-                    px-6 py-3 rounded-full
-                    bg-gradient-to-r from-blue-500 to-cyan-400
-                    text-black font-semibold
-                    hover:scale-105 transition
+                    mt-4 inline-flex items-center gap-2
+                    text-sm font-medium text-[#00E5A8]
+                    transition-all group-hover:gap-3
                   "
                 >
                   Explore
                   <FaArrowRight />
-                </button>
+                </button> */}
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-14 flex justify-center">
+        {/* ===== CTA ===== */}
+        <div className="mt-18 flex justify-center mt-16">
           <a
-            href="/our-programmes/international-mobility"
+            href="/our-programmes/industry-alligned-certification"
             className="
-              inline-flex items-center gap-3 px-8 py-4 rounded-full
-              bg-gradient-to-r from-blue-500 to-cyan-400
-              text-black font-semibold shadow-lg
+              inline-flex items-center gap-3
+              px-9 py-4 rounded-full
+              bg-gradient-to-r from-[#00E5A8] to-[#7C4DFF]
+              text-black font-semibold
               hover:scale-105 transition
             "
           >
-            View International Mobility
+            View Certification Programs
             <FaArrowRight />
           </a>
         </div>

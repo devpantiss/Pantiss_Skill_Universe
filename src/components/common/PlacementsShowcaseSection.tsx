@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
 import {
   Briefcase,
   IndianRupee,
@@ -8,6 +9,9 @@ import {
   MapPin,
   CheckCircle,
 } from "lucide-react";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 /* -----------------------------
    DATA
@@ -30,7 +34,35 @@ const achievers = [
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163947/student-6_ls3cpe.jpg",
   },
+  {
+    name: "Amit Singh",
+    role: "Plant Operator",
+    company: "JSW Steel",
+    package: "₹3.4 LPA",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163909/student-5_duxroz.jpg",
+  },
+  {
+    name: "Neha Kumari",
+    role: "Quality Technician",
+    company: "UltraTech Cement",
+    package: "₹3.1 LPA",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163947/student-6_ls3cpe.jpg",
+  },
+  {
+    name: "Suresh Mahto",
+    role: "Maintenance Supervisor",
+    company: "Tata Projects",
+    package: "₹3.8 LPA",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163909/student-5_duxroz.jpg",
+  },
 ];
+
+/* -----------------------------
+   PLACEMENT DATA
+----------------------------- */
 
 const placementHighlights = [
   {
@@ -42,13 +74,13 @@ const placementHighlights = [
   {
     title: "Industry & Sector Partnerships",
     description:
-      "Engagement with manufacturing, infrastructure, energy, logistics, and EPC sectors for workforce deployment.",
+      "Engagement with manufacturing, infrastructure, energy, logistics, and EPC sectors.",
     icon: Building2,
   },
   {
     title: "Career Continuity & Progression",
     description:
-      "Focus on sustainable employability through certification, skill depth, and real-world exposure.",
+      "Focus on sustainable employability through certification, skill depth, and real exposure.",
     icon: TrendingUp,
   },
 ];
@@ -90,71 +122,47 @@ const placementStats = [
    STAT CARD
 ----------------------------- */
 
-const StatCard = ({
-  stat,
-  delay,
-}: {
-  stat: {
-    label: string;
-    value?: string;
-    rotatingValues?: string[];
-    icon: any;
-  };
-  delay: number;
-}) => {
+const StatCard = ({ stat }: any) => {
   const Icon = stat.icon;
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     if (!stat.rotatingValues) return;
-
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % stat.rotatingValues!.length);
-    }, 1800);
-
+    const interval = setInterval(
+      () => setIndex((p) => (p + 1) % stat.rotatingValues.length),
+      1800,
+    );
     return () => clearInterval(interval);
   }, [stat.rotatingValues]);
 
   return (
-    <div
-      className="
-        bg-neutral-900
-        border border-neutral-800
-        rounded-2xl
-        p-8
-        min-h-[180px]
-        flex
-        flex-col
-        justify-center
-        items-center
-        text-center
-      "
-    >
-      <Icon className="w-6 h-6 text-green-500 mb-3" />
-
-      {/* VALUE / ROTATING TEXT */}
-      <div className="text-3xl font-semibold mb-2 h-[40px] flex items-center justify-center">
-        {stat.value ? (
-          stat.value
-        ) : (
-          <span key={index} className="animate-fadeUp">
-            {stat.rotatingValues![index]}
-          </span>
-        )}
+    <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 text-center">
+      <Icon className="w-6 h-6 text-green-500 mx-auto mb-3" />
+      <div className="text-3xl font-semibold mb-2 h-[40px]">
+        {stat.value || stat.rotatingValues[index]}
       </div>
-
-      {/* LABEL (STAGGERED) */}
-      <div
-        className="text-sm text-gray-300 opacity-0"
-        style={{
-          animation: "fadeUp 600ms ease forwards",
-          animationDelay: `${delay}ms`,
-        }}
-      >
-        {stat.label}
-      </div>
+      <p className="text-sm text-gray-300">{stat.label}</p>
     </div>
   );
+};
+
+/* -----------------------------
+   ACHIEVERS SLIDER (2 CARDS)
+----------------------------- */
+
+const achieverSliderSettings = {
+  dots: true,
+  arrows: false,
+  infinite: true,
+  speed: 600,
+  autoplay: true,
+  autoplaySpeed: 3500,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  responsive: [
+    { breakpoint: 1024, settings: { slidesToShow: 2 } },
+    { breakpoint: 768, settings: { slidesToShow: 1 } },
+  ],
 };
 
 /* -----------------------------
@@ -163,29 +171,27 @@ const StatCard = ({
 
 const PlacementsShowcaseSection: React.FC = () => {
   return (
-    <section className="bg-black px-4 text-white">
-      <div className="max-w-7xl mx-auto space-y-24">
+    <section className="bg-black px-4 py-4 text-white">
+      <div className="max-w-7xl mx-auto space-y-6">
         {/* HEADER */}
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight">
+        <div className="text-center max-w-4xl mx-auto">
+          <h2 className="text-4xl lg:text-5xl font-semibold">
             Placements & Career Outcomes
           </h2>
-          <p className="mt-4 text-gray-300 leading-relaxed">
+          <p className="mt-4 text-gray-300">
             A structured university-led placement framework translating skill
-            education into sustainable employment outcomes.
+            education into real employment outcomes.
           </p>
         </div>
 
-        {/* SYMMETRICAL GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-stretch">
-          {/* LEFT STATS */}
+        {/* STATS GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="space-y-8">
-            {placementStats.slice(0, 3).map((stat, i) => (
-              <StatCard key={i} stat={stat} delay={i * 200} />
+            {placementStats.slice(0, 3).map((s, i) => (
+              <StatCard key={i} stat={s} />
             ))}
           </div>
 
-          {/* CENTER NARRATIVE */}
           <div className="space-y-6">
             {placementHighlights.map((item, i) => {
               const Icon = item.icon;
@@ -196,132 +202,75 @@ const PlacementsShowcaseSection: React.FC = () => {
                 >
                   <div className="flex items-center gap-3 mb-2">
                     <Icon className="w-5 h-5 text-green-500" />
-                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                    <h3 className="font-semibold">{item.title}</h3>
                   </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    {item.description}
-                  </p>
+                  <p className="text-sm text-gray-300">{item.description}</p>
                 </div>
               );
             })}
           </div>
 
-          {/* RIGHT STATS */}
           <div className="space-y-8">
-            {placementStats.slice(3).map((stat, i) => (
-              <StatCard key={i} stat={stat} delay={(i + 3) * 200} />
+            {placementStats.slice(3).map((s, i) => (
+              <StatCard key={i} stat={s} />
             ))}
           </div>
         </div>
 
-        {/* ACHIEVERS */}
-        {/* =====================
-    ACHIEVERS (Modern)
-===================== */}
+        {/* ACHIEVERS CAROUSEL */}
         <div className="space-y-12">
           <h3 className="text-2xl font-semibold text-center">
             Select Placement Achievers
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <Slider {...achieverSliderSettings}>
             {achievers.map((student, i) => (
-              <div
-                key={i}
-                className="
-          relative
-          bg-gradient-to-br from-neutral-900 via-neutral-900 to-neutral-800
-          border border-neutral-800
-          rounded-3xl
-          p-8
-          transition-all duration-300
-          hover:-translate-y-1
-          hover:shadow-xl hover:shadow-black/40
-        "
-              >
-                {/* Badge */}
-                <span
-                  className="
-          absolute top-5 right-5
-          text-xs font-semibold
-          px-3 py-1 rounded-full
-          bg-green-500/10 text-green-400
-          border border-green-500/20
-        "
-                >
-                  Top Achiever
-                </span>
+              <div key={i} className="px-4">
+                <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 md:p-8">
+                  <div className="flex items-center gap-6">
+                    {/* LEFT : Avatar + Name */}
+                    <div className="flex flex-col items-center min-w-[120px]">
+                      <img
+                        src={student.image}
+                        alt={student.name}
+                        className="w-24 h-24 rounded-full object-cover border-2 border-green-500/40 mb-3"
+                      />
+                      <h4 className="text-sm font-semibold text-center">
+                        {student.name}
+                      </h4>
+                    </div>
 
-                <div className="flex items-center gap-6">
-                  {/* Avatar */}
-                  <div className="relative">
-                    <img
-                      src={student.image}
-                      alt={student.name}
-                      className="
-                w-24 h-24
-                object-cover
-                rounded-full
-                border-2 border-green-500/40
-              "
-                    />
-                    <div
-                      className="
-              absolute inset-0 rounded-full
-              ring-2 ring-green-500/20
-            "
-                    />
-                  </div>
+                    {/* RIGHT : Details */}
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-300 mb-4">
+                        {student.role}
+                      </p>
 
-                  {/* Info */}
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold tracking-tight">
-                      {student.name}
-                    </h4>
-                    <p className="text-sm text-gray-400 mb-4">{student.role}</p>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <Building2 className="w-4 h-4 text-green-500" />
+                          <span>{student.company}</span>
+                        </div>
 
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center gap-2 text-gray-300">
-                        <Building2 className="w-4 h-4 text-green-500" />
-                        {student.company}
-                      </div>
-                      <div className="flex items-center gap-2 font-medium text-white">
-                        <IndianRupee className="w-4 h-4 text-green-500" />
-                        {student.package}
+                        <div className="flex items-center gap-2 font-semibold text-white">
+                          <IndianRupee className="w-4 h-4 text-green-500" />
+                          <span>{student.package}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
-          </div>
+          </Slider>
         </div>
 
         {/* DISCLAIMER */}
-        <p className="text-xs text-gray-400 max-w-5xl mx-auto text-center leading-relaxed">
+        <p className="text-xs text-gray-400 text-center max-w-5xl mx-auto">
           * Placement outcomes vary by program, trade, location, and individual
-          performance. The university facilitates placements, apprenticeships,
-          and employer linkages in line with applicable government and industry
-          frameworks.
+          performance.
         </p>
       </div>
-
-      {/* ANIMATIONS */}
-      <style>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fadeUp {
-          animation: fadeUp 500ms ease;
-        }
-      `}</style>
     </section>
   );
 };

@@ -1,16 +1,28 @@
-import React, { memo, useState, useEffect, useCallback } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import {
   ChevronLeft,
   ChevronRight,
-  CheckCircle,
   Play,
   Pause,
   Award,
-  Clock,
-  ArrowUpRight,
 } from "lucide-react";
 
-// Define interfaces for type safety
+import {
+  MapContainer,
+  TileLayer,
+  GeoJSON,
+  Marker,
+  Tooltip,
+  useMap,
+} from "react-leaflet";
+
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
+/* =====================================================
+   TYPES
+===================================================== */
+
 interface Course {
   name: string;
   skillLevel: string;
@@ -20,496 +32,306 @@ interface Course {
 
 interface School {
   id: string;
-  name: string;
   shortName: string;
   description: string;
   image: string;
   gradient: string;
   totalParticipants: number;
   successRate: number;
+  location: {
+    district: string;
+    coords: [number, number];
+  };
   courses: Course[];
 }
 
-// Skill Development Bootcamp Programs (sectors)
+/* =====================================================
+   DATA WITH LOCATIONS
+===================================================== */
+
 const schools: School[] = [
   {
-    id: "mining-operations",
-    name: "Bootcamp: Mining Operations & Safety",
+    id: "mining",
     shortName: "Mining Ops",
     description:
-      "Hands-on bootcamp focused on safety-first mine operations, basic equipment handling, and worksite discipline — built for rapid job readiness in mining ecosystems.",
+      "Safety-first mine operations bootcamp focused on equipment basics and rapid job readiness.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451906/dominik-vanyi-Mk2ls9UBO2E-unsplash_1_uk97mb.jpg",
     gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
     totalParticipants: 1620,
     successRate: 92,
+    location: { district: "Angul", coords: [20.84, 85.15] },
     courses: [
-      {
-        name: "Mine Safety Essentials (Bootcamp)",
-        skillLevel: "Basic",
-        duration: "2 weeks",
-        participants: 420,
-      },
-      {
-        name: "HEMM Basics & Worksite Protocol",
-        skillLevel: "Basic",
-        duration: "3 weeks",
-        participants: 320,
-      },
-      {
-        name: "Maintenance Support (Fitter Basics)",
-        skillLevel: "Intermediate",
-        duration: "4 weeks",
-        participants: 200,
-      },
+      { name: "Mine Safety Essentials", skillLevel: "Basic", duration: "2 weeks", participants: 420 },
+      { name: "HEMM Worksite Protocol", skillLevel: "Basic", duration: "3 weeks", participants: 320 },
     ],
   },
   {
-    id: "steel-aluminium",
-    name: "Bootcamp: Steel & Aluminium Shop-Floor Skills",
-    shortName: "Steel & Al",
+    id: "steel",
+    shortName: "Steel & Aluminium",
     description:
-      "Bootcamp training for welding basics, fabrication practices, and shop-floor safety — designed for foundries, rolling mills, and industrial fabrication roles.",
+      "Shop-floor welding, fabrication and safety bootcamps for industrial roles.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451904/ant-rozetsky-_qWeqqmpBpU-unsplash_depnwu.jpg",
     gradient: "from-gray-600/20 via-slate-500/20 to-red-500/20",
     totalParticipants: 1840,
     successRate: 90,
+    location: { district: "Angul", coords: [20.84, 85.15] },
     courses: [
-      {
-        name: "Welding Foundations (Arc / MIG Basics)",
-        skillLevel: "Basic",
-        duration: "3 weeks",
-        participants: 600,
-      },
-      {
-        name: "Fabrication & Measurement Skills",
-        skillLevel: "Intermediate",
-        duration: "4 weeks",
-        participants: 480,
-      },
-      {
-        name: "Industrial Safety & Work Discipline",
-        skillLevel: "Basic",
-        duration: "2 weeks",
-        participants: 220,
-      },
+      { name: "Welding Foundations", skillLevel: "Basic", duration: "3 weeks", participants: 600 },
     ],
   },
   {
-    id: "power-green",
-    name: "Bootcamp: Electrical & Green Energy",
+    id: "power",
     shortName: "Power & Green",
     description:
-      "Bootcamp covering electrical basics, safe wiring practices, solar PV fundamentals, and maintenance support — bridging conventional power with renewable systems.",
+      "Electrical and solar PV bootcamps bridging conventional and renewable power.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
     gradient: "from-yellow-400/20 via-green-400/20 to-cyan-400/20",
     totalParticipants: 2060,
     successRate: 94,
+    location: { district: "Jajapur", coords: [20.85, 86.33] },
     courses: [
-      {
-        name: "Electrical Safety + Wiring Basics",
-        skillLevel: "Basic",
-        duration: "3 weeks",
-        participants: 680,
-      },
-      {
-        name: "Solar PV Installation Fundamentals",
-        skillLevel: "Intermediate",
-        duration: "4 weeks",
-        participants: 520,
-      },
-      {
-        name: "Industrial Maintenance Assistant",
-        skillLevel: "Intermediate",
-        duration: "4 weeks",
-        participants: 360,
-      },
+      { name: "Electrical Wiring Basics", skillLevel: "Basic", duration: "3 weeks", participants: 680 },
     ],
   },
   {
-    id: "shipping-logistics",
-    name: "Bootcamp: Shipping, Ports & Logistics",
+    id: "shipping",
     shortName: "Logistics",
     description:
-      "Bootcamp for port handling basics, warehouse operations, and supply chain discipline — designed for rapid placement in logistics and service roles.",
+      "Rapid placement bootcamps for ports, cargo and warehouse roles.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
     gradient: "from-blue-400/20 via-cyan-400/20 to-teal-400/20",
     totalParticipants: 1380,
     successRate: 91,
+    location: { district: "Jagatsinghapur", coords: [20.25, 86.17] },
     courses: [
-      {
-        name: "Port Cargo Handling Basics",
-        skillLevel: "Basic",
-        duration: "2 weeks",
-        participants: 540,
-      },
-      {
-        name: "Warehouse & Inventory Operations",
-        skillLevel: "Basic",
-        duration: "3 weeks",
-        participants: 420,
-      },
-      {
-        name: "Cold Storage & Handling Support",
-        skillLevel: "Intermediate",
-        duration: "4 weeks",
-        participants: 220,
-      },
+      { name: "Port Cargo Handling", skillLevel: "Basic", duration: "2 weeks", participants: 540 },
     ],
   },
   {
     id: "ev",
-    name: "Bootcamp: Electric Vehicles & E-Mobility",
-    shortName: "EV",
+    shortName: "Electric Vehicles",
     description:
-      "Skill bootcamps for EV servicing basics, battery safety, and diagnostics fundamentals — designed for the growing e-mobility service ecosystem.",
+      "EV servicing and battery safety bootcamps for e-mobility careers.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451903/chuttersnap-xJLsHl0hIik-unsplash_1_pmlvht.jpg",
     gradient: "from-indigo-500/20 via-purple-500/20 to-pink-400/20",
     totalParticipants: 1260,
     successRate: 95,
+    location: { district: "Cuttack", coords: [20.46, 85.88] },
     courses: [
-      {
-        name: "EV Technician Foundations",
-        skillLevel: "Basic",
-        duration: "3 weeks",
-        participants: 540,
-      },
-      {
-        name: "Battery Safety & Handling (Basics)",
-        skillLevel: "Intermediate",
-        duration: "3 weeks",
-        participants: 420,
-      },
-      {
-        name: "Light Diagnostics & Servicing Skills",
-        skillLevel: "Basic",
-        duration: "2 weeks",
-        participants: 300,
-      },
+      { name: "EV Technician Foundations", skillLevel: "Basic", duration: "3 weeks", participants: 540 },
     ],
   },
   {
-    id: "construction-tech",
-    name: "Bootcamp: Construction & Infra Equipment",
+    id: "construction",
     shortName: "Construction",
     description:
-      "Bootcamp training for site-ready roles covering basic machinery awareness, formwork practices, and equipment maintenance support.",
+      "Site-ready bootcamps covering formwork, machinery awareness and safety.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451909/luan-fonseca-azH6gVcRmBE-unsplash_otmxaa.jpg",
     gradient: "from-amber-300/20 via-rose-300/20 to-slate-400/20",
     totalParticipants: 1720,
     successRate: 89,
+    location: { district: "Kendujhar", coords: [21.63, 85.58] },
     courses: [
-      {
-        name: "Site Safety & Work Readiness",
-        skillLevel: "Basic",
-        duration: "2 weeks",
-        participants: 560,
-      },
-      {
-        name: "Formwork + Concrete Basics",
-        skillLevel: "Intermediate",
-        duration: "3 weeks",
-        participants: 420,
-      },
-      {
-        name: "Maintenance Support (Fitter Basics)",
-        skillLevel: "Basic",
-        duration: "3 weeks",
-        participants: 240,
-      },
+      { name: "Site Safety", skillLevel: "Basic", duration: "2 weeks", participants: 560 },
     ],
   },
   {
-    id: "water-sanitation-facility",
-    name: "Bootcamp: Water, Sanitation & Facility Support",
+    id: "water",
     shortName: "Water & FM",
     description:
-      "Bootcamps focused on pump operations basics, sanitation maintenance, and facility support skills for institutional and community environments.",
+      "Facility support and pump operations bootcamps for institutional environments.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
     gradient: "from-teal-400/20 via-emerald-400/20 to-blue-400/20",
     totalParticipants: 1480,
     successRate: 90,
+    location: { district: "Baleshwar", coords: [21.49, 86.94] },
     courses: [
-      {
-        name: "Pump Operator Basics",
-        skillLevel: "Basic",
-        duration: "3 weeks",
-        participants: 520,
-      },
-      {
-        name: "Sanitation & Wastewater Support",
-        skillLevel: "Basic",
-        duration: "3 weeks",
-        participants: 420,
-      },
-      {
-        name: "Facility Maintenance (Electrical/Plumbing)",
-        skillLevel: "Intermediate",
-        duration: "4 weeks",
-        participants: 180,
-      },
+      { name: "Pump Operator Basics", skillLevel: "Basic", duration: "3 weeks", participants: 520 },
     ],
   },
 ];
 
-const SkillDevSchoolsCourses: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+/* =====================================================
+   MAP HELPERS
+===================================================== */
 
-  // Auto-scroll with pause on hover
+const pulseIcon = new L.DivIcon({
+  className: "",
+  html: `<div class="pulse-dot"></div>`,
+  iconSize: [14, 14],
+});
+
+const FlyTo = ({ coords }: { coords: [number, number] }) => {
+  const map = useMap();
+
   useEffect(() => {
-    if (!isPlaying || isPaused) return;
+    map.flyTo(coords, 8, { duration: 1.5 });
+  }, [coords]);
 
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % schools.length);
-    }, 4000);
+  return null;
+};
 
-    return () => clearInterval(interval);
-  }, [isPlaying, isPaused]);
+/* =====================================================
+   COMPONENT
+===================================================== */
 
-  // Navigation handlers
-  const handlePrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev === 0 ? schools.length - 1 : prev - 1));
+const SkillDevSchoolsCourses = () => {
+  const [geoData, setGeoData] = useState<any>(null);
+  const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(true);
+
+  useEffect(() => {
+    fetch("/map/Orissa.geojson")
+      .then((res) => res.json())
+      .then(setGeoData);
   }, []);
 
-  const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % schools.length);
-  }, []);
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) handleNext();
-    if (isRightSwipe) handlePrev();
-  };
-
-  // Keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") handlePrev();
-      if (e.key === "ArrowRight") handleNext();
-      if (e.key === " ") {
-        e.preventDefault();
-        setIsPlaying((prev) => !prev);
-      }
-    };
+    if (!playing) return;
+    const i = setInterval(() => {
+      setIndex((p) => (p + 1) % schools.length);
+    }, 4500);
+    return () => clearInterval(i);
+  }, [playing]);
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handlePrev, handleNext]);
+  const school = schools[index];
 
-  const currentSchool = schools[currentIndex];
+  const next = useCallback(
+    () => setIndex((p) => (p + 1) % schools.length),
+    []
+  );
+
+  const prev = useCallback(
+    () => setIndex((p) => (p === 0 ? schools.length - 1 : p - 1)),
+    []
+  );
 
   return (
-    <section
-      className="relative py-20 overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      role="region"
-      aria-label="Skill Development Bootcamp Programs Carousel"
-    >
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source
-            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1763201620/2792967-uhd_2160_1440_25fps_u4mo5l.mp4"
-            type="video/mp4"
+    <section className="bg-black py-24 text-white">
+      <style>{`
+        .district-glow{
+          filter: drop-shadow(0 0 6px rgba(34,197,94,.9))
+                  drop-shadow(0 0 14px rgba(34,197,94,.6));
+        }
+
+        .pulse-dot{
+          width:14px;height:14px;border-radius:50%;
+          background:#22c55e;position:relative;
+        }
+
+        .pulse-dot::after{
+          content:"";position:absolute;inset:0;
+          border-radius:50%;
+          border:2px solid #22c55e;
+          animation:pulseRing 1.8s infinite;
+        }
+
+        @keyframes pulseRing{
+          from{transform:scale(1);opacity:.8}
+          to{transform:scale(3);opacity:0}
+        }
+      `}</style>
+
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 px-6">
+
+        {/* LEFT */}
+        <div>
+          <img
+            src={school.image}
+            className="rounded-3xl h-[400px] w-full object-cover"
           />
-          <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black"></div>
-        </video>
 
-        {/* Video Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-black/50 to-black"></div>
+          <h3 className="text-3xl font-bold mt-6">
+            {school.shortName}
+          </h3>
 
-        {/* Animated Overlay Effects */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-green-600/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-red-600/20 to-orange-600/20 rounded-full blur-3xl animate-pulse delay-500"></div>
-        </div>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-red-100 bg-clip-text text-transparent">
-            Skill Development Bootcamps
-          </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Short-term, hands-on bootcamps built for real job roles — practical
-            training, safety-first discipline, and career support aligned with
-            workforce demand across key industries.
+          <p className="text-gray-300 mt-3">
+            {school.description}
           </p>
-          <div className="mt-6 flex items-center justify-center space-x-4">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-green-500"></div>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-green-500"></div>
+
+          <div className="flex gap-4 mt-4">
+            <span className="bg-white/10 px-4 py-2 rounded-full flex items-center gap-2">
+              <Award className="w-4 text-green-400"/>
+              {school.successRate}% success
+            </span>
+
+            <span className="bg-white/10 px-4 py-2 rounded-full">
+              {school.totalParticipants}+ trained
+            </span>
           </div>
-        </div>
 
-        {/* Carousel Container */}
-        <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-green-500"
-            aria-label="Previous program"
-          >
-            <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
-          </button>
-
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-green-500"
-            aria-label="Next program"
-          >
-            <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
-          </button>
-
-          {/* Main Card */}
-          <div className="mx-auto max-w-5xl">
-            <div className="relative group">
-              <div
-                className={`absolute inset-0 bg-gradient-to-r ${currentSchool.gradient} rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500`}
-              ></div>
-
-              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
-                {/* Image Section */}
-                <div className="relative h-64 md:h-80 overflow-hidden">
-                  <img
-                    src={currentSchool.image}
-                    alt={currentSchool.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-
-                  {/* Overlay Stats */}
-                  <div className="absolute top-6 right-6 flex flex-col space-y-2">
-                    <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                      <Award className="w-4 h-4 mr-1" />
-                      {currentSchool.successRate}% Success
-                    </div>
-                  </div>
-
-                  {/* School Badge */}
-                  <div className="absolute bottom-6 left-6">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                      {currentSchool.shortName}
-                    </h3>
-                    <p className="text-gray-200 text-sm md:text-base max-w-md">
-                      {currentSchool.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Content Section */}
-                <div className="p-8">
-                  <h4 className="text-xl font-semibold text-white mb-6 flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
-                    Bootcamp Tracks & Modules
-                  </h4>
-
-                  <div className="grid gap-4">
-                    {currentSchool.courses.map((course, index) => (
-                      <div
-                        key={index}
-                        className="group/course bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
-                      >
-                        <div className="flex items-center justify-between mb-2">
-                          <h5 className="font-medium text-white group-hover/course:text-green-300 transition-colors">
-                            {course.name}
-                          </h5>
-                          <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover/course:text-white transition-colors" />
-                        </div>
-
-                        <div className="flex items-center space-x-4 text-sm text-gray-300">
-                          <span className="flex items-center">
-                            <Clock className="w-3 h-3 mr-1" />
-                            {course.duration}
-                          </span>
-                          <span className="text-xs text-gray-400">
-                            Participants: {course.participants}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+          <div className="mt-6 grid gap-3">
+            {school.courses.map((c, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 flex justify-between">
+                <span>{c.name}</span>
+                <span className="text-gray-400 text-sm">
+                  {c.duration}
+                </span>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Controls & Indicators */}
-        <div className="flex items-center justify-center mt-8 space-x-6">
-          {/* Play/Pause Button */}
-          <button
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-300 hover:scale-110"
-            aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
-          >
-            {isPlaying ? (
-              <Pause className="w-5 h-5" />
-            ) : (
-              <Play className="w-5 h-5" />
-            )}
-          </button>
-
-          {/* Indicators */}
-          <div className="flex space-x-2">
-            {schools.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  currentIndex === index
-                    ? "w-8 h-3 bg-green-500"
-                    : "w-3 h-3 bg-white/30 hover:bg-white/50"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
             ))}
           </div>
 
-          {/* Progress Indicator */}
-          <div className="text-sm text-gray-400 font-medium">
-            {currentIndex + 1} / {schools.length}
+          <div className="flex gap-4 mt-6">
+            <button onClick={prev} className="p-3 bg-white/10 rounded-full">
+              <ChevronLeft />
+            </button>
+
+            <button onClick={next} className="p-3 bg-white/10 rounded-full">
+              <ChevronRight />
+            </button>
+
+            <button
+              onClick={() => setPlaying(!playing)}
+              className="p-3 bg-white/10 rounded-full"
+            >
+              {playing ? <Pause/> : <Play/>}
+            </button>
           </div>
         </div>
 
-        {/* Navigation Hints */}
-        <div className="text-center mt-6 text-sm text-gray-400">
-          Use arrow keys to navigate • Hover to pause • Swipe on mobile
+        {/* RIGHT MAP */}
+        <div className="h-[640px] -z-0 rounded-3xl overflow-hidden border border-white/10">
+          {geoData && (
+            <MapContainer
+              center={[20.3, 85.8]}
+              zoom={7}
+              style={{ height: "100%" }}
+            >
+              <FlyTo coords={school.location.coords} />
+
+              <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" />
+
+              <GeoJSON
+                key={school.location.district}
+                data={geoData}
+                style={(f: any) => {
+                  const active =
+                    f.properties.Dist_Name === school.location.district;
+
+                  return {
+                    fillOpacity: active ? 0 : 0.25,
+                    fillColor: "#020617",
+                    color: active ? "#22c55e" : "#334155",
+                    weight: active ? 3 : 1,
+                    className: active ? "district-glow" : "",
+                  };
+                }}
+              />
+
+              <Marker position={school.location.coords} icon={pulseIcon}>
+                <Tooltip permanent direction="top">
+                  {school.location.district}
+                </Tooltip>
+              </Marker>
+            </MapContainer>
+          )}
         </div>
       </div>
     </section>
