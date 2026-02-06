@@ -170,7 +170,7 @@ import {
       scales: {
         y: {
           min: 0,
-          max: 100,
+          max: 60,
           ticks: { color: "#9ca3af" },
           grid: { color: "#1f2937" },
         },
@@ -184,7 +184,7 @@ import {
     /* ===================== RENDER ===================== */
   
     return (
-      <section className="bg-[#0B0E11] text-white p-6 space-y-10 rounded-xl">
+      <section className="bg-black text-white mt-4 p-6 space-y-10 rounded-xl">
   
         {/* ===================== ROW 1: GAUGES (5) ===================== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">

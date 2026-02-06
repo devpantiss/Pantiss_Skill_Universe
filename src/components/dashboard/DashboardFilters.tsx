@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DashboardOverviewPage from "../../pages/dashboard/DashboardOverviewPage";
 import AttendanceDashboard from "../../pages/dashboard/AttendanceDashboard";
+import DistrictwiseDashboardPage from "../../pages/dashboard/DistrictwiseDashboardPage";
 
 /* ===================== TYPES ===================== */
 
@@ -8,40 +9,6 @@ type DashboardTab =
   | "overview"
   | "attendance"
   | "district-analytics";
-
-/* ===================== PAGE COMPONENTS ===================== */
-
-
-
-function AttendancePage() {
-  return (
-    <div>
-      <h3 className="text-xl font-light">Attendance</h3>
-      <p className="mt-2 text-sm text-white/60">
-        Attendance trends, batch-level insights, and absenteeism patterns.
-      </p>
-
-      <div className="mt-8 h-72 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center text-white/40">
-        Attendance charts & tables
-      </div>
-    </div>
-  );
-}
-
-function DistrictAnalyticsPage() {
-  return (
-    <div>
-      <h3 className="text-xl font-light">District Level Analytics</h3>
-      <p className="mt-2 text-sm text-white/60">
-        District-wise enrolment density, performance outcomes, and coverage.
-      </p>
-
-      <div className="mt-8 h-72 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center text-white/40">
-        District heatmaps & analytics
-      </div>
-    </div>
-  );
-}
 
 
 /* ===================== MAIN COMPONENT ===================== */
@@ -112,7 +79,7 @@ export default function DashboardFilters() {
         {activeTab === "overview" && <DashboardOverviewPage />}
         {activeTab === "attendance" && <AttendanceDashboard />}
         {activeTab === "district-analytics" && (
-          <DistrictAnalyticsPage />
+          <DistrictwiseDashboardPage />
         )}
       </main>
     </section>
