@@ -1,129 +1,120 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
+import DashboardOverviewPage from "../../pages/dashboard/DashboardOverviewPage";
+import AttendanceDashboard from "../../pages/dashboard/AttendanceDashboard";
 
-type Option = {
-  label: string;
-  value: string;
-};
+/* ===================== TYPES ===================== */
 
-type DropdownFilter = {
-  label: string;
-  options: Option[];
-};
+type DashboardTab =
+  | "overview"
+  | "attendance"
+  | "district-analytics";
 
-const dropdownFilters: DropdownFilter[] = [
-  { label: "Department", options: [{ label: "Skill Development", value: "skill" }] },
-  { label: "Programme", options: [{ label: "PMKVY", value: "pmkvy" }] },
-  { label: "Scheme", options: [{ label: "State Scheme", value: "state" }] },
-  { label: "District", options: [{ label: "Keonjhar", value: "keonjhar" }] },
-  { label: "Block", options: [{ label: "Joda", value: "joda" }] },
-  { label: "ULB", options: [{ label: "Municipality", value: "municipality" }] },
+/* ===================== PAGE COMPONENTS ===================== */
 
-  { label: "Sector", options: [{ label: "Mining", value: "mining" }] },
-  { label: "Course", options: [{ label: "Electrician", value: "electrician" }] },
-  { label: "Batch Start Date", options: [{ label: "Last 30 Days", value: "30" }] },
-  { label: "Batch End Date", options: [{ label: "Completed", value: "completed" }] },
-  { label: "SDC Code", options: [{ label: "SDC-001", value: "001" }] },
-  { label: "Batch ID", options: [{ label: "BATCH-101", value: "101" }] },
-];
 
-const yesNoFilters = [
-  "Enrolled",
-  "Dropout",
-  "Trained",
-  "Assessed",
-  "Passed",
-  "Failed",
-  "Absent",
-  "Certified",
-  "Placed",
-  "Security Cleared",
-];
 
-const TOTAL_ENROLLED = 260_877;
+function AttendancePage() {
+  return (
+    <div>
+      <h3 className="text-xl font-light">Attendance</h3>
+      <p className="mt-2 text-sm text-white/60">
+        Attendance trends, batch-level insights, and absenteeism patterns.
+      </p>
 
-const PantissDashboardFilters: React.FC = () => {
-  const [values, setValues] = useState<Record<string, string>>({});
-  const [count, setCount] = useState(0);
+      <div className="mt-8 h-72 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center text-white/40">
+        Attendance charts & tables
+      </div>
+    </div>
+  );
+}
 
-  /* ---------------- COUNT UP ANIMATION ---------------- */
-  useEffect(() => {
-    const duration = 1200; // ms
-    const start = performance.now();
+function DistrictAnalyticsPage() {
+  return (
+    <div>
+      <h3 className="text-xl font-light">District Level Analytics</h3>
+      <p className="mt-2 text-sm text-white/60">
+        District-wise enrolment density, performance outcomes, and coverage.
+      </p>
 
-    const animate = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out
-      setCount(Math.floor(eased * TOTAL_ENROLLED));
+      <div className="mt-8 h-72 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center text-white/40">
+        District heatmaps & analytics
+      </div>
+    </div>
+  );
+}
 
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
 
-    requestAnimationFrame(animate);
-  }, []);
+/* ===================== MAIN COMPONENT ===================== */
+
+export default function DashboardFilters() {
+  const [activeTab, setActiveTab] =
+    useState<DashboardTab>("overview");
 
   return (
-    <section className="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
-      {/* Heading */}
-      <h2 className="text-xl font-semibold text-zinc-100 mb-6 border-l-4 border-red-600 pl-3">
-        Skills Dashboard
-      </h2>
-
-      {/* Row 1 & 2 : Dropdown Filters */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        {dropdownFilters.map((filter) => (
-          <div key={filter.label} className="flex flex-col gap-1">
-            <label className="text-xs text-zinc-400">{filter.label}</label>
-            <select
-              className="bg-zinc-900 border border-zinc-800 rounded-md px-3 py-2 text-sm text-zinc-200 focus:border-red-600 focus:outline-none"
-              value={values[filter.label] || ""}
-              onChange={(e) =>
-                setValues({ ...values, [filter.label]: e.target.value })
-              }
-            >
-              <option value="">All</option>
-              {filter.options.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
-      </div>
-
-      {/* Row 3 : Yes / No Dropdowns + KPI */}
-      <div className="flex flex-col lg:flex-row gap-4">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 flex-1">
-          {yesNoFilters.map((label) => (
-            <div key={label} className="flex flex-col gap-1">
-              <label className="text-xs text-zinc-400">{label}</label>
-              <select
-                className="bg-zinc-900 border border-zinc-800 rounded-md px-3 py-2 text-sm text-zinc-200 focus:border-red-600 focus:outline-none"
-                value={values[label] || ""}
-                onChange={(e) =>
-                  setValues({ ...values, [label]: e.target.value })
-                }
-              >
-                <option value="">All</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </div>
-          ))}
-        </div>
-
-        {/* KPI Card */}
-        <div className="min-w-[200px] bg-zinc-900 border border-red-600 rounded-lg p-4 flex flex-col items-center justify-center">
-          <p className="text-xs text-zinc-400 mb-1">Total Enrolled</p>
-          <p className="text-3xl font-bold text-red-600">
-            {count.toLocaleString()}
+    <section className="w-full bg-black text-white lg:mt-0 sm:mt-16">
+      {/* ===================== HEADER ===================== */}
+      <header className="border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-6 py-8">
+          <h1 className="text-5xl font-bold tracking-tight">
+            Skill Dashboard
+          </h1>
+          <p className="mt-2 max-w-2xl text-sm text-white/60">
+            Programme performance, attendance monitoring,
+            and district-level insights.
           </p>
         </div>
+      </header>
+
+      {/* ===================== TABS ===================== */}
+      <div className="border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-6">
+          <nav className="flex gap-10 h-14">
+            {[
+              { key: "overview", label: "Overview" },
+              { key: "attendance", label: "Attendance" },
+              {
+                key: "district-analytics",
+                label: "District Level Analytics",
+              },
+            ].map((tab) => {
+              const isActive = tab.key === activeTab;
+
+              return (
+                <button
+                  key={tab.key}
+                  onClick={() =>
+                    setActiveTab(tab.key as DashboardTab)
+                  }
+                  className="relative h-full flex items-center focus:outline-none"
+                >
+                  <span
+                    className={`text-sm tracking-wide transition-colors ${
+                      isActive
+                        ? "text-white"
+                        : "text-white/60 hover:text-white"
+                    }`}
+                  >
+                    {tab.label}
+                  </span>
+
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-white" />
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
       </div>
+
+      {/* ===================== CONTENT ===================== */}
+      <main className="mx-auto max-w-7xl px-6 py-10">
+        {activeTab === "overview" && <DashboardOverviewPage />}
+        {activeTab === "attendance" && <AttendanceDashboard />}
+        {activeTab === "district-analytics" && (
+          <DistrictAnalyticsPage />
+        )}
+      </main>
     </section>
   );
-};
-
-export default PantissDashboardFilters;
+}
