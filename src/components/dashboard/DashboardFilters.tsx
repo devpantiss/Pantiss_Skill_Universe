@@ -2,13 +2,15 @@ import { useState } from "react";
 import DashboardOverviewPage from "../../pages/dashboard/DashboardOverviewPage";
 import AttendanceDashboard from "../../pages/dashboard/AttendanceDashboard";
 import DistrictwiseDashboardPage from "../../pages/dashboard/DistrictwiseDashboardPage";
+import PlacementsDashboard from "../../pages/dashboard/PlacementsDashboard";
 
 /* ===================== TYPES ===================== */
 
 type DashboardTab =
   | "overview"
   | "attendance"
-  | "district-analytics";
+  | "district-analytics" 
+  | "placements";
 
 
 /* ===================== MAIN COMPONENT ===================== */
@@ -42,6 +44,10 @@ export default function DashboardFilters() {
               {
                 key: "district-analytics",
                 label: "District Level Analytics",
+              },
+              {
+                key: "placements",
+                label: "Placements",
               },
             ].map((tab) => {
               const isActive = tab.key === activeTab;
@@ -80,6 +86,9 @@ export default function DashboardFilters() {
         {activeTab === "attendance" && <AttendanceDashboard />}
         {activeTab === "district-analytics" && (
           <DistrictwiseDashboardPage />
+        )}
+        {activeTab === "placements" && (
+          <PlacementsDashboard />
         )}
       </main>
     </section>
