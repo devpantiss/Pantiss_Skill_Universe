@@ -1,4 +1,4 @@
-// Header.tsx (fixed)
+// Header.tsx (updated)
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Marquee from "react-fast-marquee";
@@ -36,7 +36,6 @@ const navLinks: NavLink[] = [
           { name: "Pantiss School for Steel & Aluminium", path: "https://pantiss-school-for-mines-steel-alum.vercel.app" },
           { name: "Pantiss School for Power & Green Energy", path: "https://pantiss-school-for-power-green-energy.vercel.app" },
           { name: "Pantiss School for Shipping & Logistics", path: "https://pantiss-school-for-shipping-logistics.vercel.app" },
-          // { name: "Pantiss School for Electric Vehicle", path: "https://pantiss-school-for-ev.vercel.app" },
           { name: "Pantiss School for Construction Tech & Infra Equipment", path: "https://pantiss-school-for-construction-infra.vercel.app" },
           { name: "Pantiss School for Green Jobs", path: "https://pantiss-school-for-wash-facility.vercel.app" },
         ],
@@ -72,7 +71,6 @@ const navLinks: NavLink[] = [
       { name: "ITI", path: "/our-programmes/iti-program" },
       { name: "Industry Aligned", path: "/our-programmes/industry-alligned-certification" },
       { name: "Workmen Upskilling & Reskilling Programs", path: "/our-programmes/upskilling-and-reskilling-program" },
-      // { name: "", path: "/our-programmes/industry-alligned-certification" },
     ],
   },
   { name: "Contact", path: "/contact-us" },
@@ -86,29 +84,18 @@ const secondaryLinks = [
   { name: "Alumni Portal", path: "/wise", icon: FaBrain },
 ];
 
+/* ✅ UPDATED topRightMenu */
 const topRightMenu = [
-  {
-    name: "ERP",
-    children: [
-      { name: "Faculty", path: "/campus-login/faculty" },
-      { name: "Admin Staff", path: "/campus-login/admin-staff" },
-      { name: "General Staff", path: "/campus-login/general-staff" },
-    ],
-  },
   { name: "Careers", path: "/careers" },
+  { name: "ERP", path: "https://erp-dusky-one.vercel.app/" },
   { name: "Resources", path: "/resources" },
 ];
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  // const [openSecondaryDropdown, setOpenSecondaryDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  // top-right mini menu state (for ERP dropdown)
   const [openTopMenu, setOpenTopMenu] = useState<string | null>(null);
-
-  // MOBILE accordion state (moved out of loop to respect Rules of Hooks)
   const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
 
   const location = useLocation();
@@ -133,10 +120,11 @@ const Header: React.FC = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 shadow-glow">
-      {/* Top red bar: left = Announcements (Marquee), right = mini menu (ERP/Careers/Blogs) */}
+      {/* Top red bar */}
       <div className="w-full bg-red-600 text-white text-sm font-medium">
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4 py-1">
-          {/* Left: Announcements Marquee */}
+
+          {/* Announcements */}
           <div className="flex items-center gap-4 min-w-0">
             <div className="flex-shrink-0 font-semibold pr-2">Announcements</div>
             <div className="flex-1 min-w-0">
@@ -150,55 +138,31 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: mini menu */}
+          {/* Right mini menu */}
           <div className="hidden sm:flex items-center gap-4">
-            {topRightMenu.map((item) => {
-              const hasChildren = !!item.children?.length;
-              const isOpen = openTopMenu === item.name;
-              return (
-                <div key={item.name} className="relative">
-                  <button
-                    className="px-3 py-1 rounded-md hover:bg-red-700 transition flex items-center gap-2"
-                    onClick={() =>
-                      hasChildren ? setOpenTopMenu(isOpen ? null : item.name) : (window.location.href = item.path!)
+            {topRightMenu.map((item) => (
+              <div key={item.name} className="relative">
+                <button
+                  className="px-3 py-1 rounded-md hover:bg-red-700 transition flex items-center gap-2"
+                  onClick={() => {
+                    if (item.name === "ERP") {
+                      window.open(item.path, "_blank");
+                    } else {
+                      window.location.href = item.path!;
                     }
-                    aria-expanded={isOpen}
-                    aria-controls={`top-menu-${item.name}`}
-                  >
-                    <span className="text-sm font-semibold">{item.name}</span>
-                    {hasChildren && <FaChevronDown className="text-xs mt-0.5" />}
-                  </button>
-
-                  {hasChildren && isOpen && (
-                    <div
-                      id={`top-menu-${item.name}`}
-                      className="absolute right-0 mt-2 w-48 bg-black/95 border border-gray-700 rounded-md shadow-lg z-50"
-                    >
-                      {item.children!.map((c) => (
-                        <a
-                          key={c.name}
-                          href={c.path}
-                          className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-800"
-                        >
-                          {c.name}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                  }}
+                >
+                  <span className="text-sm font-semibold">{item.name}</span>
+                </button>
+              </div>
+            ))}
           </div>
 
-          {/* Mobile: a compact icon to open top menu items inside the main mobile menu */}
+          {/* Mobile toggle */}
           <div className="sm:hidden">
             <button
               className="px-2 py-1 rounded-md hover:bg-red-700"
-              onClick={() => {
-                // toggle mobile menu (reuse isMenuOpen)
-                setIsMenuOpen((v) => !v);
-              }}
-              aria-label="Open mobile menu"
+              onClick={() => setIsMenuOpen((v) => !v)}
             >
               {isMenuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
             </button>
@@ -206,7 +170,7 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Header (kept as-is in layout and behavior) */}
+      {/* Main Header */}
       <div
         className="flex items-center justify-between py-0 px-6 border-b transition-all duration-300"
         style={{
@@ -251,7 +215,6 @@ const Header: React.FC = () => {
                   </a>
                 )}
 
-                {/* Dropdown (Fixed position) */}
                 {isOpen && hasSubmenu && (
                   <div className="fixed left-0 top-[170px] w-screen bg-black/95 text-gray-100 border-t border-gray-700 shadow-xl p-10 z-40 animate-fadeInDown">
                     {link.name === "Programs" ? (
@@ -296,7 +259,6 @@ const Header: React.FC = () => {
           })}
         </nav>
 
-        {/* Mobile Menu Toggle */}
         <button
           className="lg:hidden text-white"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -305,19 +267,16 @@ const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Sub-header (the secondary bar) with requested options */}
+      {/* Secondary header */}
       {!isScrolled && (
         <div className="bg-transparent border-y border-red-600 text-white font-semibold text-base">
           <nav className="hidden md:flex items-center justify-end space-x-6 py-2 px-6 relative">
             {secondaryLinks.map((link) => {
               const Icon = link.icon;
-              // const isOpen = openSecondaryDropdown === link.name;
-
               return (
-                <div key={link.name} className="relative secondary-dropdown">
+                <div key={link.name} className="relative">
                   <button
-                    onClick={() => (window.location.href = link.path)
-                    }
+                    onClick={() => (window.location.href = link.path)}
                     className="flex items-center hover:underline gap-2"
                   >
                     {Icon && <Icon className="mr-1" />} <span>{link.name}</span>
@@ -329,42 +288,31 @@ const Header: React.FC = () => {
         </div>
       )}
 
-      {/* MOBILE MENU (includes top-right items + nav + secondary links) */}
+      {/* MOBILE MENU */}
       {isMenuOpen && (
         <div className="lg:hidden bg-black/98 text-white border-t border-gray-800">
           <div className="px-4 py-4">
-            {/* Top-right items (ERP / Careers / Blogs) inside mobile menu */}
-            <div className="flex flex-col gap-2 border-b border-gray-800 pb-3 mb-3">
-              {topRightMenu.map((item) => {
-                const hasChildren = !!item.children?.length;
-                const isOpen = openTopMenu === item.name;
-                return (
-                  <div key={item.name}>
-                    <button
-                      className="w-full flex items-center justify-between py-2 font-semibold text-left"
-                      onClick={() =>
-                        hasChildren ? setOpenTopMenu(isOpen ? null : item.name) : (window.location.href = item.path!)
-                      }
-                    >
-                      <span>{item.name}</span>
-                      {hasChildren && <FaChevronDown className="text-xs" />}
-                    </button>
 
-                    {hasChildren && isOpen && (
-                      <div className="pl-4 mt-1">
-                        {item.children!.map((c) => (
-                          <a key={c.name} href={c.path} className="block py-1 text-sm text-gray-300">
-                            {c.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+            {/* Top menu mobile */}
+            <div className="flex flex-col gap-2 border-b border-gray-800 pb-3 mb-3">
+              {topRightMenu.map((item) => (
+                <button
+                  key={item.name}
+                  className="w-full flex items-center justify-between py-2 font-semibold text-left"
+                  onClick={() => {
+                    if (item.name === "ERP") {
+                      window.open(item.path, "_blank");
+                    } else {
+                      window.location.href = item.path!;
+                    }
+                  }}
+                >
+                  <span>{item.name}</span>
+                </button>
+              ))}
             </div>
 
-            {/* Main nav links */}
+            {/* Main nav mobile */}
             <div className="space-y-2">
               {navLinks.map((link) => {
                 const hasSubmenu = !!link.subLinks?.length;
@@ -404,15 +352,18 @@ const Header: React.FC = () => {
               })}
             </div>
 
-            {/* Secondary Links (mobile) */}
+            {/* Secondary mobile */}
             <div className="mt-4 border-t border-gray-800 pt-3">
               {secondaryLinks.map((s) => (
                 <a key={s.name} href={s.path} className="block py-2 text-lg font-medium text-gray-200">
-                  <span className="inline-block mr-3 align-middle">{s.icon && React.createElement(s.icon)}</span>
+                  <span className="inline-block mr-3 align-middle">
+                    {s.icon && React.createElement(s.icon)}
+                  </span>
                   {s.name}
                 </a>
               ))}
             </div>
+
           </div>
         </div>
       )}
