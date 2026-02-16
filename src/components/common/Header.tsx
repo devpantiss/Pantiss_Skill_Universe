@@ -1,20 +1,29 @@
-// Header.tsx (updated)
-import React, { useState, useEffect } from "react";
+// Header.tsx — Ultra Enterprise Version
+
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import {
   FaStar,
   FaAward,
   FaBrain,
-  FaBars,
-  FaTimes,
-  FaChevronDown,
+  // FaBars,
+  // FaTimes,
+  // FaChevronDown,
+  FaGraduationCap,
+  FaIndustry,
+  FaTools,
+  FaUserCog,
 } from "react-icons/fa";
+
+/* ================= TYPES ================= */
 
 interface NavSubLink {
   name: string;
   path: string;
   children?: NavSubLink[];
+  description?: string;
+  icon?: React.ReactNode;
 }
 
 interface NavLink {
@@ -22,6 +31,43 @@ interface NavLink {
   path?: string;
   subLinks?: NavSubLink[];
 }
+
+/* ================= PROGRAM ICON DATA ================= */
+
+const programData: NavSubLink[] = [
+  {
+    name: "View All",
+    path: "/our-programmes",
+    description: "Browse all training programs",
+    icon: <FaGraduationCap />,
+  },
+  {
+    name: "Diploma/Polytechnic Programs",
+    path: "/our-programmes/diploma-programs",
+    description: "Industry-aligned diploma education",
+    icon: <FaIndustry />,
+  },
+  {
+    name: "ITI",
+    path: "/our-programmes/iti-program",
+    description: "Certified ITI skill training",
+    icon: <FaTools />,
+  },
+  {
+    name: "Industry Aligned",
+    path: "/our-programmes/industry-alligned-certification",
+    description: "Programs designed with industry partners",
+    icon: <FaUserCog />,
+  },
+  {
+    name: "Workmen Upskilling & Reskilling Programs",
+    path: "/our-programmes/upskilling-and-reskilling-program",
+    description: "Upgrade workforce capabilities",
+    icon: <FaAward />,
+  },
+];
+
+/* ================= NAV DATA ================= */
 
 const navLinks: NavLink[] = [
   { name: "Home", path: "/" },
@@ -33,11 +79,11 @@ const navLinks: NavLink[] = [
         name: "Schools",
         children: [
           { name: "Pantiss School for Mines", path: "https://psmsa.vercel.app/" },
-          { name: "Pantiss School for Steel & Aluminium", path: "https://pantiss-school-for-mines-steel-alum.vercel.app" },
-          { name: "Pantiss School for Power & Green Energy", path: "https://pantiss-school-for-power-green-energy.vercel.app" },
-          { name: "Pantiss School for Shipping & Logistics", path: "https://pantiss-school-for-shipping-logistics.vercel.app" },
-          { name: "Pantiss School for Construction Tech & Infra Equipment", path: "https://pantiss-school-for-construction-infra.vercel.app" },
-          { name: "Pantiss School for Green Jobs", path: "https://pantiss-school-for-wash-facility.vercel.app" },
+          { name: "Pantiss School for Steel & Aluminium", path: "#" },
+          { name: "Pantiss School for Power & Green Energy", path: "#" },
+          { name: "Pantiss School for Shipping & Logistics", path: "#" },
+          { name: "Pantiss School for Construction Tech & Infra Equipment", path: "#" },
+          { name: "Pantiss School for Green Jobs", path: "#" },
         ],
         path: ""
       },
@@ -45,11 +91,11 @@ const navLinks: NavLink[] = [
         name: "Locations",
         children: [
           { name: "Pantiss Skill Resort, Anugul (For Mining)", path: "https://psmsa.vercel.app/" },
-          { name: "Pantiss Skill Resort, Kalahandi (For Aviation)", path: "https://pantiss-coe-steel-aluminium.vercel.app" },
-          { name: "Pantiss Skill Resort, Paradip (For Shipping & Logistics)", path: "https://pantiss-coe-energy.vercel.app" },
-          { name: "Pantiss Skill Resort, Jharsuguda (For Construction Tech & Infra Equipments)", path: "https://pantiss-coe-shipping.vercel.app" },
-          { name: "Pantiss Skill Resort, Sukinda (For Power & Green Energy)", path: "https://pantiss-coe-ev.vercel.app" },
-          { name: "Pantiss Skill Resort, Joda (For Green Jobs)", path: "https://pantiss-coe-infrastructure.vercel.app" },
+          { name: "Pantiss Skill Resort, Kalahandi (For Aviation)", path: "#" },
+          { name: "Pantiss Skill Resort, Paradip (For Shipping & Logistics)", path: "#" },
+          { name: "Pantiss Skill Resort, Jharsuguda (For Construction Tech & Infra Equipments)", path: "#" },
+          { name: "Pantiss Skill Resort, Sukinda (For Power & Green Energy)", path: "#" },
+          { name: "Pantiss Skill Resort, Joda (For Green Jobs)", path: "#" },
         ],
         path: ""
       },
@@ -57,24 +103,17 @@ const navLinks: NavLink[] = [
         name: "Flagship Program",
         children: [
           { name: "Skill on Wheels", path: "/futuristic-skill-on-wheels" },
-          { name: "Global Placements", path: "/futuristic-skill-on-wheels" },
+          { name: "Global Placements", path: "https://blue-global-force.vercel.app/" },
         ],
         path: ""
       },
     ],
   },
-  {
-    name: "Programs",
-    subLinks: [
-      { name: "View All", path: "/our-programmes" },
-      { name: "Diploma/Polytechnic Programs", path: "/our-programmes/diploma-programs" },
-      { name: "ITI", path: "/our-programmes/iti-program" },
-      { name: "Industry Aligned", path: "/our-programmes/industry-alligned-certification" },
-      { name: "Workmen Upskilling & Reskilling Programs", path: "/our-programmes/upskilling-and-reskilling-program" },
-    ],
-  },
+  { name: "Programs", subLinks: programData },
   { name: "Contact", path: "/contact-us" },
 ];
+
+/* ================= SECONDARY ================= */
 
 const secondaryLinks = [
   { name: "Counselling Portal", path: "/counselling_portal", icon: FaStar },
@@ -84,20 +123,40 @@ const secondaryLinks = [
   { name: "Alumni Portal", path: "/wise", icon: FaBrain },
 ];
 
-/* ✅ UPDATED topRightMenu */
 const topRightMenu = [
   { name: "Careers", path: "/careers" },
   { name: "ERP", path: "https://erp-dusky-one.vercel.app/" },
   { name: "Resources", path: "/resources" },
 ];
 
+/* ================= HELPERS ================= */
+
+const isComingSoon = (name: string) =>
+  ![
+    "Pantiss School for Mines",
+    "Pantiss Skill Resort, Anugul (For Mining)",
+    "Global Placements",
+    "Skill on Wheels",
+  ].includes(name);
+
+const shouldOpenNewTab = (name: string) =>
+  [
+    "Pantiss School for Mines",
+    "Pantiss Skill Resort, Anugul (For Mining)",
+    "Global Placements",
+  ].includes(name);
+
+/* ================= COMPONENT ================= */
+
 const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
 
   const location = useLocation();
+  const navRef = useRef<HTMLDivElement>(null);
+  const underlineRef = useRef<HTMLDivElement>(null);
+
+  /* ================= SCROLL ================= */
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 300);
@@ -105,10 +164,33 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (path?: string) => !!path && location.pathname === path;
+  /* ================= ACTIVE UNDERLINE ================= */
+
+  useEffect(() => {
+    if (!navRef.current || !underlineRef.current) return;
+
+    const activeBtn = navRef.current.querySelector(
+      `[data-path="${location.pathname}"]`
+    ) as HTMLElement;
+
+    if (activeBtn) {
+      underlineRef.current.style.width = `${activeBtn.offsetWidth}px`;
+      underlineRef.current.style.left = `${activeBtn.offsetLeft}px`;
+    }
+  }, [location.pathname]);
 
   const toggleDropdown = (name: string) => {
-    setOpenDropdown((prev) => (prev === name ? null : name));
+    setOpenDropdown(prev => (prev === name ? null : name));
+  };
+
+  const handleNavClick = (item: NavSubLink) => {
+    if (isComingSoon(item.name)) return;
+
+    if (shouldOpenNewTab(item.name)) {
+      window.open(item.path, "_blank");
+    } else {
+      window.location.href = item.path;
+    }
   };
 
   const announcementTexts = [
@@ -118,254 +200,204 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 shadow-glow">
-      {/* Top red bar */}
-      <div className="w-full bg-red-600 text-white text-sm font-medium">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4 py-1">
+    <header className="fixed top-0 left-0 w-full z-50">
 
-          {/* Announcements */}
-          <div className="flex items-center gap-4 min-w-0">
-            <div className="flex-shrink-0 font-semibold pr-2">Announcements</div>
-            <div className="flex-1 min-w-0">
-              <Marquee pauseOnHover direction="left" speed={50} gradient={false}>
-                {announcementTexts.map((text, i) => (
-                  <span key={i} className="mx-6 whitespace-nowrap">
-                    {text}
-                  </span>
-                ))}
-              </Marquee>
-            </div>
-          </div>
+      {/* ================= TOP BAR ================= */}
 
-          {/* Right mini menu */}
-          <div className="hidden sm:flex items-center gap-4">
-            {topRightMenu.map((item) => (
-              <div key={item.name} className="relative">
-                <button
-                  className="px-3 py-1 rounded-md hover:bg-red-700 transition flex items-center gap-2"
-                  onClick={() => {
-                    if (item.name === "ERP") {
-                      window.open(item.path, "_blank");
-                    } else {
-                      window.location.href = item.path!;
-                    }
-                  }}
-                >
-                  <span className="text-sm font-semibold">{item.name}</span>
-                </button>
-              </div>
+      <div className="w-full bg-red-600 text-white text-sm">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-1">
+
+          <Marquee pauseOnHover speed={50} gradient={false}>
+            {announcementTexts.map((t, i) => (
+              <span key={i} className="mx-6">{t}</span>
             ))}
-          </div>
+          </Marquee>
 
-          {/* Mobile toggle */}
-          <div className="sm:hidden">
-            <button
-              className="px-2 py-1 rounded-md hover:bg-red-700"
-              onClick={() => setIsMenuOpen((v) => !v)}
-            >
-              {isMenuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
-            </button>
+          <div className="hidden sm:flex gap-4">
+            {topRightMenu.map(item => (
+              <button
+                key={item.name}
+                className="px-3 py-1 hover:bg-red-700 rounded"
+                onClick={() => {
+                  if (item.name === "ERP") window.open(item.path, "_blank");
+                  else window.location.href = item.path;
+                }}
+              >
+                {item.name}
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* ================= MAIN HEADER ================= */}
+
       <div
-        className="flex items-center justify-between py-0 px-6 border-b transition-all duration-300"
-        style={{
-          backgroundColor: isScrolled ? "rgba(0,0,0,0.6)" : "#000",
-        }}
+        className="bg-black border-b border-gray-800"
+        style={{ backgroundColor: isScrolled ? "rgba(0,0,0,0.9)" : "#000" }}
       >
-        <img
-          src="https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/PANTISS_SKILL_UNIVERSE-removebg-preview_jqzd3y.png"
-          alt="Logo"
-          className={`w-auto ${isScrolled ? "h-16" : "h-24"} transition-all duration-300`}
-        />
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-6">
-          {navLinks.map((link) => {
-            const hasSubmenu = !!link.subLinks?.length;
-            const isOpen = openDropdown === link.name;
+          <img
+            src="https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/PANTISS_SKILL_UNIVERSE-removebg-preview_jqzd3y.png"
+            alt="logo"
+            className={`transition-all ${isScrolled ? "h-16" : "h-24"}`}
+          />
 
-            return (
-              <div key={link.name} className="relative">
-                {hasSubmenu ? (
+          <nav ref={navRef} className="hidden lg:flex items-center gap-10 relative">
+
+            {/* Animated underline */}
+            <div
+              ref={underlineRef}
+              className="absolute bottom-0 h-[2px] bg-green-400 transition-all duration-300"
+            />
+
+            {navLinks.map(link => {
+              const isOpen = openDropdown === link.name;
+              const hasSub = !!link.subLinks;
+
+              return (
+                <div key={link.name} className="relative">
+
                   <button
-                    onClick={() => toggleDropdown(link.name)}
-                    className={`relative flex items-center px-3 py-2 font-semibold text-lg transition-colors ${
-                      isActive(link.path)
-                        ? "text-green-500"
-                        : "text-gray-200 hover:text-green-600"
-                    }`}
+                    data-path={link.path}
+                    onClick={() => hasSub ? toggleDropdown(link.name) : window.location.href = link.path!}
+                    className="text-gray-200 font-semibold hover:text-green-400 transition py-6"
                   >
                     {link.name}
                   </button>
-                ) : (
-                  <a
-                    href={link.path}
-                    className={`flex items-center px-3 py-2 font-semibold text-lg transition-colors ${
-                      isActive(link.path)
-                        ? "text-green-500"
-                        : "text-gray-200 hover:text-green-600"
-                    }`}
-                  >
-                    {link.name}
-                  </a>
-                )}
 
-                {isOpen && hasSubmenu && (
-                  <div className="fixed left-0 top-[170px] w-screen bg-black/95 text-gray-100 border-t border-gray-700 shadow-xl p-10 z-40 animate-fadeInDown">
-                    {link.name === "Programs" ? (
-                      <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
-                        {link.subLinks!.map((program) => (
-                          <a
-                            key={program.name}
-                            href={program.path}
-                            className="block px-4 py-3 text-lg border border-gray-700 rounded-md hover:text-green-400 hover:border-green-400 transition"
-                          >
-                            {program.name}
-                          </a>
-                        ))}
+                  {/* ================= PROGRAMS MEGA ================= */}
+
+                  {isOpen && link.name === "Programs" && (
+                    <div className="
+                      fixed left-0 top-[170px] w-full
+                      bg-black/90 backdrop-blur-xl border-t border-gray-700
+                      shadow-2xl animate-[fadeIn_.25s_ease]
+                    ">
+                      <div className="max-w-7xl mx-auto px-12 py-12">
+
+                        <h3 className="text-xs tracking-widest text-gray-400 uppercase mb-8">
+                          Programs
+                        </h3>
+
+                        <div className="grid grid-cols-3 gap-6">
+
+                          {programData.map(program => (
+                            <button
+                              key={program.name}
+                              onClick={() => window.location.href = program.path}
+                              className="
+                                group p-6 rounded-xl border border-gray-700
+                                hover:border-green-400 hover:bg-white/5
+                                transition-all text-left
+                              "
+                            >
+                              <div className="text-green-400 text-xl mb-3">
+                                {program.icon}
+                              </div>
+
+                              <div className="text-sm font-semibold text-gray-200 group-hover:text-green-400">
+                                {program.name}
+                              </div>
+
+                              <div className="text-xs text-gray-400 mt-2">
+                                {program.description}
+                              </div>
+                            </button>
+                          ))}
+
+                        </div>
+
                       </div>
-                    ) : (
-                      <div className="flex justify-center gap-16">
-                        {link.subLinks!.map((sub) => (
-                          <div key={sub.name} className="w-1/3">
-                            <h3 className="text-lg font-semibold mb-3 border-b border-gray-700 pb-1 text-gray-300 uppercase">
-                              {sub.name}
+                    </div>
+                  )}
+
+                  {/* ================= STUDY PSU ================= */}
+
+                  {isOpen && link.name === "Study at PSU" && (
+                    <div className="
+                      fixed left-0 top-[170px] w-full
+                      bg-black/90 backdrop-blur-xl border-t border-gray-700
+                      shadow-2xl animate-[fadeIn_.25s_ease]
+                    ">
+                      <div className="max-w-7xl mx-auto px-12 py-12 grid grid-cols-3 gap-16">
+
+                        {link.subLinks!.map(section => (
+                          <div key={section.name}>
+                            <h3 className="text-xs tracking-widest text-gray-400 uppercase mb-6">
+                              {section.name}
                             </h3>
-                            <ul className="space-y-1">
-                              {sub.children?.map((child) => (
-                                <li key={child.name}>
-                                  <a
-                                    href={child.path}
-                                    className="text-sm hover:text-green-400 transition-colors"
-                                  >
-                                    {child.name}
-                                  </a>
-                                </li>
-                              ))}
+
+                            <ul className="space-y-3">
+                              {section.children?.map(child => {
+                                const comingSoon = isComingSoon(child.name);
+
+                                return (
+                                  <li key={child.name}>
+                                    <button
+                                      onClick={() => handleNavClick(child)}
+                                      disabled={comingSoon}
+                                      className={`
+                                        w-full text-left px-3 py-2 rounded-lg
+                                        flex justify-between items-center
+                                        ${comingSoon
+                                          ? "text-gray-500 cursor-not-allowed"
+                                          : "text-gray-200 hover:bg-white/5 hover:text-green-400"}
+                                      `}
+                                    >
+                                      {child.name}
+
+                                      {comingSoon && (
+                                        <span className="
+                                          text-xs px-2 py-1 rounded-full text-center
+                                          bg-gray-700 text-white animate-pulse
+                                        ">
+                                          Coming Soon
+                                        </span>
+                                      )}
+                                    </button>
+                                  </li>
+                                );
+                              })}
                             </ul>
                           </div>
                         ))}
+
                       </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </nav>
+                    </div>
+                  )}
 
-        <button
-          className="lg:hidden text-white"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
-      </div>
-
-      {/* Secondary header */}
-      {!isScrolled && (
-        <div className="bg-transparent border-y border-red-600 text-white font-semibold text-base">
-          <nav className="hidden md:flex items-center justify-end space-x-6 py-2 px-6 relative">
-            {secondaryLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <div key={link.name} className="relative">
-                  <button
-                    onClick={() => (window.location.href = link.path)}
-                    className="flex items-center hover:underline gap-2"
-                  >
-                    {Icon && <Icon className="mr-1" />} <span>{link.name}</span>
-                  </button>
                 </div>
               );
             })}
+
           </nav>
+
         </div>
-      )}
+      </div>
 
-      {/* MOBILE MENU */}
-      {isMenuOpen && (
-        <div className="lg:hidden bg-black/98 text-white border-t border-gray-800">
-          <div className="px-4 py-4">
+      {/* ================= SECONDARY ================= */}
 
-            {/* Top menu mobile */}
-            <div className="flex flex-col gap-2 border-b border-gray-800 pb-3 mb-3">
-              {topRightMenu.map((item) => (
+      {!isScrolled && (
+        <div className="border-y border-red-600 bg-black text-white">
+          <div className="max-w-7xl mx-auto flex justify-end gap-6 px-6 py-2">
+            {secondaryLinks.map(link => {
+              const Icon = link.icon;
+              return (
                 <button
-                  key={item.name}
-                  className="w-full flex items-center justify-between py-2 font-semibold text-left"
-                  onClick={() => {
-                    if (item.name === "ERP") {
-                      window.open(item.path, "_blank");
-                    } else {
-                      window.location.href = item.path!;
-                    }
-                  }}
+                  key={link.name}
+                  onClick={() => window.location.href = link.path}
+                  className="flex items-center gap-2 hover:underline"
                 >
-                  <span>{item.name}</span>
+                  <Icon /> {link.name}
                 </button>
-              ))}
-            </div>
-
-            {/* Main nav mobile */}
-            <div className="space-y-2">
-              {navLinks.map((link) => {
-                const hasSubmenu = !!link.subLinks?.length;
-                const isOpen = mobileAccordion === link.name;
-                return (
-                  <div key={link.name} className="border-b border-gray-800 pb-2">
-                    <button
-                      onClick={() =>
-                        hasSubmenu
-                          ? setMobileAccordion((prev) => (prev === link.name ? null : link.name))
-                          : (window.location.href = link.path || "#")
-                      }
-                      className="w-full flex items-center justify-between py-2 text-left font-semibold"
-                    >
-                      <span>{link.name}</span>
-                      {hasSubmenu && <FaChevronDown />}
-                    </button>
-
-                    {hasSubmenu && isOpen && (
-                      <div className="pl-4 mt-2 space-y-2">
-                        {link.subLinks!.map((section) => (
-                          <div key={section.name}>
-                            <div className="text-sm font-semibold text-gray-300 mb-1">{section.name}</div>
-                            <div className="pl-2">
-                              {section.children?.map((child) => (
-                                <a key={child.name} href={child.path} className="block py-1 text-sm text-gray-200">
-                                  {child.name}
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Secondary mobile */}
-            <div className="mt-4 border-t border-gray-800 pt-3">
-              {secondaryLinks.map((s) => (
-                <a key={s.name} href={s.path} className="block py-2 text-lg font-medium text-gray-200">
-                  <span className="inline-block mr-3 align-middle">
-                    {s.icon && React.createElement(s.icon)}
-                  </span>
-                  {s.name}
-                </a>
-              ))}
-            </div>
-
+              );
+            })}
           </div>
         </div>
       )}
+
     </header>
   );
 };
