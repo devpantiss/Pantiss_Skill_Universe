@@ -32,7 +32,7 @@ const navLinks: NavLink[] = [
       {
         name: "Schools",
         children: [
-          { name: "Pantiss School for Mines", path: "https://pantiss-school-for-mines-steel-alum.vercel.app" },
+          { name: "Pantiss School for Mines", path: "https://psmsa.vercel.app/" },
           { name: "Pantiss School for Steel & Aluminium", path: "https://pantiss-school-for-mines-steel-alum.vercel.app" },
           { name: "Pantiss School for Power & Green Energy", path: "https://pantiss-school-for-power-green-energy.vercel.app" },
           { name: "Pantiss School for Shipping & Logistics", path: "https://pantiss-school-for-shipping-logistics.vercel.app" },
@@ -44,7 +44,7 @@ const navLinks: NavLink[] = [
       {
         name: "Locations",
         children: [
-          { name: "Pantiss Skill Resort, Anugul (For Mining)", path: "https://pantiss-coe-mining.vercel.app" },
+          { name: "Pantiss Skill Resort, Anugul (For Mining)", path: "https://psmsa.vercel.app/" },
           { name: "Pantiss Skill Resort, Kalahandi (For Aviation)", path: "https://pantiss-coe-steel-aluminium.vercel.app" },
           { name: "Pantiss Skill Resort, Paradip (For Shipping & Logistics)", path: "https://pantiss-coe-energy.vercel.app" },
           { name: "Pantiss Skill Resort, Jharsuguda (For Construction Tech & Infra Equipments)", path: "https://pantiss-coe-shipping.vercel.app" },
