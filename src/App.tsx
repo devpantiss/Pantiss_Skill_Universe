@@ -27,6 +27,7 @@ import JobsPage from "./pages/JobsPage";
 import InternationalMobilityPage from "./pages/Programmes/InternationalMobilityPage";
 import SkillDevBootCampPage from "./pages/Programmes/SkillDevBootCampPage";
 import "leaflet/dist/leaflet.css";
+import ProgramPage from "./pages/ProgramPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -46,11 +47,12 @@ function LayoutWrapper() {
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/collaborations" element={<Collaborations />} />
         <Route path="/contact-us" element={<ContactPage />} />
-        <Route path="/our-programmes" element={<ProgramsPage />} />
+        <Route path="/programmes" element={<ProgramsPage />} />
         <Route path="/skill-dashboard" element={<DashboardPage />} />
         <Route path="/futuristic-skill-on-wheels" element={<FuturisticSkillOnWheels />} />
         <Route path="/careers/jobs" element={<JobsPage />} />{" "}
 
+        <Route path="/our-programmes" element={<ProgramPage />} />
 
         {/* <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} /> */}
         {/* <Route path="/our-programmes/apprenticeship-and-dual-training" element={<ApprenticeshipAndDualTrainingPage />} /> */}
