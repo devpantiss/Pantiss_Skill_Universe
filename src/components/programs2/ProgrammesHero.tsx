@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const ProgrammesHero: React.FC = () => {
   return (
-    <section className="relative h-[90vh] overflow-hidden bg-transparent">
+    <section className="relative h-[90vh] mt-16 overflow-hidden bg-transparent">
       {/* ===================== FIXED PARALLAX VIDEO ===================== */}
       <div className="fixed inset-0 -z-10">
         <video
