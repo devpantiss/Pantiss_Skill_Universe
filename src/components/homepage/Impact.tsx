@@ -1,26 +1,30 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-// Reusable ImpactCard component
+// Reusable ImpactCard component — only animates when visible
 const ImpactCard: React.FC<{
   value: number;
   suffix: string;
   label: string;
   index: number;
-}> = ({ value, suffix, label, index }) => {
+  shouldAnimate: boolean;
+}> = React.memo(({ value, suffix, label, index, shouldAnimate }) => {
   const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    let start = 0;
-    const end = value;
-    const duration = 2000; // 2 seconds
+    if (!shouldAnimate || hasAnimated.current) return;
+    hasAnimated.current = true;
+
     let startTimestamp: number | null = null;
+    const duration = 2000;
 
     const animate = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const ease = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2; // Ease in-out
-      setCount(Math.floor(start + (end - start) * ease));
+      const ease = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      setCount(Math.floor(value * ease));
 
       if (progress < 1) {
         requestAnimationFrame(animate);
@@ -29,13 +33,13 @@ const ImpactCard: React.FC<{
 
     const animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [value]);
+  }, [value, shouldAnimate]);
 
   return (
     <motion.div
       className="group p-6 rounded-lg shadow-md"
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={shouldAnimate ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ scale: 1.05 }}
       whileFocus={{ scale: 1.05 }}
@@ -52,10 +56,16 @@ const ImpactCard: React.FC<{
       <p className="text-lg text-gray-300 text-center">{label}</p>
     </motion.div>
   );
-};
+});
 
-const ImpactSection: React.FC = () => {
-  // Memoized impacts data to prevent unnecessary re-renders
+ImpactCard.displayName = "ImpactCard";
+
+const ImpactSection: React.FC = React.memo(() => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
   const impacts = useMemo(
     () => [
       { label: "Students Trained", value: 15000, suffix: "+" },
@@ -68,21 +78,11 @@ const ImpactSection: React.FC = () => {
 
   return (
     <section
+      ref={ref}
       className="w-full py-8 bg-black text-white"
       aria-label="Impact Statistics at Pantiss Skill University"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Title with smooth fade-in animation */}
-        {/* <motion.h2
-          className="text-4xl font-bold text-center mb-12 text-green-600"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          id="impact-title"
-        >
-          Our Impact at Pantiss Skill University
-        </motion.h2> */}
-        {/* Responsive grid layout */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {impacts.map((impact, index) => (
             <ImpactCard
@@ -91,12 +91,15 @@ const ImpactSection: React.FC = () => {
               suffix={impact.suffix}
               label={impact.label}
               index={index}
+              shouldAnimate={inView}
             />
           ))}
         </div>
       </div>
     </section>
   );
-};
+});
+
+ImpactSection.displayName = "ImpactSection";
 
 export default ImpactSection;

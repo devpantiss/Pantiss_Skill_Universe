@@ -1,21 +1,53 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 
-const OverLappingCards3: React.FC = () => {
+const OverLappingCards3: React.FC = React.memo(() => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Lazy-load and play video only when section scrolls into view
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (videoRef.current) {
+            videoRef.current.play().catch(() => {});
+          }
+        } else {
+          if (videoRef.current) {
+            videoRef.current.pause();
+          }
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="relative bg-transparent">
-      {/* Background Video */}
+    <div ref={containerRef} className="relative bg-transparent">
+      {/* Background Video — lazy loaded */}
       <video
+        ref={videoRef}
         className="absolute top-0 left-0 w-full h-full object-cover"
-        autoPlay
         loop
         muted
         playsInline
         aria-hidden="true"
+        preload="none"
       >
-        <source
-          src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762160507/12791129_1920_1080_30fps_iwboue.mp4"
-          type="video/mp4"
-        />
+        {isVisible && (
+          <source
+            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762160507/12791129_1920_1080_30fps_iwboue.mp4"
+            type="video/mp4"
+          />
+        )}
         Your browser does not support the video tag.
       </video>
 
@@ -50,6 +82,8 @@ const OverLappingCards3: React.FC = () => {
               src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png"
               alt="lms-icon"
               className="absolute right-4 -bottom-28 w-24 h-24"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -72,6 +106,8 @@ const OverLappingCards3: React.FC = () => {
               src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png"
               alt="job-portal-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -91,12 +127,16 @@ const OverLappingCards3: React.FC = () => {
               src="https://cdn-icons-png.flaticon.com/512/2913/2913460.png"
               alt="govt-prep-icon"
               className="absolute right-4 -bottom-28 w-24 h-24"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
       </div>
     </div>
   );
-};
+});
+
+OverLappingCards3.displayName = "OverLappingCards3";
 
 export default OverLappingCards3;

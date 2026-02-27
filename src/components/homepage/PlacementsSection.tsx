@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useRef, useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 
 // Interfaces
@@ -118,20 +118,47 @@ const StudentCard = memo(({ student }: { student: Student }) => (
 
 // Main Section
 const PlacementsSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (videoRef.current) videoRef.current.play().catch(() => {});
+        } else {
+          if (videoRef.current) videoRef.current.pause();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative py-16 overflow-hidden bg-black">
-      {/* Background Video */}
+    <section ref={sectionRef} className="relative py-16 overflow-hidden bg-black">
+      {/* Background Video — lazy loaded */}
       <video
-        autoPlay
+        ref={videoRef}
         loop
         muted
         playsInline
+        preload="none"
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743490663/12266398_1920_1080_30fps_njenhk.mp4"
-          type="video/mp4"
-        />
+        {isVisible && (
+          <source
+            src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743490663/12266398_1920_1080_30fps_njenhk.mp4"
+            type="video/mp4"
+          />
+        )}
       </video>
 
       {/* Blurry Circles Overlay */}

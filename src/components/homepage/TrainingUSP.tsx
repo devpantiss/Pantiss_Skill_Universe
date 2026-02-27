@@ -50,4 +50,4 @@ const TrainingUSP: React.FC = () => {
   );
 };
 
-export default TrainingUSP;
+export default React.memo(TrainingUSP);

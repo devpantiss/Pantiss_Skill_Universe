@@ -1,15 +1,12 @@
-// Header.tsx — Ultra Enterprise Version
+// Header.tsx — Ultra Enterprise Version (Performance Optimized)
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import {
   FaStar,
   FaAward,
   FaBrain,
-  // FaBars,
-  // FaTimes,
-  // FaChevronDown,
   FaGraduationCap,
   FaIndustry,
   FaTools,
@@ -148,7 +145,7 @@ const shouldOpenNewTab = (name: string) =>
 
 /* ================= COMPONENT ================= */
 
-const Header: React.FC = () => {
+const Header: React.FC = React.memo(() => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -156,11 +153,20 @@ const Header: React.FC = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const underlineRef = useRef<HTMLDivElement>(null);
 
-  /* ================= SCROLL ================= */
+  /* ================= SCROLL (throttled with rAF) ================= */
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 300);
-    window.addEventListener("scroll", handleScroll);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 300);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -179,11 +185,11 @@ const Header: React.FC = () => {
     }
   }, [location.pathname]);
 
-  const toggleDropdown = (name: string) => {
+  const toggleDropdown = useCallback((name: string) => {
     setOpenDropdown(prev => (prev === name ? null : name));
-  };
+  }, []);
 
-  const handleNavClick = (item: NavSubLink) => {
+  const handleNavClick = useCallback((item: NavSubLink) => {
     if (isComingSoon(item.name)) return;
 
     if (shouldOpenNewTab(item.name)) {
@@ -191,7 +197,7 @@ const Header: React.FC = () => {
     } else {
       window.location.href = item.path;
     }
-  };
+  }, []);
 
   const announcementTexts = [
     "Call +91 9874875876 for inquiries",
@@ -242,6 +248,8 @@ const Header: React.FC = () => {
             src="https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/PANTISS_SKILL_UNIVERSE-removebg-preview_jqzd3y.png"
             alt="logo"
             className={`transition-all ${isScrolled ? "h-16" : "h-24"}`}
+            loading="eager"
+            decoding="async"
           />
 
           <nav ref={navRef} className="hidden lg:flex items-center gap-10 relative">
@@ -400,6 +408,8 @@ const Header: React.FC = () => {
 
     </header>
   );
-};
+});
+
+Header.displayName = "Header";
 
 export default Header;

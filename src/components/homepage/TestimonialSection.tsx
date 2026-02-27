@@ -176,6 +176,15 @@ const TestimonialSection: React.FC = () => {
 
   return (
     <section className="relative w-full py-20">
+      <style>{`
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.7; }
+          50% { opacity: 1; }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
+        }
+      `}</style>
       {/* Parallax Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -279,17 +288,4 @@ const TestimonialSection: React.FC = () => {
   );
 };
 
-// Custom animation for quotation mark
-const style = document.createElement("style");
-style.textContent = `
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-  }
-  .animate-pulse-slow {
-    animation: pulse-slow 3s ease-in-out infinite;
-  }
-`;
-document.head.appendChild(style);
-
-export default TestimonialSection;
+export default React.memo(TestimonialSection);

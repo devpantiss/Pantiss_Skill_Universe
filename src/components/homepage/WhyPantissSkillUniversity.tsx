@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-// import { FaMapMarkerAlt } from "react-icons/fa";
 
 const slides = [
   "/Homepage/why/mines.jpg",
@@ -11,15 +10,6 @@ const slides = [
   "/Homepage/why/construction.jpg",
   "/Homepage/why/greenjobs.jpg"
 ];
-
-// const campuses = [
-//   "Talcher",
-//   "Bhawanipatna",
-//   "Sukinda",
-//   "Paradip",
-//   "Jharsuguda",
-//   "Joda",
-// ];
 
 const schoolLogos = [
   {
@@ -48,55 +38,55 @@ const schoolLogos = [
   },
 ];
 
-export default function WhyPantissSkillUniversity() {
+// CSS animation style for seamless vertical scroll — replaces 60fps setInterval
+const scrollAnimationStyle = `
+  @keyframes verticalScroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+  .school-logo-scroll {
+    animation: verticalScroll 24s linear infinite;
+  }
+  .school-logo-scroll:hover {
+    animation-play-state: paused;
+  }
+`;
+
+const WhyPantissSkillUniversity: React.FC = React.memo(() => {
   const [current, setCurrent] = useState(0);
-  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 5000);
 
-    const logoHeight = 120; // Height per logo item (logo + gap + padding)
-    const totalHeight = schoolLogos.length * logoHeight;
+    return () => clearInterval(interval);
+  }, []);
 
-    const scrollInterval = setInterval(() => {
-      setScrollPosition((prev) => {
-        const newPosition = prev - 0.5; // Slower, smoother scroll
-        // Reset when the first set has completely scrolled out for view
-        // This creates a seamless loop since we have duplicate content
-        if (newPosition <= -totalHeight) {
-          return 0;
-        }
-        return newPosition;
-      });
-    }, 16); // ~60fps for smoother animation
+  const handlePrev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  }, []);
 
-    return () => {
-      clearInterval(interval);
-      clearInterval(scrollInterval);
-    };
+  const handleNext = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
   }, []);
 
   return (
     <div className="relative w-full h-[690px] overflow-hidden font-sans">
-      {/* Background Image Slider */}
-      <AnimatePresence>
-        {slides.map((src, idx) => (
-          <motion.img
-            key={idx}
-            src={src}
-            alt={`Campus view ${idx + 1}`}
-            className="absolute top-0 left-0 w-full h-full object-cover"
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{
-              opacity: current === idx ? 1 : 0,
-              scale: current === idx ? 1 : 1.05,
-            }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-          />
-        ))}
+      <style>{scrollAnimationStyle}</style>
+
+      {/* Background Image Slider — only render current slide */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={current}
+          src={slides[current]}
+          alt={`Campus view ${current + 1}`}
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+        />
       </AnimatePresence>
 
       {/* Dark Overlay */}
@@ -145,7 +135,7 @@ export default function WhyPantissSkillUniversity() {
           </motion.button>
         </div>
 
-        {/* Sidebar: Pantiss Schools Marquee */}
+        {/* Sidebar: Pantiss Schools Marquee — now CSS-animated, zero re-renders */}
         <div className="hidden lg:flex absolute right-0 top-0 h-full w-72 sm:w-80 bg-black/80 text-white z-10 overflow-hidden rounded-l-xl flex-col">
           <div className="bg-black p-4 z-20">
             <h3 className="text-lg font-bold text-red-600 text-center tracking-wide">
@@ -153,20 +143,14 @@ export default function WhyPantissSkillUniversity() {
             </h3>
           </div>
           <div className="flex-1 overflow-hidden relative">
-            <div
-              className="absolute w-full"
-              style={{
-                transform: `translateY(${scrollPosition}px)`,
-                transition: "none", // Remove any CSS transitions for smooth JS animation
-              }}
-            >
+            <div className="school-logo-scroll">
               <div className="flex flex-col items-center gap-6 pt-4">
                 {/* Render the logos twice for seamless loop */}
                 {[...schoolLogos, ...schoolLogos].map((school, idx) => (
                   <div
                     key={idx}
                     className="flex flex-col items-center w-full px-4"
-                    style={{ height: "120px" }} // Fixed height for consistent spacing
+                    style={{ height: "120px" }}
                   >
                     <div className="w-48 h-24 flex items-center justify-center">
                       <img
@@ -174,6 +158,7 @@ export default function WhyPantissSkillUniversity() {
                         alt={`${school.name} logo`}
                         className="max-w-full max-h-full object-contain"
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>
@@ -187,9 +172,7 @@ export default function WhyPantissSkillUniversity() {
       {/* Arrows */}
       <div className="absolute top-1/2 left-4 sm:left-8 transform -translate-y-1/2 z-30">
         <button
-          onClick={() =>
-            setCurrent((current - 1 + slides.length) % slides.length)
-          }
+          onClick={handlePrev}
           className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all"
           aria-label="Previous Slide"
         >
@@ -198,42 +181,13 @@ export default function WhyPantissSkillUniversity() {
       </div>
       <div className="absolute top-1/2 right-4 sm:right-8 transform -translate-y-1/2 z-30">
         <button
-          onClick={() => setCurrent((current + 1) % slides.length)}
+          onClick={handleNext}
           className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all"
           aria-label="Next Slide"
         >
           <FiChevronRight size={28} />
         </button>
       </div>
-
-      {/* Campus Bar */}
-      {/* <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-7xl bg-black/90 py-6 px-6 flex flex-col lg:flex-row gap-6 items-center justify-between text-white font-semibold z-20 rounded-t-lg shadow-lg"> */}
-        {/* Heading */}
-        {/* <motion.h2
-          className="md:text-3xl text-2xl font-extrabold leading-tight tracking-tight text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          OUR <span className="text-red-600">CAMPUSES</span>
-        </motion.h2> */}
-
-        {/* Locations */}
-        {/* <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-2">
-          {campuses.map((campus, idx) => (
-            <motion.div
-              key={idx}
-              className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 transition-all"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-            >
-              <FaMapMarkerAlt className="text-green-600" size={18} />
-              <span className="text-sm sm:text-base">{campus}</span>
-            </motion.div>
-          ))}
-        </div> */}
-      {/* </div> */}
 
       {/* Subscribe Tag */}
       <motion.div
@@ -245,4 +199,8 @@ export default function WhyPantissSkillUniversity() {
       </motion.div>
     </div>
   );
-}
+});
+
+WhyPantissSkillUniversity.displayName = "WhyPantissSkillUniversity";
+
+export default WhyPantissSkillUniversity;

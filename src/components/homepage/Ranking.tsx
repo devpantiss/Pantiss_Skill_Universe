@@ -124,4 +124,4 @@ const Ranking: React.FC = () => {
   );
 };
 
-export default Ranking;
+export default React.memo(Ranking);

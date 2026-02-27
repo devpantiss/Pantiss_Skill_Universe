@@ -165,4 +165,4 @@ const Campuses: React.FC = () => {
   );
 };
 
-export default Campuses;
+export default React.memo(Campuses);

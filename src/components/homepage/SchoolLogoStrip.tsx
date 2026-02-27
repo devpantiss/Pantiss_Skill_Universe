@@ -1,6 +1,6 @@
 import React from "react";
 
-const SchoolLogoStrip: React.FC = () => {
+const SchoolLogoStrip: React.FC = React.memo(() => {
   const schoolLogos = [
     {
       name: "School for Mines, Steel & Aluminium",
@@ -37,6 +37,8 @@ const SchoolLogoStrip: React.FC = () => {
             src={logo.src}
             alt={`${logo.name} logo`}
             className="inline-block h-20 w-auto mx-4 object-contain"
+            loading="lazy"
+            decoding="async"
           />
         ))}
       </div>
@@ -56,6 +58,8 @@ const SchoolLogoStrip: React.FC = () => {
       `}</style>
     </div>
   );
-};
+});
+
+SchoolLogoStrip.displayName = "SchoolLogoStrip";
 
 export default SchoolLogoStrip;

@@ -63,6 +63,7 @@ const HeroSection: React.FC = () => {
         muted
         loop
         playsInline
+        preload="metadata"
       />
 
       {/* Translucent Overlay */}
@@ -114,4 +115,4 @@ const HeroSection: React.FC = () => {
   );
 };
 
-export default HeroSection;
+export default React.memo(HeroSection);
