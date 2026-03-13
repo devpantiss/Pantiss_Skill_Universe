@@ -42,7 +42,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Technical Proficiency",
         image:
-          "https://images.unsplash.com/photo-1581091215367-59ab6c1c9b66",
+          "https://images.unsplash.com/photo-1565608438257-fac3c27beb36?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       },
       {
         title: "Career-Ready Skills",
@@ -52,7 +52,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Lab-Based Learning",
         image:
-          "https://images.unsplash.com/photo-1581093458791-9f3c3900df47",
+          "https://5.imimg.com/data5/SELLER/Default/2024/6/423853848/ZY/IF/OL/195628478/electrical-labour-contractor-service-500x500.jpg",
       },
     ],
     path: "/our-programmes/diploma-programs",
@@ -77,7 +77,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Industry Tools",
         image:
-          "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+          "https://www.flyability.com/hs-fs/hubfs/mining-industry-flyability-4.jpg?width=846&height=564&name=mining-industry-flyability-4.jpg",
       },
       {
         title: "Placement Assistance",
@@ -90,7 +90,7 @@ const PROGRAMMES: Programme[] = [
 
   {
     title:
-      "Industry-Aligned Skill Certification & Apprenticeship Programs",
+      "Industry-Aligned Skill Certification",
     description:
       "Training and certification designed with direct input from industry partners to maximize employability.",
     image:
@@ -103,7 +103,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Industry Endorsed",
         image:
-          "https://images.unsplash.com/photo-1581093458791-9f3c3900df47",
+          "https://www.flyability.com/hs-fs/hubfs/mining-industry-flyability-4.jpg?width=846&height=564&name=mining-industry-flyability-4.jpg",
       },
       {
         title: "High Employability",
@@ -113,7 +113,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Global Standards",
         image:
-          "https://images.unsplash.com/photo-1581091215367-59ab6c1c9b66",
+          "https://www.stratospherenetworks.com/blog/wp-content/uploads/2019/11/global-network-concept-photo.jpg",
       },
     ],
     path: "/our-programmes/industry-alligned-certification",
@@ -133,7 +133,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Technology Adaptation",
         image:
-          "https://images.unsplash.com/photo-1581091215367-59ab6c1c9b66",
+          "https://unity.com/_next/image?url=https%3A%2F%2Fcdn.bfldr.com%2FS5BC9Y64%2Fat%2Fnjr7gk7np252t24pgmbnhqt%2FAdobeStock_786731786.jpeg%3Fauto%3Dwebp&w=1080&q=75",
       },
       {
         title: "Skill Enhancement",
@@ -163,17 +163,17 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Short-Term",
         image:
-          "https://images.unsplash.com/photo-1581093458791-9f3c3900df47",
+          "https://media.assettype.com/deccanherald%2F2025-07-13%2Fzb5djuly%2Ffile702siqlkphi18ln8wf8i.jpg?w=900&auto=format%2Ccompress&fit=max",
       },
       {
         title: "Job-Focused",
         image:
-          "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0",
+          "https://images.click.in/classifieds/images/177/27_09_2021_04_36_52_cb914eb0da350294ca7d6954be700c5d_s.jpg",
       },
       {
-        title: "High Intensity",
+        title: "Latest Tech",
         image:
-          "https://images.unsplash.com/photo-1581091215367-59ab6c1c9b66",
+          "https://storage.googleapis.com/ureify-strapi-assets/ar_vr_resume_3a465d9ba3/ar_vr_resume_3a465d9ba3.jpeg",
       },
     ],
     path: "/our-programmes/skill-development-boot-camp-program",
@@ -193,17 +193,17 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Global Standards",
         image:
-          "https://images.unsplash.com/photo-1581093458791-9f3c3900df47",
+        "https://www.stratospherenetworks.com/blog/wp-content/uploads/2019/11/global-network-concept-photo.jpg",
       },
       {
         title: "Overseas Opportunities",
         image:
-          "https://images.unsplash.com/photo-1542339147-17b88b5f7a9f",
+          "https://static.themoscowtimes.com/image/article_1360/47/TASS26212748.jpg",
       },
       {
-        title: "International Exposure",
+        title: "International Partnerships",
         image:
-          "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0",
+          "https://www.n-able.com/wp-content/uploads/2021/04/Blog-Merger_header.jpeg",
       },
     ],
     path: "/our-programmes/international-mobility-program",
