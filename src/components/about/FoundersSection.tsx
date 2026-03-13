@@ -16,7 +16,7 @@ const founders: Founder[] = [
     name: "Mr. Stalin Nayak",
     title: "Founder & Chancellor, Pantiss Skills Universe",
     subtitle:
-      "Founder & MD – Medhavi Foundation | NSDC Advisor | IIT Kharagpur | Stanford University",
+      "Founder & CEO, PANTISS Group",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761685978/stalinsir_l53ura.jpg",
     description:
