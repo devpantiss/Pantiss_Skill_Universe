@@ -42,7 +42,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Technical Proficiency",
         image:
-          "https://images.unsplash.com/photo-1565608438257-fac3c27beb36?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1565608438257-fac3c27beb36?q=80&w=1176&auto=format&fit=crop",
       },
       {
         title: "Career-Ready Skills",
@@ -77,7 +77,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Industry Tools",
         image:
-          "https://www.flyability.com/hs-fs/hubfs/mining-industry-flyability-4.jpg?width=846&height=564&name=mining-industry-flyability-4.jpg",
+          "https://www.flyability.com/hs-fs/hubfs/mining-industry-flyability-4.jpg",
       },
       {
         title: "Placement Assistance",
@@ -89,8 +89,7 @@ const PROGRAMMES: Programme[] = [
   },
 
   {
-    title:
-      "Industry-Aligned Skill Certification",
+    title: "Industry-Aligned Skill Certification",
     description:
       "Training and certification designed with direct input from industry partners to maximize employability.",
     image:
@@ -103,7 +102,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Industry Endorsed",
         image:
-          "https://www.flyability.com/hs-fs/hubfs/mining-industry-flyability-4.jpg?width=846&height=564&name=mining-industry-flyability-4.jpg",
+          "https://www.flyability.com/hs-fs/hubfs/mining-industry-flyability-4.jpg",
       },
       {
         title: "High Employability",
@@ -133,7 +132,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Technology Adaptation",
         image:
-          "https://unity.com/_next/image?url=https%3A%2F%2Fcdn.bfldr.com%2FS5BC9Y64%2Fat%2Fnjr7gk7np252t24pgmbnhqt%2FAdobeStock_786731786.jpeg%3Fauto%3Dwebp&w=1080&q=75",
+          "https://unity.com/_next/image?url=https%3A%2F%2Fcdn.bfldr.com%2FS5BC9Y64%2Fat%2Fnjr7gk7np252t24pgmbnhqt%2FAdobeStock_786731786.jpeg",
       },
       {
         title: "Skill Enhancement",
@@ -163,7 +162,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Short-Term",
         image:
-          "https://media.assettype.com/deccanherald%2F2025-07-13%2Fzb5djuly%2Ffile702siqlkphi18ln8wf8i.jpg?w=900&auto=format%2Ccompress&fit=max",
+          "https://media.assettype.com/deccanherald%2F2025-07-13%2Fzb5djuly%2Ffile702siqlkphi18ln8wf8i.jpg",
       },
       {
         title: "Job-Focused",
@@ -173,7 +172,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Latest Tech",
         image:
-          "https://storage.googleapis.com/ureify-strapi-assets/ar_vr_resume_3a465d9ba3/ar_vr_resume_3a465d9ba3.jpeg",
+          "https://storage.googleapis.com/ureify-strapi-assets/ar_vr_resume_3a465d9ba3.jpeg",
       },
     ],
     path: "/our-programmes/skill-development-boot-camp-program",
@@ -193,7 +192,7 @@ const PROGRAMMES: Programme[] = [
       {
         title: "Global Standards",
         image:
-        "https://www.stratospherenetworks.com/blog/wp-content/uploads/2019/11/global-network-concept-photo.jpg",
+          "https://www.stratospherenetworks.com/blog/wp-content/uploads/2019/11/global-network-concept-photo.jpg",
       },
       {
         title: "Overseas Opportunities",
@@ -220,64 +219,46 @@ export default function OurProgrammesScrollStack() {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray<HTMLDivElement>(
-        ".program-slide"
-      );
+      const cards = gsap.utils.toArray<HTMLDivElement>(".program-slide");
 
-      // GPU acceleration
-      cards.forEach((card) => {
-        gsap.set(card, {
-          force3D: true,
-          willChange: "transform, opacity",
-        });
+      gsap.set(cards, {
+        opacity: 0,
+        y: 80,
+        force3D: true,
+        willChange: "transform, opacity",
       });
 
-      let lastIndex = 0;
+      gsap.set(cards[0], { opacity: 1, y: 0 });
 
-      const setCardState = (index: number) => {
-        cards.forEach((card, i) => {
-          if (i === index) {
-            gsap.to(card, {
-              opacity: 1,
-              y: 0,
-              duration: 0.45,
-              ease: "power2.out",
-              pointerEvents: "auto",
-            });
-          } else {
-            gsap.to(card, {
-              opacity: 0,
-              y: -60,
-              duration: 0.45,
-              ease: "power2.out",
-              pointerEvents: "none",
-            });
-          }
-        });
+      let active = 0;
+
+      const changeSlide = (index: number) => {
+        if (index === active) return;
+
+        const prev = cards[active];
+        const next = cards[index];
+
+        gsap.timeline({
+          defaults: { duration: 0.45, ease: "power2.out" },
+        })
+          .to(prev, { opacity: 0, y: -80, pointerEvents: "none" })
+          .to(next, { opacity: 1, y: 0, pointerEvents: "auto" }, "<");
+
+        active = index;
+        setActiveIndex(index);
       };
-
-      setCardState(0);
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: `+=${(cards.length - 1) * 600}`,
+        end: `+=${(cards.length - 1) * 650}`,
         pin: true,
-        scrub: 0.4,
+        scrub: 0.6,
         anticipatePin: 1,
-        onUpdate: (self) => {
-          const index = Math.round(
-            self.progress * (cards.length - 1)
-          );
-
-          if (index !== lastIndex) {
-            lastIndex = index;
-
-            requestAnimationFrame(() => {
-              setActiveIndex(index);
-              setCardState(index);
-            });
-          }
+        fastScrollEnd: true,
+        onUpdate(self) {
+          const index = Math.round(self.progress * (cards.length - 1));
+          changeSlide(index);
         },
       });
     }, sectionRef);
@@ -291,7 +272,6 @@ export default function OurProgrammesScrollStack() {
       className="relative w-full overflow-hidden bg-[#0b0202] text-white pt-10"
     >
       <div className="px-6 py-20 flex gap-12">
-        {/* LEFT MENU */}
         <aside className="w-1/4">
           <div className="sticky top-20">
             <h2 className="text-5xl font-light leading-tight">
@@ -303,9 +283,7 @@ export default function OurProgrammesScrollStack() {
                 <div
                   key={p.title}
                   className={`py-4 border-b border-white/15 ${
-                    i === activeIndex
-                      ? "text-white"
-                      : "text-white/40"
+                    i === activeIndex ? "text-white" : "text-white/40"
                   }`}
                 >
                   {p.title}
@@ -315,12 +293,11 @@ export default function OurProgrammesScrollStack() {
           </div>
         </aside>
 
-        {/* RIGHT STACK */}
         <div className="w-3/4 relative h-[560px]">
           {PROGRAMMES.map((p) => (
             <div
               key={p.title}
-              className="program-slide absolute inset-0 will-change-transform"
+              className="program-slide absolute inset-0 translate-z-0 will-change-transform"
             >
               <ProgrammeCard programme={p} />
             </div>
@@ -345,15 +322,6 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
 
   return (
     <div className="relative h-full w-full rounded-2xl overflow-hidden grid grid-cols-12 text-white shadow-[0_25px_70px_rgba(0,0,0,0.7)]">
-
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(255,0,0,0.35),transparent_45%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_75%,rgba(220,38,38,0.35),transparent_50%)]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a0000] via-[#140000] to-[#07040E]" />
-      </div>
-
-      {/* IMAGE */}
       <div className="col-span-4 p-6">
         <div className="relative h-full rounded-xl overflow-hidden">
           <img
@@ -361,7 +329,7 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
             alt={programme.title}
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover will-change-transform"
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -378,11 +346,8 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
         </div>
       </div>
 
-      {/* CONTENT */}
       <div className="col-span-8 p-10">
-        <h3 className="text-5xl font-light">
-          {programme.title}
-        </h3>
+        <h3 className="text-5xl font-light">{programme.title}</h3>
 
         <div className="mt-6 grid grid-cols-4 gap-6 text-xs tracking-widest text-white/70">
           <Meta label="DURATION" value={programme.duration} />
@@ -397,7 +362,6 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
 
         <div className="mt-8 h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent" />
 
-        {/* JOB ROLES */}
         <div className="mt-6">
           <div className="flex justify-between items-center">
             <p className="text-[11px] tracking-widest text-white/60">
@@ -423,26 +387,23 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
 
           <div
             ref={rolesRef}
-            className="mt-4 flex gap-4 overflow-x-auto scroll-smooth"
+            className="mt-4 flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory"
             style={{ scrollbarWidth: "none" }}
           >
             {programme.jobRoles.map((role) => (
               <div
                 key={role.title}
-                className="relative min-w-[270px] h-[160px] rounded-xl overflow-hidden group cursor-pointer"
-                style={{ transform: "translateZ(0)" }}
+                className="relative min-w-[270px] h-[160px] rounded-xl overflow-hidden group cursor-pointer snap-start"
               >
                 <img
                   src={role.image}
                   alt={role.title}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover will-change-transform transition-transform duration-700 group-hover:scale-110"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition shadow-[0_0_40px_rgba(255,0,0,0.45)]" />
 
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-sm font-medium tracking-wide">
@@ -460,19 +421,11 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
 
 /* ===================== META ===================== */
 
-function Meta({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <p className="text-white/40">{label}</p>
-      <p className="mt-1 font-medium text-white">
-        {value}
-      </p>
+      <p className="mt-1 font-medium text-white">{value}</p>
     </div>
   );
 }
