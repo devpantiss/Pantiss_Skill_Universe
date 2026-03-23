@@ -107,7 +107,7 @@ const navLinks: NavLink[] = [
     ],
   },
   { name: "Programs", subLinks: programData },
-  { name: "Resources", path: "/resources" },
+  // { name: "Resources", path: "/resources" },
   { name: "Contact", path: "/contact-us" },
 ];
 
