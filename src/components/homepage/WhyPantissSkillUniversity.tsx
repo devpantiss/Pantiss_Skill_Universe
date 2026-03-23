@@ -76,7 +76,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
       <style>{scrollAnimationStyle}</style>
 
       {/* Background Image Slider — only render current slide */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.img
           key={current}
           src={slides[current]}

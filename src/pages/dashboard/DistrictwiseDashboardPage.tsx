@@ -150,4 +150,4 @@ const DistrictwiseDashboardPage: React.FC = () => {
   );
 };
 
-export default DistrictwiseDashboardPage;
+export default React.memo(DistrictwiseDashboardPage);

@@ -24,4 +24,4 @@ const DashboardOverviewPage: React.FC = () => {
   )
 }
 
-export default DashboardOverviewPage
+export default React.memo(DashboardOverviewPage)

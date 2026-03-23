@@ -3,6 +3,8 @@ import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
 
 // Define testimonial interface
 interface Testimonial {
@@ -124,10 +126,13 @@ const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
 );
 
 const TestimonialSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<Slider>(null);
   const [activeTab, setActiveTab] = useState<"Students" | "Trainers" | "Industries">("Industries");
 
-  const handleBeforeChange = (current: number, next: number) => {
+  const { contextSafe } = useGSAP({ scope: sectionRef });
+
+  const handleBeforeChange = contextSafe((current: number, next: number) => {
     gsap.fromTo(
       `.slick-slide[data-index="${current}"]`,
       { opacity: 0.5, y: 20 },
@@ -138,7 +143,7 @@ const TestimonialSection: React.FC = () => {
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
     );
-  };
+  });
 
   const settings: Settings = {
     dots: true,
@@ -175,7 +180,7 @@ const TestimonialSection: React.FC = () => {
   const filteredTestimonials = testimonials.filter(t => t.category === activeTab);
 
   return (
-    <section className="relative w-full py-20">
+    <section ref={sectionRef} className="relative w-full py-20">
       <style>{`
         @keyframes pulse-slow {
           0%, 100% { opacity: 0.7; }

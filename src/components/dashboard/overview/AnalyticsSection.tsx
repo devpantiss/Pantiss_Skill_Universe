@@ -1,25 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer } from "recharts";
 import {
   FaUsers,
   FaTruckMoving,
+
   FaTractor,
   FaCogs,
   FaBolt,
   FaTools,
 } from "react-icons/fa";
-
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 /* ===================== TYPES ===================== */
 
@@ -65,7 +56,7 @@ const miningData: DistrictMiningData[] = [
 
 /* ===================== COMPONENT ===================== */
 
-export default function MiningAnalyticsSection() {
+const MiningAnalyticsSection = () => {
   const [geoJsonData, setGeoJsonData] = useState<any>(null);
 
   const [selectedRole, setSelectedRole] = useState<JobRole>("total");
@@ -88,15 +79,15 @@ export default function MiningAnalyticsSection() {
   const getDistrict = (name: string) =>
     miningData.find((d) => d.name === name);
 
-  const getValue = (name: string) => {
+  const getValue = useCallback((name: string) => {
     const d = getDistrict(name);
     if (!d) return 0;
 
     if (metric === "batches") return d.batches;
     return selectedRole === "total" ? d.total : d[selectedRole];
-  };
+  }, [metric, selectedRole]);
 
-  const mapStyleGreen = (f: any) => {
+  const mapStyleGreen = useCallback((f: any) => {
     const name = f.properties.Dist_Name;
     const v = getValue(name);
     const isHover = hoveredDistrict === name;
@@ -108,9 +99,9 @@ export default function MiningAnalyticsSection() {
       color: isHover ? "#fff" : "#0B0E11",
       fillOpacity: isHover ? 0.9 : 0.7,
     };
-  };
+  }, [getValue, hoveredDistrict]);
 
-  const mapStyleRed = (f: any) => {
+  const mapStyleRed = useCallback((f: any) => {
     const name = f.properties.Dist_Name;
     const isHover = hoveredDistrict === name;
 
@@ -120,23 +111,16 @@ export default function MiningAnalyticsSection() {
       color: isHover ? "#fff" : "#0B0E11",
       fillOpacity: isHover ? 0.9 : 0.6,
     };
-  };
+  }, [hoveredDistrict]);
 
   /* ===================== CHARTS ===================== */
 
-  const districtChart = {
-    labels: miningData.map((d) => d.name),
-    datasets: [
-      {
-        label: metric === "batches" ? "Batches" : "Candidates",
-        data:
-          metric === "batches"
-            ? miningData.map((d) => d.batches)
-            : miningData.map((d) => d.total),
-        backgroundColor: "#22c55e",
-      },
-    ],
-  };
+  const districtChartData = useMemo(() => {
+    return miningData.map((d) => ({
+      name: d.name,
+      value: metric === "batches" ? d.batches : d.total,
+    }));
+  }, [metric]);
 
   const roleTotals = useMemo(() => {
     return miningData.reduce(
@@ -160,16 +144,12 @@ export default function MiningAnalyticsSection() {
     );
   }, []);
 
-  const roleChart = {
-    labels: Object.keys(roleTotals),
-    datasets: [
-      {
-        label: "Candidates by Role",
-        data: Object.values(roleTotals),
-        backgroundColor: "#3b82f6",
-      },
-    ],
-  };
+  const roleChartData = useMemo(() => {
+    return Object.keys(roleTotals).map((key) => ({
+      name: key.replace(/([A-Z])/g, " $1"),
+      value: roleTotals[key as keyof typeof roleTotals],
+    }));
+  }, [roleTotals]);
 
   /* ===================== RENDER ===================== */
 
@@ -282,11 +262,25 @@ export default function MiningAnalyticsSection() {
 
       {/* ===================== BAR CHARTS ===================== */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-[#11161C] p-4 rounded-lg">
-          <Bar data={districtChart} />
+        <div className="bg-[#11161C] p-4 rounded-lg h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={districtChartData}>
+              <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
+              <YAxis stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
+              <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: '#11161C', border: '1px solid #374151', borderRadius: '8px' }} />
+              <Bar dataKey="value" fill="#22c55e" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
-        <div className="bg-[#11161C] p-4 rounded-lg">
-          <Bar data={roleChart} />
+        <div className="bg-[#11161C] p-4 rounded-lg h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={roleChartData}>
+              <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
+              <YAxis stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
+              <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: '#11161C', border: '1px solid #374151', borderRadius: '8px' }} />
+              <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
@@ -351,4 +345,6 @@ export default function MiningAnalyticsSection() {
       </div>
     </section>
   );
-}
+};
+
+export default React.memo(MiningAnalyticsSection);

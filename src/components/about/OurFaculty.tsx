@@ -1,5 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
 
 export interface ChromaItem {
   image: string;
@@ -84,7 +86,7 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
       })
     : demo;
 
-  useEffect(() => {
+  const { contextSafe } = useGSAP(() => {
     const el = rootRef.current;
     if (!el) return;
     setX.current = gsap.quickSetter(el, "--x", "px") as SetterFn;
@@ -93,9 +95,9 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
     pos.current = { x: width / 2, y: height / 2 };
     setX.current(pos.current.x);
     setY.current(pos.current.y);
-  }, []);
+  }, { scope: rootRef });
 
-  const moveTo = (x: number, y: number) => {
+  const moveTo = contextSafe((x: number, y: number) => {
     gsap.to(pos.current, {
       x,
       y,
@@ -107,7 +109,7 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
       },
       overwrite: true,
     });
-  };
+  });
 
   const handleMove = (e: React.PointerEvent) => {
     const r = rootRef.current!.getBoundingClientRect();

@@ -11,4 +11,4 @@ const AttendanceDashboard: React.FC = () => {
   )
 }
 
-export default AttendanceDashboard
+export default React.memo(AttendanceDashboard)

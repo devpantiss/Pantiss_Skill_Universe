@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
 
 export interface SkillCardProps {
   color?: string;
@@ -164,7 +166,9 @@ const ParticleCard: React.FC<{
     particlesInitialized.current = true;
   }, [particleCount, glowColor]);
 
-  const clearAllParticles = useCallback(() => {
+  const { contextSafe } = useGSAP({ scope: cardRef });
+
+  const clearAllParticles = contextSafe(() => {
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
     magnetismAnimationRef.current?.kill();
@@ -181,9 +185,9 @@ const ParticleCard: React.FC<{
       });
     });
     particlesRef.current = [];
-  }, []);
+  });
 
-  const animateParticles = useCallback(() => {
+  const animateParticles = contextSafe(() => {
     if (!cardRef.current || !isHoveredRef.current) return;
 
     if (!particlesInitialized.current) {
@@ -225,14 +229,14 @@ const ParticleCard: React.FC<{
 
       timeoutsRef.current.push(timeoutId);
     });
-  }, [initializeParticles]);
+  });
 
-  useEffect(() => {
+  useGSAP(() => {
     if (disableAnimations || !cardRef.current) return;
 
     const element = cardRef.current;
 
-    const handleMouseEnter = () => {
+    const handleMouseEnter = contextSafe(() => {
       isHoveredRef.current = true;
       animateParticles();
 
@@ -245,9 +249,9 @@ const ParticleCard: React.FC<{
           transformPerspective: 1000,
         });
       }
-    };
+    });
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = contextSafe(() => {
       isHoveredRef.current = false;
       clearAllParticles();
 
@@ -268,9 +272,9 @@ const ParticleCard: React.FC<{
           ease: "power2.out",
         });
       }
-    };
+    });
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = contextSafe((e: MouseEvent) => {
       if (!enableTilt && !enableMagnetism) return;
 
       const rect = element.getBoundingClientRect();
@@ -303,9 +307,9 @@ const ParticleCard: React.FC<{
           ease: "power2.out",
         });
       }
-    };
+    });
 
-    const handleClick = (e: MouseEvent) => {
+    const handleClick = contextSafe((e: MouseEvent) => {
       if (!clickEffect) return;
 
       const rect = element.getBoundingClientRect();
@@ -345,7 +349,7 @@ const ParticleCard: React.FC<{
           onComplete: () => ripple.remove(),
         }
       );
-    };
+    });
 
     element.addEventListener("mouseenter", handleMouseEnter);
     element.addEventListener("mouseleave", handleMouseLeave);
@@ -360,7 +364,7 @@ const ParticleCard: React.FC<{
       element.removeEventListener("click", handleClick);
       clearAllParticles();
     };
-  }, [
+  }, { dependencies: [
     animateParticles,
     clearAllParticles,
     disableAnimations,
@@ -368,7 +372,7 @@ const ParticleCard: React.FC<{
     enableMagnetism,
     clickEffect,
     glowColor,
-  ]);
+  ]});
 
   return (
     <div
@@ -397,7 +401,9 @@ const GlobalSpotlight: React.FC<{
   const spotlightRef = useRef<HTMLDivElement | null>(null);
   const isInsideSection = useRef(false);
 
-  useEffect(() => {
+  const { contextSafe } = useGSAP({ scope: gridRef });
+
+  useGSAP(() => {
     if (disableAnimations || !gridRef?.current || !enabled) return;
 
     const spotlight = document.createElement("div");
@@ -424,7 +430,7 @@ const GlobalSpotlight: React.FC<{
     document.body.appendChild(spotlight);
     spotlightRef.current = spotlight;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = contextSafe((e: MouseEvent) => {
       if (!spotlightRef.current || !gridRef.current) return;
 
       const section = gridRef.current.closest(".skill-development-section");
@@ -503,9 +509,9 @@ const GlobalSpotlight: React.FC<{
         duration: targetOpacity > 0 ? 0.2 : 0.5,
         ease: "power2.out",
       });
-    };
+    });
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = contextSafe(() => {
       isInsideSection.current = false;
       gridRef.current?.querySelectorAll(".card").forEach((card) => {
         (card as HTMLElement).style.setProperty("--glow-intensity", "0");
@@ -517,7 +523,7 @@ const GlobalSpotlight: React.FC<{
           ease: "power2.out",
         });
       }
-    };
+    });
 
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
@@ -527,7 +533,7 @@ const GlobalSpotlight: React.FC<{
       document.removeEventListener("mouseleave", handleMouseLeave);
       spotlightRef.current?.parentNode?.removeChild(spotlightRef.current);
     };
-  }, [gridRef, disableAnimations, enabled, spotlightRadius, glowColor]);
+  }, { dependencies: [gridRef, disableAnimations, enabled, spotlightRadius, glowColor]});
 
   return null;
 };

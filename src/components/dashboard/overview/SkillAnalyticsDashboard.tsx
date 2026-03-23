@@ -64,7 +64,7 @@ const DarkTooltip = ({ active, payload, label }: any) => {
 
 /* ---------------- ANIMATED KPI CARD ---------------- */
 
-const AnimatedStatCard = ({
+const AnimatedStatCard = React.memo(({
   label,
   value,
 }: {
@@ -96,7 +96,7 @@ const AnimatedStatCard = ({
       </p>
     </div>
   );
-};
+});
 
 /* ---------------- COMPONENT ---------------- */
 
@@ -233,4 +233,4 @@ const EnrollmentAnalyticsSection: React.FC = () => {
   );
 };
 
-export default EnrollmentAnalyticsSection;
+export default React.memo(EnrollmentAnalyticsSection);

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import AboutHero from "../../components/about/AboutHero";
 import VisionMissionGoal from "../../components/about/VisionMissionGoal";
 // import ScrollVelocity from "../../components/common/ScrollVelocity";
 import AboutImpact from "../../components/about/AboutImpact";
 import HeroInfoSection from "../../components/about/FoundersSection";
-import { ThreeDMarquee } from "../../components/about/ThreeDMarqueeDemo";
+
+const ThreeDMarquee = lazy(() => import("../../components/about/ThreeDMarqueeDemo").then(module => ({ default: module.ThreeDMarquee })));
+
 // import OurFaculty from "../../components/about/OurFaculty";
 // import OurFacilities from "../../components/about/OurFacilities";
 import ScrollVelocityImages from "../../components/common/ScrollVelocityImages";
@@ -252,8 +254,10 @@ const AboutPage: React.FC = () => {
       <div id="founders">
         <HeroInfoSection />
       </div>
-      <div className="w-full h-[700px] bg-black p-2 ring-1 ring-neutral-700/10 dark:bg-gradient-to-b dark:from-black dark:via-green-600 dark:to-black">
-        <ThreeDMarquee images={images} />
+      <div className="w-full h-[700px] bg-black p-2 ring-1 ring-neutral-700/10 dark:bg-gradient-to-b dark:from-black dark:via-green-600 dark:to-black border border-white/10 rounded-xl relative">
+        <Suspense fallback={<div className="absolute inset-0 flex items-center justify-center text-white/50">Loading 3D Gallery...</div>}>
+          <ThreeDMarquee images={images} />
+        </Suspense>
       </div>
       <Milestones />
       {/* <div id="faculty" className="h-full relative">

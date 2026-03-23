@@ -1,8 +1,15 @@
-import { useState } from "react";
-import DashboardOverviewPage from "../../pages/dashboard/DashboardOverviewPage";
-import AttendanceDashboard from "../../pages/dashboard/AttendanceDashboard";
-import DistrictwiseDashboardPage from "../../pages/dashboard/DistrictwiseDashboardPage";
-import PlacementsDashboard from "../../pages/dashboard/PlacementsDashboard";
+import { useState, Suspense, lazy } from "react";
+
+const DashboardOverviewPage = lazy(() => import("../../pages/dashboard/DashboardOverviewPage"));
+const AttendanceDashboard = lazy(() => import("../../pages/dashboard/AttendanceDashboard"));
+const DistrictwiseDashboardPage = lazy(() => import("../../pages/dashboard/DistrictwiseDashboardPage"));
+const PlacementsDashboard = lazy(() => import("../../pages/dashboard/PlacementsDashboard"));
+
+const TabLoader = () => (
+  <div className="flex justify-center items-center h-[500px]">
+    <div className="w-8 h-8 border-2 border-red-600 border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 /* ===================== TYPES ===================== */
 
@@ -82,14 +89,16 @@ export default function DashboardFilters() {
 
       {/* ===================== CONTENT ===================== */}
       <main className="mx-auto max-w-7xl px-6 py-10">
-        {activeTab === "overview" && <DashboardOverviewPage />}
-        {activeTab === "attendance" && <AttendanceDashboard />}
-        {activeTab === "district-analytics" && (
-          <DistrictwiseDashboardPage />
-        )}
-        {activeTab === "placements" && (
-          <PlacementsDashboard />
-        )}
+        <Suspense fallback={<TabLoader />}>
+          {activeTab === "overview" && <DashboardOverviewPage />}
+          {activeTab === "attendance" && <AttendanceDashboard />}
+          {activeTab === "district-analytics" && (
+            <DistrictwiseDashboardPage />
+          )}
+          {activeTab === "placements" && (
+            <PlacementsDashboard />
+          )}
+        </Suspense>
       </main>
     </section>
   );

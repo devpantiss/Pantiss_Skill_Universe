@@ -1,3 +1,5 @@
+import React from 'react';
+
 type KpiItem = {
     label: string;
     value: number | string;
@@ -37,7 +39,7 @@ type KpiItem = {
     },
   ];
   
-  export default function BatchKpiSection() {
+  const BatchKpiSection: React.FC = () => {
     return (
       <section className="w-full bg-[#0B0E11] p-6 mt-4 rounded-xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
@@ -62,5 +64,6 @@ type KpiItem = {
         </div>
       </section>
     );
-  }
+  };
   
+  export default React.memo(BatchKpiSection);

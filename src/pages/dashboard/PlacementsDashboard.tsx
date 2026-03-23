@@ -44,4 +44,4 @@ const PlacementsDashboard: React.FC = () => {
   );
 };
 
-export default PlacementsDashboard;
+export default React.memo(PlacementsDashboard);

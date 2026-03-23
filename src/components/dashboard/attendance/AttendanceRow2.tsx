@@ -1,22 +1,14 @@
 import {
-    Chart as ChartJS,
-    ArcElement,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    Tooltip,
-    Legend,
-  } from "chart.js";
-  import { Bar, Doughnut } from "react-chartjs-2";
-  
-  ChartJS.register(
-    ArcElement,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    Tooltip,
-    Legend
-  );
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip as RechartsTooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
   
   /* ===================== GAUGE DATA (5 CARDS) ===================== */
   
@@ -139,47 +131,14 @@ import {
   /* ===================== COMPONENT ===================== */
   
   export default function AttendanceAnalyticsSection() {
-    /* ===================== BAR CHART ===================== */
-  
-    const barChartData = {
-      labels: blockAttendance.map(b => b.block),
-      datasets: [
-        {
-          label: "Avg Attendance %",
-          data: blockAttendance.map(b =>
-            Math.round(
-              months.reduce((s, m) => s + (b as any)[m], 0) / months.length
-            )
-          ),
-          backgroundColor: "#dc2626",
-          borderRadius: 6,
-        },
-      ],
-    };
-  
-    const barOptions = {
-      responsive: true,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: (ctx: any) => `${ctx.parsed.y}%`,
-          },
-        },
-      },
-      scales: {
-        y: {
-          min: 0,
-          max: 60,
-          ticks: { color: "#9ca3af" },
-          grid: { color: "#1f2937" },
-        },
-        x: {
-          ticks: { color: "#9ca3af" },
-          grid: { display: false },
-        },
-      },
-    };
+  /* ===================== BAR CHART ===================== */
+
+  const barChartDataRecharts = blockAttendance.map((b) => ({
+    name: b.block,
+    value: Math.round(
+      months.reduce((s, m) => s + (b as any)[m], 0) / months.length
+    ),
+  }));
   
     /* ===================== RENDER ===================== */
   
@@ -194,12 +153,21 @@ import {
         </div>
   
         {/* ===================== ROW 2: BAR CHART ===================== */}
-        <div className="bg-[#11161C] border border-white/10 rounded-xl p-6">
-          <h3 className="text-sm text-white/70 mb-4">
-            Average Attendance % by District
-          </h3>
-          <Bar data={barChartData} options={barOptions} />
+      <div className="bg-[#11161C] border border-white/10 rounded-xl p-6 h-[400px] flex flex-col">
+        <h3 className="text-sm text-white/70 mb-4">
+          Average Attendance % by District
+        </h3>
+        <div className="flex-1">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={barChartDataRecharts}>
+              <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
+              <YAxis domain={[0, 60]} stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
+              <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: '#11161C', border: '1px solid #374151', borderRadius: '8px' }} />
+              <Bar dataKey="value" fill="#dc2626" radius={[6, 6, 0, 0]} barSize={40} />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
+      </div>
   
         {/* ===================== ROW 3: MONTHLY TABLE (7 DISTRICTS) ===================== */}
         <div className="bg-[#11161C] border border-white/10 rounded-xl p-6 overflow-auto">
@@ -240,51 +208,50 @@ import {
     );
   }
   
-  /* ===================== GAUGE CARD ===================== */
-  
-  function GaugeCard({ title, value }: { title: string; value: number }) {
-    const data = {
-      labels: ["Present", "Remaining"],
-      datasets: [
-        {
-          data: [value, 100 - value],
-          backgroundColor: ["#dc2626", "#1f2937"],
-          borderWidth: 0,
-        },
-      ],
-    };
-  
-    const options = {
-      rotation: -90,
-      circumference: 180,
-      cutout: "75%",
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: (ctx: any) => `${ctx.parsed}%`,
-          },
-        },
-      },
-    };
-  
-    return (
-      <div className="bg-[#11161C] border border-white/10 rounded-xl p-4">
-        <p className="text-xs text-white/60 mb-2">{title}</p>
-  
-        <div className="relative h-36">
-          <Doughnut data={data} options={options} />
-  
-          <div className="absolute inset-y-0 right-0 flex items-center justify-center">
-            <span className="text-2xl font-semibold">{value}%</span>
-          </div>
-        </div>
-  
-        <div className="flex justify-between max-w-[150px] text-[10px] text-white/40 -mt-2">
-          <span>0%</span>
-          <span>100%</span>
+/* ===================== GAUGE CARD ===================== */
+
+function GaugeCard({ title, value }: { title: string; value: number }) {
+  const data = [
+    { name: "Present", value: value },
+    { name: "Remaining", value: 100 - value },
+  ];
+
+  return (
+    <div className="bg-[#11161C] border border-white/10 rounded-xl p-4">
+      <p className="text-xs text-white/60 mb-2">{title}</p>
+
+      <div className="relative h-36">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="100%"
+              startAngle={180}
+              endAngle={0}
+              innerRadius="70%"
+              outerRadius="100%"
+              stroke="none"
+              dataKey="value"
+            >
+              <Cell fill="#dc2626" />
+              <Cell fill="#1f2937" />
+            </Pie>
+            <RechartsTooltip contentStyle={{ backgroundColor: '#11161C', border: 'none', borderRadius: '8px', fontSize: '12px' }} itemStyle={{ color: '#fff' }} />
+          </PieChart>
+        </ResponsiveContainer>
+
+        <div className="absolute inset-x-0 bottom-4 flex items-center justify-center">
+          <span className="text-2xl font-semibold">{value}%</span>
         </div>
       </div>
-    );
-  }
+
+      <div className="flex justify-between max-w-[150px] mx-auto text-[10px] text-white/40 mt-2">
+        <span>0%</span>
+        <span>100%</span>
+      </div>
+    </div>
+  );
+}
+
   

@@ -108,29 +108,35 @@ const CoreIndustriesJobRolesMarquee: React.FC = () => {
   return (
     <section className="relative bg-black text-white py-20 overflow-hidden">
 
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-zinc-950" />
+      {/* Enhanced Background with Depth */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[#0b0202]" />
 
+        {/* Floating Glassmorphic Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-red-600/10 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-orange-600/10 blur-[120px] rounded-full animate-pulse [animation-delay:2s]" />
+
+        {/* Grid Pattern */}
         <div
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.6) 1px, transparent 0)",
-            backgroundSize: "26px 26px",
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)",
+            backgroundSize: "32px 32px",
           }}
         />
 
+        {/* Diagonal Lines */}
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(135deg, rgba(255,255,255,0.8) 0, rgba(255,255,255,0.8) 1px, transparent 1px, transparent 48px)",
+              "repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 60px)",
           }}
         />
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(220,38,38,0.08),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_55%,rgba(0,0,0,0.92)_100%)]" />
+        {/* Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
       </div>
 
       {/* Content */}
@@ -138,12 +144,12 @@ const CoreIndustriesJobRolesMarquee: React.FC = () => {
 
         {/* Header */}
         <div className="text-center mb-14">
-          <p className="inline-block text-xs uppercase tracking-widest text-red-500 mb-3">
+          <p className="inline-block text-[10px] uppercase tracking-[0.3em] text-red-500/80 mb-6 font-semibold">
             PSMSA • Programs • Industry Roles
           </p>
 
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Core Industry Job Roles
+          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-white mb-6">
+            Core Industry <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-red-500/50">Job Roles</span>
           </h2>
 
           <p className="mt-4 text-white/70 max-w-3xl mx-auto text-base">
@@ -157,49 +163,56 @@ const CoreIndustriesJobRolesMarquee: React.FC = () => {
           {jobCategories.map((category, index) => (
             <div
               key={category.industry}
-              className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6 items-center"
+              className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 items-stretch group/row"
             >
-              {/* Industry Card */}
-              <div className="rounded-xl border border-white/10 bg-zinc-900 px-5 py-4 flex items-center gap-4">
-                <div className="h-10 w-10 rounded-lg bg-red-600/10 border border-red-600/30 flex items-center justify-center text-red-500">
+              {/* Glassmorphic Industry Card */}
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md px-6 py-5 flex items-center gap-5 transition-all duration-500 group-hover/row:bg-white/[0.06] group-hover/row:border-red-500/30">
+                <div className="h-12 w-12 rounded-xl bg-red-600/10 border border-red-600/20 flex items-center justify-center text-red-500/90 shadow-[0_0_20px_rgba(220,38,38,0.1)] transition-transform duration-500 group-hover/row:scale-110">
                   {category.icon}
                 </div>
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-white/50">
+                <div className="relative z-10">
+                  <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1 font-medium">
                     Sector
                   </p>
-                  <p className="text-base font-semibold">
+                  <p className="text-lg font-semibold tracking-tight leading-tight">
                     {category.industry}
                   </p>
                 </div>
+                {/* Subtle row inner glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/[0.02] to-transparent opacity-0 group-hover/row:opacity-100 transition-opacity duration-500" />
               </div>
 
-              {/* Roles Marquee */}
-              <div className="relative overflow-hidden rounded-xl border border-white/10 bg-zinc-900 px-3 py-3">
-                <div className="pointer-events-none absolute left-0 top-0 h-full w-14 bg-gradient-to-r from-black to-transparent z-10" />
-                <div className="pointer-events-none absolute right-0 top-0 h-full w-14 bg-gradient-to-l from-black to-transparent z-10" />
+              {/* Roles Marquee Container */}
+              <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 backdrop-blur-sm px-4 py-4 flex items-center">
+                {/* Edge Fades */}
+                <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-[#0b0202] to-transparent z-10" />
+                <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-[#0b0202] to-transparent z-10" />
 
                 <Marquee
                   gradient={false}
-                  speed={34}
+                  speed={30 + Math.random() * 10}
                   direction={index % 2 === 0 ? "left" : "right"}
                   pauseOnHover
                 >
-                  <div className="flex gap-3 pr-4">
+                  <div className="flex gap-4 pr-6">
                     {category.roles.map((role, idx) => (
                       <div
                         key={idx}
                         className="
-                          px-5 py-2.5 rounded-full
+                          group/pill relative
+                          px-6 py-3 rounded-full
                           text-sm font-medium whitespace-nowrap
-                          bg-black border border-white/10
-                          text-white/80
+                          bg-white/[0.03] border border-green-600
+                          text-white/70
                           hover:text-white
-                          hover:border-red-600/50
-                          transition
+                          transition-all duration-300
+                          cursor-default
                         "
                       >
-                        <span className="inline-block mr-2 h-2 w-2 rounded-full bg-red-600" />
+                        <span className="relative inline-flex items-center justify-center mr-3">
+                          <span className="absolute h-2.5 w-2.5 rounded-full bg-red-500/10 animate-ping" />
+                          <span className="relative h-1.5 w-1.5 rounded-full bg-red-500/60 shadow-[0_0_8px_rgba(239,68,68,0.4)]" />
+                        </span>
                         {role}
                       </div>
                     ))}

@@ -1,91 +1,122 @@
+// GlobalPlacements.tsx
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Globe, TrendingUp, Users, ShieldCheck } from "lucide-react";
+
+const stats = [
+  { id: "graduates", label: "Skills Placed", value: "1,200+", icon: Users },
+  { id: "countries", label: "Global Regions", value: "18+", icon: Globe },
+  { id: "partners", label: "Industry Titans", value: "45+", icon: ShieldCheck },
+];
 
 const GlobalPlacements: React.FC = () => {
   return (
-    <section
-      className="relative w-full overflow-hidden flex items-center justify-center"
-      style={{ minHeight: "520px" }}
-    >
-      {/* --- Background Video --- */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762412314/3125427-uhd_3840_2160_25fps_goajqw.mp4" // 🔁 replace with your hosted video link
-        autoPlay
-        loop
-        muted
-        playsInline
-      />
+    <section className="relative w-full overflow-hidden bg-black py-24 lg:py-32">
+      {/* --- BACKGROUND VIDEO WITH CINEMATIC OVERLAY --- */}
+      <div className="absolute inset-0 z-0">
+        <video
+          className="w-full h-full object-cover opacity-40 grayscale-[0.4] will-change-transform"
+          src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762412314/3125427-uhd_3840_2160_25fps_goajqw.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ transform: "translateZ(0)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent will-change-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 will-change-opacity" />
+      </div>
 
-      {/* --- Overlay for readability --- */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-black" aria-hidden />
+      {/* Glowing Accents */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* --- Foreground Content --- */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 md:py-24 text-white">
-        <div className="flex flex-col md:flex-row items-center md:items-stretch gap-10">
-          {/* --- Left: Text Section --- */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
-              Global Placements
-            </h2>
-            <p className="text-gray-200 mb-6 text-base md:text-lg leading-relaxed">
-              At <span className="text-green-400 font-semibold">Pantiss Skill Universe</span>, we
-              prepare and place skilled professionals in blue-collar roles across
-              the globe — connecting trained talent with high-demand industries in
-              Mining, Infrastructure, Logistics, and Energy sectors.
-            </p>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+          
+          {/* LEFT: TEXT & STRATEGY */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full lg:w-1/2 space-y-10"
+          >
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-red-600/10 border border-red-500/20 rounded-full text-red-500 font-bold text-[10px] tracking-[0.3em] uppercase">
+                <TrendingUp className="w-3 h-3" /> Global Trajectory
+              </div>
+              
+              <h2 className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.85]">
+                GLOBAL <br />
+                <span className="text-red-600">PLACEMENTS</span>
+              </h2>
+              
+              <p className="text-lg md:text-xl text-slate-400 font-medium leading-relaxed max-w-xl">
+                We prepare world-class professionals for high-demand industrial roles across 
+                six continents. Our graduates lead teams in Mining, Infrastructure, 
+                and energy clusters from India to West Australia.
+              </p>
+            </div>
 
-            <ul className="text-sm text-gray-300 space-y-2 mb-8">
-              <li>• Global employer partnerships & international certifications</li>
-              <li>• Tailored training aligned with industry demand</li>
-              <li>• Migration, visa, and onboarding support</li>
-            </ul>
+            {/* Premium Stats Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+              {stats.map((stat) => (
+                <div key={stat.id} className="p-6 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-md group hover:bg-white/10 transition-all">
+                  <stat.icon className="text-red-500 w-6 h-6 mb-4" />
+                  <div className="text-3xl font-black text-white group-hover:text-red-500 transition-colors">
+                    {stat.value}
+                  </div>
+                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="https://blue-global-force.vercel.app/"
-                className="inline-flex items-center px-5 py-3 bg-green-600 hover:bg-green-500 text-white rounded-full font-semibold shadow-md transition"
+            <div className="flex flex-wrap items-center gap-6 pt-4">
+              <button 
+                onClick={() => window.open("https://blue-global-force.vercel.app/", "_blank")}
+                className="group relative px-10 py-5 bg-red-600 text-white font-black text-xs tracking-widest uppercase rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/30"
               >
-                Explore Opportunities
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
-
-              <a
-                href="/contact-us"
-                className="text-sm text-gray-300 underline underline-offset-2 hover:text-white transition"
+                <span className="relative z-10 flex items-center gap-3">
+                  Explore Careers <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
+              
+              <button 
+                onClick={() => window.location.href = "/contact-us"}
+                className="text-white/60 hover:text-white font-bold text-xs tracking-widest uppercase border-b border-white/20 hover:border-red-500 py-1 transition-all"
               >
                 Partner with us
-              </a>
+              </button>
             </div>
+          </motion.div>
 
-            {/* Stats */}
-            <div className="mt-10 flex gap-8 flex-wrap">
-              <div>
-                <div className="text-3xl font-bold">+1,200</div>
-                <div className="text-xs text-gray-300">Placed Graduates</div>
+          {/* RIGHT: MAP VISUALIZATION */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="w-full lg:w-1/2"
+          >
+            <div className="relative aspect-[16/11] rounded-[40px] overflow-hidden bg-white/5 border border-white/10 p-6 backdrop-blur-xl group">
+              {/* Map Image with Inner Glow */}
+              <div className="relative h-full w-full rounded-[32px] overflow-hidden ring-1 ring-white/10">
+                <img
+                  src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762413812/ChatGPT_Image_Nov_6_2025_12_53_13_PM_ngcmc0.png"
+                  alt="World map showing placement regions"
+                  className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-red-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
-              <div>
-                <div className="text-3xl font-bold">18</div>
-                <div className="text-xs text-gray-300">Countries</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold">45+</div>
-                <div className="text-xs text-gray-300">Industry Partners</div>
-              </div>
+              
+              {/* Float Decorative Ring */}
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 border-4 border-red-600/20 rounded-full animate-pulse" />
             </div>
-          </div>
+          </motion.div>
 
-          {/* --- Right: Map or Visual Section --- */}
-          <div className="w-full md:w-1/2 flex items-center justify-center">
-            <div className="h-[400px] rounded-2xl bg-white/10 backdrop-blur-sm border border-green-600 p-4 flex flex-col md:flex-row items-center gap-6">
-              {/* Replace image with your own SVG/map */}
-              <img
-                src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762413812/ChatGPT_Image_Nov_6_2025_12_53_13_PM_ngcmc0.png"
-                alt="World map showing placement regions"
-                className="h-full rounded-2xl ring-2 ring-red-600 object-contain"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>

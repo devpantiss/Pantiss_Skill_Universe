@@ -27,6 +27,7 @@ const JobsPage = React.lazy(() => import("./pages/JobsPage"));
 const InternationalMobilityPage = React.lazy(() => import("./pages/Programmes/InternationalMobilityPage"));
 const SkillDevBootCampPage = React.lazy(() => import("./pages/Programmes/SkillDevBootCampPage"));
 const ProgramPage = React.lazy(() => import("./pages/ProgramPage"));
+const ResourcesPage = React.lazy(() => import("./pages/ResourcesPage"));
 
 // Lightweight loading fallback
 const PageLoadingFallback = () => (
@@ -64,6 +65,7 @@ function LayoutWrapper() {
           <Route path="/our-programmes/iti-program" element={<ITIPage />} />
           <Route path="/our-programmes/international-mobility-program" element={<InternationalMobilityPage />} />
           <Route path="/our-programmes/skill-development-boot-camp-program" element={<SkillDevBootCampPage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
         </Routes>
       </Suspense>
       {!hideLayout && <Footer />}
