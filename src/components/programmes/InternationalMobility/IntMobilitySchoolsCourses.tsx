@@ -9,6 +9,7 @@ import {
   useMap,
 } from "react-leaflet";
 import L from "leaflet";
+import type { GeoJsonObject } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* =====================================================
@@ -153,7 +154,7 @@ const api_key = "8f741830-1254-408f-a58c-cdbbf7deba3c"; // Replace with your act
 
 
 const IntMobilityTracksWorldMap: React.FC = () => {
-  const [geoData, setGeoData] = useState<any>(null);
+  const [geoData, setGeoData] = useState<GeoJsonObject | null>(null);
 
   useEffect(() => {
     fetch("/map/world.geojson")

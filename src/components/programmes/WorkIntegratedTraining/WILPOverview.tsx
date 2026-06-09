@@ -18,7 +18,7 @@ interface Sector {
   skills: string[];
 }
 
-interface WILPOverviewProps {}
+type WILPOverviewProps = Record<string, never>;
 
 // Define sectors data tailored for WILP (Work-Integrated Learning Program)
 const sectors: Sector[] = [

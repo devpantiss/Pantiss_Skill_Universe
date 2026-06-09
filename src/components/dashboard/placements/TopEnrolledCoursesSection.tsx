@@ -82,11 +82,14 @@ const genderColors: Record<string, string> = {
   Transgender: "#a855f7",
 };
 
+type Gender = "Male" | "Female" | "Transgender";
+const genders: Gender[] = ["Female", "Male", "Transgender"];
+
 /* ===================== COMPONENT ===================== */
 
 const TopEnrolledCoursesSection: React.FC = () => {
   const [activeGender, setActiveGender] = useState<
-    "All" | "Male" | "Female" | "Transgender"
+    "All" | Gender
   >("All");
 
   const chartData =
@@ -108,10 +111,11 @@ const TopEnrolledCoursesSection: React.FC = () => {
 
         {/* ===================== GENDER TOGGLE ===================== */}
         <div className="flex border border-white/20 rounded-lg overflow-hidden">
-          {["Female", "Male", "Transgender"].map((g) => (
+          {genders.map((g) => (
             <button
+              type="button"
               key={g}
-              onClick={() => setActiveGender(g as any)}
+              onClick={() => setActiveGender(g)}
               className={`px-4 py-2 text-sm transition ${
                 activeGender === g
                   ? "bg-red-600 text-white"

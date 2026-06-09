@@ -50,17 +50,6 @@ const campuses = [
 const Campuses: React.FC = () => {
   return (
     <section className="relative py-6 px-6 overflow-hidden bg-black text-neutral-100">
-      {/* 🌌 Scattered Glow Background */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-[8%] left-[12%] w-80 h-80 bg-red-600/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-[18%] right-[8%] w-96 h-96 bg-red-500/20 rounded-full blur-3xl" />
-        <div className="absolute top-[32%] right-[22%] w-96 h-96 bg-green-600/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-[10%] left-[28%] w-72 h-72 bg-green-500/20 rounded-full blur-3xl" />
-        <div className="absolute top-[55%] left-[4%] w-64 h-64 bg-amber-500/20 rounded-full blur-2xl" />
-        <div className="absolute top-[6%] right-[4%] w-56 h-56 bg-blue-500/20 rounded-full blur-2xl" />
-      </div>
-
-      {/* 🧊 Content */}
       <div className="relative max-w-7xl mx-auto px-8">
         {/* Heading */}
         <div className="text-center mb-16">
@@ -139,8 +128,10 @@ const Campuses: React.FC = () => {
           <img
             src="/Homepage/dash_image_1.png"
             alt=""
-            className="w-36 lg:w-44 h-36 lg:h-44 object-contain drop-shadow-xl animate-bounce"
+            className="w-36 lg:w-44 h-36 lg:h-44 object-contain drop-shadow-xl"
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
           />
 
           <Link
@@ -156,8 +147,10 @@ const Campuses: React.FC = () => {
           <img
             src="/Homepage/dash_image_2.png"
             alt=""
-            className="w-36 lg:w-44 h-36 lg:h-44 object-contain drop-shadow-xl animate-bounce"
+            className="w-36 lg:w-44 h-36 lg:h-44 object-contain drop-shadow-xl"
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>

@@ -227,25 +227,44 @@ const JobsListing: React.FC = () => {
     filter === "All" ? jobsData : jobsData.filter((c) => c.category === filter);
 
   return (
-    <section className="bg-neutral-950 pt-36 min-h-screen">
+    <section className="min-h-screen bg-[#070707] pt-36">
       <div className="max-w-6xl mx-auto px-6 py-14">
         {/* HEADER */}
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-          Careers at Pantiss Skill University
-        </h2>
-        <p className="text-neutral-400 mb-10 max-w-3xl">
-          Explore opportunities to shape India’s skilling ecosystem through
-          training excellence, innovation, and industry alignment.
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#f5d38a]">
+          Open Appointments
         </p>
+        <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
+          Join Pantiss Skill University
+        </h2>
+        <p className="mt-3 mb-8 max-w-3xl text-neutral-300">
+          Explore faculty, trainer, campus operations, laboratory, placement, and digital learning roles that support student success.
+        </p>
+
+        <div className="mb-10 flex flex-wrap gap-2">
+          {["All", ...jobsData.map((category) => category.category)].map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setFilter(category)}
+              className={`rounded-md border px-4 py-2 text-sm font-semibold transition ${
+                filter === category
+                  ? "border-red-600 bg-red-600 text-white"
+                  : "border-white/10 bg-[#111111] text-neutral-300 hover:border-[#d9a441] hover:text-[#f5d38a]"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
         {/* LISTING */}
         {!selectedJob ? (
           filtered.map((cat) => (
             <div key={cat.category} className="mb-14">
-              <h3 className="text-xl font-semibold text-white mb-1">
+              <h3 className="border-l-4 border-[#d9a441] pl-3 text-xl font-bold text-white">
                 {cat.category}
               </h3>
-              <p className="text-neutral-400 mb-6">{cat.description}</p>
+              <p className="mb-6 mt-2 text-neutral-400">{cat.description}</p>
 
               {cat.jobs.length > 0 ? (
                 <div className="grid md:grid-cols-2 gap-6">
@@ -255,13 +274,13 @@ const JobsListing: React.FC = () => {
                       onClick={() => setSelectedJob(job)}
                       className="
                           cursor-pointer
-                          rounded-lg border border-neutral-800
-                          bg-neutral-900 p-5
-                          hover:border-red-600 hover:shadow-lg
+                          rounded-md border border-white/10
+                          bg-[#111111] p-6 shadow-xl shadow-black/20
+                          hover:border-[#d9a441] hover:shadow-lg
                           transition-all
                         "
                     >
-                      <h4 className="text-lg font-semibold text-white">
+                      <h4 className="text-lg font-bold text-white">
                         {job.title}
                       </h4>
 
@@ -269,13 +288,13 @@ const JobsListing: React.FC = () => {
                         {job.location}
                       </p>
 
-                      <div className="flex justify-between mt-4 text-sm text-neutral-400">
+                      <div className="mt-4 flex justify-between border-t border-white/10 pt-4 text-sm text-neutral-400">
                         <span>{job.type}</span>
                         <span>{job.salaryRange}</span>
                       </div>
 
-                      <div className="mt-4 text-red-500 text-sm font-medium">
-                        View details →
+                      <div className="mt-4 text-sm font-bold text-[#f5d38a]">
+                        View appointment details
                       </div>
                     </div>
                   ))}
@@ -291,8 +310,8 @@ const JobsListing: React.FC = () => {
           /* JOB DETAILS */
           <div
             className="
-                rounded-xl border border-neutral-800
-                bg-neutral-900 p-8
+                rounded-md border border-white/10
+                bg-[#111111] p-8 shadow-xl shadow-black/20
               "
           >
             <h3 className="text-2xl font-bold text-white mb-2">
@@ -303,7 +322,7 @@ const JobsListing: React.FC = () => {
               {selectedJob.location} • {selectedJob.type}
             </div>
 
-            <h4 className="text-lg font-semibold text-red-500 mb-2">
+            <h4 className="text-lg font-semibold text-[#f5d38a] mb-2">
               Role Overview
             </h4>
             <ul className="list-disc pl-6 text-neutral-300 mb-6 space-y-1">
@@ -312,7 +331,7 @@ const JobsListing: React.FC = () => {
               ))}
             </ul>
 
-            <h4 className="text-lg font-semibold text-red-500 mb-2">
+            <h4 className="text-lg font-semibold text-[#f5d38a] mb-2">
               Qualifications
             </h4>
             <ul className="list-disc pl-6 text-neutral-300 mb-8 space-y-1">
@@ -337,8 +356,8 @@ const JobsListing: React.FC = () => {
 
               <button
                 className="
-                    bg-neutral-700 hover:bg-neutral-600
-                    text-white px-6 py-3 rounded-md
+                    border border-white/15 bg-transparent hover:border-[#d9a441]
+                    text-neutral-100 px-6 py-3 rounded-md
                     transition
                   "
                 onClick={() => setSelectedJob(null)}

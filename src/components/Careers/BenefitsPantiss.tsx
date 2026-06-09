@@ -21,7 +21,7 @@ const cardData: CardProps[] = [
   {
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745475/pexels-lalesh-167964_wzo43t.jpg",
-    text: "Tution Assistance",
+    text: "Tuition Assistance",
     path: "/benefits-at-pantiss/tution-assistance",
   },
   {
@@ -50,8 +50,7 @@ const cardData: CardProps[] = [
 
 const Card = memo(({ image, text, path, isLarge = false }: CardProps) => (
   <div
-    className={`relative shadow-lg rounded-lg overflow-hidden group
-      bg-neutral-900 border border-neutral-800
+    className={`group relative overflow-hidden rounded-md border border-white/10 bg-neutral-950 shadow-2xl shadow-black/30
       ${isLarge ? "h-[500px]" : "h-64"}`}
   >
     <Link to={path}>
@@ -63,9 +62,9 @@ const Card = memo(({ image, text, path, isLarge = false }: CardProps) => (
         loading="lazy"
       />
 
-      <div className="absolute bottom-0 left-0 bg-neutral-950/90 px-3 py-2 rounded-tr-lg">
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/65 to-transparent px-4 pb-4 pt-14">
         <p
-          className={`text-red-500 font-semibold
+          className={`border-l-4 border-[#d9a441] pl-3 font-semibold text-white
             ${isLarge ? "lg:text-3xl text-xl" : "text-xl"}`}
         >
           {text}
@@ -94,37 +93,37 @@ const BenefitsPantiss: React.FC = () => {
   );
 
   return (
-    <div className="bg-neutral-950 max-w-7xl mx-auto py-12 px-4 sm:px-8">
-      {/* Header Section */}
-      <h2 className="text-3xl md:text-4xl font-bold text-white">
-        BENEFITS AT PANTISS SKILL UNIVERSE{" "}
-      </h2>
+    <section className="bg-[#070707] py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#f5d38a]">
+          Faculty & Staff Support
+        </p>
+        <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
+          Growth, wellbeing, and professional learning
+        </h2>
 
-      <p className="mt-4 max-w-3xl text-neutral-400">
-        Pantiss’s staff are supported to pursue a rewarding career, with our
-        benefits serving the unique needs of everyone in the Pantiss family.
-      </p>
+        <p className="mt-4 max-w-3xl text-neutral-300">
+          Pantiss supports educators and staff with development pathways, wellbeing practices, and policies that help them do meaningful work over the long term.
+        </p>
 
-      {/* Cards Layout */}
-      <div className="max-w-7xl mt-10 mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6 px-4">
-        {/* Large Card on the Left */}
-        <div className="lg:col-span-2">
-          <Card {...largeCard} isLarge />
-        </div>
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-4">
+          <div className="lg:col-span-2">
+            <Card {...largeCard} isLarge />
+          </div>
 
-        {/* Small Cards Grid on the Right */}
-        <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {cardData.map((card) => (
-            <Card
-              key={card.path}
-              image={card.image}
-              text={card.text}
-              path={card.path}
-            />
-          ))}
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {cardData.map((card) => (
+              <Card
+                key={card.path}
+                image={card.image}
+                text={card.text}
+                path={card.path}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -48,12 +48,27 @@ const COLORS = ["#ec4899", "#3b82f6", "#facc15", "#22c55e"];
 
 /* ---------------- TOOLTIP ---------------- */
 
-const DarkTooltip = ({ active, payload, label }: any) => {
+type TooltipPayloadItem = {
+  dataKey: string;
+  color?: string;
+  name: string;
+  value: string | number;
+};
+
+const DarkTooltip = ({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  payload?: TooltipPayloadItem[];
+  label?: string | number;
+}) => {
   if (!active || !payload?.length) return null;
   return (
     <div className="bg-zinc-900 border border-zinc-700 rounded-md px-3 py-2 text-xs text-zinc-200 shadow-lg">
       {label && <p className="mb-1 text-zinc-400">{label}</p>}
-      {payload.map((item: any) => (
+      {payload.map((item) => (
         <p key={item.dataKey} style={{ color: item.color }}>
           {item.name}: {item.value}
         </p>

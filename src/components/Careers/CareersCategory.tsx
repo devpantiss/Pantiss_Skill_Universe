@@ -65,38 +65,45 @@ const CareersCategory: React.FC = () => {
   );
 
   return (
-    <section className="bg-neutral-950 py-14">
+    <section className="border-y border-white/10 bg-[#111111] py-16">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">
-          Careers at Pantiss Skill University
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#f5d38a]">
+          Academic & Administrative Pathways
+        </p>
+        <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
+          Find your place in the university
         </h2>
-        <p className="mt-3 text-neutral-400 max-w-3xl">
-          Join a mission-driven skilling university shaping industry-ready
-          talent through training, innovation, and partnerships.
+        <p className="mt-3 text-neutral-300 max-w-3xl">
+          Explore teaching, curriculum, laboratories, placements, digital learning, and quality roles that keep a skill university running well.
         </p>
 
         <Slider {...settings} className="mt-10">
           {careerAreas.map((area) => (
             <div
               key={area.title}
-              className="px-4 relative text-center cursor-pointer"
+              className="px-3 cursor-pointer"
               onClick={() =>
                 navigate(
                   `/careers/jobs?category=${encodeURIComponent(area.title)}`
                 )
               }
             >
-              <div className="relative w-56 h-56 mx-auto rounded-full overflow-hidden border border-neutral-800 bg-neutral-900">
+              <div className="group relative h-[330px] overflow-hidden rounded-md border border-white/10 bg-[#080808] shadow-xl shadow-black/20 transition hover:-translate-y-1 hover:border-[#d9a441]/70">
                 <img
                   src={area.img}
                   alt={area.title}
-                  className="w-full h-full object-cover"
+                  className="h-48 w-full object-cover opacity-85 transition duration-300 group-hover:scale-105 group-hover:opacity-100"
                 />
+                <div className="p-5 text-left">
+                  <span className="inline-flex rounded-sm border border-red-500/30 bg-red-950/50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-red-200">
+                    {area.count} open {area.count === 1 ? "role" : "roles"}
+                  </span>
+                  <h3 className="mt-4 text-lg font-bold leading-snug text-white">{area.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-neutral-400">
+                    Serve learners through structured, practice-led education.
+                  </p>
+                </div>
               </div>
-              <span className="absolute z-100 top-3 right-10 bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
-                {area.count}
-              </span>
-              <h3 className="mt-4 text-white font-semibold">{area.title}</h3>
             </div>
           ))}
         </Slider>

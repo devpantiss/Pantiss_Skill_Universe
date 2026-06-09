@@ -16,6 +16,7 @@ import {
 } from "react-leaflet";
 
 import L from "leaflet";
+import type { Feature, GeoJsonObject, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* ===============================
@@ -41,6 +42,8 @@ interface School {
   };
   courses: Course[];
 }
+
+type DistrictFeature = Feature<Geometry, { Dist_Name?: string }>;
 
 /* ===============================
    DATA
@@ -136,7 +139,7 @@ const FlyToDistrict = ({ coords }: { coords: [number, number] }) => {
     map.flyTo(coords, 8, {
       duration: 1.4,
     });
-  }, [coords]);
+  }, [coords, map]);
 
   return null;
 };
@@ -146,7 +149,7 @@ const FlyToDistrict = ({ coords }: { coords: [number, number] }) => {
 ================================= */
 
 const DiplomaSchoolsCourses = () => {
-  const [geoData, setGeoData] = useState<any>(null);
+  const [geoData, setGeoData] = useState<GeoJsonObject | null>(null);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -281,9 +284,10 @@ const DiplomaSchoolsCourses = () => {
               <GeoJSON
                 key={school.location.district}
                 data={geoData}
-                style={(feature: any) => {
+                style={(feature) => {
+                  const districtFeature = feature as DistrictFeature | undefined;
                   const active =
-                    feature.properties.Dist_Name ===
+                    districtFeature?.properties?.Dist_Name ===
                     school.location.district;
 
                   return {

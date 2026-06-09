@@ -18,7 +18,7 @@ interface Sector {
   skills: string[];
 }
 
-interface AdvancedDiplomaOverviewProps {}
+type AdvancedDiplomaOverviewProps = Record<string, never>;
 
 // Advanced Diploma — 7 sectors tailored to your request
 const sectors: Sector[] = [

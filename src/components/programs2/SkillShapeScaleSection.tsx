@@ -60,6 +60,35 @@ const useCountUp = (end: number, enabled: boolean, duration = 1600) => {
   return count;
 };
 
+function ImpactStatCard({
+  stat,
+  visible,
+  showDivider,
+}: {
+  stat: { number: number; suffix: string; label: string };
+  visible: boolean;
+  showDivider: boolean;
+}) {
+  const animatedValue = useCountUp(stat.number, visible);
+
+  return (
+    <div className="relative">
+      <div className="text-5xl md:text-6xl font-light text-green-400">
+        {animatedValue}
+        {stat.suffix}
+      </div>
+
+      <div className="mt-3 text-[11px] leading-relaxed tracking-widest text-white/55 whitespace-pre-line">
+        {stat.label}
+      </div>
+
+      {showDivider && (
+        <div className="hidden md:block absolute top-2 right-0 h-16 w-px bg-white/15" />
+      )}
+    </div>
+  );
+}
+
 /* ===================== COMPONENT ===================== */
 
 export default function PSMSAOurProgrammesHero() {
@@ -216,26 +245,14 @@ export default function PSMSAOurProgrammesHero() {
           ref={impactRef}
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-10 items-end"
         >
-          {stats.map((stat, idx) => {
-            const animatedValue = useCountUp(stat.number, impactVisible);
-
-            return (
-              <div key={idx} className="relative">
-                <div className="text-5xl md:text-6xl font-light text-green-400">
-                  {animatedValue}
-                  {stat.suffix}
-                </div>
-
-                <div className="mt-3 text-[11px] leading-relaxed tracking-widest text-white/55 whitespace-pre-line">
-                  {stat.label}
-                </div>
-
-                {idx !== 3 && (
-                  <div className="hidden md:block absolute top-2 right-0 h-16 w-px bg-white/15" />
-                )}
-              </div>
-            );
-          })}
+          {stats.map((stat, idx) => (
+            <ImpactStatCard
+              key={stat.label}
+              stat={stat}
+              visible={impactVisible}
+              showDivider={idx !== stats.length - 1}
+            />
+          ))}
         </div>
 
       </div>

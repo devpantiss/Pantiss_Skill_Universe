@@ -1,63 +1,81 @@
-import React from "react";
+import React, { Suspense } from "react";
 import HeroSection from "../components/homepage/Hero";
-import OverLappingCards2 from "../components/homepage/OverLappingCards2";
-// import SolutionCards from "../components/homepage/SolutionCards";
-import SectorsAccordion from "../components/homepage/SectorsAccordion";
-// import FleetSection from "../components/homepage/FleetSection";
-import PlacementsSection from "../components/homepage/PlacementsSection";
-// import CampusExperienceSection from "../components/homepage/CampusExperienceSection";
-// import ExplorePrograms from "../components/homepage/ExplorePrograms";
-// import OurFuturisticApproach from "../components/homepage/OurFuturisticApproach";
-// import Why from "../components/Academics/Why";
-// import SkillDevelopmentSection from "../components/homepage/SkillDevelopmentSection";
-// import TestimonialSection from "../components/homepage/TestimonialSection";
-// import Welcome from "../components/homepage/Welcome";
-import WhyPantissSkillUniversity from "../components/homepage/WhyPantissSkillUniversity";
-// import ParallaxSection from "../components/homepage/ParallaxSection";
-// import ProgrammesSection from "../components/homepage/ProgrammesSection";
-import SocialGalleryCalendarSection from "../components/homepage/SocialGalleryCalenderSection";
-// import HorizontalScrollComponent from "../components/homepage/HorizontalComponent";
-// import Notices from "../components/homepage/Notices";
-import SchoolLogoStrip from "../components/homepage/SchoolLogoStrip";
-// import OurFuturisticApproach from "../components/homepage/OurFuturisticApproach";
-import Ranking from "../components/homepage/Ranking";
 import Impact from "../components/homepage/Impact";
-// import BentoGrid from "../components/homepage/BentoGrid";
-// import SchoolSection from "../components/homepage/SchoolSection";
-import OurPartners from "../components/homepage/OurPartners";
-// import ActivityAndEvents from "../components/homepage/Events";
-// import Highlights from "../components/homepage/Highlights";
-// import SkillOnWheelsBanner from "../components/homepage/SkillOnWheelBanner";
-// import WomenInMining from "../components/homepage/WomenInMining";
-// import GlobalPlacements from "../components/homepage/GlobalPlacements";
-// import AlumniPortal from "../components/homepage/AlumniPortal";
-import TrainingUSP from "../components/homepage/TrainingUSP";
-import Campuses from "../components/homepage/Campuses";
+import LazyMount from "../components/common/LazyMount";
+
+const WhyPantissSkillUniversity = React.lazy(
+  () => import("../components/homepage/WhyPantissSkillUniversity")
+);
+const SchoolLogoStrip = React.lazy(() => import("../components/homepage/SchoolLogoStrip"));
+const Ranking = React.lazy(() => import("../components/homepage/Ranking"));
+const OverLappingCards2 = React.lazy(() => import("../components/homepage/OverLappingCards2"));
+const Campuses = React.lazy(() => import("../components/homepage/Campuses"));
+const SectorsAccordion = React.lazy(() => import("../components/homepage/SectorsAccordion"));
+const PlacementsSection = React.lazy(() => import("../components/homepage/PlacementsSection"));
+const TrainingUSP = React.lazy(() => import("../components/homepage/TrainingUSP"));
+const OurPartners = React.lazy(() => import("../components/homepage/OurPartners"));
+const SocialGalleryCalendarSection = React.lazy(
+  () => import("../components/homepage/SocialGalleryCalenderSection")
+);
+
+const SectionFallback = ({ className = "min-h-[360px]" }: { className?: string }) => (
+  <div className={`${className} bg-black`} aria-hidden="true" />
+);
+
+const LazySection = ({
+  children,
+  fallbackHeight,
+  rootMargin,
+}: {
+  children: React.ReactNode;
+  fallbackHeight?: string;
+  rootMargin?: string;
+}) => (
+  <LazyMount fallbackHeight={fallbackHeight} rootMargin={rootMargin}>
+    <Suspense fallback={<SectionFallback className={fallbackHeight} />}>
+      {children}
+    </Suspense>
+  </LazyMount>
+);
 
 const HomePage: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-black via-[#FF3366] to-black">
       <HeroSection />
       <Impact />
-      <WhyPantissSkillUniversity />
-      <SchoolLogoStrip />
-      {/* <SchoolSection /> */}
-      <Ranking />
-      <OverLappingCards2 />
-      <Campuses />
-      {/* <WomenInMining /> */}
-      {/* <OurFuturisticApproach /> */}
-      {/* <SkillOnWheelsBanner /> */}
-      {/* <ActivityAndEvents /> */}
-      <SectorsAccordion />
-      <PlacementsSection />
-      <TrainingUSP />
-      {/* <GlobalPlacements /> */}
-      <OurPartners />
-      <SocialGalleryCalendarSection />
-      {/* <AlumniPortal /> */}
-      {/* <Highlights /> */}
-      {/* <TestimonialSection /> */}
+
+      <div>
+        <LazySection>
+          <WhyPantissSkillUniversity />
+        </LazySection>
+        <LazySection fallbackHeight="min-h-[160px]">
+          <SchoolLogoStrip />
+        </LazySection>
+        <LazySection>
+          <Ranking />
+        </LazySection>
+        <LazySection>
+          <OverLappingCards2 />
+        </LazySection>
+        <LazySection>
+          <Campuses />
+        </LazySection>
+        <LazySection>
+          <SectorsAccordion />
+        </LazySection>
+        <LazySection>
+          <PlacementsSection />
+        </LazySection>
+        <LazySection rootMargin="900px 0px">
+          <TrainingUSP />
+        </LazySection>
+        <LazySection>
+          <OurPartners />
+        </LazySection>
+        <LazySection rootMargin="900px 0px">
+          <SocialGalleryCalendarSection />
+        </LazySection>
+      </div>
     </div>
   );
 };

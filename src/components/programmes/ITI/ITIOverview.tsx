@@ -18,7 +18,7 @@ interface Sector {
   skills: string[];
 }
 
-interface ITIOverviewProps {}
+type ITIOverviewProps = Record<string, never>;
 
 // Define sectors data with unique impact data for each (ITI-focused)
 const sectors: Sector[] = [

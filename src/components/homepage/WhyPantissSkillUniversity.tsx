@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const slides = [
@@ -50,18 +51,26 @@ const scrollAnimationStyle = `
   .school-logo-scroll:hover {
     animation-play-state: paused;
   }
+  @media (prefers-reduced-motion: reduce) {
+    .school-logo-scroll {
+      animation: none;
+    }
+  }
 `;
 
 const WhyPantissSkillUniversity: React.FC = React.memo(() => {
   const [current, setCurrent] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (shouldReduceMotion) return;
+
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [shouldReduceMotion]);
 
   const handlePrev = useCallback(() => {
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
@@ -118,12 +127,11 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
             className="text-lg sm:text-xl font-semibold mb-6 text-gray-100"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Leading transformation for a just, skilled, and sustainable future.
-          </motion.p>
-          <motion.button
-            className="px-6 py-3 border-2 border-white rounded-lg text-white font-semibold hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300"
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Leading transformation for a just, skilled, and sustainable future.
+        </motion.p>
+          <motion.div
             aria-label="Learn More About Pantiss Skill University"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,8 +139,13 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Learn More About Pantiss
-          </motion.button>
+            <Link
+              to="/about"
+              className="inline-flex rounded-lg border-2 border-white px-6 py-3 font-semibold text-white transition-all duration-300 hover:border-green-600 hover:bg-green-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-300"
+            >
+              Learn More About Pantiss
+            </Link>
+          </motion.div>
         </div>
 
         {/* Sidebar: Pantiss Schools Marquee — now CSS-animated, zero re-renders */}
@@ -172,6 +185,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
       {/* Arrows */}
       <div className="absolute top-1/2 left-4 sm:left-8 transform -translate-y-1/2 z-30">
         <button
+          type="button"
           onClick={handlePrev}
           className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all"
           aria-label="Previous Slide"
@@ -181,6 +195,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
       </div>
       <div className="absolute top-1/2 right-4 sm:right-8 transform -translate-y-1/2 z-30">
         <button
+          type="button"
           onClick={handleNext}
           className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all"
           aria-label="Next Slide"

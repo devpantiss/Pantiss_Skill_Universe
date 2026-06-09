@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import type { CustomArrowProps } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -37,7 +38,7 @@ const visitors = [
   },
 ];
 
-const CustomPrevArrow = (props: any) => (
+const CustomPrevArrow = (props: CustomArrowProps) => (
   <button
     {...props}
     className="absolute -left-3 top-1/2 transform -translate-y-1/2 bg-orange-600 text-white p-2 rounded-full shadow-lg z-10"
@@ -46,7 +47,7 @@ const CustomPrevArrow = (props: any) => (
   </button>
 );
 
-const CustomNextArrow = (props: any) => (
+const CustomNextArrow = (props: CustomArrowProps) => (
   <button
     {...props}
     className="absolute -right-3 top-1/2 transform -translate-y-1/2 bg-orange-600 text-white p-2 rounded-full shadow-lg z-10"

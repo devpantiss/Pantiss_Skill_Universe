@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
+import type { Feature, GeoJsonObject, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* ===================== TYPES ===================== */
@@ -11,6 +12,8 @@ type AttendanceRow = {
   present: number;
   absent: number;
 };
+
+type DistrictFeature = Feature<Geometry, { Dist_Name?: string }>;
 
 /* ===================== DATA ===================== */
 
@@ -37,7 +40,7 @@ const colorByPct = (p: number) => {
 /* ===================== COMPONENT ===================== */
 
 export default function AttendanceAnalyticsSection() {
-  const [geoJson, setGeoJson] = useState<any>(null);
+  const [geoJson, setGeoJson] = useState<GeoJsonObject | null>(null);
   const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
 
   useEffect(() => {
@@ -66,9 +69,9 @@ export default function AttendanceAnalyticsSection() {
 
   /* ===================== MAP STYLE ===================== */
 
-  const geoStyle = (f: any) => {
+  const geoStyle = (f?: DistrictFeature) => {
     const row = attendanceData.find(
-      (d) => d.district === f.properties.Dist_Name
+      (d) => d.district === f?.properties?.Dist_Name
     );
     if (!row) return {};
 

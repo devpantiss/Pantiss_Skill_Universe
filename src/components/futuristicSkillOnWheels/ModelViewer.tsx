@@ -9,11 +9,15 @@ const ThreeModelViewer: React.FC = () => {
   useEffect(() => {
     if (!mountRef.current) return;
     const mount = mountRef.current;
+    let isMounted = true;
+    let isVisible = true;
+    let isPageVisible = document.visibilityState === "visible";
+    let animationFrame = 0;
+    let model: THREE.Group | null = null;
 
-    // === Scene setup ===
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x0a0a0a);
-    scene.fog = new THREE.Fog(0x0a0a0a, 15, 40);
+    scene.fog = new THREE.Fog(0x0a0a0a, 18, 36);
 
     const camera = new THREE.PerspectiveCamera(
       40,
@@ -23,103 +27,166 @@ const ThreeModelViewer: React.FC = () => {
     );
     camera.position.set(0, 2.5, 10);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({
+      antialias: window.devicePixelRatio <= 1.5,
+      powerPreference: "high-performance",
+    });
     renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.shadowMap.enabled = false;
     mount.appendChild(renderer.domElement);
 
-    // === Lights ===
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.6);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
     keyLight.position.set(6, 10, 10);
-    keyLight.castShadow = true;
 
-    const backLight = new THREE.PointLight(0x55aaff, 1.0);
+    const backLight = new THREE.PointLight(0x55aaff, 0.8);
     backLight.position.set(-5, 3, -6);
 
-    const fillLight = new THREE.PointLight(0xff9900, 0.7);
-    fillLight.position.set(6, 2, -4);
+    scene.add(ambientLight, keyLight, backLight);
 
-    scene.add(ambientLight, keyLight, backLight, fillLight);
-
-    // === Platform (slightly smaller, reflective) ===
-    const platformGeometry = new THREE.CylinderGeometry(4.5, 4.5, 0.3, 64);
+    const platformGeometry = new THREE.CylinderGeometry(4.5, 4.5, 0.3, 32);
     const platformMaterial = new THREE.MeshStandardMaterial({
       color: 0x1a1a1a,
-      metalness: 0.95,
-      roughness: 0.15,
+      metalness: 0.65,
+      roughness: 0.28,
       emissive: 0x0a0a0a,
     });
     const platform = new THREE.Mesh(platformGeometry, platformMaterial);
     platform.position.y = -1.3;
-    platform.receiveShadow = true;
     scene.add(platform);
 
-    // === Controls ===
-    const controls = new OrbitControls(camera, renderer.domElement) as any;
+    const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
+    controls.dampingFactor = 0.06;
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.8;
+    controls.autoRotateSpeed = 0.55;
     controls.minPolarAngle = Math.PI / 4;
     controls.maxPolarAngle = Math.PI / 2.1;
+    controls.enablePan = false;
 
-    // === Load GLB model ===
+    const renderScene = () => {
+      controls.update();
+      renderer.render(scene, camera);
+    };
+
+    const shouldAnimate = () => isMounted && isVisible && isPageVisible;
+
+    const animate = () => {
+      if (!shouldAnimate()) return;
+      renderScene();
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    const startAnimation = () => {
+      if (!shouldAnimate() || animationFrame) return;
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    const stopAnimation = () => {
+      if (!animationFrame) return;
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    };
+
+    const disposeModel = (object: THREE.Object3D) => {
+      object.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.geometry.dispose();
+          const materials = Array.isArray(child.material) ? child.material : [child.material];
+          materials.forEach((material) => material.dispose());
+        }
+      });
+    };
+
     const loader = new GLTFLoader();
     loader.load(
       "/truck_3d_model.glb",
       (gltf) => {
-        const model = gltf.scene;
+        if (!isMounted) {
+          disposeModel(gltf.scene);
+          return;
+        }
+        model = gltf.scene;
 
-        // 🚛 Bigger model for proper proportion to the platform
         model.scale.set(6, 6, 6);
-        model.position.set(0, -0.1, 0); // perfectly above platform
+        model.position.set(0, -0.1, 0);
 
-        model.traverse((child: any) => {
-          if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
+        model.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.castShadow = false;
+            child.receiveShadow = false;
+            child.frustumCulled = true;
           }
         });
 
         scene.add(model);
+        renderScene();
       },
-      (progress) => {
-        console.log(`Loading model... ${(progress.loaded / progress.total * 100).toFixed(1)}%`);
-      },
+      undefined,
       (error) => console.error("Error loading model:", error)
     );
 
-    // === Animation ===
-    const animate = () => {
-      controls.update();
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    };
-    animate();
-
-    // === Handle resize ===
     const handleResize = () => {
+      if (!mount.clientWidth || !mount.clientHeight) return;
       camera.aspect = mount.clientWidth / mount.clientHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(mount.clientWidth, mount.clientHeight);
+      renderScene();
     };
-    window.addEventListener("resize", handleResize);
 
-    // === Cleanup ===
+    const handleVisibilityChange = () => {
+      isPageVisible = document.visibilityState === "visible";
+      if (isPageVisible) {
+        startAnimation();
+      } else {
+        stopAnimation();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(mount);
+    renderScene();
+    startAnimation();
+
     return () => {
+      isMounted = false;
+      stopAnimation();
+      observer.disconnect();
       window.removeEventListener("resize", handleResize);
-      mount.removeChild(renderer.domElement);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      controls.dispose();
+      if (model) {
+        scene.remove(model);
+        disposeModel(model);
+      }
+      platformGeometry.dispose();
+      platformMaterial.dispose();
       renderer.dispose();
+      if (renderer.domElement.parentElement === mount) {
+        mount.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
   return (
     <div
       ref={mountRef}
-      className="w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl bg-black border border-gray-800"
+      className="h-[420px] w-full overflow-hidden bg-black md:h-[560px]"
     />
   );
 };

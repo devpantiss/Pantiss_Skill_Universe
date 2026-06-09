@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
+import type { Feature, GeoJsonObject, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer } from "recharts";
 import {
@@ -32,9 +33,11 @@ type DistrictMiningData = {
   batches: number;
 } & Record<RoleOnly, number>;
 
+type DistrictFeature = Feature<Geometry, { Dist_Name?: string }>;
+
 /* ===================== ICONS ===================== */
 
-const roleIcons: Record<JobRole, any> = {
+const roleIcons: Record<JobRole, React.ElementType> = {
   total: FaUsers,
   dumperOperator: FaTruckMoving,
   excavatorOperator: FaTractor,
@@ -57,7 +60,7 @@ const miningData: DistrictMiningData[] = [
 /* ===================== COMPONENT ===================== */
 
 const MiningAnalyticsSection = () => {
-  const [geoJsonData, setGeoJsonData] = useState<any>(null);
+  const [geoJsonData, setGeoJsonData] = useState<GeoJsonObject | null>(null);
 
   const [selectedRole, setSelectedRole] = useState<JobRole>("total");
   const [metric, setMetric] = useState<MetricType>("candidates");
@@ -87,8 +90,8 @@ const MiningAnalyticsSection = () => {
     return selectedRole === "total" ? d.total : d[selectedRole];
   }, [metric, selectedRole]);
 
-  const mapStyleGreen = useCallback((f: any) => {
-    const name = f.properties.Dist_Name;
+  const mapStyleGreen = useCallback((f?: DistrictFeature) => {
+    const name = f?.properties?.Dist_Name ?? "";
     const v = getValue(name);
     const isHover = hoveredDistrict === name;
 
@@ -101,8 +104,8 @@ const MiningAnalyticsSection = () => {
     };
   }, [getValue, hoveredDistrict]);
 
-  const mapStyleRed = useCallback((f: any) => {
-    const name = f.properties.Dist_Name;
+  const mapStyleRed = useCallback((f?: DistrictFeature) => {
+    const name = f?.properties?.Dist_Name ?? "";
     const isHover = hoveredDistrict === name;
 
     return {

@@ -1,11 +1,21 @@
 declare module "three/examples/jsm/loaders/GLTFLoader" {
-    import { Loader, LoadingManager } from "three";
+    import { AnimationClip, Camera, Group, Loader, LoadingManager } from "three";
+
+    export interface GLTF {
+      animations: AnimationClip[];
+      asset: object;
+      cameras: Camera[];
+      parser: unknown;
+      scene: Group;
+      scenes: Group[];
+      userData: Record<string, unknown>;
+    }
   
     export class GLTFLoader extends Loader {
       constructor(manager?: LoadingManager);
       load(
         url: string,
-        onLoad: (gltf: any) => void,
+        onLoad: (gltf: GLTF) => void,
         onProgress?: (event: ProgressEvent) => void,
         onError?: (event: ErrorEvent) => void
       ): void;

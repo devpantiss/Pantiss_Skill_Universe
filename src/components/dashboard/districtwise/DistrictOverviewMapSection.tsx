@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
+import type { Feature, GeoJsonObject, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* ===================== TYPES ===================== */
@@ -12,6 +13,8 @@ type DistrictRow = {
   certified: number;
   batches: number;
 };
+
+type DistrictFeature = Feature<Geometry, { Dist_Name?: string }>;
 
 /* ===================== DATA ===================== */
 
@@ -71,7 +74,7 @@ const colorByValue = (v: number, max: number) => {
 /* ===================== COMPONENT ===================== */
 
 export default function DistrictOverviewMapSection() {
-  const [geoJson, setGeoJson] = useState<any>(null);
+  const [geoJson, setGeoJson] = useState<GeoJsonObject | null>(null);
   const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
 
   /* ===================== LOAD MAP ===================== */
@@ -108,9 +111,9 @@ export default function DistrictOverviewMapSection() {
 
   /* ===================== MAP STYLE ===================== */
 
-  const geoStyle = (f: any) => {
+  const geoStyle = (f?: DistrictFeature) => {
     const row = districtData.find(
-      (d) => d.district === f.properties.Dist_Name
+      (d) => d.district === f?.properties?.Dist_Name
     );
     if (!row) return {};
 

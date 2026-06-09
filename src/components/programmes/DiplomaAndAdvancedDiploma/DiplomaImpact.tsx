@@ -77,6 +77,38 @@ const useCountUp = (end: number, enabled: boolean) => {
   return count;
 };
 
+type Metric = (typeof metrics)[number];
+
+function MetricCard({ item, visible }: { item: Metric; visible: boolean }) {
+  const value = useCountUp(item.value, visible);
+  const Icon = item.icon;
+
+  return (
+    <div
+      className="
+        bg-neutral-900
+        border border-neutral-800
+        rounded-2xl
+        p-8
+        transition
+        hover:border-neutral-700
+      "
+    >
+      <div className="flex items-center justify-between mb-6">
+        <span className="text-sm text-gray-400">
+          {item.label}
+        </span>
+        <Icon className="w-5 h-5 text-green-500" />
+      </div>
+
+      <div className="text-4xl font-semibold tracking-tight">
+        {value}
+        {item.suffix}
+      </div>
+    </div>
+  );
+}
+
 /* -----------------------------
    COMPONENT
 ----------------------------- */
@@ -124,36 +156,9 @@ export default function DiplomaImpactSection() {
 
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {metrics.map((item, i) => {
-            const value = useCountUp(item.value, visible);
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={i}
-                className="
-                  bg-neutral-900
-                  border border-neutral-800
-                  rounded-2xl
-                  p-8
-                  transition
-                  hover:border-neutral-700
-                "
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-sm text-gray-400">
-                    {item.label}
-                  </span>
-                  <Icon className="w-5 h-5 text-green-500" />
-                </div>
-
-                <div className="text-4xl font-semibold tracking-tight">
-                  {value}
-                  {item.suffix}
-                </div>
-              </div>
-            );
-          })}
+          {metrics.map((item) => (
+            <MetricCard key={item.label} item={item} visible={visible} />
+          ))}
         </div>
       </div>
     </section>

@@ -1,9 +1,10 @@
 // Header.tsx — Ultra Enterprise Version (Performance Optimized)
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import {
+  FaBars,
   FaStar,
   FaAward,
   FaBrain,
@@ -11,6 +12,7 @@ import {
   FaIndustry,
   FaTools,
   FaUserCog,
+  FaTimes,
 } from "react-icons/fa";
 
 /* ================= TYPES ================= */
@@ -144,13 +146,46 @@ const shouldOpenNewTab = (name: string) =>
     "Global Placements",
   ].includes(name);
 
+const isExternalPath = (path: string) => /^https?:\/\//.test(path);
+
+const normalizePath = (path: string) => {
+  const normalized = path.split(/[?#]/)[0].replace(/\/+$/, "");
+  return normalized || "/";
+};
+
+const isInternalRoute = (path?: string) =>
+  !!path && path !== "#" && !isExternalPath(path);
+
+const isRouteMatch = (currentPath: string, targetPath?: string) => {
+  if (!isInternalRoute(targetPath)) return false;
+
+  const current = normalizePath(currentPath);
+  const target = normalizePath(targetPath!);
+
+  if (target === "/") return current === "/";
+  return current === target || current.startsWith(`${target}/`);
+};
+
+const subLinksMatchRoute = (subLinks: NavSubLink[] = [], currentPath: string): boolean =>
+  subLinks.some((subLink) =>
+    isRouteMatch(currentPath, subLink.path) ||
+    subLinksMatchRoute(subLink.children, currentPath)
+  );
+
+const isNavLinkActive = (link: NavLink, currentPath: string) =>
+  isRouteMatch(currentPath, link.path) ||
+  subLinksMatchRoute(link.subLinks, currentPath);
+
 /* ================= COMPONENT ================= */
 
 const Header: React.FC = React.memo(() => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
+  const headerRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const underlineRef = useRef<HTMLDivElement>(null);
 
@@ -168,7 +203,35 @@ const Header: React.FC = React.memo(() => {
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setOpenDropdown(null);
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenDropdown(null);
+        setMobileMenuOpen(false);
+      }
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
   }, []);
 
   /* ================= ACTIVE UNDERLINE ================= */
@@ -177,14 +240,21 @@ const Header: React.FC = React.memo(() => {
     if (!navRef.current || !underlineRef.current) return;
 
     const activeBtn = navRef.current.querySelector(
-      `[data-path="${location.pathname}"]`
-    ) as HTMLElement;
+      '[data-active-marker="true"]'
+    ) as HTMLElement | null;
 
     if (activeBtn) {
-      underlineRef.current.style.width = `${activeBtn.offsetWidth}px`;
-      underlineRef.current.style.left = `${activeBtn.offsetLeft}px`;
+      const navRect = navRef.current.getBoundingClientRect();
+      const activeRect = activeBtn.getBoundingClientRect();
+
+      underlineRef.current.style.width = `${activeRect.width}px`;
+      underlineRef.current.style.left = `${activeRect.left - navRect.left}px`;
+      underlineRef.current.style.opacity = "1";
+    } else {
+      underlineRef.current.style.width = "0px";
+      underlineRef.current.style.opacity = "0";
     }
-  }, [location.pathname]);
+  }, [location.pathname, isScrolled]);
 
   const toggleDropdown = useCallback((name: string) => {
     setOpenDropdown(prev => (prev === name ? null : name));
@@ -194,11 +264,13 @@ const Header: React.FC = React.memo(() => {
     if (isComingSoon(item.name)) return;
 
     if (shouldOpenNewTab(item.name)) {
-      window.open(item.path, "_blank");
+      window.open(item.path, "_blank", "noopener,noreferrer");
+    } else if (isExternalPath(item.path)) {
+      window.open(item.path, "_blank", "noopener,noreferrer");
     } else {
-      window.location.href = item.path;
+      navigate(item.path);
     }
-  }, []);
+  }, [navigate]);
 
   const announcementTexts = [
     "Call +91 9874875876 for inquiries",
@@ -207,7 +279,7 @@ const Header: React.FC = React.memo(() => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header ref={headerRef} className="fixed top-0 left-0 w-full z-50">
 
       {/* ================= TOP BAR ================= */}
 
@@ -222,16 +294,25 @@ const Header: React.FC = React.memo(() => {
 
           <div className="hidden sm:flex gap-4">
             {topRightMenu.map(item => (
-              <button
-                key={item.name}
-                className="px-3 py-1 hover:bg-red-700 rounded"
-                onClick={() => {
-                  if (item.name === "ERP") window.open(item.path, "_blank");
-                  else window.location.href = item.path;
-                }}
-              >
-                {item.name}
-              </button>
+              isExternalPath(item.path) ? (
+                <a
+                  key={item.name}
+                  href={item.path}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded px-3 py-1 transition hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className="rounded px-3 py-1 transition hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
         </div>
@@ -245,36 +326,63 @@ const Header: React.FC = React.memo(() => {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
 
-          <img
-            src="https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/PANTISS_SKILL_UNIVERSE-removebg-preview_jqzd3y.png"
-            alt="logo"
-            className={`transition-all ${isScrolled ? "h-16" : "h-24"}`}
-            loading="eager"
-            decoding="async"
-          />
+          <Link
+            to="/"
+            className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+            aria-label="Pantiss Skill Universe home"
+          >
+            <img
+              src="https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/PANTISS_SKILL_UNIVERSE-removebg-preview_jqzd3y.png"
+              alt="Pantiss Skill Universe"
+              className={`transition-all ${isScrolled ? "h-16" : "h-24"}`}
+              width={220}
+              height={96}
+              loading="eager"
+              decoding="async"
+            />
+          </Link>
 
           <nav ref={navRef} className="hidden lg:flex items-center gap-10 relative">
 
             {/* Animated underline */}
             <div
               ref={underlineRef}
-              className="absolute bottom-0 h-[2px] bg-green-400 transition-all duration-300"
+              className="absolute bottom-0 h-[2px] bg-green-400 opacity-0 transition-all duration-300"
             />
 
             {navLinks.map(link => {
               const isOpen = openDropdown === link.name;
               const hasSub = !!link.subLinks;
+              const isActive = isNavLinkActive(link, location.pathname);
 
               return (
                 <div key={link.name} className="relative">
 
-                  <button
-                    data-path={link.path}
-                    onClick={() => hasSub ? toggleDropdown(link.name) : window.location.href = link.path!}
-                    className="text-gray-200 font-semibold hover:text-green-400 transition py-6"
-                  >
-                    {link.name}
-                  </button>
+                  {hasSub ? (
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-haspopup="true"
+                      onClick={() => toggleDropdown(link.name)}
+                      data-active-marker={isActive ? "true" : undefined}
+                      className={`py-6 font-semibold transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${
+                        isActive ? "text-green-400" : "text-gray-200"
+                      }`}
+                    >
+                      {link.name}
+                    </button>
+                  ) : (
+                    <Link
+                      data-path={link.path}
+                      data-active-marker={isActive ? "true" : undefined}
+                      to={link.path!}
+                      className={`block py-6 font-semibold transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${
+                        isActive ? "text-green-400" : "text-gray-200"
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  )}
 
                   {/* ================= PROGRAMS MEGA ================= */}
 
@@ -293,13 +401,13 @@ const Header: React.FC = React.memo(() => {
                         <div className="grid grid-cols-3 gap-6">
 
                           {programData.map(program => (
-                            <button
+                            <Link
                               key={program.name}
-                              onClick={() => window.location.href = program.path}
+                              to={program.path}
                               className="
                                 group p-6 rounded-xl border border-gray-700
                                 hover:border-green-400 hover:bg-white/5
-                                transition-all text-left
+                                transition-all text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400
                               "
                             >
                               <div className="text-green-400 text-xl mb-3">
@@ -313,7 +421,7 @@ const Header: React.FC = React.memo(() => {
                               <div className="text-xs text-gray-400 mt-2">
                                 {program.description}
                               </div>
-                            </button>
+                            </Link>
                           ))}
 
                         </div>
@@ -345,6 +453,7 @@ const Header: React.FC = React.memo(() => {
                                 return (
                                   <li key={child.name}>
                                     <button
+                                      type="button"
                                       onClick={() => handleNavClick(child)}
                                       disabled={comingSoon}
                                       className={`
@@ -353,6 +462,7 @@ const Header: React.FC = React.memo(() => {
                                         ${comingSoon
                                           ? "text-gray-500 cursor-not-allowed"
                                           : "text-gray-200 hover:bg-white/5 hover:text-green-400"}
+                                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400
                                       `}
                                     >
                                       {child.name}
@@ -383,8 +493,97 @@ const Header: React.FC = React.memo(() => {
 
           </nav>
 
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md p-3 text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 lg:hidden"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <FaTimes aria-hidden="true" /> : <FaBars aria-hidden="true" />}
+          </button>
+
         </div>
       </div>
+
+      {mobileMenuOpen && (
+        <div className="max-h-[calc(100vh-96px)] overflow-y-auto border-b border-gray-800 bg-black px-6 py-4 text-white shadow-2xl lg:hidden">
+          <nav aria-label="Mobile navigation" className="space-y-2">
+            {navLinks.map((link) => {
+              const hasSub = !!link.subLinks;
+              const isOpen = openDropdown === link.name;
+              const isActive = isNavLinkActive(link, location.pathname);
+
+              if (!hasSub) {
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.path!}
+                    className={`block rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${
+                      isActive ? "bg-white/10 text-green-400" : ""
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              }
+
+              return (
+                <div key={link.name}>
+                  <button
+                    type="button"
+                    className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-left font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${
+                      isActive ? "bg-white/10 text-green-400" : ""
+                    }`}
+                    onClick={() => toggleDropdown(link.name)}
+                    aria-expanded={isOpen}
+                  >
+                    {link.name}
+                    <span aria-hidden="true">{isOpen ? "−" : "+"}</span>
+                  </button>
+                  {isOpen && (
+                    <div className="mt-2 space-y-2 rounded-lg border border-white/10 bg-white/5 p-3">
+                      {(link.name === "Programs" ? programData : link.subLinks!).map((item) => (
+                        item.children ? (
+                          <div key={item.name} className="space-y-1">
+                            <p className="px-2 py-1 text-xs font-bold uppercase tracking-widest text-green-400">
+                              {item.name}
+                            </p>
+                            {item.children.map((child) => {
+                              const comingSoon = isComingSoon(child.name);
+
+                              return (
+                                <button
+                                  key={child.name}
+                                  type="button"
+                                  disabled={comingSoon}
+                                  onClick={() => handleNavClick(child)}
+                                  className="flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-sm text-gray-200 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                                >
+                                  {child.name}
+                                  {comingSoon && <span className="text-xs text-gray-400">Soon</span>}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            className="block rounded-md px-2 py-2 text-sm text-gray-200 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                          >
+                            {item.name}
+                          </Link>
+                        )
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+        </div>
+      )}
 
       {/* ================= SECONDARY ================= */}
 
@@ -394,13 +593,13 @@ const Header: React.FC = React.memo(() => {
             {secondaryLinks.map(link => {
               const Icon = link.icon;
               return (
-                <button
+                <Link
                   key={link.name}
-                  onClick={() => window.location.href = link.path}
-                  className="flex items-center gap-2 hover:underline"
+                  to={link.path}
+                  className="flex items-center gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
                 >
                   <Icon /> {link.name}
-                </button>
+                </Link>
               );
             })}
           </div>

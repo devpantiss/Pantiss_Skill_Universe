@@ -658,7 +658,12 @@ const categoryConfig = {
 };
 
 // Custom hook for intersection observer
-const useIntersectionObserver = (options = {}) => {
+const observerOptions: IntersectionObserverInit = {
+  threshold: 0.1,
+  rootMargin: "50px",
+};
+
+const useIntersectionObserver = () => {
   const [visibleElements, setVisibleElements] = useState(new Set());
 
   useEffect(() => {
@@ -671,11 +676,7 @@ const useIntersectionObserver = (options = {}) => {
           }
         });
       },
-      {
-        threshold: 0.1,
-        rootMargin: "50px",
-        ...options,
-      }
+      observerOptions
     );
 
     const elements = document.querySelectorAll('[data-animate="true"]');

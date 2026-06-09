@@ -11,7 +11,7 @@ const ImpactCard: React.FC<{
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let start = 0;
+    const start = 0;
     const end = value;
     const duration = 2000; // 2 seconds
     let startTimestamp: number | null = null;

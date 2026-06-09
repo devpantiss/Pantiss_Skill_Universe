@@ -37,6 +37,25 @@ const useCountUp = (end: number, enabled: boolean) => {
   return count;
 };
 
+type Metric = (typeof metrics)[number];
+
+function MetricCard({ item, visible }: { item: Metric; visible: boolean }) {
+  const Icon = item.icon;
+  const value = useCountUp(item.value, visible);
+
+  return (
+    <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8">
+      <div className="flex justify-between mb-6">
+        <span className="text-sm text-gray-400">{item.label}</span>
+        <Icon className="w-5 h-5 text-green-500" />
+      </div>
+      <div className="text-4xl font-semibold">
+        {value}{item.suffix}
+      </div>
+    </div>
+  );
+}
+
 export default function WorkmenUpskillingImpactSection() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -69,21 +88,9 @@ export default function WorkmenUpskillingImpactSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {metrics.map((m, i) => {
-            const Icon = m.icon;
-            const value = useCountUp(m.value, visible);
-            return (
-              <div key={i} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8">
-                <div className="flex justify-between mb-6">
-                  <span className="text-sm text-gray-400">{m.label}</span>
-                  <Icon className="w-5 h-5 text-green-500" />
-                </div>
-                <div className="text-4xl font-semibold">
-                  {value}{m.suffix}
-                </div>
-              </div>
-            );
-          })}
+          {metrics.map((item) => (
+            <MetricCard key={item.label} item={item} visible={visible} />
+          ))}
         </div>
       </div>
     </section>

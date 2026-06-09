@@ -9,6 +9,7 @@ import {
   MapPin,
   CheckCircle,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -118,28 +119,36 @@ const placementStats = [
   },
 ];
 
+type PlacementStat = {
+  label: string;
+  value?: string;
+  rotatingValues?: string[];
+  icon: LucideIcon;
+};
+
 /* -----------------------------
    STAT CARD
 ----------------------------- */
 
-const StatCard = ({ stat }: any) => {
+const StatCard = ({ stat }: { stat: PlacementStat }) => {
   const Icon = stat.icon;
+  const rotatingValues = stat.rotatingValues;
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!stat.rotatingValues) return;
+    if (!rotatingValues?.length) return;
     const interval = setInterval(
-      () => setIndex((p) => (p + 1) % stat.rotatingValues.length),
+      () => setIndex((p) => (p + 1) % rotatingValues.length),
       1800,
     );
     return () => clearInterval(interval);
-  }, [stat.rotatingValues]);
+  }, [rotatingValues]);
 
   return (
     <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 text-center">
       <Icon className="w-6 h-6 text-green-500 mx-auto mb-3" />
       <div className="text-3xl font-semibold mb-2 h-[40px]">
-        {stat.value || stat.rotatingValues[index]}
+        {stat.value ?? rotatingValues?.[index] ?? ""}
       </div>
       <p className="text-sm text-gray-300">{stat.label}</p>
     </div>

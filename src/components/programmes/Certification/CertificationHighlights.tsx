@@ -9,7 +9,7 @@ interface Highlight {
   icon: React.ReactNode;
 }
 
-interface CertificationHighlightsProps {}
+type CertificationHighlightsProps = Record<string, never>;
 
 // Define highlights data with unique icons
 const highlights: Highlight[] = [

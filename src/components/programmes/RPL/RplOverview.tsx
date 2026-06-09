@@ -18,7 +18,7 @@ interface Sector {
   skills: string[];
 }
 
-interface RplOverviewProps {}
+type RplOverviewProps = Record<string, never>;
 
 // Define sectors data with unique impact data for each
 const sectors: Sector[] = [

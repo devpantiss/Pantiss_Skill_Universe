@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const sectors = [
   "Mines, Steel & Aluminium",
@@ -24,6 +25,8 @@ const HeroSection: React.FC = () => {
   const [currentSectorIndex, setCurrentSectorIndex] = useState(0);
   const [typedText, setTypedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   const currentSector = useMemo(
     () => sectors[currentSectorIndex % sectors.length],
@@ -31,7 +34,12 @@ const HeroSection: React.FC = () => {
   );
 
   useEffect(() => {
-    let typingSpeed = isDeleting ? 50 : 100;
+    if (prefersReducedMotion) {
+      setTypedText(currentSector);
+      return;
+    }
+
+    const typingSpeed = isDeleting ? 50 : 100;
     let timer: number;
 
     if (!isDeleting && typedText.length < currentSector.length) {
@@ -50,27 +58,54 @@ const HeroSection: React.FC = () => {
     }
 
     return () => clearTimeout(timer);
-  }, [typedText, isDeleting, currentSector]);
+  }, [typedText, isDeleting, currentSector, prefersReducedMotion]);
+
+  useEffect(() => {
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => {
+      const shouldReduceMotion = reduceMotionQuery.matches;
+      setPrefersReducedMotion(shouldReduceMotion);
+      if (shouldReduceMotion) setShowVideo(false);
+    };
+
+    updateMotionPreference();
+    reduceMotionQuery.addEventListener("change", updateMotionPreference);
+    const timer = reduceMotionQuery.matches
+      ? undefined
+      : window.setTimeout(() => setShowVideo(true), 250);
+
+    return () => {
+      if (timer) window.clearTimeout(timer);
+      reduceMotionQuery.removeEventListener("change", updateMotionPreference);
+    };
+  }, []);
 
   return (
     <section className="relative mt-28 w-full h-[100vh] overflow-hidden">
       {/* Background Video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        // src="https://res.cloudinary.com/djtzx6wo7/video/upload/v1756733216/VN20250901_165205_yy2bdd.mp4"
-        src="/Homepage/HomePage_Hero.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
+        style={{ backgroundImage: "url('/Homepage/announcements_bg.jpg')" }}
       />
+
+      {showVideo && !prefersReducedMotion && (
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/Homepage/HomePage_Hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/Homepage/announcements_bg.jpg"
+        />
+      )}
 
       {/* Translucent Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/70" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
         <motion.h1
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,13 +138,18 @@ const HeroSection: React.FC = () => {
         </motion.div>
 
         {/* CTA Button */}
-        <motion.button
+        <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="mt-10 bg-green-500 hover:bg-green-700 text-white px-6 py-3 rounded-full shadow-lg"
+          className="mt-10"
         >
-          Explore Programs
-        </motion.button>
+          <Link
+            to="/our-programmes"
+            className="inline-flex rounded-full bg-green-600 px-6 py-3 font-semibold text-white shadow-lg shadow-green-900/30 transition hover:bg-green-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            Explore Programs
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

@@ -7,6 +7,42 @@ interface TabData {
   hasNotification: boolean;
 }
 
+const leftTabData: Record<string, TabData> = {
+  Admission: {
+    title: "Admission",
+    content:
+      "No Admission Notification Available! Check back later for updates on the admission process for the 2025-26 academic year.",
+    hasNotification: false,
+  },
+  Examinations: {
+    title: "Examinations",
+    content:
+      "No Examination Notification Available! Stay tuned for upcoming exam schedules and results.",
+    hasNotification: false,
+  },
+};
+
+const rightTabData: Record<string, TabData> = {
+  Tenders: {
+    title: "Tenders",
+    content:
+      "No Tenders Notification Available! Check back for future tender announcements.",
+    hasNotification: false,
+  },
+  Project: {
+    title: "Project",
+    content:
+      "No Project Notification Available! Details on ongoing projects will be updated soon.",
+    hasNotification: false,
+  },
+};
+
+const highlights: string[] = [
+  "Commission (UGC), ensuring academic credibility.",
+  "First Skill University in North East India: Pioneer institution focusing on skill development and employability.",
+  "State-of-the-art Labs and Facilities: Equipped with modern infrastructure for hands-on training and practical experience.",
+];
+
 // Define the Notices component as a TypeScript Functional Component
 const Notices: React.FC = () => {
   // State for left section tabs
@@ -14,45 +50,6 @@ const Notices: React.FC = () => {
 
   // State for right section tabs
   const [activeRightTab, setActiveRightTab] = useState<keyof typeof rightTabData>("Tenders");
-
-  // Data for left section tabs
-  const leftTabData: Record<string, TabData> = {
-    Admission: {
-      title: "Admission",
-      content:
-        "No Admission Notification Available! Check back later for updates on the admission process for the 2025-26 academic year.",
-      hasNotification: false,
-    },
-    Examinations: {
-      title: "Examinations",
-      content:
-        "No Examination Notification Available! Stay tuned for upcoming exam schedules and results.",
-      hasNotification: false,
-    },
-  };
-
-  // Data for right section tabs
-  const rightTabData: Record<string, TabData> = {
-    Tenders: {
-      title: "Tenders",
-      content:
-        "No Tenders Notification Available! Check back for future tender announcements.",
-      hasNotification: false,
-    },
-    Project: {
-      title: "Project",
-      content:
-        "No Project Notification Available! Details on ongoing projects will be updated soon.",
-      hasNotification: false,
-    },
-  };
-
-  // Data for middle section highlights
-  const highlights: string[] = [
-    "Commission (UGC), ensuring academic credibility.",
-    "First Skill University in North East India: Pioneer institution focusing on skill development and employability.",
-    "State-of-the-art Labs and Facilities: Equipped with modern infrastructure for hands-on training and practical experience.",
-  ];
 
   // Auto-scroll logic with typed ref
   const highlightsRef = useRef<HTMLDivElement>(null);
@@ -78,7 +75,7 @@ const Notices: React.FC = () => {
 
     const interval = setInterval(scroll, intervalTime);
     return () => clearInterval(interval);
-  }, [isPaused, highlights]); // Added highlights as dependency
+  }, [isPaused]);
 
   // Handle hover pause on individual items with improved type safety
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {

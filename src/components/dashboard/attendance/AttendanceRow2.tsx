@@ -116,7 +116,9 @@ import {
     },
   ];
   
-  const months = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"];
+  const months = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"] as const;
+  type Month = (typeof months)[number];
+  type BlockAttendanceRow = { block: string } & Record<Month, number>;
   
   /* ===================== UTILS ===================== */
   
@@ -133,10 +135,10 @@ import {
   export default function AttendanceAnalyticsSection() {
   /* ===================== BAR CHART ===================== */
 
-  const barChartDataRecharts = blockAttendance.map((b) => ({
+  const barChartDataRecharts = (blockAttendance as BlockAttendanceRow[]).map((b) => ({
     name: b.block,
     value: Math.round(
-      months.reduce((s, m) => s + (b as any)[m], 0) / months.length
+      months.reduce((s, m) => s + b[m], 0) / months.length
     ),
   }));
   
@@ -185,17 +187,17 @@ import {
               </tr>
             </thead>
             <tbody>
-              {blockAttendance.map(b => (
+              {(blockAttendance as BlockAttendanceRow[]).map(b => (
                 <tr key={b.block} className="border-t border-white/10">
                   <td className="p-2 font-medium">{b.block}</td>
                   {months.map(m => (
                     <td key={m} className="p-2 text-center">
                       <span
                         className={`px-2 py-1 rounded text-black text-xs ${cellColor(
-                          (b as any)[m]
+                          b[m]
                         )}`}
                       >
-                        {(b as any)[m]}%
+                        {b[m]}%
                       </span>
                     </td>
                   ))}

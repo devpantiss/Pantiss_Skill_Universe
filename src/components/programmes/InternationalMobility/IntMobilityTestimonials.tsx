@@ -13,6 +13,9 @@ interface Testimonial {
   category: "Students" | "Trainers" | "Industries";
 }
 
+type TestimonialCategory = Testimonial["category"];
+const testimonialTabs: TestimonialCategory[] = ["Students", "Trainers", "Industries"];
+
 const testimonials: Testimonial[] = [
   {
     logo: "https://labournet.in/wp-content/uploads/2022/03/Hindustan_Unilever_Logo-1.png",
@@ -127,15 +130,16 @@ const IntMobilityTestimonials: React.FC = () => {
         {/* Tabs */}
         <div className="w-full md:w-1/4 mb-6 md:mb-0 md:pr-6">
           <div className="flex flex-col space-y-2">
-            {["Students", "Trainers", "Industries"].map((tab) => (
+            {testimonialTabs.map((tab) => (
               <button
+                type="button"
                 key={tab}
                 className={`py-3 px-4 text-lg font-semibold rounded-lg transition ${
                   activeTab === tab
                     ? "bg-blue-600 text-white shadow"
                     : "bg-white/10 text-white/80 hover:bg-white/20"
                 }`}
-                onClick={() => setActiveTab(tab as any)}
+                onClick={() => setActiveTab(tab)}
               >
                 {tab}
               </button>

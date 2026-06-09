@@ -18,7 +18,7 @@ interface Sector {
   skills: string[];
 }
 
-interface DiplomaOverviewProps {}
+type DiplomaOverviewProps = Record<string, never>;
 
 // Updated sectors: Blue-Collar Focused Diploma Programs
 const sectors: Sector[] = [

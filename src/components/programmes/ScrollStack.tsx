@@ -36,6 +36,13 @@ interface ScrollStackProps {
   onStackComplete?: () => void;
 }
 
+type CardTransform = {
+  translateY: number;
+  scale: number;
+  rotation: number;
+  blur: number;
+};
+
 const ScrollStack: React.FC<ScrollStackProps> = ({
   children,
   className = "",
@@ -55,7 +62,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const animationFrameRef = useRef<number | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
-  const lastTransformsRef = useRef(new Map<number, any>());
+  const lastTransformsRef = useRef(new Map<number, CardTransform>());
   const isUpdatingRef = useRef(false);
 
   const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {

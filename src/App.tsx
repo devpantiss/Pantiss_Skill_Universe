@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import {
@@ -9,6 +9,11 @@ import {
   useLocation,
 } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
+
+const HIDE_LAYOUT_ROUTES = [
+  "/job-search-engine/business/auth",
+  "/job-search-engine/job-seekers/auth",
+];
 
 // --- Route-level code splitting via React.lazy ---
 const HomePage = React.lazy(() => import("./pages/HomePage"));
@@ -31,21 +36,33 @@ const ResourcesPage = React.lazy(() => import("./pages/ResourcesPage"));
 
 // Lightweight loading fallback
 const PageLoadingFallback = () => (
-  <div className="flex items-center justify-center min-h-[60vh] bg-black">
-    <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin" />
+  <div
+    className="flex min-h-[60vh] items-center justify-center bg-black text-white"
+    role="status"
+    aria-live="polite"
+  >
+    <span className="sr-only">Loading page</span>
+    <div className="h-10 w-10 rounded-full border-4 border-green-500 border-t-transparent motion-safe:animate-spin" />
   </div>
 );
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname]);
+
+  return null;
+}
+
 function LayoutWrapper() {
   const location = useLocation();
-  const HIDE_LAYOUT_ROUTES = [
-    "/job-search-engine/business/auth",
-    "/job-search-engine/job-seekers/auth",
-  ];
   const hideLayout = HIDE_LAYOUT_ROUTES.includes(location.pathname);
 
   return (
     <>
+      <ScrollToTop />
       {!hideLayout && <Header />}
       <Suspense fallback={<PageLoadingFallback />}>
         <Routes>

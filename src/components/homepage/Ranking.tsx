@@ -1,10 +1,53 @@
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface RankingCardProps {
   logo: string;
   description: string;
 }
+
+const accreditations = [
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153774/AICTE_xarfut.png",
+    description: "AICTE",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/iisssc-removebg-preview_1_nif3qf.png",
+    description: "IISSSC",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/UGC-removebg-preview_l5xzoo.png",
+    description: "UGC",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681320/SCMS_ehl7t2.png",
+    description: "SCMS",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/pssclogoBlack_waqzas.png",
+    description: "PSSC",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681341/RCPSDC_ag2fwu.png",
+    description: "RCPSDC",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153704/NSDC-Preview-removebg-preview_ztn40e.png",
+    description: "NSDC",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/mepsc-png-cropped_1_rquk2z.png",
+    description: "MEPSC",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/NCVET-removebg-preview_rnzmxe.png",
+    description: "NCVET",
+  },
+  {
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/LSC-logo-300x138-removebg-preview_fefyvr.png",
+    description: "LSC",
+  },
+];
 
 const RankingCard: React.FC<RankingCardProps> = ({ logo, description }) => {
   return (
@@ -15,7 +58,13 @@ const RankingCard: React.FC<RankingCardProps> = ({ logo, description }) => {
       transition={{ duration: 0.5 }}
       aria-label={description}
     >
-      <img src={logo} alt="Accreditation Logo" className="h-24 w-auto object-contain" />
+      <img
+        src={logo}
+        alt="Accreditation Logo"
+        className="h-24 w-auto object-contain"
+        loading="lazy"
+        decoding="async"
+      />
       {/* Optional description can be uncommented if needed */}
       {/* <p className="text-base text-gray-100 text-center">{description}</p> */}
     </motion.div>
@@ -24,65 +73,9 @@ const RankingCard: React.FC<RankingCardProps> = ({ logo, description }) => {
 
 
 const Ranking: React.FC = () => {
-  const accreditations = [
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153774/AICTE_xarfut.png",
-      rank: "NAAC A+",
-      description: "AICTe",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/iisssc-removebg-preview_1_nif3qf.png",
-      rank: "NBA",
-      description: "IISSSC",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/UGC-removebg-preview_l5xzoo.png",
-      rank: "NBA",
-      description: "UGC",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681320/SCMS_ehl7t2.png",
-      rank: "NBA",
-      description: "SCMS",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/pssclogoBlack_waqzas.png",
-      rank: "NBA",
-      description: "PSSC",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681341/RCPSDC_ag2fwu.png",
-      rank: "NBA",
-      description: "RCPSDC",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153704/NSDC-Preview-removebg-preview_ztn40e.png",
-      rank: "NBA",
-      description: "NSDC",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/mepsc-png-cropped_1_rquk2z.png",
-      rank: "NBA",
-      description: "MEPSC",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/NCVET-removebg-preview_rnzmxe.png",
-      rank: "NBA",
-      description: "NCVET",
-    },
-    {
-      logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/LSC-logo-300x138-removebg-preview_fefyvr.png",
-      rank: "NBA",
-      description: "LSC",
-    },
-  ];
-
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 300], [0, -50]); // Subtle parallax offset for cards
-
   return (
     <section
-      className="relative bg-fixed bg-center bg-cover bg-no-repeat py-12 px-4"
+      className="relative bg-center bg-cover bg-no-repeat py-12 px-4"
       style={{
         backgroundImage:
           "url(/Homepage/accredition.jpg)",
@@ -98,6 +91,11 @@ const Ranking: React.FC = () => {
             display: inline-flex;
             animation: marquee 20s linear infinite;
           }
+          @media (prefers-reduced-motion: reduce) {
+            .marquee {
+              animation: none;
+            }
+          }
         `}
       </style>
 
@@ -111,7 +109,7 @@ const Ranking: React.FC = () => {
         </div>
 
         <div className="overflow-hidden whitespace-nowrap relative">
-          <motion.div className="marquee p-3" style={{ y }}>
+          <motion.div className="marquee p-3">
             {accreditations.concat(accreditations).map((item, index) => (
               <div key={index} className="w-64 mx-4">
                 <RankingCard {...item} />

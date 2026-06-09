@@ -9,7 +9,7 @@ interface Highlight {
   icon: React.ReactNode;
 }
 
-interface DualTrainingHighlightsProps {}
+type DualTrainingHighlightsProps = Record<string, never>;
 
 // Define highlights data with unique icons
 const highlights: Highlight[] = [

@@ -18,7 +18,7 @@ interface Sector {
   skills: string[];
 }
 
-interface UpskillingOverviewProps {}
+type UpskillingOverviewProps = Record<string, never>;
 
 // Upskilling & Reskilling — 7 sectors requested
 const sectors: Sector[] = [

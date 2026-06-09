@@ -18,7 +18,7 @@ interface Sector {
   skills: string[];
 }
 
-interface CertificationOverviewProps {}
+type CertificationOverviewProps = Record<string, never>;
 
 // Updated sectors — 7 industry-aligned certification programmes
 const sectors: Sector[] = [
@@ -172,7 +172,7 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
     },
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    customPaging: (_i: number) => (
+    customPaging: () => (
       <button className="w-2 h-2 sm:w-3 sm:h-3 mx-1 rounded-full bg-white/30 hover:bg-white/60" />
     ),
     dotsClass: "slick-dots !bottom-[-30px] sm:!bottom-[-40px] !flex !justify-center !space-x-2",

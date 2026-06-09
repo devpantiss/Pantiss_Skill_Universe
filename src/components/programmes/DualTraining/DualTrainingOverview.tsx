@@ -18,7 +18,7 @@ interface Sector {
   skills: string[];
 }
 
-interface DualTrainingOverviewProps {}
+type DualTrainingOverviewProps = Record<string, never>;
 
 // Apprenticeship & Dual Training — 7 sectors requested
 const sectors: Sector[] = [

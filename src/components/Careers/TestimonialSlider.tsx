@@ -56,7 +56,7 @@ const TestimonialSlider: React.FC = () => {
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 4500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -70,16 +70,26 @@ const TestimonialSlider: React.FC = () => {
   };
 
   return (
-    <section className="bg-neutral-950 py-20">
+    <section className="border-y border-white/10 bg-[#111111] py-16">
       <div className="max-w-7xl mx-auto px-12">
+        <div className="mb-10">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#f5d38a]">
+            Voices From Campus
+          </p>
+          <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
+            People shaping learner journeys
+          </h2>
+        </div>
+
         <div className="relative">
 
           {/* LEFT ARROW */}
           <button
             onClick={() => sliderRef.current?.slickPrev()}
             className="absolute left-0 lg:-left-16 top-1/2 -translate-y-1/2
-                       text-red-500 text-[48px] p-2 z-10
+                       text-[#f5d38a] text-[42px] p-2 z-10
                        hover:text-white transition-colors"
+            aria-label="Previous testimonial"
           >
             <FaChevronLeft />
           </button>
@@ -88,21 +98,21 @@ const TestimonialSlider: React.FC = () => {
           <Slider {...settings} ref={sliderRef}>
             {testimonials.map((testimonial, index) => (
               <div key={index} className="px-6">
-                <div className="flex flex-col lg:flex-row items-center gap-10">
+                <div className="flex flex-col items-center gap-10 rounded-md border border-white/10 bg-[#080808] p-6 shadow-2xl shadow-black/30 lg:flex-row lg:p-10">
 
                   {/* IMAGE */}
                   <div className="w-full lg:w-1/3 flex justify-center">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="rounded-lg object-cover w-[360px] h-[460px] shadow-2xl"
+                      className="h-[420px] w-[330px] rounded-md border border-white/10 object-cover shadow-lg"
                     />
                   </div>
 
                   {/* CONTENT */}
-                  <div className="w-full lg:w-2/3 text-neutral-300">
+                  <div className="w-full text-neutral-200 lg:w-2/3">
                     <svg
-                      className="w-40 h-40 text-neutral-700 mb-4"
+                      className="mb-4 h-20 w-20 text-red-950"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 107 96"
                     >
@@ -112,15 +122,15 @@ const TestimonialSlider: React.FC = () => {
                       />
                     </svg>
 
-                    <p className="text-lg md:text-2xl italic font-light leading-relaxed">
+                    <p className="text-lg font-light italic leading-relaxed md:text-2xl">
                       {testimonial.quote}
                     </p>
 
-                    <h3 className="mt-6 font-bold text-xl text-red-500">
+                    <h3 className="mt-6 text-xl font-bold text-white">
                       {testimonial.name}
                     </h3>
 
-                    <p className="text-sm text-neutral-400">
+                    <p className="mt-2 border-l-4 border-[#d9a441] pl-3 text-sm text-neutral-400">
                       {testimonial.title}
                       <br />
                       {testimonial.location}
@@ -135,8 +145,9 @@ const TestimonialSlider: React.FC = () => {
           <button
             onClick={() => sliderRef.current?.slickNext()}
             className="absolute right-0 lg:-right-16 top-1/2 -translate-y-1/2
-                       text-red-500 text-[48px] p-2 z-10
+                       text-[#f5d38a] text-[42px] p-2 z-10
                        hover:text-white transition-colors"
+            aria-label="Next testimonial"
           >
             <FaChevronRight />
           </button>
