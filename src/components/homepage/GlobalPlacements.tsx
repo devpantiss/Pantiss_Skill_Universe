@@ -32,9 +32,9 @@ const GlobalPlacements: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-          
+
           {/* LEFT: TEXT & STRATEGY */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -45,15 +45,15 @@ const GlobalPlacements: React.FC = () => {
               <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-red-600/10 border border-red-500/20 rounded-full text-red-500 font-bold text-[10px] tracking-[0.3em] uppercase">
                 <TrendingUp className="w-3 h-3" /> Global Trajectory
               </div>
-              
+
               <h2 className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.85]">
                 GLOBAL <br />
                 <span className="text-red-600">PLACEMENTS</span>
               </h2>
-              
+
               <p className="text-lg md:text-xl text-slate-400 font-medium leading-relaxed max-w-xl">
-                We prepare world-class professionals for high-demand industrial roles across 
-                six continents. Our graduates lead teams in Mining, Infrastructure, 
+                We prepare world-class professionals for high-demand industrial roles across
+                six continents. Our graduates lead teams in Mining, Infrastructure,
                 and energy clusters from India to West Australia.
               </p>
             </div>
@@ -74,7 +74,7 @@ const GlobalPlacements: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap items-center gap-6 pt-4">
-              <button 
+              <button
                 onClick={() => window.open("https://blue-global-force.vercel.app/", "_blank")}
                 className="group relative px-10 py-5 bg-red-600 text-white font-black text-xs tracking-widest uppercase rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/30"
               >
@@ -83,8 +83,8 @@ const GlobalPlacements: React.FC = () => {
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               </button>
-              
-              <button 
+
+              <button
                 onClick={() => window.location.href = "/contact-us"}
                 className="text-white/60 hover:text-white font-bold text-xs tracking-widest uppercase border-b border-white/20 hover:border-red-500 py-1 transition-all"
               >
@@ -94,7 +94,7 @@ const GlobalPlacements: React.FC = () => {
           </motion.div>
 
           {/* RIGHT: MAP VISUALIZATION */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -104,14 +104,14 @@ const GlobalPlacements: React.FC = () => {
             <div className="relative aspect-[16/11] rounded-[40px] overflow-hidden bg-white/5 border border-white/10 p-6 backdrop-blur-xl group">
               {/* Map Image with Inner Glow */}
               <div className="relative h-full w-full rounded-[32px] overflow-hidden ring-1 ring-white/10">
-                {/* <img
-                  src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762413812/_ngcmc0.png"
+                <img
+                  src="/Homepage/world_map.png"
                   alt="World map showing placement regions"
                   className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-1000"
-                /> */}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-red-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
-              
+
               {/* Float Decorative Ring */}
               <div className="absolute -bottom-6 -right-6 w-32 h-32 border-4 border-red-600/20 rounded-full animate-pulse" />
             </div>
