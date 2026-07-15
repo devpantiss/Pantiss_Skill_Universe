@@ -5,7 +5,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative flex min-h-[92vh] w-full items-end overflow-hidden bg-[#070707] pt-36">
       <img
-        src="/Homepage/campuses/rise.JPG"
+        src="/Homepage/campuses/shipping.jpg"
         alt="Pantiss Skill University campus"
         className="absolute inset-0 h-full w-full object-cover opacity-80"
       />

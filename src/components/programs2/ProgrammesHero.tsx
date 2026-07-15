@@ -15,7 +15,7 @@ const ProgrammesHero: React.FC = () => {
           preload="auto"
         >
           <source
-            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1763201687/6618336-uhd_3840_2160_24fps_yb7cwg.mp4"
+            src="/programs/6618336-uhd_3840_2160_24fps.mp4"
             type="video/mp4"
           />
         </video>

@@ -16,7 +16,7 @@ const GlobalPlacements: React.FC = () => {
       <div className="absolute inset-0 z-0">
         <video
           className="w-full h-full object-cover opacity-40 grayscale-[0.4] will-change-transform"
-          src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762412314/3125427-uhd_3840_2160_25fps_goajqw.mp4"
+          src="/Homepage/3125427-uhd_3840_2160_25fps.mp4"
           autoPlay
           loop
           muted
@@ -104,11 +104,11 @@ const GlobalPlacements: React.FC = () => {
             <div className="relative aspect-[16/11] rounded-[40px] overflow-hidden bg-white/5 border border-white/10 p-6 backdrop-blur-xl group">
               {/* Map Image with Inner Glow */}
               <div className="relative h-full w-full rounded-[32px] overflow-hidden ring-1 ring-white/10">
-                <img
-                  src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762413812/ChatGPT_Image_Nov_6_2025_12_53_13_PM_ngcmc0.png"
+                {/* <img
+                  src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762413812/_ngcmc0.png"
                   alt="World map showing placement regions"
                   className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-1000"
-                />
+                /> */}
                 <div className="absolute inset-0 bg-gradient-to-t from-red-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
               

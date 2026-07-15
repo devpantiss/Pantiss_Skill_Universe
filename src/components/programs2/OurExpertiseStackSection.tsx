@@ -33,7 +33,7 @@ const PROGRAMMES: Programme[] = [
     description:
       "Comprehensive training in technical and applied sciences, preparing students for supervisory and technician roles.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421119/diploma_diqahi.avif",
+      "/programs/programs_image/diploma.jpg",
     duration: "2–3 Years",
     mode: "Full-Time / Hybrid",
     certification: "State & Industry Recognised",
@@ -63,7 +63,7 @@ const PROGRAMMES: Programme[] = [
     description:
       "Hands-on skill development programs designed to create industry-ready technicians for blue-collar sectors.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421038/iti_pld6fw.avif",
+      "/programs/programs_image/iti.jpg",
     duration: "6–24 Months",
     mode: "Full-Time",
     certification: "NCVT / SCVT",
@@ -93,7 +93,7 @@ const PROGRAMMES: Programme[] = [
     description:
       "Training and certification designed with direct input from industry partners to maximize employability.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761914370/korba_cmy2er.jpg",
+      "/programs/programs_image/industry.jpg",
     duration: "3–12 Months",
     mode: "Blended",
     certification: "Industry Certified",
@@ -123,7 +123,7 @@ const PROGRAMMES: Programme[] = [
     description:
       "Helping the workforce adapt to evolving technologies, processes, and global industrial standards.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762422162/ChatGPT_Image_Nov_6_2025_03_12_00_PM_b0hrkz.png",
+      "/programs/programs_image/upskilling.jpg",
     duration: "1–6 Months",
     mode: "Blended",
     certification: "Industry Aligned",
@@ -153,7 +153,7 @@ const PROGRAMMES: Programme[] = [
     description:
       "Intensive short-term programs for rapid job entry.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762423419/bootcamp_mzu2xy.jpg",
+      "/programs/programs_image/bootcamp.jpg",
     duration: "4–12 Weeks",
     mode: "Full-Time / Intensive",
     certification: "Industry Recognised",

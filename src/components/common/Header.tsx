@@ -77,7 +77,7 @@ const navLinks: NavLink[] = [
       {
         name: "Schools",
         children: [
-          { name: "Pantiss School for Mines", path: "https://psmsa.vercel.app/" },
+          { name: "Pantiss School for Mines", path: "https://psmsa.netlify.app/" },
           { name: "Pantiss School for Steel & Aluminium", path: "#" },
           { name: "Pantiss School for Power & Green Energy", path: "#" },
           { name: "Pantiss School for Shipping & Logistics", path: "#" },
@@ -89,7 +89,7 @@ const navLinks: NavLink[] = [
       {
         name: "Locations",
         children: [
-          { name: "Pantiss Skill Resort, Anugul (For Mining)", path: "https://psmsa.vercel.app/" },
+          { name: "Pantiss Skill Resort, Anugul (For Mining)", path: "https://psmsa.netlify.app/" },
           { name: "Pantiss Skill Resort, Kalahandi (For Aviation)", path: "#" },
           { name: "Pantiss Skill Resort, Paradip (For Shipping & Logistics)", path: "#" },
           { name: "Pantiss Skill Resort, Jharsuguda (For Construction Tech & Infra Equipments)", path: "#" },
@@ -125,7 +125,7 @@ const secondaryLinks = [
 
 const topRightMenu = [
   { name: "Careers", path: "/careers" },
-  { name: "ERP", path: "https://erp-dusky-one.vercel.app/" },
+  { name: "ERP", path: "https://erp-dusky-one.netlify.app/" },
   { name: "Resources", path: "/resources" },
 ];
 
@@ -332,7 +332,7 @@ const Header: React.FC = React.memo(() => {
             aria-label="Pantiss Skill Universe home"
           >
             <img
-              src="https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/PANTISS_SKILL_UNIVERSE-removebg-preview_jqzd3y.png"
+              src="/PANTISS_SKILL_UNIVERSE-removebg-preview.png"
               alt="Pantiss Skill Universe"
               className={`transition-all ${isScrolled ? "h-16" : "h-24"}`}
               width={220}

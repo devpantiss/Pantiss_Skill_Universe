@@ -19,7 +19,7 @@ type CardProps = {
 const cardData: CardProps[] = [
   {
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761740136/blogs_oulxwa.jpg",
+      "/careers/life/diversity.jpg",
     text: "Inclusiveness & Diversity",
     path: "/life-at-pantiss/inclusiveness-and-diversity",
   },
@@ -31,13 +31,13 @@ const cardData: CardProps[] = [
   },
   {
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761740271/smartworks-coworking-Uz8THWPXwhI-unsplash_cb6pab.jpg",
+      "/careers/life/smartworks-coworking-Uz8THWPXwhI-unsplash.jpg",
     text: "Meet the Leaders",
     path: "/life-at-pantiss/meet-the-leaders",
   },
   {
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761740478/marcel-strauss-fzqxoFJytiE-unsplash_ftv7eh.jpg",
+      "/careers/life/marcel-strauss-fzqxoFJytiE-unsplash.jpg",
     text: "Mental Health & Wellbeing",
     path: "/life-at-pantiss/investing-in-mental-health",
   },
@@ -82,7 +82,7 @@ const LifeAtPantiss: React.FC = () => {
   const largeCard = useMemo<CardProps>(
     () => ({
       image:
-        "https://res.cloudinary.com/dxzhnns58/image/upload/v1761740582/WhatsApp_Image_2024-12-28_at_6.28.04_PM_swufs2.jpg",
+        "/careers/life/team.jpeg",
       text: "People of Pantiss",
       path: "/life-at-pantiss/people-at-pantiss",
       isLarge: true,

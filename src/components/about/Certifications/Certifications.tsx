@@ -14,14 +14,14 @@ const certificationsData: Certification[] = [
     title: "ISO 9002",
     description: "Quality Assured",
     imageUrl:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761729175/AdobeStock_636819188_Preview_fjxys3.jpg",
+      "/About/certification/iso.jpeg",
     logoUrl: "/cert/iso.png",
   },
   {
     title: "NSDC (National Skill Development Council)",
     description: "Industry Engagement Partner",
     imageUrl:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761729202/hector-reyes-WRo7RQFpamA-unsplash_oyoxxb.jpg",
+      "/About/certification/ski.jpg",
     logoUrl: "/cert/NSDC.png",
   },
   {
@@ -36,7 +36,7 @@ const certificationsData: Certification[] = [
     title: "SCMS (Skill Council for Mining Sector)",
     description: "Authorized Training Partner",
     imageUrl:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761729210/matthew-de-livera-4Gf51uY0YQE-unsplash_j3ih5t.jpg",
+      "/About/certification/mining_1.jpg",
     logoUrl: "/cert/SCMS.png",
   },
   {
@@ -50,7 +50,7 @@ const certificationsData: Certification[] = [
     title: "Agriculture Skill Council of India",
     description: "Authorized Training Partner",
     imageUrl:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761729200/foto-murthy-lXVWulsnNQE-unsplash_evbtha.jpg",
+      "/About/certification/agri.jpg",
     logoUrl: "/cert/asci.png",
   },
 ];
@@ -77,7 +77,7 @@ const Certifications: React.FC = () => {
       className="relative bg-gray-950 text-white py-24"
       style={{
         backgroundImage:
-          "url('https://res.cloudinary.com/dxzhnns58/image/upload/v1762254177/peter-herrmann-z6DJJZ1-1Cg-unsplash_qxsfml.jpg')",
+          "url('/About/cert_bg.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

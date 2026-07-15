@@ -27,56 +27,68 @@ interface ArrowProps {
 
 const milestonesData: Milestone[] = [
   {
-    year: "2021",
-    title: (
-      <>
-        <span className="text-red-500">Rehabilitation</span> &{" "}
-        <span className="text-red-500">Resettlement</span>
-      </>
-    ),
-    description:
-      "Conducted extensive need assessment surveys, spatial planning, and GIA studies for rehabilitation and resettlement of 7,000 households across seven mines in the Chotanagpur Plateau.",
-    imageUrl:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761721743/2021_1_uwndfp.jpg",
-  },
-  {
     year: "2022",
     title: (
       <>
-        <span className="text-red-500">RPL</span> &{" "}
-        <span className="text-red-500">Mining Skill</span> Development
+        <span className="text-red-500">The Vision</span> Begins
       </>
     ),
     description:
-      "Mobilized, trained, and assessed 150 youth under structured mining skill development programs in Jajpur district.",
+      "Conceived the vision of building an industry-led skilling ecosystem dedicated to preparing India's blue-collar workforce for the future through practical, employment-focused education.",
     imageUrl:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761721734/2022_stq3rx.jpg",
+      "/About/Milestones/PSU_2022.png",
   },
   {
     year: "2023",
     title: (
       <>
-        <span className="text-red-500">Fisheries</span> Clusters in{" "}
-        <span className="text-red-500">Mining Pits</span>
+        <span className="text-red-500">Industry</span> Partnerships{" "}
+        <span className="text-red-500">Established</span>
       </>
     ),
     description:
-      "Established fisheries clusters inside mining pits, positively impacting livelihoods of over 300 families.",
+      "Partnered with leading organizations across mining, shipping & logistics, construction, manufacturing, and green energy to identify workforce demands and co-create industry-relevant skilling pathways.",
     imageUrl:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761721751/2023_new_wgvhrv.jpg",
+      "/About/Milestones/PSU_2023.png",
   },
   {
     year: "2024",
     title: (
       <>
-        <span className="text-red-500">Guava Plantation</span> on{" "}
-        <span className="text-red-500">Abandoned Mining Land</span>
+        <span className="text-red-500">Curriculum</span> &{" "}
+        <span className="text-red-500">Training Framework</span>
       </>
     ),
     description:
-      "Converted 350 acres of abandoned mining land into productive guava plantations in the Sukinda Chromite region.",
+      "Developed competency-based curricula aligned with National Occupational Standards and real industry requirements, integrating practical learning, simulations, and certification pathways.",
     imageUrl:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761721731/2024_zakmqr.jpg",
+      "/About/Milestones/PSU_2024.png",
+  },
+  {
+    year: "2025",
+    title: (
+      <>
+        <span className="text-red-500">Pantiss Skill</span> Universe{" "}
+        <span className="text-red-500">Launched</span>
+      </>
+    ),
+    description:
+      "Officially launched Pantiss Skill Universe with specialized schools in Mining, Shipping & Logistics, Green Energy, Construction Technology, and Advanced Manufacturing to build an industry-ready workforce.",
+    imageUrl:
+      "/About/Milestones/PSU_2025.png",
+  },
+  {
+    year: "2026",
+    title: (
+      <>
+        <span className="text-red-500">Building India's</span>{" "}
+        <span className="text-red-500">Future Workforce</span>
+      </>
+    ),
+    description:
+      "Expanded training infrastructure, digital learning platforms, apprenticeship programs, placement ecosystems, and industry-linked career pathways to empower thousands of skilled professionals across India.",
+    imageUrl:
+      "/About/Milestones/PSU_2026.png",
   },
 ];
 

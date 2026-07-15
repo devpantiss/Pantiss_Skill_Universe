@@ -9,7 +9,7 @@ const ThreeDMarquee = lazy(() => import("../../components/about/ThreeDMarqueeDem
 
 // import OurFaculty from "../../components/about/OurFaculty";
 // import OurFacilities from "../../components/about/OurFacilities";
-import ScrollVelocityImages from "../../components/common/ScrollVelocityImages";
+// import ScrollVelocityImages from "../../components/common/ScrollVelocityImages";
 import Certifications from "../../components/about/Certifications/Certifications";
 import Milestones from "../../components/about/Milestones/Milestones";
 import Awards from "../../components/about/Awards";
@@ -35,20 +35,27 @@ const AboutPage: React.FC = () => {
   // ];
 
   const images = [
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1762166427/WhatsApp_Image_2025-04-30_at_5.49.15_PM_xnmamh_2_ma665l.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1762167481/Gemini_Generated_Image_dm4793dm4793dm47_obiynh.png",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1762160341/WhatsApp_Image_2025-11-03_at_2.21.32_PM_cepy4c.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1762157793/welder_wtwqhs.webp",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761819881/WhatsApp_Image_2025-10-30_at_3.38.18_PM_avyast.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761819875/WhatsApp_Image_2025-10-30_at_3.34.59_PM_tiduhn.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761819867/WhatsApp_Image_2025-10-30_at_3.30.36_PM_viv2to.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761819859/WhatsApp_Image_2025-10-30_at_3.30.06_PM_mhnoko.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761815148/GMC10092024_162547_jhwc3q.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761813985/WhatsApp_Image_2025-09-03_at_7.27.27_PM_hnzywi.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761813875/GMC06072025_170825_qsx9f7.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761769356/Theoryofchange_deta48.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745317/vocational_x4fu5b.jpg",
-    "https://res.cloudinary.com/dxzhnns58/image/upload/v1761740136/blogs_oulxwa.jpg",
+    "/About/carousel/Gallery_.JPG",
+    "/About/carousel/Gallery_1.JPG",
+    "/About/carousel/Gallery_2.jpg",
+    "/About/carousel/Gallery_3.JPG",
+    "/About/carousel/Gallery_4.JPG",
+    "/About/carousel/Gallery_5.JPG",
+    "/About/carousel/Gallery_6.JPG",
+    "/About/carousel/Gallery_7.JPG",
+    "/About/carousel/Gallery_8.JPG",
+    "/About/carousel/Gallery_9.JPG",
+    "/About/carousel/Gallery_10.JPG",
+    "/About/carousel/Gallery_11.jpg",
+    "/About/carousel/Gallery_12.JPG",
+    "/About/carousel/Gallery_13.jpg",
+    "/About/carousel/Gallery_14.jpg",
+    "/About/carousel/Gallery_15.jpeg",
+    "/About/carousel/Gallery_16.jpeg",
+    "/About/carousel/Gallery_17.jpg",
+    "/About/carousel/Gallery_18.jpg",
+    "/About/carousel/Gallery_19.webp",
+    "/About/carousel/Gallery_22.JPG",
   ];
   // const Faculty = [
   //   {
@@ -282,7 +289,7 @@ const AboutPage: React.FC = () => {
           ease="power3.out"
         />
       </div> */}
-      <ScrollVelocityImages
+      {/* <ScrollVelocityImages
         images={[
           "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_WASH-removebg-preview_s8wofi.png",
           "https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/SCHOOL_FOR_STEEL___ALUMINIUM-removebg-preview_lqtpri.png",
@@ -294,7 +301,7 @@ const AboutPage: React.FC = () => {
         velocity={150}
         imageClassName="w-full h-24 object-cover rounded-xl"
         containerClassName="max-w-full"
-      />
+      /> */}
     </div>
   );
 };

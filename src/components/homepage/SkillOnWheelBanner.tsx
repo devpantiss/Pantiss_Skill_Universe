@@ -14,7 +14,7 @@ const SkillOnWheelBanner: React.FC = () => {
             className="absolute inset-0 bg-fixed bg-center bg-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000 will-change-transform"
             style={{
               backgroundImage:
-                "url('https://res.cloudinary.com/dxzhnns58/image/upload/v1762166427/WhatsApp_Image_2025-04-30_at_5.49.15_PM_xnmamh_2_ma665l.jpg')",
+                "url('/Homepage/skill_on_wheels.jpeg')",
               transform: "translateZ(0)"
             }}
             initial={{ scale: 1.1 }}

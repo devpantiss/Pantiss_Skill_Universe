@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
         {/* Company Details */}
         <div>
           <img
-            src="https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/PANTISS_SKILL_UNIVERSE-removebg-preview_jqzd3y.png"
+            src="/PANTISS_SKILL_UNIVERSE-removebg-preview.png"
             alt="Pantiss Skill University Logo"
             className="h-20 mb-4"
           />
