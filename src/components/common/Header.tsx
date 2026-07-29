@@ -125,7 +125,7 @@ const secondaryLinks = [
 
 const topRightMenu = [
   { name: "Careers", path: "/careers" },
-  { name: "ERP", path: "https://erp-dusky-one.vercel.app/" },
+  { name: "ERP", path: "https://erp-xi-ten.vercel.app/" },
   { name: "Resources", path: "/resources" },
 ];
 
@@ -365,9 +365,8 @@ const Header: React.FC = React.memo(() => {
                       aria-haspopup="true"
                       onClick={() => toggleDropdown(link.name)}
                       data-active-marker={isActive ? "true" : undefined}
-                      className={`py-6 font-semibold transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${
-                        isActive ? "text-green-400" : "text-gray-200"
-                      }`}
+                      className={`py-6 font-semibold transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${isActive ? "text-green-400" : "text-gray-200"
+                        }`}
                     >
                       {link.name}
                     </button>
@@ -376,9 +375,8 @@ const Header: React.FC = React.memo(() => {
                       data-path={link.path}
                       data-active-marker={isActive ? "true" : undefined}
                       to={link.path!}
-                      className={`block py-6 font-semibold transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${
-                        isActive ? "text-green-400" : "text-gray-200"
-                      }`}
+                      className={`block py-6 font-semibold transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${isActive ? "text-green-400" : "text-gray-200"
+                        }`}
                     >
                       {link.name}
                     </Link>
@@ -519,9 +517,8 @@ const Header: React.FC = React.memo(() => {
                   <Link
                     key={link.name}
                     to={link.path!}
-                    className={`block rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${
-                      isActive ? "bg-white/10 text-green-400" : ""
-                    }`}
+                    className={`block rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${isActive ? "bg-white/10 text-green-400" : ""
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -532,9 +529,8 @@ const Header: React.FC = React.memo(() => {
                 <div key={link.name}>
                   <button
                     type="button"
-                    className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-left font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${
-                      isActive ? "bg-white/10 text-green-400" : ""
-                    }`}
+                    className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-left font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${isActive ? "bg-white/10 text-green-400" : ""
+                      }`}
                     onClick={() => toggleDropdown(link.name)}
                     aria-expanded={isOpen}
                   >
