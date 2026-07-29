@@ -44,7 +44,7 @@ const OverLappingCards3: React.FC = React.memo(() => {
       >
         {isVisible && (
           <source
-            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762160507/12791129_1920_1080_30fps_iwboue.mp4"
+            src="/Homepage//12791129_1920_1080_30fps.mp4"
             type="video/mp4"
           />
         )}

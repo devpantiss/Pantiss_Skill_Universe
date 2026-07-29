@@ -18,7 +18,7 @@ const CareersPage: React.FC = () => {
   }, [location.state]);
 
   return (
-    <div className="bg-[#070707] pb-8 text-white">
+    <div className="bg-[#070707] py-12 text-white">
       <Hero />
       <div ref={lifeRef}>
         <LifeAtPantiss />

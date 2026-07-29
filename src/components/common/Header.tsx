@@ -332,7 +332,7 @@ const Header: React.FC = React.memo(() => {
             aria-label="Pantiss Skill Universe home"
           >
             <img
-              src="https://res.cloudinary.com/dxzhnns58/image/upload/v1761928459/PANTISS_SKILL_UNIVERSE-removebg-preview_jqzd3y.png"
+              src="/PANTISS_SKILL_UNIVERSE-removebg-preview.png"
               alt="Pantiss Skill Universe"
               className={`transition-all ${isScrolled ? "h-16" : "h-24"}`}
               width={220}

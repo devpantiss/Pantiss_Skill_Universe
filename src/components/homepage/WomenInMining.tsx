@@ -49,7 +49,7 @@ const WomenInMining: React.FC = () => {
       <div 
         className="absolute inset-0 z-0 bg-fixed bg-center bg-cover grayscale-[0.2] will-change-transform"
         style={{
-          backgroundImage: "url('https://res.cloudinary.com/dxzhnns58/image/upload/v1762167481/Gemini_Generated_Image_dm4793dm4793dm47_obiynh.png')",
+          backgroundImage: "url('/Homepage/women-in-mining.png')",
           transform: "translateZ(0)"
         }}
       />

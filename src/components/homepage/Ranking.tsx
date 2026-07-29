@@ -8,43 +8,43 @@ interface RankingCardProps {
 
 const accreditations = [
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153774/AICTE_xarfut.png",
+    logo: "/Homepage/acceredition/aicte.png",
     description: "AICTE",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/iisssc-removebg-preview_1_nif3qf.png",
+    logo: "/Homepage/acceredition/iisssc.png",
     description: "IISSSC",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/UGC-removebg-preview_l5xzoo.png",
+    logo: "/Homepage/acceredition/ugc_logo.png",
     description: "UGC",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681320/SCMS_ehl7t2.png",
+    logo: "/Homepage/acceredition/SCMS.png",
     description: "SCMS",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/pssclogoBlack_waqzas.png",
+    logo: "/Homepage/acceredition/pssc.png",
     description: "PSSC",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681341/RCPSDC_ag2fwu.png",
+    logo: "/Homepage/acceredition/RCPSDC.png",
     description: "RCPSDC",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153704/NSDC-Preview-removebg-preview_ztn40e.png",
+    logo: "/Homepage/acceredition/NSDC.png",
     description: "NSDC",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/mepsc-png-cropped_1_rquk2z.png",
+    logo: "/Homepage/acceredition/MEPSC.png",
     description: "MEPSC",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/NCVET-removebg-preview_rnzmxe.png",
+    logo: "/Homepage/acceredition/ncvet.png",
     description: "NCVET",
   },
   {
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/LSC-logo-300x138-removebg-preview_fefyvr.png",
+    logo: "/Homepage/acceredition/lsc.png",
     description: "LSC",
   },
 ];

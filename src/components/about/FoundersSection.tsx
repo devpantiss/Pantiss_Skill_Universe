@@ -18,7 +18,7 @@ const founders: Founder[] = [
     subtitle:
       "Founder & CEO, PANTISS Group",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761685978/stalinsir_l53ura.jpg",
+      "/About/stalinsir.jpg",
     description:
       "Mr. Stalin Nayak is a visionary leader in higher education and skill development. With a strong focus on bridging academia and industry, he has played a pivotal role in shaping skill ecosystems that enhance employability and empower youth across India.",
     readMore: true,

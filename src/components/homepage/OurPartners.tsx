@@ -3,33 +3,33 @@ import Marquee from "react-fast-marquee";
 
 // Partner arrays
 const governmentPartners: string[] = [
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188053/msde_jzjwry.jpg",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153704/NSDC-Preview-removebg-preview_ztn40e.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188284/DGT_fgtetb.jpg",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188424/ministry_of_mines_y3mkst.jpg",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188627/ministry_of_heavy_industry_ttauzk.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188693/OSDA_qxy5qr.png",
+  "/Homepage/partner/msde.svg",
+  "/Homepage/partner/NSDC.png",
+  "/Homepage/partner/DGT.jpg",
+  "/Homepage/partner/Ministry_of_Mines_India.svg.png",
+  "/Homepage/partner/ministry_of_heavy_industry.svg",
+  "/Homepage/partner/osda.png",
 ];
 
 const corporatePartners: string[] = [
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163613/dhoot-trans-removebg-preview_rz6kgo.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762187763/hitachi-removebg-preview_uby3ku.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762187905/pngwing.com_xhrrhe.png"
+  "/Homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png",
+  "/Homepage/placements/company/dhoot-trans.png",
+  "/Homepage/placements/company/fleetguard.png",
+  "/Homepage/placements/company/schneider_electric.png",
+  "/Homepage/placements/company/TATA_STEEL-removebg-preview.png",
+  "/Homepage/placements/company//vedanta-removebg-preview.png",
+  "/Homepage/placements/company/hitachi.png",
+  "/Homepage/placements/company/Wistron.webp"
 ];
 
 const multilateralPartners: string[] = [
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/pssclogoBlack_waqzas.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153776/mepsc-png-cropped_1_rquk2z.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/LSC-logo-300x138-removebg-preview_fefyvr.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/asci-removebg-preview_xn0nuq.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762153775/iisssc-removebg-preview_1_nif3qf.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188977/WMPSC_adgkmq.png",
-  "https://res.cloudinary.com/dxzhnns58/image/upload/v1761681320/SCMS_ehl7t2.png"
+  "/Homepage/acceredition/pssc.png",
+  "/Homepage/acceredition/MEPSC.png",
+  "/Homepage/acceredition/lsc.png",
+  "/Homepage/partner/asci.png",
+  "/Homepage/acceredition/iisssc.png",
+  // "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188977/WMPSC_adgkmq.png",
+  "/Homepage/acceredition/SCMS.png"
 ];
 
 interface PartnerSectionProps {
