@@ -101,7 +101,8 @@ const navLinks: NavLink[] = [
       {
         name: "Flagship Program",
         children: [
-          { name: "Skill on Wheels", path: "/futuristic-skill-on-wheels" },
+          { name: "Skill on Wheels", path: "https://skill-on-wheels.vercel.app/" },
+          // { name: "Skill on Wheels", path: "/futuristic-skill-on-wheels" },
           { name: "Global Placements", path: "https://blue-global-force.vercel.app/" },
         ],
         path: ""
@@ -109,6 +110,7 @@ const navLinks: NavLink[] = [
     ],
   },
   { name: "Programs", subLinks: programData },
+  { name: "Placements", path: "https://job-search-client-ten.vercel.app/" },
   // { name: "Resources", path: "/resources" },
   { name: "Contact", path: "/contact-us" },
 ];
@@ -332,7 +334,7 @@ const Header: React.FC = React.memo(() => {
             aria-label="Pantiss Skill Universe home"
           >
             <img
-              src="/PANTISS_SKILL_UNIVERSE-removebg-preview.png"
+              src="/PSU_H.png"
               alt="Pantiss Skill Universe"
               className={`transition-all ${isScrolled ? "h-16" : "h-24"}`}
               width={220}
@@ -370,6 +372,17 @@ const Header: React.FC = React.memo(() => {
                     >
                       {link.name}
                     </button>
+                  ) : isExternalPath(link.path!) ? (
+                    <a
+                      data-path={link.path}
+                      href={link.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${link.name} (opens in a new tab)`}
+                      className="block py-6 font-semibold text-gray-200 transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                    >
+                      {link.name}
+                    </a>
                   ) : (
                     <Link
                       data-path={link.path}
@@ -513,7 +526,18 @@ const Header: React.FC = React.memo(() => {
               const isActive = isNavLinkActive(link, location.pathname);
 
               if (!hasSub) {
-                return (
+                return isExternalPath(link.path!) ? (
+                  <a
+                    key={link.name}
+                    href={link.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${link.name} (opens in a new tab)`}
+                    className="block rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
                   <Link
                     key={link.name}
                     to={link.path!}

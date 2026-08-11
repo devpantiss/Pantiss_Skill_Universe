@@ -76,15 +76,18 @@ const SkillOnWheelBanner: React.FC = () => {
             </div>
 
             <div className="pt-8">
-              <button 
-                onClick={() => window.location.href = "/futuristic-skill-on-wheels"}
-                className="group relative px-10 py-5 bg-red-600 text-white font-black text-xs tracking-widest uppercase rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/30"
+              <a
+                href="https://skill-on-wheels.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Explore Skill on Wheels (opens in a new tab)"
+                className="group relative inline-flex px-10 py-5 bg-red-600 text-white font-black text-xs tracking-widest uppercase rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-4 focus-visible:ring-offset-black"
               >
                 <span className="relative z-10 flex items-center gap-3">
-                  Explore Mission <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  Explore <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
