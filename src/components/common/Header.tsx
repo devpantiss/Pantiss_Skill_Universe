@@ -128,6 +128,7 @@ const secondaryLinks = [
 const topRightMenu = [
   { name: "Careers", path: "/careers" },
   { name: "ERP", path: "https://erp-xi-ten.vercel.app/" },
+  { name: "LMS", path: "https://lms-seven-peach.vercel.app/login" },
   { name: "Resources", path: "/resources" },
 ];
 
