@@ -1,27 +1,39 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { 
-  Search, 
-  ArrowRight, 
-  FileText, 
-  TrendingUp, 
-  Zap, 
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import type { LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  CalendarDays,
+  CheckCircle2,
+  Clock3,
   Factory,
+  FileText,
+  HardHat,
+  Leaf,
+  Search,
   Ship,
-  Leaf
+  Sparkles,
+  UsersRound,
+  X,
+  Zap,
 } from "lucide-react";
 
-/* ================= TYPES ================= */
+type ResourceType = "Report" | "Case Study" | "Article" | "Insight";
 
 interface Resource {
   id: string;
   title: string;
   excerpt: string;
   category: string;
-  tag: "Report" | "Case Study" | "Article" | "Insight";
+  type: ResourceType;
   image: string;
   date: string;
+  readTime: string;
   author: string;
+  featured?: boolean;
+  takeaways: string[];
 }
 
 interface Category {
@@ -29,366 +41,591 @@ interface Category {
   title: string;
   description: string;
   image: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
 }
-
-/* ================= SAMPLE DATA ================= */
 
 const CATEGORIES: Category[] = [
   {
-    id: "mining",
+    id: "Mining",
     title: "Mining",
-    description: "Future of sustainable resource extraction and safety protocols.",
+    description: "Safety, automation and sustainable extraction",
     image: "/Homepage/why/mines.jpg",
-    icon: <div className="p-3 bg-red-500/20 text-red-400 rounded-lg"><div className="w-6 h-6 border-b-2 border-r-2 border-red-400 rotate-45" /></div> // Custom mining-like icon
+    icon: HardHat,
   },
   {
-    id: "steel",
+    id: "Steel & Aluminium",
     title: "Steel & Aluminium",
-    description: "Innovations in metallurgy and green steel production.",
+    description: "Advanced metallurgy and green production",
     image: "/Homepage/why/steel.jpg",
-    icon: <Factory className="w-6 h-6 text-blue-400" />
+    icon: Factory,
   },
   {
-    id: "power",
-    title: "Power & Energy",
-    description: "Transitioning to renewable grids and smart energy management.",
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop",
-    icon: <Zap className="w-6 h-6 text-yellow-400" />
-  },
-  {
-    id: "greenenergy",
-    title: "Green Energy",
-    description: "Efficiency in oil & gas and the evolution of petrochemicals.",
+    id: "Power & Green Energy",
+    title: "Power & Green Energy",
+    description: "Renewable systems and future-ready operations",
     image: "/Homepage/why/greenenergy.jpg",
-    icon: <Leaf className="w-6 h-6 text-green-400" />
+    icon: Zap,
   },
   {
-    id: "shipping",
+    id: "Shipping & Logistics",
     title: "Shipping & Logistics",
-    description: "Global trade routes, automation, and maritime skilling.",
+    description: "Global trade, ports and supply-chain skills",
     image: "/Homepage/why/shippingandlogistics.jpg",
-    icon: <Ship className="w-6 h-6 text-blue-500" />
-  }
+    icon: Ship,
+  },
+  {
+    id: "Green Jobs",
+    title: "Green Jobs",
+    description: "Climate-positive careers and circular industry",
+    image: "/Homepage/why/greenjobs.jpg",
+    icon: Leaf,
+  },
 ];
 
 const RESOURCES: Resource[] = [
   {
-    id: "1",
-    title: "Digital Transformation in Deep-Sea Mining",
-    excerpt: "Exploring how AI-driven remote monitoring is revolutionizing mineral extraction in the 21st century.",
+    id: "digital-mining",
+    title: "The Connected Mine: Building a Safer, Smarter Workforce",
+    excerpt:
+      "A practical outlook on how remote operations, predictive maintenance and digital safety systems are reshaping frontline roles.",
     category: "Mining",
-    tag: "Report",
-    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070&auto=format&fit=crop",
-    date: "March 15, 2026",
-    author: "Dr. Arvind Rao"
+    type: "Report",
+    image: "/Homepage/why/mines.jpg",
+    date: "12 Aug 2026",
+    readTime: "8 min read",
+    author: "PSU Research Desk",
+    featured: true,
+    takeaways: [
+      "The technical capabilities emerging across modern mine operations",
+      "How digital tools can strengthen safety without replacing human judgement",
+      "A role-based roadmap for reskilling supervisors and operators",
+    ],
   },
   {
-    id: "2",
-    title: "Green Steel: Path to Carbon Neutrality",
-    excerpt: "A comprehensive analysis of hydrogen-based reduction processes in the modern steel industry.",
+    id: "green-steel",
+    title: "Green Steel and the New Metallurgy Skill Stack",
+    excerpt:
+      "What hydrogen-based production, electrification and lower-carbon processes mean for technicians and plant operators.",
     category: "Steel & Aluminium",
-    tag: "Case Study",
-    image: "https://images.unsplash.com/photo-1534067783941-51c9c23eccfd?q=80&w=2070&auto=format&fit=crop",
-    date: "March 10, 2026",
-    author: "Sarah Jenkins"
+    type: "Insight",
+    image: "/Homepage/why/steel.jpg",
+    date: "05 Aug 2026",
+    readTime: "6 min read",
+    author: "Centre for Metals Excellence",
+    takeaways: [
+      "The operational shift from conventional to lower-carbon production",
+      "High-value skills that will remain critical during plant modernisation",
+      "Training priorities for maintenance and process-control teams",
+    ],
   },
   {
-    id: "3",
-    title: "Global Maritime Logistics Trends 2026",
-    excerpt: "The impact of automated shipping ports on the future workforce and skilling requirements.",
+    id: "women-in-mining",
+    title: "Designing Safer Pathways for Women in Mining",
+    excerpt:
+      "A field-led case study on inclusive training, equipment readiness and workplace systems that improve participation.",
+    category: "Mining",
+    type: "Case Study",
+    image: "/Homepage/women-in-mining.png",
+    date: "28 Jul 2026",
+    readTime: "7 min read",
+    author: "Workforce Inclusion Lab",
+    takeaways: [
+      "How inclusive course design improves workplace readiness",
+      "The role of equipment orientation and practical simulations",
+      "Metrics organisations can use to track sustainable participation",
+    ],
+  },
+  {
+    id: "smart-ports",
+    title: "Smart Ports: Skills for the Next Logistics Era",
+    excerpt:
+      "Automation is changing how cargo moves. Discover the hybrid technical and operational roles emerging across modern ports.",
     category: "Shipping & Logistics",
-    tag: "Article",
-    image: "https://images.unsplash.com/photo-1512418490979-92798ccc1340?q=80&w=2070&auto=format&fit=crop",
-    date: "March 05, 2026",
-    author: "Capt. Rajneesh Singh"
+    type: "Article",
+    image: "/Homepage/why/shippingandlogistics.jpg",
+    date: "19 Jul 2026",
+    readTime: "5 min read",
+    author: "Logistics Sector Faculty",
+    takeaways: [
+      "Where automation is creating new responsibilities across port operations",
+      "Why safety, data literacy and equipment knowledge must be taught together",
+      "A progression model for entry-level logistics talent",
+    ],
   },
   {
-    id: "4",
-    title: "The Role of Microgrids in Industrial Hubs",
-    excerpt: "Decentralizing energy for better reliability and lower emissions in heavy industrial clusters.",
-    category: "Power & Energy",
-    tag: "Insight",
-    image: "https://images.unsplash.com/photo-1466611653911-954ff2127184?q=80&w=2070&auto=format&fit=crop",
-    date: "February 28, 2026",
-    author: "Elena Petrova"
-  }
+    id: "renewable-maintenance",
+    title: "The Renewable Maintenance Workforce Opportunity",
+    excerpt:
+      "A concise guide to the installation, inspection and maintenance skills powering India's energy transition.",
+    category: "Power & Green Energy",
+    type: "Report",
+    image: "/Homepage/why/greenenergy.jpg",
+    date: "11 Jul 2026",
+    readTime: "9 min read",
+    author: "Energy Skills Council",
+    takeaways: [
+      "Core maintenance roles across solar and industrial energy systems",
+      "The safety and diagnostic capabilities employers are prioritising",
+      "How modular training can accelerate technician readiness",
+    ],
+  },
+  {
+    id: "circular-careers",
+    title: "From Waste Streams to Green Careers",
+    excerpt:
+      "How circular-economy models are creating practical, local career pathways in sorting, recovery and resource management.",
+    category: "Green Jobs",
+    type: "Insight",
+    image: "/Homepage/why/greenjobs.jpg",
+    date: "02 Jul 2026",
+    readTime: "6 min read",
+    author: "Green Jobs Initiative",
+    takeaways: [
+      "New occupational pathways created by the circular economy",
+      "The blend of technical knowledge and community skills these roles require",
+      "Ways employers and training partners can build credible career ladders",
+    ],
+  },
 ];
 
-/* ================= COMPONENTS ================= */
+const TYPE_OPTIONS: Array<"All" | ResourceType> = [
+  "All",
+  "Report",
+  "Case Study",
+  "Article",
+  "Insight",
+];
 
-const SectionHeader = ({ title, subtitle }: { title: string; subtitle?: string }) => (
-  <div className="mb-12 space-y-4">
-    <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-white">{title}</h2>
-    {subtitle && <p className="text-slate-400 text-lg max-w-2xl">{subtitle}</p>}
-  </div>
-);
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
 
-const CategoryCard = ({ category }: { category: Category }) => (
-  <motion.div 
-    whileHover={{ y: -10 }}
-    className="group relative h-[350px] rounded-2xl overflow-hidden cursor-pointer shadow-xl border border-white/5"
-  >
-    <img 
-      src={category.image} 
-      alt={category.title}
-      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 via-slate-900/60 to-transparent" />
-    
-    <div className="absolute top-6 left-6">
-      <div className="p-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/10 group-hover:border-white/30 transition-colors">
-        {category.icon}
-      </div>
-    </div>
-
-    <div className="absolute bottom-6 left-6 right-6">
-      <h3 className="text-2xl font-bold text-white mb-2">{category.title}</h3>
-      <p className="text-slate-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        {category.description}
-      </p>
-      <div className="mt-4 flex items-center gap-2 text-red-400 text-sm font-semibold">
-        Explore Category <ArrowRight className="w-4 h-4" />
-      </div>
-    </div>
-  </motion.div>
-);
-
-const ResourceCard = ({ resource }: { resource: Resource }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    className="bg-slate-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all group flex flex-col h-full"
-  >
-    <div className="relative h-48 overflow-hidden">
-      <img 
-        src={resource.image} 
-        alt={resource.title}
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-      />
-      <div className="absolute top-4 left-4">
-        <span className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-[10px] uppercase tracking-widest text-white font-bold">
-          {resource.tag}
+function ResourceCard({ resource, onOpen }: { resource: Resource; onOpen: () => void }) {
+  return (
+    <motion.article
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.45 }}
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-zinc-950 transition duration-300 hover:-translate-y-1 hover:border-red-500/40 hover:shadow-2xl hover:shadow-red-950/20"
+    >
+      <button
+        type="button"
+        onClick={onOpen}
+        className="relative block h-56 overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500"
+        aria-label={`Preview ${resource.title}`}
+      >
+        <img
+          src={resource.image}
+          alt=""
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+        <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/55 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-md">
+          {resource.type}
         </span>
-      </div>
-    </div>
-    
-    <div className="p-6 flex flex-col flex-grow">
-      <div className="flex items-center gap-2 text-red-500/80 text-[10px] font-bold uppercase tracking-wider mb-3">
-        {resource.category}
-      </div>
-      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors leading-snug">
-        {resource.title}
-      </h3>
-      <p className="text-slate-400 text-sm line-clamp-3 mb-6 flex-grow">
-        {resource.excerpt}
-      </p>
-      
-      <div className="flex items-center justify-between pt-6 border-t border-slate-800 mt-auto">
-        <div className="text-[11px] text-slate-500">
-          {resource.date} • By {resource.author}
-        </div>
-        <button className="text-white hover:text-red-400 transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
-          Read More <ArrowRight className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
-  </motion.div>
-);
+      </button>
 
-/* ================= MAIN PAGE ================= */
+      <div className="flex flex-1 flex-col p-6">
+        <div className="mb-4 flex items-center gap-3 text-xs text-zinc-400">
+          <span className="font-semibold text-red-400">{resource.category}</span>
+          <span aria-hidden="true" className="h-1 w-1 rounded-full bg-zinc-600" />
+          <span>{resource.readTime}</span>
+        </div>
+        <h3 className="text-xl font-bold leading-snug text-white transition group-hover:text-red-300">
+          {resource.title}
+        </h3>
+        <p className="mt-3 flex-1 text-sm leading-6 text-zinc-400">{resource.excerpt}</p>
+        <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
+          <span className="text-xs text-zinc-500">{resource.date}</span>
+          <button
+            type="button"
+            onClick={onOpen}
+            className="inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-white transition hover:text-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-4 focus-visible:ring-offset-black"
+          >
+            View brief <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function ResourcePreview({ resource, onClose }: { resource: Resource; onClose: () => void }) {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[80] flex items-end justify-center bg-black/80 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="resource-preview-title"
+        initial={{ opacity: 0, y: 32, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 24, scale: 0.98 }}
+        transition={{ duration: 0.25 }}
+        className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-t-3xl border border-white/10 bg-zinc-950 shadow-2xl sm:rounded-3xl"
+      >
+        <div className="relative h-52 overflow-hidden sm:h-64">
+          <img src={resource.image} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-black/30 to-black/10" />
+          <button
+            type="button"
+            onClick={onClose}
+            autoFocus
+            className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white backdrop-blur-md transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+            aria-label="Close resource preview"
+          >
+            <X className="h-5 w-5" aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className="p-6 sm:p-10">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-zinc-400">
+            <span className="rounded-full bg-red-500/15 px-3 py-1.5 text-red-300">{resource.type}</span>
+            <span>{resource.category}</span>
+            <span aria-hidden="true">•</span>
+            <span>{resource.readTime}</span>
+          </div>
+          <h2 id="resource-preview-title" className="mt-5 text-3xl font-black leading-tight text-white sm:text-4xl">
+            {resource.title}
+          </h2>
+          <p className="mt-5 text-base leading-7 text-zinc-300">{resource.excerpt}</p>
+
+          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-red-400">Inside this brief</p>
+            <ul className="mt-5 space-y-4">
+              {resource.takeaways.map((takeaway) => (
+                <li key={takeaway} className="flex gap-3 text-sm leading-6 text-zinc-300">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-red-400" aria-hidden="true" />
+                  {takeaway}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-white">{resource.author}</p>
+              <p className="mt-1 flex items-center gap-2 text-xs text-zinc-500">
+                <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" /> {resource.date}
+              </p>
+            </div>
+            <Link
+              to="/contact-us"
+              onClick={onClose}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950"
+            >
+              Request full publication <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeType, setActiveType] = useState<(typeof TYPE_OPTIONS)[number]>("All");
+  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
+  const resourcesRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const filteredResources = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+
+    return RESOURCES.filter((resource) => {
+      const matchesCategory = activeCategory === "All" || resource.category === activeCategory;
+      const matchesType = activeType === "All" || resource.type === activeType;
+      const searchableText = [
+        resource.title,
+        resource.excerpt,
+        resource.category,
+        resource.type,
+        resource.author,
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return matchesCategory && matchesType && (!query || searchableText.includes(query));
+    });
+  }, [activeCategory, activeType, searchQuery]);
+
+  const scrollToResources = () => {
+    window.setTimeout(() => resourcesRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
+  };
+
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    scrollToResources();
+  };
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setActiveCategory("All");
+    setActiveType("All");
+  };
 
   return (
-    <div className="min-h-screen bg-black overflow-x-hidden pt-20">
-      
-      {/* 1. HERO SECTION */}
-      <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background Video Layer */}
-        <div className="absolute inset-0 z-0">
+    <main className="min-h-screen overflow-x-hidden bg-black text-white">
+      <section className="relative isolate flex min-h-[760px] items-center overflow-hidden px-6 pb-20 pt-52 sm:pt-56 lg:min-h-[860px] lg:pb-28 lg:pt-60">
+        <div className="absolute inset-0 -z-20">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="w-full h-full object-cover opacity-50"
-            style={{ pointerEvents: 'none' }}
+            poster="/Homepage/accredition.jpg"
+            className="h-full w-full object-cover opacity-45"
+            aria-hidden="true"
           >
             <source src="/book.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/10" />
-          {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_black_70%)] opacity-60" /> */}
         </div>
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_72%_30%,rgba(220,38,38,0.20),transparent_34%),linear-gradient(to_bottom,rgba(0,0,0,0.34),#000_92%)]" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-black to-transparent" />
 
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
-              <TrendingUp className="w-4 h-4" /> KNOWLEDGE & INSIGHTS
+        <div className="mx-auto grid w-full max-w-7xl items-end gap-12 lg:grid-cols-[1fr_340px]">
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.65 }}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-red-400/25 bg-red-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-red-300 backdrop-blur-md">
+              <Sparkles className="h-4 w-4" aria-hidden="true" /> PSU Knowledge Centre
             </div>
-            
-            <h1 className="text-5xl lg:text-7xl xl:text-8xl font-black text-white leading-none tracking-tighter">
-              INSIGHTS FOR THE <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-yellow-200">
-                FUTURE WORKFORCE
+            <h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.95] tracking-[-0.05em] text-white sm:text-6xl lg:text-8xl">
+              Ideas that move
+              <span className="block bg-gradient-to-r from-red-400 via-orange-200 to-white bg-clip-text text-transparent">
+                industry forward.
               </span>
             </h1>
-            
-            <p className="text-slate-300 text-lg lg:text-xl max-w-3xl mx-auto font-medium">
-              Bridging the gap between industrial evolution and workforce readiness through 
-              comprehensive publications, actionable reports, and technical insights.
+            <p className="mt-7 max-w-2xl text-base leading-7 text-zinc-300 sm:text-xl sm:leading-8">
+              Practical research, sector intelligence and workforce insights for the people building India's industrial future.
             </p>
 
-            {/* Search Bar */}
-            <div className="relative max-w-2xl mx-auto mt-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-1 shadow-2xl overflow-hidden">
-              <div className="flex items-center gap-4 px-6 h-16">
-                <Search className="w-6 h-6 text-slate-400" />
-                <input 
-                  type="text" 
-                  placeholder="Search articles, reports, case studies..." 
-                  className="bg-transparent border-none outline-none text-white w-full text-lg placeholder:text-slate-500"
+            <form onSubmit={handleSearch} role="search" className="mt-10 max-w-2xl">
+              <label htmlFor="resource-search" className="sr-only">Search the resource library</label>
+              <div className="flex items-center rounded-2xl border border-white/15 bg-black/55 p-2 shadow-2xl backdrop-blur-xl focus-within:border-red-400/70 focus-within:ring-4 focus-within:ring-red-500/10">
+                <Search className="ml-3 h-5 w-5 shrink-0 text-zinc-400" aria-hidden="true" />
+                <input
+                  id="resource-search"
+                  type="search"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  placeholder="Search mining, green skills, reports..."
+                  className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 sm:text-base"
                 />
-                <button className="hidden sm:block px-8 h-12 bg-red-500 hover:bg-red-600 rounded-xl text-white font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-red-500/20">
+                <button
+                  type="submit"
+                  className="rounded-xl bg-red-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:px-7"
+                >
                   Search
                 </button>
               </div>
-            </div>
+            </form>
           </motion.div>
+
+          <motion.aside
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="hidden rounded-3xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-xl lg:block"
+            aria-label="Resource library summary"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Explore the library</p>
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <div className="rounded-2xl bg-black/35 p-4">
+                <FileText className="h-5 w-5 text-red-400" aria-hidden="true" />
+                <p className="mt-5 text-3xl font-black">{RESOURCES.length}</p>
+                <p className="mt-1 text-xs text-zinc-400">Curated briefs</p>
+              </div>
+              <div className="rounded-2xl bg-black/35 p-4">
+                <Factory className="h-5 w-5 text-orange-300" aria-hidden="true" />
+                <p className="mt-5 text-3xl font-black">{CATEGORIES.length}</p>
+                <p className="mt-1 text-xs text-zinc-400">Core sectors</p>
+              </div>
+            </div>
+            <p className="mt-5 flex items-center gap-2 text-xs text-zinc-400">
+              <Clock3 className="h-4 w-4 text-red-400" aria-hidden="true" /> Updated monthly by PSU faculty
+            </p>
+          </motion.aside>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* 2. CATEGORY SECTION */}
-        <section className="py-24 border-t border-slate-900">
-          <SectionHeader 
-            title="Industry Pillars" 
-            subtitle="Explore specialized knowledge curated for each strategic sector of industrial skilling." 
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {CATEGORIES.map((cat) => (
-              <CategoryCard key={cat.id} category={cat} />
-            ))}
-          </div>
-        </section>
-
-        {/* 3. FEATURED ARTICLES */}
-        <section className="py-24">
-          <SectionHeader 
-            title="Featured Publications" 
-            subtitle="Deep dives into the technical and economic shifts defining the blue-collar workforce." 
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {RESOURCES.slice(0, 3).map((res) => (
-              <ResourceCard key={res.id} resource={res} />
-            ))}
-          </div>
-        </section>
-
-        {/* 4. PROMOTIONAL BANNER */}
-        <section className="py-12">
-          <div className="relative rounded-3xl overflow-hidden h-[400px] flex items-center p-8 lg:p-16">
-            <img 
-              src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=2070&auto=format&fit=crop" 
-              alt="Promo Banner"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/40 to-transparent" />
-            
-            <div className="relative z-10 max-w-2xl space-y-6">
-              <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight">
-                Upskill for High-Demand <br />
-                Mining & Metal Careers
-              </h2>
-              <p className="text-slate-300 text-lg">
-                Join our certified programs designed by industry experts to master the future 
-                of automated industrial labor.
-              </p>
-              <button className="px-8 py-4 bg-red-500 hover:bg-red-600 text-white rounded-xl font-bold flex items-center gap-3 transition-transform hover:translate-x-2">
-                Explore Programs <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* 5. LATEST INSIGHTS SECTION */}
-        <section className="py-24">
-          <div className="flex justify-between items-end mb-12">
-            <SectionHeader 
-              title="Latest Industrial Insights" 
-              subtitle="The most recent reports and news from the global skilling landscape." 
-            />
-            <button className="hidden sm:flex items-center gap-2 text-white hover:text-red-400 transition-colors bg-white/5 px-6 py-2 rounded-lg border border-white/10 font-bold text-sm tracking-widest uppercase mb-12">
-              View Browser <FileText className="w-4 h-4" />
-            </button>
-          </div>
-          
-          <div className="space-y-4">
-            {RESOURCES.map((res) => (
-              <motion.div 
-                key={res.id}
-                whileHover={{ x: 10 }}
-                className="group flex flex-col md:flex-row items-center gap-6 p-6 rounded-2xl bg-slate-900/30 border border-slate-800 hover:border-red-500/30 hover:bg-slate-900/50 transition-all cursor-pointer"
-              >
-                <div className="w-full md:w-32 h-20 rounded-xl overflow-hidden shrink-0">
-                  <img src={res.image} alt={res.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+      <section className="border-y border-white/10 bg-zinc-950/70 px-6 py-8" aria-label="Knowledge centre highlights">
+        <div className="mx-auto grid max-w-7xl gap-6 sm:grid-cols-3">
+          {[
+            [BookOpen, "Field-led research", "Built around real operating environments"],
+            [UsersRound, "Expert perspective", "Created with faculty and industry practitioners"],
+            [Leaf, "Future-focused", "Tracking the skills shaping sustainable growth"],
+          ].map(([Icon, title, description]) => {
+            const HighlightIcon = Icon as LucideIcon;
+            return (
+              <div key={title as string} className="flex items-start gap-4 sm:border-r sm:border-white/10 sm:pr-6 sm:last:border-0">
+                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-500/10 text-red-400">
+                  <HighlightIcon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <div>
+                  <h2 className="text-sm font-bold text-white">{title as string}</h2>
+                  <p className="mt-1 text-xs leading-5 text-zinc-500">{description as string}</p>
                 </div>
-                <div className="flex-1 space-y-1">
-                  <div className="flex items-center gap-3 text-slate-500 text-xs font-bold uppercase tracking-widest">
-                    <span className="text-red-500/80">{res.category}</span>
-                    <span>•</span>
-                    <span>{res.date}</span>
-                  </div>
-                  <h4 className="text-lg font-bold text-white group-hover:text-red-400 transition-colors">
-                    {res.title}
-                  </h4>
-                </div>
-                <div className="flex items-center gap-4 text-slate-600 group-hover:text-white transition-colors">
-                  <span className="text-sm font-medium">Read Article</span>
-                  <ArrowRight className="w-6 h-6 border p-1 rounded-full border-slate-700" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
-        {/* 6. FOOTER CTA */}
-        <section className="py-24 border-t border-slate-900">
-          <div className="bg-gradient-to-br from-red-500 to-red-700 rounded-3xl p-12 lg:p-20 text-center space-y-8 shadow-2xl shadow-red-500/20">
-            <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tight leading-none">
-              READY TO MASTER YOUR <br />
-              INDUSTRIAL FUTURE?
-            </h2>
-            <p className="text-red-100 text-xl max-w-2xl mx-auto font-medium">
-              Join thousands of skilled professionals across India accelerating their careers 
-              through PSU's enterprise-grade training infrastructure.
+      <section className="px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-red-400">Browse by sector</p>
+            <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-5xl">Start with your industry.</h2>
+            <p className="mt-5 text-base leading-7 text-zinc-400">
+              Move directly into the trends, technologies and workforce priorities most relevant to your work.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <button className="w-full sm:w-auto px-10 py-5 bg-white text-red-600 font-bold rounded-2xl text-lg transition-transform hover:scale-105 active:scale-95 shadow-xl">
-                Apply for Programs
-              </button>
-              <button className="w-full sm:w-auto px-10 py-5 bg-transparent border-2 border-white text-white font-bold rounded-2xl text-lg hover:bg-white/10 transition-colors">
-                Contact Advisory
-              </button>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {CATEGORIES.map((category) => {
+              const Icon = category.icon;
+              const isActive = activeCategory === category.id;
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory(isActive ? "All" : category.id);
+                    scrollToResources();
+                  }}
+                  aria-pressed={isActive}
+                  className={`group relative min-h-72 overflow-hidden rounded-3xl border text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-4 focus-visible:ring-offset-black ${
+                    isActive ? "border-red-400 ring-2 ring-red-500/25" : "border-white/10 hover:-translate-y-1 hover:border-white/30"
+                  }`}
+                >
+                  <img src={category.image} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-black/50 text-red-300 backdrop-blur-md">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <h3 className="mt-5 text-lg font-bold text-white">{category.title}</h3>
+                    <p className="mt-2 text-xs leading-5 text-zinc-300">{category.description}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-red-300">
+                      {isActive ? "Selected" : "Explore sector"} <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section ref={resourcesRef} className="scroll-mt-40 border-t border-white/10 bg-zinc-950/50 px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-red-400">Resource library</p>
+              <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-5xl">Latest thinking, made practical.</h2>
+            </div>
+            <div className="flex flex-wrap gap-2" aria-label="Filter resources by type">
+              {TYPE_OPTIONS.map((type) => (
+                <button
+                  key={type}
+                  type="button"
+                  onClick={() => setActiveType(type)}
+                  aria-pressed={activeType === type}
+                  className={`rounded-full border px-4 py-2 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 ${
+                    activeType === type
+                      ? "border-red-500 bg-red-600 text-white"
+                      : "border-white/10 bg-white/[0.03] text-zinc-400 hover:border-white/30 hover:text-white"
+                  }`}
+                >
+                  {type}
+                </button>
+              ))}
             </div>
           </div>
-        </section>
 
-      </div>
-    </div>
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-white/10 py-4 text-sm text-zinc-400" aria-live="polite">
+            <p>
+              Showing <span className="font-bold text-white">{filteredResources.length}</span> {filteredResources.length === 1 ? "resource" : "resources"}
+              {activeCategory !== "All" && <> in <span className="font-bold text-white">{activeCategory}</span></>}
+            </p>
+            {(searchQuery || activeCategory !== "All" || activeType !== "All") && (
+              <button type="button" onClick={clearFilters} className="inline-flex items-center gap-2 font-semibold text-red-400 transition hover:text-red-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500">
+                <X className="h-4 w-4" aria-hidden="true" /> Clear filters
+              </button>
+            )}
+          </div>
+
+          {filteredResources.length > 0 ? (
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {filteredResources.map((resource) => (
+                <ResourceCard key={resource.id} resource={resource} onOpen={() => setSelectedResource(resource)} />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-10 rounded-3xl border border-dashed border-white/15 bg-white/[0.025] px-6 py-20 text-center">
+              <Search className="mx-auto h-10 w-10 text-zinc-600" aria-hidden="true" />
+              <h3 className="mt-5 text-xl font-bold text-white">No matching resources yet</h3>
+              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-zinc-500">Try a broader search or clear your filters to explore the full knowledge library.</p>
+              <button type="button" onClick={clearFilters} className="mt-6 rounded-xl bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500">
+                View all resources
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="px-6 py-20 sm:py-28">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-red-400/20 bg-gradient-to-br from-red-700 via-red-800 to-zinc-950 p-8 sm:p-12 lg:p-16">
+          <div className="absolute -right-28 -top-28 h-96 w-96 rounded-full border-[70px] border-white/[0.04]" aria-hidden="true" />
+          <div className="relative grid items-end gap-10 lg:grid-cols-[1fr_auto]">
+            <div className="max-w-3xl">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-red-100">Turn insight into capability</p>
+              <h2 className="mt-5 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl">
+                Build the workforce your next chapter needs.
+              </h2>
+              <p className="mt-5 max-w-2xl text-base leading-7 text-red-100/80">
+                Explore industry-aligned programs designed around real roles, modern equipment and measurable workplace outcomes.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <Link to="/our-programmes" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-7 py-4 text-sm font-bold text-red-700 transition hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-red-800">
+                Explore programs <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link to="/contact-us" className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-7 py-4 text-sm font-bold text-white backdrop-blur-md transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                Speak with our team
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <AnimatePresence>
+        {selectedResource && <ResourcePreview resource={selectedResource} onClose={() => setSelectedResource(null)} />}
+      </AnimatePresence>
+    </main>
   );
 }
