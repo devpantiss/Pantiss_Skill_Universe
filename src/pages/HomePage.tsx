@@ -9,6 +9,7 @@ const WhyPantissSkillUniversity = React.lazy(
 const SchoolLogoStrip = React.lazy(() => import("../components/homepage/SchoolLogoStrip"));
 const Ranking = React.lazy(() => import("../components/homepage/Ranking"));
 const OverLappingCards2 = React.lazy(() => import("../components/homepage/OverLappingCards2"));
+const OurProjects = React.lazy(() => import("../components/homepage/OurProjects"));
 const Campuses = React.lazy(() => import("../components/homepage/Campuses"));
 const SectorsAccordion = React.lazy(() => import("../components/homepage/SectorsAccordion"));
 const PlacementsSection = React.lazy(() => import("../components/homepage/PlacementsSection"));
@@ -59,6 +60,9 @@ const HomePage: React.FC = () => {
         </LazySection>
         <LazySection>
           <Campuses />
+        </LazySection>
+        <LazySection>
+          <OurProjects />
         </LazySection>
         <LazySection>
           <SectorsAccordion />

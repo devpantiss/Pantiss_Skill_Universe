@@ -110,7 +110,8 @@ const navLinks: NavLink[] = [
     ],
   },
   { name: "Programs", subLinks: programData },
-  { name: "Placements", path: "https://job-search-client-ten.vercel.app/" },
+  { name: "Our Projects", path: "/our-projects" },
+  { name: "Placements", path: "/placements" },
   // { name: "Resources", path: "/resources" },
   { name: "Contact", path: "/contact-us" },
 ];
@@ -118,17 +119,16 @@ const navLinks: NavLink[] = [
 /* ================= SECONDARY ================= */
 
 const secondaryLinks = [
-  { name: "Counselling Portal", path: "/counselling_portal", icon: FaStar },
-  { name: "Study Portal", path: "/study_portal", icon: FaStar },
-  { name: "GovPrep Portal", path: "/govprep_portal", icon: FaStar },
-  { name: "Job Search Portal", path: "/job_search_portal", icon: FaAward },
-  { name: "Alumni Portal", path: "/wise", icon: FaBrain },
+  { name: "Counselling Portal", path: "/counselling_portal", icon: FaStar, comingSoon: true },
+  { name: "LMS", path: "https://lms-seven-peach.vercel.app/login", icon: FaStar },
+  { name: "Job Search Portal", path: "https://job-search-client-ten.vercel.app/", icon: FaAward },
+  { name: "GovPrep Portal", path: "/govprep_portal", icon: FaStar, comingSoon: true },
+  { name: "Alumni Portal", path: "/wise", icon: FaBrain, comingSoon: true },
 ];
 
 const topRightMenu = [
   { name: "Careers", path: "/careers" },
   { name: "ERP", path: "https://erp-xi-ten.vercel.app/" },
-  { name: "LMS", path: "https://lms-seven-peach.vercel.app/login" },
   { name: "Resources", path: "/resources" },
 ];
 
@@ -185,6 +185,7 @@ const Header: React.FC = React.memo(() => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [comingSoonNotice, setComingSoonNotice] = useState<string | null>(null);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -220,6 +221,7 @@ const Header: React.FC = React.memo(() => {
       if (event.key === "Escape") {
         setOpenDropdown(null);
         setMobileMenuOpen(false);
+        setComingSoonNotice(null);
       }
     };
 
@@ -236,6 +238,13 @@ const Header: React.FC = React.memo(() => {
       document.removeEventListener("pointerdown", handlePointerDown);
     };
   }, []);
+
+  useEffect(() => {
+    if (!comingSoonNotice) return;
+
+    const timeoutId = window.setTimeout(() => setComingSoonNotice(null), 3500);
+    return () => window.clearTimeout(timeoutId);
+  }, [comingSoonNotice]);
 
   /* ================= ACTIVE UNDERLINE ================= */
 
@@ -613,7 +622,28 @@ const Header: React.FC = React.memo(() => {
           <div className="max-w-7xl mx-auto flex justify-end gap-6 px-6 py-2">
             {secondaryLinks.map(link => {
               const Icon = link.icon;
-              return (
+              return link.comingSoon ? (
+                <button
+                  key={link.name}
+                  type="button"
+                  onClick={() => setComingSoonNotice(link.name)}
+                  className="flex items-center gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                  aria-label={`${link.name} — coming soon`}
+                >
+                  <Icon /> {link.name}
+                </button>
+              ) : isExternalPath(link.path) ? (
+                <a
+                  key={link.name}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${link.name} (opens in a new tab)`}
+                  className="flex items-center gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                >
+                  <Icon /> {link.name}
+                </a>
+              ) : (
                 <Link
                   key={link.name}
                   to={link.path}
@@ -624,6 +654,27 @@ const Header: React.FC = React.memo(() => {
               );
             })}
           </div>
+        </div>
+      )}
+
+      {comingSoonNotice && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed right-4 top-4 z-[60] flex max-w-sm items-center gap-3 rounded-xl border border-white/15 bg-gray-950/95 px-4 py-3 text-white shadow-2xl backdrop-blur-xl sm:right-6"
+        >
+          <FaStar className="shrink-0 text-amber-400" aria-hidden="true" />
+          <p className="text-sm">
+            <span className="font-semibold">{comingSoonNotice}</span> is coming soon.
+          </p>
+          <button
+            type="button"
+            onClick={() => setComingSoonNotice(null)}
+            className="ml-1 rounded-md p-1 text-gray-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+            aria-label="Dismiss coming soon notice"
+          >
+            <FaTimes aria-hidden="true" />
+          </button>
         </div>
       )}
 

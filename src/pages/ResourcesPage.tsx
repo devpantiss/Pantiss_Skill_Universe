@@ -1,630 +1,525 @@
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import type { LucideIcon } from "lucide-react";
 import {
+  ArrowLeft,
   ArrowRight,
-  BookOpen,
-  CalendarDays,
-  CheckCircle2,
-  Clock3,
-  Factory,
   FileText,
-  HardHat,
-  Leaf,
-  Search,
-  Ship,
-  Sparkles,
-  UsersRound,
+  Play,
   X,
-  Zap,
 } from "lucide-react";
 
-type ResourceType = "Report" | "Case Study" | "Article" | "Insight";
-
-interface Resource {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  type: ResourceType;
-  image: string;
-  date: string;
-  readTime: string;
-  author: string;
-  featured?: boolean;
-  takeaways: string[];
-}
-
-interface Category {
-  id: string;
+interface ContentCardItem {
   title: string;
   description: string;
   image: string;
-  icon: LucideIcon;
+  meta: string;
+  href?: string;
+  comingSoon?: boolean;
+  dashboard?: boolean;
 }
 
-const CATEGORIES: Category[] = [
+interface ResearchItem {
+  title: string;
+  subtitle: string;
+  image: string;
+}
+
+interface VideoItem {
+  title: string;
+  image: string;
+  source: string;
+}
+
+const dashboardItems: ContentCardItem[] = [
   {
-    id: "Mining",
-    title: "Mining",
-    description: "Safety, automation and sustainable extraction",
-    image: "/Homepage/why/mines.jpg",
-    icon: HardHat,
+    title: "Results Dashboard",
+    description: "Track outcomes across programmes through clear metrics, visualisations and performance indicators.",
+    image: "/Homepage/dash_image_1.png",
+    meta: "Updated: August 1, 2026",
+    href: "/skill-dashboard",
+    dashboard: true,
   },
   {
-    id: "Steel & Aluminium",
-    title: "Steel & Aluminium",
-    description: "Advanced metallurgy and green production",
-    image: "/Homepage/why/steel.jpg",
-    icon: Factory,
+    title: "Placements Dashboard",
+    description: "Explore placement performance, qualification trends and district-level workforce outcomes.",
+    image: "/Homepage/placements/students/student-3.jpg",
+    meta: "Updated: August 15, 2026",
+    href: "/skill-dashboard",
+    dashboard: true,
   },
   {
-    id: "Power & Green Energy",
-    title: "Power & Green Energy",
-    description: "Renewable systems and future-ready operations",
-    image: "/Homepage/why/greenenergy.jpg",
-    icon: Zap,
-  },
-  {
-    id: "Shipping & Logistics",
-    title: "Shipping & Logistics",
-    description: "Global trade, ports and supply-chain skills",
-    image: "/Homepage/why/shippingandlogistics.jpg",
-    icon: Ship,
-  },
-  {
-    id: "Green Jobs",
-    title: "Green Jobs",
-    description: "Climate-positive careers and circular industry",
-    image: "/Homepage/why/greenjobs.jpg",
-    icon: Leaf,
+    title: "Key Result Stories Dashboard",
+    description: "Discover success narratives and data-led stories that show the measurable impact of our work.",
+    image: "/Homepage/dash_image_2.png",
+    meta: "Updated: August 20, 2026",
+    href: "/skill-dashboard",
+    dashboard: true,
   },
 ];
 
-const RESOURCES: Resource[] = [
+const researchItems: ResearchItem[] = [
   {
-    id: "digital-mining",
-    title: "The Connected Mine: Building a Safer, Smarter Workforce",
-    excerpt:
-      "A practical outlook on how remote operations, predictive maintenance and digital safety systems are reshaping frontline roles.",
-    category: "Mining",
-    type: "Report",
+    title: "Future Workforce Needs in Mining",
+    subtitle: "Industry demand and workforce readiness",
     image: "/Homepage/why/mines.jpg",
-    date: "12 Aug 2026",
-    readTime: "8 min read",
-    author: "PSU Research Desk",
-    featured: true,
-    takeaways: [
-      "The technical capabilities emerging across modern mine operations",
-      "How digital tools can strengthen safety without replacing human judgement",
-      "A role-based roadmap for reskilling supervisors and operators",
-    ],
   },
   {
-    id: "green-steel",
-    title: "Green Steel and the New Metallurgy Skill Stack",
-    excerpt:
-      "What hydrogen-based production, electrification and lower-carbon processes mean for technicians and plant operators.",
-    category: "Steel & Aluminium",
-    type: "Insight",
-    image: "/Homepage/why/steel.jpg",
-    date: "05 Aug 2026",
-    readTime: "6 min read",
-    author: "Centre for Metals Excellence",
-    takeaways: [
-      "The operational shift from conventional to lower-carbon production",
-      "High-value skills that will remain critical during plant modernisation",
-      "Training priorities for maintenance and process-control teams",
-    ],
-  },
-  {
-    id: "women-in-mining",
-    title: "Designing Safer Pathways for Women in Mining",
-    excerpt:
-      "A field-led case study on inclusive training, equipment readiness and workplace systems that improve participation.",
-    category: "Mining",
-    type: "Case Study",
+    title: "Women in Industrial Skilling",
+    subtitle: "Participation, access and employment outcomes",
     image: "/Homepage/women-in-mining.png",
-    date: "28 Jul 2026",
-    readTime: "7 min read",
-    author: "Workforce Inclusion Lab",
-    takeaways: [
-      "How inclusive course design improves workplace readiness",
-      "The role of equipment orientation and practical simulations",
-      "Metrics organisations can use to track sustainable participation",
-    ],
   },
   {
-    id: "smart-ports",
-    title: "Smart Ports: Skills for the Next Logistics Era",
-    excerpt:
-      "Automation is changing how cargo moves. Discover the hybrid technical and operational roles emerging across modern ports.",
-    category: "Shipping & Logistics",
-    type: "Article",
-    image: "/Homepage/why/shippingandlogistics.jpg",
-    date: "19 Jul 2026",
-    readTime: "5 min read",
-    author: "Logistics Sector Faculty",
-    takeaways: [
-      "Where automation is creating new responsibilities across port operations",
-      "Why safety, data literacy and equipment knowledge must be taught together",
-      "A progression model for entry-level logistics talent",
-    ],
-  },
-  {
-    id: "renewable-maintenance",
-    title: "The Renewable Maintenance Workforce Opportunity",
-    excerpt:
-      "A concise guide to the installation, inspection and maintenance skills powering India's energy transition.",
-    category: "Power & Green Energy",
-    type: "Report",
+    title: "Green Energy Skills Outlook",
+    subtitle: "Preparing technicians for the energy transition",
     image: "/Homepage/why/greenenergy.jpg",
-    date: "11 Jul 2026",
-    readTime: "9 min read",
-    author: "Energy Skills Council",
-    takeaways: [
-      "Core maintenance roles across solar and industrial energy systems",
-      "The safety and diagnostic capabilities employers are prioritising",
-      "How modular training can accelerate technician readiness",
-    ],
   },
   {
-    id: "circular-careers",
-    title: "From Waste Streams to Green Careers",
-    excerpt:
-      "How circular-economy models are creating practical, local career pathways in sorting, recovery and resource management.",
-    category: "Green Jobs",
-    type: "Insight",
-    image: "/Homepage/why/greenjobs.jpg",
-    date: "02 Jul 2026",
-    readTime: "6 min read",
-    author: "Green Jobs Initiative",
-    takeaways: [
-      "New occupational pathways created by the circular economy",
-      "The blend of technical knowledge and community skills these roles require",
-      "Ways employers and training partners can build credible career ladders",
-    ],
+    title: "Smart Logistics Workforce",
+    subtitle: "Emerging roles across ports and supply chains",
+    image: "/Homepage/why/shippingandlogistics.jpg",
   },
 ];
 
-const TYPE_OPTIONS: Array<"All" | ResourceType> = [
-  "All",
-  "Report",
-  "Case Study",
-  "Article",
-  "Insight",
+const toolkitItems: ContentCardItem[] = [
+  {
+    title: "Webinar Series",
+    description: "Expert-led sessions on workforce strategy, inclusive skilling and sustainable industrial transformation.",
+    image: "/careers/life/team.jpeg",
+    meta: "Last updated: August 12, 2026",
+  },
+  {
+    title: "Resource Collections",
+    description: "Curated templates, case studies and practical tools for designing high-impact skill programmes.",
+    image: "/careers/curriculum.jpeg",
+    meta: "Last updated: August 18, 2026",
+  },
+  {
+    title: "Training Manuals",
+    description: "Step-by-step guides, implementation methods and field-ready training practices for delivery teams.",
+    image: "/careers/tvet.jpg",
+    meta: "Last updated: August 22, 2026",
+  },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
+const videoItems: VideoItem[] = [
+  {
+    title: "Building the Future of Skills",
+    image: "/Homepage/accredition.jpg",
+    source: "/book.mp4",
+  },
+  {
+    title: "Women Leading Industrial Change",
+    image: "/Homepage/women-in-mining.png",
+    source: "/Homepage/12791129_1920_1080_30fps.mp4",
+  },
+  {
+    title: "Skills for Sustainable Livelihoods",
+    image: "/Homepage/why/greenjobs.jpg",
+    source: "/vid.mp4",
+  },
+];
 
-function ResourceCard({ resource, onOpen }: { resource: Resource; onOpen: () => void }) {
+const factSheetItems: ContentCardItem[] = [
+  {
+    title: "Mining Workforce Readiness — Odisha",
+    description: "A data-led snapshot of workforce demand, occupational shifts and training priorities in mining regions.",
+    image: "/Homepage/why/mines.jpg",
+    meta: "Releasing soon",
+    comingSoon: true,
+  },
+  {
+    title: "Skill Development & Employability Snapshot",
+    description: "Key statistics on training outcomes, employer requirements and placement trends across core sectors.",
+    image: "/careers/Assessment.jpeg",
+    meta: "Releasing soon",
+    comingSoon: true,
+  },
+  {
+    title: "Just Transition Indicators Framework",
+    description: "Core indicators for monitoring livelihoods, inclusion, resilience and green economic opportunity.",
+    image: "/careers/research&advocacy.jpg",
+    meta: "Releasing soon",
+    comingSoon: true,
+  },
+];
+
+const focusRing = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-4";
+
+function SectionHeading({ children }: { children: string }) {
   return (
-    <motion.article
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.45 }}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-zinc-950 transition duration-300 hover:-translate-y-1 hover:border-red-500/40 hover:shadow-2xl hover:shadow-red-950/20"
-    >
-      <button
-        type="button"
-        onClick={onOpen}
-        className="relative block h-56 overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500"
-        aria-label={`Preview ${resource.title}`}
-      >
-        <img
-          src={resource.image}
-          alt=""
-          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-        <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/55 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-md">
-          {resource.type}
-        </span>
-      </button>
-
-      <div className="flex flex-1 flex-col p-6">
-        <div className="mb-4 flex items-center gap-3 text-xs text-zinc-400">
-          <span className="font-semibold text-red-400">{resource.category}</span>
-          <span aria-hidden="true" className="h-1 w-1 rounded-full bg-zinc-600" />
-          <span>{resource.readTime}</span>
-        </div>
-        <h3 className="text-xl font-bold leading-snug text-white transition group-hover:text-red-300">
-          {resource.title}
-        </h3>
-        <p className="mt-3 flex-1 text-sm leading-6 text-zinc-400">{resource.excerpt}</p>
-        <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
-          <span className="text-xs text-zinc-500">{resource.date}</span>
-          <button
-            type="button"
-            onClick={onOpen}
-            className="inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-white transition hover:text-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-4 focus-visible:ring-offset-black"
-          >
-            View brief <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </button>
-        </div>
-      </div>
-    </motion.article>
+    <div className="mb-10 flex items-center gap-4 sm:mb-12">
+      <span className="h-8 w-1 rounded-full bg-red-500" aria-hidden="true" />
+      <h2 className="text-2xl font-black tracking-tight text-white sm:text-3xl">
+        {children}
+      </h2>
+    </div>
   );
 }
 
-function ResourcePreview({ resource, onClose }: { resource: Resource; onClose: () => void }) {
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
+function CardGrid({
+  items,
+  onComingSoon,
+}: {
+  items: ContentCardItem[];
+  onComingSoon: (title: string) => void;
+}) {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+      {items.map((item, index) => (
+        <motion.article
+          key={item.title}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.45, delay: index * 0.06 }}
+          className="group flex min-h-[540px] flex-col overflow-hidden rounded-2xl border-2 border-red-600 bg-zinc-950 shadow-xl shadow-black/30 transition duration-300 hover:-translate-y-1 hover:border-red-500 hover:shadow-2xl hover:shadow-red-950/20"
+        >
+          <div className="relative h-56 overflow-hidden bg-zinc-900">
+            {item.dashboard ? (
+              <div className="absolute inset-0 bg-zinc-950 p-4 text-white" aria-hidden="true">
+                <div className="flex gap-1.5">
+                  <span className="h-2.5 w-12 rounded-sm bg-red-500" />
+                  <span className="h-2.5 w-16 rounded-sm bg-zinc-700" />
+                  <span className="h-2.5 w-14 rounded-sm bg-zinc-700" />
+                </div>
+                <div className="mt-4 grid grid-cols-4 gap-2 border-y border-red-500/70 py-3">
+                  {[68, 42, 82, 55].map((width, metricIndex) => (
+                    <div key={metricIndex}>
+                      <span className="block h-1.5 rounded-full bg-zinc-700" />
+                      <span className="mt-2 block h-2 rounded-sm bg-zinc-200" style={{ width: `${width}%` }} />
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 grid grid-cols-[1fr_1.35fr] gap-3">
+                  <div className="rounded border border-red-500/50 p-3">
+                    <span className="block h-2 w-16 rounded bg-zinc-600" />
+                    <div className="mt-4 flex h-16 items-end gap-2">
+                      {[45, 78, 60, 92, 68].map((height, barIndex) => (
+                        <span key={barIndex} className="flex-1 rounded-t bg-red-500" style={{ height: `${height}%` }} />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="rounded border border-red-500/50 p-3">
+                    <span className="block h-2 w-20 rounded bg-zinc-600" />
+                    <div className="mt-4 space-y-2.5">
+                      {[85, 64, 76, 48].map((width, rowIndex) => (
+                        <div key={rowIndex} className="flex items-center gap-2">
+                          <span className="h-1.5 w-8 rounded bg-zinc-700" />
+                          <span className="h-2 rounded-full bg-amber-400" style={{ width: `${width}%` }} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <img src={item.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+            )}
+            {item.comingSoon && (
+              <span className="absolute right-4 top-4 rounded-full bg-red-600 px-3 py-1.5 text-[11px] font-black uppercase tracking-wide text-white">
+                Coming soon
+              </span>
+            )}
+          </div>
+          <div className="flex flex-1 flex-col p-6 sm:p-7">
+            <h3 className="text-xl font-black leading-tight text-white sm:text-2xl">{item.title}</h3>
+            <p className="mt-4 text-sm leading-7 text-zinc-400">{item.description}</p>
+            <div className="mt-auto flex flex-col gap-4 pt-8 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-xs font-semibold capitalize text-zinc-500">{item.meta}</span>
+              {item.href ? (
+                <Link
+                  to={item.href}
+                  className={`inline-flex items-center justify-center gap-2 rounded-full bg-red-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-red-700 ${focusRing}`}
+                >
+                  Explore <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => onComingSoon(item.title)}
+                  className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition ${item.comingSoon ? "bg-zinc-800 text-zinc-300 hover:bg-zinc-700" : "bg-red-600 text-white hover:bg-red-700"
+                    } ${focusRing}`}
+                >
+                  {item.comingSoon ? "Launching soon" : "Explore"}
+                  {!item.comingSoon && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
+                </button>
+              )}
+            </div>
+          </div>
+        </motion.article>
+      ))}
+    </div>
+  );
+}
 
+function FeatureBanner({
+  title,
+  description,
+  image,
+  action,
+  onAction,
+}: {
+  title: string;
+  description: string;
+  image: string;
+  action?: string;
+  onAction?: () => void;
+}) {
+  return (
+    <section
+      className="relative isolate overflow-hidden border-t-2 border-red-600 bg-cover bg-center bg-no-repeat bg-fixed px-5 py-20 text-white sm:px-10 sm:py-24 lg:px-16"
+      style={{ backgroundImage: `url(${image})` }}
+    >
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/90 via-black/70 to-black/35" />
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="max-w-4xl">
+          <h2 className="max-w-3xl text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">{title}</h2>
+          <p className="mt-5 max-w-3xl text-base leading-7 text-zinc-200 sm:text-lg">{description}</p>
+        </div>
+        {action && onAction && (
+          <button type="button" onClick={onAction} className={`shrink-0 rounded-lg bg-red-600 px-7 py-4 text-sm font-bold text-white transition hover:bg-red-700 ${focusRing} focus-visible:ring-offset-black`}>
+            {action}
+          </button>
+        )}
+      </div>
+    </section>
+  );
+}
+
+export default function ResourcesPage() {
+  const [researchIndex, setResearchIndex] = useState(1);
+  const [notice, setNotice] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
+
+  useEffect(() => {
+    if (!notice) return;
+    const timeoutId = window.setTimeout(() => setNotice(null), 3500);
+    return () => window.clearTimeout(timeoutId);
+  }, [notice]);
+
+  useEffect(() => {
+    if (!activeVideo) return;
+    const handleKeyDown = (event: KeyboardEvent) => event.key === "Escape" && setActiveVideo(null);
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, [activeVideo]);
+
+  const showComingSoon = (title: string) => setNotice(`${title} is coming soon.`);
+  const moveResearch = (direction: number) => {
+    setResearchIndex((current) => (current + direction + researchItems.length) % researchItems.length);
+  };
 
   return (
-    <motion.div
-      className="fixed inset-0 z-[80] flex items-end justify-center bg-black/80 p-0 backdrop-blur-sm sm:items-center sm:p-6"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
-    >
-      <motion.div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="resource-preview-title"
-        initial={{ opacity: 0, y: 32, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 24, scale: 0.98 }}
-        transition={{ duration: 0.25 }}
-        className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-t-3xl border border-white/10 bg-zinc-950 shadow-2xl sm:rounded-3xl"
-      >
-        <div className="relative h-52 overflow-hidden sm:h-64">
-          <img src={resource.image} alt="" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-black/30 to-black/10" />
-          <button
-            type="button"
-            onClick={onClose}
-            autoFocus
-            className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white backdrop-blur-md transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
-            aria-label="Close resource preview"
-          >
-            <X className="h-5 w-5" aria-hidden="true" />
-          </button>
-        </div>
-
-        <div className="p-6 sm:p-10">
-          <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-zinc-400">
-            <span className="rounded-full bg-red-500/15 px-3 py-1.5 text-red-300">{resource.type}</span>
-            <span>{resource.category}</span>
-            <span aria-hidden="true">•</span>
-            <span>{resource.readTime}</span>
-          </div>
-          <h2 id="resource-preview-title" className="mt-5 text-3xl font-black leading-tight text-white sm:text-4xl">
-            {resource.title}
-          </h2>
-          <p className="mt-5 text-base leading-7 text-zinc-300">{resource.excerpt}</p>
-
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-red-400">Inside this brief</p>
-            <ul className="mt-5 space-y-4">
-              {resource.takeaways.map((takeaway) => (
-                <li key={takeaway} className="flex gap-3 text-sm leading-6 text-zinc-300">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-red-400" aria-hidden="true" />
-                  {takeaway}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold text-white">{resource.author}</p>
-              <p className="mt-1 flex items-center gap-2 text-xs text-zinc-500">
-                <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" /> {resource.date}
-              </p>
+    <main className="min-h-screen bg-black text-white">
+      <section className="relative flex min-h-screen items-center overflow-hidden bg-black px-6 pb-16 pt-[210px] sm:px-10 sm:pb-20 sm:pt-[225px] lg:px-16 lg:pb-16 lg:pt-[250px]">
+        <img
+          src="/resources-hero-analytics.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center"
+        />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-black/25" />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-black/85 via-black/40 to-black/10" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-black to-transparent" />
+        <div className="relative z-20 mx-auto w-full max-w-[1440px]">
+          <div className="max-w-[760px] lg:pl-4">
+            <span className="inline-flex items-center rounded-full border border-white/25 bg-zinc-900/80 px-5 py-2 text-sm font-semibold text-white backdrop-blur-md">
+              Publications &amp; Research
+            </span>
+            <h1 className="mt-7 text-5xl font-black leading-[0.98] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl">
+              Insights for a
+              <span className="block text-red-500">Changing World</span>
+            </h1>
+            <p className="mt-7 max-w-[700px] text-base leading-7 text-zinc-200 sm:text-lg sm:leading-8">
+              Discover Pantiss publications exploring workforce transformation, sustainability, and community development. Our research delivers practical insights for policymakers, industry leaders, and innovators.
+            </p>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => document.getElementById("research")?.scrollIntoView({ behavior: "smooth" })}
+                className={`inline-flex items-center justify-center rounded-lg bg-red-600 px-8 py-4 text-sm font-bold text-white transition hover:bg-red-700 ${focusRing} focus-visible:ring-offset-black`}
+              >
+                Browse Publications
+              </button>
+              <button type="button" onClick={() => showComingSoon("Latest report")} className={`inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-black/60 px-8 py-4 text-sm font-bold text-white backdrop-blur-md transition hover:border-red-500 hover:bg-red-600 ${focusRing} focus-visible:ring-offset-black`}>
+                Latest Report <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </button>
             </div>
-            <Link
-              to="/contact-us"
-              onClick={onClose}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-4 focus-visible:ring-offset-zinc-950"
-            >
-              Request full publication <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboards" className="scroll-mt-36 border-t border-red-600/30 bg-black px-5 py-20 sm:px-10 sm:py-28 lg:px-16">
+        <div className="mx-auto max-w-[1440px]">
+          <SectionHeading>Dashboards & Data Analytics</SectionHeading>
+          <CardGrid items={dashboardItems} onComingSoon={showComingSoon} />
+          <div className="mt-10 flex justify-center">
+            <Link to="/skill-dashboard" className={`rounded-lg bg-red-600 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-red-700 ${focusRing}`}>
+              View all dashboards
             </Link>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
-  );
-}
+      </section>
 
-export default function ResourcesPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [activeType, setActiveType] = useState<(typeof TYPE_OPTIONS)[number]>("All");
-  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
-  const resourcesRef = useRef<HTMLElement>(null);
+      <FeatureBanner
+        title="Our Programs Impact Assessment Report"
+        description="Evaluating our initiatives' transformative effects on communities, industries and workforce outcomes."
+        image="/About/cert_bg.jpg"
+        action="View report"
+        onAction={() => showComingSoon("Impact Assessment Report")}
+      />
 
-  const filteredResources = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-
-    return RESOURCES.filter((resource) => {
-      const matchesCategory = activeCategory === "All" || resource.category === activeCategory;
-      const matchesType = activeType === "All" || resource.type === activeType;
-      const searchableText = [
-        resource.title,
-        resource.excerpt,
-        resource.category,
-        resource.type,
-        resource.author,
-      ]
-        .join(" ")
-        .toLowerCase();
-
-      return matchesCategory && matchesType && (!query || searchableText.includes(query));
-    });
-  }, [activeCategory, activeType, searchQuery]);
-
-  const scrollToResources = () => {
-    window.setTimeout(() => resourcesRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
-  };
-
-  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    scrollToResources();
-  };
-
-  const clearFilters = () => {
-    setSearchQuery("");
-    setActiveCategory("All");
-    setActiveType("All");
-  };
-
-  return (
-    <main className="min-h-screen overflow-x-hidden bg-black text-white">
-      <section className="relative isolate flex min-h-[760px] items-center overflow-hidden px-6 pb-20 pt-52 sm:pt-56 lg:min-h-[860px] lg:pb-28 lg:pt-60">
-        <div className="absolute inset-0 -z-20">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/Homepage/accredition.jpg"
-            className="h-full w-full object-cover opacity-45"
-            aria-hidden="true"
-          >
-            <source src="/book.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_72%_30%,rgba(220,38,38,0.20),transparent_34%),linear-gradient(to_bottom,rgba(0,0,0,0.34),#000_92%)]" />
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-black to-transparent" />
-
-        <div className="mx-auto grid w-full max-w-7xl items-end gap-12 lg:grid-cols-[1fr_340px]">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.65 }}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-400/25 bg-red-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-red-300 backdrop-blur-md">
-              <Sparkles className="h-4 w-4" aria-hidden="true" /> PSU Knowledge Centre
-            </div>
-            <h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.95] tracking-[-0.05em] text-white sm:text-6xl lg:text-8xl">
-              Ideas that move
-              <span className="block bg-gradient-to-r from-red-400 via-orange-200 to-white bg-clip-text text-transparent">
-                industry forward.
-              </span>
-            </h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-zinc-300 sm:text-xl sm:leading-8">
-              Practical research, sector intelligence and workforce insights for the people building India's industrial future.
+      <section id="research" className="scroll-mt-36 overflow-hidden bg-red-600 px-5 py-20 text-white sm:px-10 sm:py-24 lg:px-16">
+        <div className="mx-auto grid max-w-[1440px] items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <SectionHeading>Research & Reports</SectionHeading>
+            <p className="max-w-xl text-base leading-8 text-red-50 sm:text-lg">
+              Explore PSU research publications covering workforce development, industrial transformation, climate resilience and community impact.
             </p>
+            <button type="button" onClick={() => showComingSoon("Research library")} className={`mt-8 inline-flex items-center gap-2 rounded-lg bg-white px-7 py-4 text-sm font-bold text-red-700 transition hover:bg-zinc-950 hover:text-white ${focusRing} focus-visible:ring-white focus-visible:ring-offset-red-600`}>
+              View all reports <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
 
-            <form onSubmit={handleSearch} role="search" className="mt-10 max-w-2xl">
-              <label htmlFor="resource-search" className="sr-only">Search the resource library</label>
-              <div className="flex items-center rounded-2xl border border-white/15 bg-black/55 p-2 shadow-2xl backdrop-blur-xl focus-within:border-red-400/70 focus-within:ring-4 focus-within:ring-red-500/10">
-                <Search className="ml-3 h-5 w-5 shrink-0 text-zinc-400" aria-hidden="true" />
-                <input
-                  id="resource-search"
-                  type="search"
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                  placeholder="Search mining, green skills, reports..."
-                  className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 sm:text-base"
-                />
-                <button
-                  type="submit"
-                  className="rounded-xl bg-red-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:px-7"
-                >
-                  Search
-                </button>
-              </div>
-            </form>
-          </motion.div>
-
-          <motion.aside
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="hidden rounded-3xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-xl lg:block"
-            aria-label="Resource library summary"
-          >
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Explore the library</p>
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <div className="rounded-2xl bg-black/35 p-4">
-                <FileText className="h-5 w-5 text-red-400" aria-hidden="true" />
-                <p className="mt-5 text-3xl font-black">{RESOURCES.length}</p>
-                <p className="mt-1 text-xs text-zinc-400">Curated briefs</p>
-              </div>
-              <div className="rounded-2xl bg-black/35 p-4">
-                <Factory className="h-5 w-5 text-orange-300" aria-hidden="true" />
-                <p className="mt-5 text-3xl font-black">{CATEGORIES.length}</p>
-                <p className="mt-1 text-xs text-zinc-400">Core sectors</p>
-              </div>
+          <div>
+            <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-3">
+              {[-1, 0, 1].map((offset) => {
+                const itemIndex = (researchIndex + offset + researchItems.length) % researchItems.length;
+                const item = researchItems[itemIndex];
+                const active = offset === 0;
+                return (
+                  <button
+                    key={`${item.title}-${offset}`}
+                    type="button"
+                    onClick={() => active ? showComingSoon(item.title) : setResearchIndex(itemIndex)}
+                    className={`group relative overflow-hidden rounded-2xl border-2 border-red-600 bg-zinc-950 text-left shadow-2xl transition duration-500 ${active ? "h-[430px] sm:scale-105" : "hidden h-[350px] opacity-75 sm:block"} ${focusRing} focus-visible:ring-white focus-visible:ring-offset-red-600`}
+                    aria-label={`${active ? "Open" : "Show"} ${item.title}`}
+                  >
+                    <img src={item.image} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-6">
+                      <p className="text-xl font-black leading-tight text-white">{item.title}</p>
+                      <p className="mt-2 text-xs leading-5 text-zinc-300">{item.subtitle}</p>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
-            <p className="mt-5 flex items-center gap-2 text-xs text-zinc-400">
-              <Clock3 className="h-4 w-4 text-red-400" aria-hidden="true" /> Updated monthly by PSU faculty
-            </p>
-          </motion.aside>
+            <div className="mt-8 flex items-center justify-center gap-4">
+              <button type="button" onClick={() => moveResearch(-1)} className={`rounded-full border-2 border-white p-3 transition hover:bg-white hover:text-red-600 ${focusRing} focus-visible:ring-white focus-visible:ring-offset-red-600`} aria-label="Previous report">
+                <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+              </button>
+              <div className="flex gap-2" aria-hidden="true">
+                {researchItems.map((item, index) => <span key={item.title} className={`h-2 rounded-full transition-all ${index === researchIndex ? "w-8 bg-white" : "w-2 bg-white/30"}`} />)}
+              </div>
+              <button type="button" onClick={() => moveResearch(1)} className={`rounded-full border-2 border-white p-3 transition hover:bg-white hover:text-red-600 ${focusRing} focus-visible:ring-white focus-visible:ring-offset-red-600`} aria-label="Next report">
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-zinc-950/70 px-6 py-8" aria-label="Knowledge centre highlights">
-        <div className="mx-auto grid max-w-7xl gap-6 sm:grid-cols-3">
-          {[
-            [BookOpen, "Field-led research", "Built around real operating environments"],
-            [UsersRound, "Expert perspective", "Created with faculty and industry practitioners"],
-            [Leaf, "Future-focused", "Tracking the skills shaping sustainable growth"],
-          ].map(([Icon, title, description]) => {
-            const HighlightIcon = Icon as LucideIcon;
-            return (
-              <div key={title as string} className="flex items-start gap-4 sm:border-r sm:border-white/10 sm:pr-6 sm:last:border-0">
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-500/10 text-red-400">
-                  <HighlightIcon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <h2 className="text-sm font-bold text-white">{title as string}</h2>
-                  <p className="mt-1 text-xs leading-5 text-zinc-500">{description as string}</p>
+      <FeatureBanner
+        title="2026 Model Mining Villages Report"
+        description="Discover our latest findings on resilient livelihoods, local infrastructure and community-led development in mining regions."
+        image="/Homepage/why/mines.jpg"
+        action="Coming soon"
+        onAction={() => showComingSoon("Model Mining Villages Report")}
+      />
+
+      <section className="border-t border-red-600/30 bg-black px-5 py-20 sm:px-10 sm:py-28 lg:px-16">
+        <div className="mx-auto max-w-[1440px]">
+          <SectionHeading>Toolkit</SectionHeading>
+          <CardGrid items={toolkitItems} onComingSoon={showComingSoon} />
+          <div className="mt-10 flex justify-center">
+            <button type="button" onClick={() => showComingSoon("Complete toolkit")} className={`rounded-lg bg-red-600 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-red-700 ${focusRing}`}>
+              View more
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <FeatureBanner
+        title="Voices of Impact — The Podcasts"
+        description="Conversations with industry leaders, educators and change-makers shaping the future of skills, sustainability and livelihoods."
+        image="/careers/research&advocacy.jpg"
+      />
+
+      <section className="bg-red-600 px-5 py-20 text-white sm:px-10 sm:py-24 lg:px-16">
+        <div className="mx-auto max-w-[1440px]">
+          <SectionHeading>Videos</SectionHeading>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            {videoItems.map((video, index) => (
+              <motion.button
+                key={video.title}
+                type="button"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.07 }}
+                onClick={() => setActiveVideo(video)}
+                className={`group overflow-hidden rounded-2xl border-2 border-red-600 bg-zinc-950 text-left shadow-xl ${focusRing} focus-visible:ring-white focus-visible:ring-offset-red-600`}
+              >
+                <div className="relative h-52 overflow-hidden">
+                  <img src={video.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-black/20 transition group-hover:bg-black/35" />
+                  <span className="absolute left-1/2 top-1/2 inline-flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/65 text-white backdrop-blur-md transition group-hover:scale-110 group-hover:bg-red-600">
+                    <Play className="ml-1 h-6 w-6 fill-current" aria-hidden="true" />
+                  </span>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="px-6 py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-red-400">Browse by sector</p>
-            <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-5xl">Start with your industry.</h2>
-            <p className="mt-5 text-base leading-7 text-zinc-400">
-              Move directly into the trends, technologies and workforce priorities most relevant to your work.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {CATEGORIES.map((category) => {
-              const Icon = category.icon;
-              const isActive = activeCategory === category.id;
-              return (
-                <button
-                  key={category.id}
-                  type="button"
-                  onClick={() => {
-                    setActiveCategory(isActive ? "All" : category.id);
-                    scrollToResources();
-                  }}
-                  aria-pressed={isActive}
-                  className={`group relative min-h-72 overflow-hidden rounded-3xl border text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-4 focus-visible:ring-offset-black ${
-                    isActive ? "border-red-400 ring-2 ring-red-500/25" : "border-white/10 hover:-translate-y-1 hover:border-white/30"
-                  }`}
-                >
-                  <img src={category.image} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10" />
-                  <div className="absolute inset-x-0 bottom-0 p-5">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-black/50 text-red-300 backdrop-blur-md">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <h3 className="mt-5 text-lg font-bold text-white">{category.title}</h3>
-                    <p className="mt-2 text-xs leading-5 text-zinc-300">{category.description}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-red-300">
-                      {isActive ? "Selected" : "Explore sector"} <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" aria-hidden="true" />
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
+                <div className="min-h-28 p-6">
+                  <h3 className="text-lg font-black leading-snug text-red-600">{video.title}</h3>
+                </div>
+              </motion.button>
+            ))}
           </div>
         </div>
       </section>
 
-      <section ref={resourcesRef} className="scroll-mt-40 border-t border-white/10 bg-zinc-950/50 px-6 py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-red-400">Resource library</p>
-              <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-5xl">Latest thinking, made practical.</h2>
-            </div>
-            <div className="flex flex-wrap gap-2" aria-label="Filter resources by type">
-              {TYPE_OPTIONS.map((type) => (
-                <button
-                  key={type}
-                  type="button"
-                  onClick={() => setActiveType(type)}
-                  aria-pressed={activeType === type}
-                  className={`rounded-full border px-4 py-2 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 ${
-                    activeType === type
-                      ? "border-red-500 bg-red-600 text-white"
-                      : "border-white/10 bg-white/[0.03] text-zinc-400 hover:border-white/30 hover:text-white"
-                  }`}
-                >
-                  {type}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-white/10 py-4 text-sm text-zinc-400" aria-live="polite">
-            <p>
-              Showing <span className="font-bold text-white">{filteredResources.length}</span> {filteredResources.length === 1 ? "resource" : "resources"}
-              {activeCategory !== "All" && <> in <span className="font-bold text-white">{activeCategory}</span></>}
-            </p>
-            {(searchQuery || activeCategory !== "All" || activeType !== "All") && (
-              <button type="button" onClick={clearFilters} className="inline-flex items-center gap-2 font-semibold text-red-400 transition hover:text-red-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500">
-                <X className="h-4 w-4" aria-hidden="true" /> Clear filters
-              </button>
-            )}
-          </div>
-
-          {filteredResources.length > 0 ? (
-            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredResources.map((resource) => (
-                <ResourceCard key={resource.id} resource={resource} onOpen={() => setSelectedResource(resource)} />
-              ))}
-            </div>
-          ) : (
-            <div className="mt-10 rounded-3xl border border-dashed border-white/15 bg-white/[0.025] px-6 py-20 text-center">
-              <Search className="mx-auto h-10 w-10 text-zinc-600" aria-hidden="true" />
-              <h3 className="mt-5 text-xl font-bold text-white">No matching resources yet</h3>
-              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-zinc-500">Try a broader search or clear your filters to explore the full knowledge library.</p>
-              <button type="button" onClick={clearFilters} className="mt-6 rounded-xl bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500">
-                View all resources
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className="px-6 py-20 sm:py-28">
-        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-red-400/20 bg-gradient-to-br from-red-700 via-red-800 to-zinc-950 p-8 sm:p-12 lg:p-16">
-          <div className="absolute -right-28 -top-28 h-96 w-96 rounded-full border-[70px] border-white/[0.04]" aria-hidden="true" />
-          <div className="relative grid items-end gap-10 lg:grid-cols-[1fr_auto]">
-            <div className="max-w-3xl">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-red-100">Turn insight into capability</p>
-              <h2 className="mt-5 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl">
-                Build the workforce your next chapter needs.
-              </h2>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-red-100/80">
-                Explore industry-aligned programs designed around real roles, modern equipment and measurable workplace outcomes.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Link to="/our-programmes" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-7 py-4 text-sm font-bold text-red-700 transition hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-red-800">
-                Explore programs <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link to="/contact-us" className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-7 py-4 text-sm font-bold text-white backdrop-blur-md transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-                Speak with our team
-              </Link>
-            </div>
+      <section className="border-t border-red-600/30 bg-black px-5 py-20 sm:px-10 sm:py-28 lg:px-16">
+        <div className="mx-auto max-w-[1440px]">
+          <SectionHeading>Fact Sheets</SectionHeading>
+          <CardGrid items={factSheetItems} onComingSoon={showComingSoon} />
+          <div className="mt-10 flex justify-center">
+            <button type="button" onClick={() => showComingSoon("Fact sheet library")} className={`rounded-lg bg-red-600 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-red-700 ${focusRing}`}>
+              View all fact sheets
+            </button>
           </div>
         </div>
       </section>
 
       <AnimatePresence>
-        {selectedResource && <ResourcePreview resource={selectedResource} onClose={() => setSelectedResource(null)} />}
+        {notice && (
+          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} role="status" aria-live="polite" className="fixed right-4 top-4 z-[90] flex max-w-sm items-center gap-3 rounded-xl border border-white/15 bg-zinc-950 px-4 py-3 text-sm text-white shadow-2xl sm:right-6">
+            <FileText className="h-5 w-5 shrink-0 text-red-400" aria-hidden="true" />
+            <span className="font-semibold">{notice}</span>
+            <button type="button" onClick={() => setNotice(null)} className="ml-1 rounded-md p-1 text-zinc-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500" aria-label="Dismiss notification">
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(event) => event.target === event.currentTarget && setActiveVideo(null)} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md">
+            <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} role="dialog" aria-modal="true" aria-labelledby="video-title" className="w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-white">
+                <h2 id="video-title" className="font-bold">{activeVideo.title}</h2>
+                <button type="button" autoFocus onClick={() => setActiveVideo(null)} className="rounded-lg p-2 text-zinc-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500" aria-label="Close video">
+                  <X className="h-5 w-5" aria-hidden="true" />
+                </button>
+              </div>
+              <video src={activeVideo.source} controls autoPlay playsInline className="aspect-video w-full bg-black" />
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </main>
   );
