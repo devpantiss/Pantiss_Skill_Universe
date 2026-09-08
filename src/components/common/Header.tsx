@@ -119,7 +119,7 @@ const navLinks: NavLink[] = [
 /* ================= SECONDARY ================= */
 
 const secondaryLinks = [
-  { name: "Counselling Portal", path: "/counselling_portal", icon: FaStar, comingSoon: true },
+  { name: "Counselling Portal", path: "https://pantiss-counselling.vercel.app/", icon: FaStar },
   { name: "LMS", path: "https://lms-seven-peach.vercel.app/login", icon: FaStar },
   { name: "Job Search Portal", path: "https://job-search-client-ten.vercel.app/", icon: FaAward },
   { name: "GovPrep Portal", path: "/govprep_portal", icon: FaStar, comingSoon: true },
