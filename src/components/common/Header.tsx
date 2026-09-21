@@ -123,7 +123,7 @@ const secondaryLinks = [
   { name: "LMS", path: "https://lms-seven-peach.vercel.app/login", icon: FaStar },
   { name: "Job Search Portal", path: "https://job-search-client-ten.vercel.app/", icon: FaAward },
   { name: "GovPrep Portal", path: "/govprep_portal", icon: FaStar, comingSoon: true },
-  { name: "Alumni Portal", path: "/wise", icon: FaBrain, comingSoon: true },
+  { name: "Alumni Portal", path: "https://alumni-portal-rust.vercel.app/", icon: FaBrain },
 ];
 
 const topRightMenu = [
