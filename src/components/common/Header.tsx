@@ -128,7 +128,7 @@ const secondaryLinks = [
 
 const topRightMenu = [
   { name: "Careers", path: "/careers" },
-  { name: "ERP", path: "https://erp-xi-ten.vercel.app/" },
+  { name: "ERP", path: "https://pantiss.cloud" },
   { name: "Resources", path: "/resources" },
 ];
 
