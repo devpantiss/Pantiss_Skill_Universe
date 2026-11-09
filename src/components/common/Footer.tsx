@@ -1,127 +1,14 @@
-import React from "react";
-import {
-  FaLinkedin,
-  FaFacebook,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
+import BrandLogo from "./BrandLogo";
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 
-const Footer: React.FC = () => {
-  const quickLinks = [
-    "Admissions",
-    "Skill Training Programs",
-    "Alumni Network",
-    "Certificate Courses",
-    "Academics",
-    "Campus Events",
-  ];
-
-  const socialIcons = [
-    { icon: <FaLinkedin className="text-2xl" />, label: "LinkedIn", href: "#" },
-    { icon: <FaFacebook className="text-2xl" />, label: "Facebook", href: "#" },
-    { icon: <FaTwitter className="text-2xl" />, label: "Twitter", href: "#" },
-    { icon: <FaYoutube className="text-2xl" />, label: "YouTube", href: "#" },
-  ];
-
-  return (
-    <footer className="bg-black text-gray-200 pt-12 pb-6">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {/* Company Details */}
-        <div>
-          <img
-            src="/PANTISS_SKILL_UNIVERSE-removebg-preview.png"
-            alt="Pantiss Skill University Logo"
-            className="h-20 mb-4"
-          />
-          <p className="text-sm text-gray-300 leading-relaxed">
-            <strong>Pantiss Skill University</strong> is a leading institution
-            dedicated to fostering skill development and innovation. Our mission
-            is to empower students with industry-relevant skills and knowledge
-            through cutting-edge education and hands-on training.
-          </p>
-        </div>
-
-        {/* Quick Links */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-4 border-b border-orange-500 pb-2">
-            Quick Links
-          </h4>
-          <ul className="space-y-2 text-sm">
-            {quickLinks.map((link, idx) => (
-              <li key={idx}>
-                <a
-                  href="#"
-                  className="hover:text-orange-500 transition-colors duration-200"
-                >
-                  {link}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact Info & Social Media */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-4 border-b border-orange-500 pb-2">
-            Contact Info
-          </h4>
-          <address className="not-italic text-sm leading-relaxed text-gray-300 mb-4">
-            <strong>Pantiss Skill University</strong><br />
-            1215/1500, Skill Education Hub,<br />
-            Khandagiri Bari,<br />
-            Bhubaneswar – 751030, Khordha, Odisha
-          </address>
-          <p className="text-sm mb-1">
-            <strong>Phone:</strong>{" "}
-            <a
-              href="tel:+912298765432"
-              className="hover:text-orange-500 transition-colors"
-            >
-              +91-22-9876-5432
-            </a>
-          </p>
-          <p className="text-sm mb-4">
-            <strong>Email:</strong>{" "}
-            <a
-              href="mailto:contact@pantiss-skill-univ.org"
-              className="hover:text-orange-500 transition-colors"
-            >
-              contact@pantiss-skill-univ.org
-            </a>
-          </p>
-
-          <div>
-            <h5 className="text-sm font-semibold text-white mb-2">
-              Connect With Us
-            </h5>
-            <div className="flex space-x-4 mb-4">
-              {socialIcons.map(({ icon, label, href }, idx) => (
-                <a
-                  key={idx}
-                  href={href}
-                  aria-label={label}
-                  className="text-white text-xl hover:text-orange-500 transition-colors duration-200"
-                >
-                  {icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="text-xs text-gray-100 space-x-2">
-            <a href="#" className="hover:text-orange-500">Privacy Policy</a>
-            <span>|</span>
-            <a href="#" className="hover:text-orange-500">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer Bottom */}
-      <div className="mt-10 text-center text-sm text-gray-200 border-t border-orange-500 pt-4">
-        &copy; {new Date().getFullYear()} Pantiss Skill University. All rights reserved.
-      </div>
-    </footer>
-  );
-};
-
-export default React.memo(Footer);
+export default function Footer() {
+  return <footer className="site-footer"><div className="site-shell">
+    <div className="site-footer-grid">
+      <div className="site-footer-brand"><Link to="/" aria-label="Pantiss Skill Universe home"><BrandLogo loading="lazy" /></Link><p>Industry-led learning.<br />Skills that open new possibilities.</p><Link className="site-footer-contact" to="/contact-us">Start a conversation<ArrowUpRight size={17} aria-hidden="true" /></Link></div>
+      <nav aria-label="Learning links"><h2>Learn with Pantiss</h2><Link to="/our-programmes">Explore programmes</Link><Link to="/our-programmes/iti-program">Industrial training</Link><Link to="/our-programmes/diploma-programs">Diploma programmes</Link><Link to="/futuristic-skill-on-wheels">Skill on Wheels</Link><Link to="/placements">Placements & careers</Link></nav>
+      <nav aria-label="Organisation links"><h2>Our universe</h2><Link to="/about">About Pantiss</Link><Link to="/our-projects">Our projects</Link><Link to="/collaborations">Collaborations</Link><Link to="/careers">Join our team</Link><Link to="/resources">Resources</Link><Link to="/skill-dashboard">Skill dashboard</Link></nav>
+      <div><h2>Visit us</h2><address>1215/1500, Skill Education Hub<br />Khandagiri Bari, Bhubaneswar<br />Odisha, India · 751030</address><Link to="/contact-us">Office & campus contacts<ArrowUpRight size={14} aria-hidden="true" /></Link></div>
+    </div><div className="site-footer-bottom"><span>© {new Date().getFullYear()} Pantiss Skill Universe</span><span>Learn. Upskill. Empower.</span><a href="#main-content">Back to top ↑</a></div>
+  </div></footer>;
+}

@@ -1,3 +1,5 @@
+import SiteImage from "../../common/SiteImage";
+import { useGeoData } from "../../../hooks/useGeoData";
 import { memo, useState, useEffect, useCallback } from "react";
 import {
   Users,
@@ -16,7 +18,7 @@ import {
 } from "react-leaflet";
 
 import L from "leaflet";
-import type { Feature, GeoJsonObject, Geometry } from "geojson";
+import type { Feature, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* =====================================================
@@ -90,7 +92,7 @@ const schools: School[] = [
       "Solar PV, wind technicians and energy auditing programs.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
-    gradient: "from-yellow-400/20 via-green-400/20 to-cyan-400/20",
+    gradient: "from-yellow-400/20 via-red-400/20 to-cyan-400/20",
     totalStudents: 3400,
     successRate: 96,
     location: { district: "Jajapur", coords: [20.85, 86.33] },
@@ -105,7 +107,7 @@ const schools: School[] = [
       "Port, cargo handling and freight certifications.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451912/ozren-cuculic-eBKxooPEU5w-unsplash_jphgdn.jpg",
-    gradient: "from-green-400/20 via-cyan-400/20 to-teal-400/20",
+    gradient: "from-red-400/20 via-cyan-400/20 to-teal-400/20",
     totalStudents: 2000,
     successRate: 91,
     location: { district: "Jagatsinghapur", coords: [20.25, 86.17] },
@@ -159,14 +161,10 @@ const FlyTo = ({ coords }: { coords: [number, number] }) => {
 ===================================================== */
 
 const CertificationSchoolsWithMap = () => {
-  const [geoData, setGeoData] = useState<GeoJsonObject | null>(null);
+  const { geoData, error: mapError } = useGeoData("/map/Orissa.geojson");
   const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    fetch("/map/Orissa.geojson")
-      .then((res) => res.json())
-      .then(setGeoData);
-  }, []);
+
 
   const school = schools[index];
 
@@ -182,6 +180,7 @@ const CertificationSchoolsWithMap = () => {
 
   return (
     <section className="bg-black py-24 text-white relative overflow-hidden">
+      {mapError && <p className="map-data-notice" role="status">Map outlines could not load. Location details are still available. <button onClick={() => window.location.reload()}>Retry</button></p>}
       {/* PREMIUM CSS */}
       <style>{`
         .district-glow{
@@ -218,7 +217,7 @@ const CertificationSchoolsWithMap = () => {
 
         {/* LEFT */}
         <div>
-          <img
+          <SiteImage decoding="async" loading="lazy"
             src={school.image}
             className="rounded-3xl h-[380px] w-full object-cover"
           />
@@ -233,12 +232,12 @@ const CertificationSchoolsWithMap = () => {
 
           <div className="flex gap-6 mt-4 text-sm">
             <span className="flex items-center gap-2">
-              <Award className="text-green-400 w-4" />
+              <Award className="text-red-400 w-4" />
               {school.successRate}% success
             </span>
 
             <span className="flex items-center gap-2">
-              <Users className="text-green-400 w-4" />
+              <Users className="text-red-400 w-4" />
               {school.totalStudents}+ students
             </span>
           </div>
@@ -272,7 +271,7 @@ const CertificationSchoolsWithMap = () => {
             >
               <FlyTo coords={school.location.coords} />
 
-              <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" />
+              <TileLayer attribution='&copy; OpenStreetMap contributors &copy; CARTO' url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
 
               <GeoJSON
                 key={school.location.district}

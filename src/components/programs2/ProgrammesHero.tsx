@@ -1,24 +1,13 @@
+import BackgroundVideo from "../common/BackgroundVideo";
 import React from "react";
 import { motion } from "framer-motion";
 
 const ProgrammesHero: React.FC = () => {
   return (
-    <section className="relative h-[90vh] mt-16 overflow-hidden bg-transparent">
+    <section className="relative min-h-[680px] h-[90svh] overflow-hidden bg-transparent">
       {/* ===================== FIXED PARALLAX VIDEO ===================== */}
-      <div className="fixed inset-0 -z-10">
-        <video
-          className="h-full w-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-        >
-          <source
-            src="/programs/6618336-uhd_3840_2160_24fps.mp4"
-            type="video/mp4"
-          />
-        </video>
+      <div className="absolute inset-0">
+        <BackgroundVideo src="/optimized/video/programmes.mp4" className="h-full w-full object-cover" poster="/Homepage/announcements_bg.webp" defer />
 
         {/* Primary cinematic overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/95" />
@@ -32,9 +21,9 @@ const ProgrammesHero: React.FC = () => {
       </div>
 
       {/* ===================== HERO CONTENT ===================== */}
-      <div className="relative z-10 flex h-full items-center justify-center pt-36 px-6">
+      <div className="relative z-10 flex h-full items-center justify-center py-20 px-6">
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           className="text-center max-w-4xl"
@@ -63,19 +52,19 @@ const ProgrammesHero: React.FC = () => {
 
           {/* CTAs */}
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
-            <button className="group inline-flex items-center justify-center gap-3 bg-white px-10 py-4 text-xs font-semibold tracking-widest text-black transition hover:bg-white/90">
+            <a href="#programme-explorer" className="group inline-flex items-center justify-center gap-3 bg-white px-10 py-4 text-xs font-semibold tracking-widest text-black transition hover:bg-white/90">
               VIEW PROGRAMMES
               <span className="inline-block transition-transform group-hover:translate-x-1">
                 →
               </span>
-            </button>
+            </a>
 
-            <button className="group inline-flex items-center justify-center gap-3 border border-white/25 px-10 py-4 text-xs font-semibold tracking-widest text-white/85 transition hover:bg-white/5 hover:text-white">
+            <a href="/contact-us" className="group inline-flex items-center justify-center gap-3 border border-white/25 px-10 py-4 text-xs font-semibold tracking-widest text-white/85 transition hover:bg-white/5 hover:text-white">
               ADMISSION ENQUIRY
               <span className="inline-block transition-transform group-hover:translate-x-1">
                 →
               </span>
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>

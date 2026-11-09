@@ -1,3 +1,4 @@
+import SiteImage from "../../common/SiteImage";
 import React from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
@@ -82,7 +83,7 @@ const IntMobilityBenefitsCards: React.FC = () => {
               transition={{ delay: i * 0.07, duration: 0.4 }}
               className="
                 group relative overflow-hidden
-                border border-green-600/40
+                border border-red-600/40
                 bg-black
                 transition-shadow duration-300
                 hover:shadow-[0_0_40px_rgba(0,229,168,0.25)]
@@ -90,7 +91,7 @@ const IntMobilityBenefitsCards: React.FC = () => {
             >
               {/* Image */}
               <div className="relative h-[240px]">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src={item.image}
                   alt={item.title}
                   className="h-full w-full object-cover"

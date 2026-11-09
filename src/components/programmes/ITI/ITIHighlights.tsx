@@ -22,43 +22,43 @@ const highlights: Highlight[] = [
     title: "Mines Sector Training",
     description:
       "ITI-aligned training for mining operations, mine safety, drilling, blasting assistance, machinery handling, and underground/overground technical skills essential for the mining industry.",
-    icon: <FaLightbulb className="w-6 h-6 text-green-400" />,
+    icon: <FaLightbulb className="w-6 h-6 text-red-400" />,
   },
   {
     title: "Steel & Aluminium Industries",
     description:
       "Skill development in mechanical fitting, furnace operations, welding, rolling mill maintenance, and metallurgical processes aligned with steel and aluminium plant requirements.",
-    icon: <FaIndustry className="w-6 h-6 text-green-400" />,
+    icon: <FaIndustry className="w-6 h-6 text-red-400" />,
   },
   {
     title: "Power & Green Energy",
     description:
       "Training in electrical systems, thermal and hydro plant operations, solar installation, energy management, and maintenance skills for the growing renewable energy sector.",
-    icon: <FaRocket className="w-6 h-6 text-green-400" />,
+    icon: <FaRocket className="w-6 h-6 text-red-400" />,
   },
   {
     title: "Shipping & Logistics",
     description:
       "Skills for supply chain operations, warehouse management, loading/unloading systems, equipment handling, and logistics coordination for port and transport industries.",
-    icon: <FaUserGraduate className="w-6 h-6 text-green-400" />,
+    icon: <FaUserGraduate className="w-6 h-6 text-red-400" />,
   },
   {
     title: "Electric Vehicles (EV)",
     description:
       "Training in EV motor systems, battery management, charging infrastructure, electrical diagnostics, and maintenance of future-ready electric mobility technologies.",
-    icon: <FaLightbulb className="w-6 h-6 text-green-400" />,
+    icon: <FaLightbulb className="w-6 h-6 text-red-400" />,
   },
   {
     title: "Construction Tech & Infra Equipment",
     description:
       "ITI-focused learning for construction machinery operation, structural work, surveying, equipment maintenance, and modern infrastructure technologies.",
-    icon: <FaIndustry className="w-6 h-6 text-green-400" />,
+    icon: <FaIndustry className="w-6 h-6 text-red-400" />,
   },
   {
     title: "Water, Sanitation & Facility Management",
     description:
       "Job-ready skills in plumbing, waste management, water treatment, housekeeping operations, and facility maintenance for essential services sectors.",
-    icon: <FaUserGraduate className="w-6 h-6 text-green-400" />,
+    icon: <FaUserGraduate className="w-6 h-6 text-red-400" />,
   },
 ];
 
@@ -98,7 +98,7 @@ const ITIHighlights: React.FC<ITIHighlightsProps> = () => {
     >
       {/* Subtle Background Accents with Glassmorphism */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-16 left-16 w-80 h-80 bg-green-500/10 rounded-full blur-3xl opacity-60 animate-pulse"></div>
+        <div className="absolute top-16 left-16 w-80 h-80 bg-red-500/10 rounded-full blur-3xl opacity-60 animate-pulse"></div>
         <div className="absolute bottom-16 right-16 w-80 h-80 bg-red-500/10 rounded-full blur-3xl opacity-60 animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gray-900/5 rounded-full blur-2xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
       </div>
@@ -114,7 +114,7 @@ const ITIHighlights: React.FC<ITIHighlightsProps> = () => {
           className="text-3xl sm:text-4xl lg:text-5xl text-white font-extrabold text-center mb-16 tracking-tight font-sans leading-tight"
         >
           Upskilling & Reskilling Highlights
-          <span className="block mt-2 h-1 w-32 mx-auto bg-gradient-to-r from-green-600 to-red-600 rounded-full"></span>
+          <span className="block mt-2 h-1 w-32 mx-auto bg-gradient-to-r from-red-600 to-red-600 rounded-full"></span>
         </motion.h2>
 
         {/* Highlights Grid */}
@@ -130,11 +130,11 @@ const ITIHighlights: React.FC<ITIHighlightsProps> = () => {
               className="
                 relative bg-gray-900/30 backdrop-blur-lg border border-gray-700/50 rounded-3xl
                 shadow-[0_8px_32px_rgba(239,68,68,0.15)] hover:shadow-[0_12px_48px_rgba(239,68,68,0.25)]
-                p-6 group hover:border-green-500/70
+                p-6 group hover:border-red-500/70
                 transform hover:scale-105 transition-all duration-500 ease-out
-                before:absolute before:inset-0 before:bg-gradient-to-r before:from-green-500/5 before:to-red-500/5
+                before:absolute before:inset-0 before:bg-gradient-to-r before:from-red-500/5 before:to-red-500/5
                 before:rounded-3xl before:opacity-0 before:transition-opacity before:duration-500
-                hover:before:opacity-100 focus-visible:ring-2 focus-visible:ring-green-500
+                hover:before:opacity-100 focus-visible:ring-2 focus-visible:ring-red-500
               "
               role="article"
               aria-label={`Highlight: ${highlight.title}`}
@@ -142,7 +142,7 @@ const ITIHighlights: React.FC<ITIHighlightsProps> = () => {
             >
               <div className="flex items-center gap-4 mb-4">
                 {highlight.icon}
-                <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-white group-hover:text-red-400 transition-colors duration-300">
                   {highlight.title}
                 </h3>
               </div>

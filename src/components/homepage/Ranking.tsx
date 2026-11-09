@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -12,7 +13,7 @@ const accreditations = [
     description: "AICTE",
   },
   {
-    logo: "/Homepage/acceredition/iisssc.png",
+    logo: "/optimized/Homepage/acceredition/iisssc.png.webp",
     description: "IISSSC",
   },
   {
@@ -28,7 +29,7 @@ const accreditations = [
     description: "PSSC",
   },
   {
-    logo: "/Homepage/acceredition/RCPSDC.png",
+    logo: "/optimized/Homepage/acceredition/RCPSDC.png.webp",
     description: "RCPSDC",
   },
   {
@@ -36,7 +37,7 @@ const accreditations = [
     description: "NSDC",
   },
   {
-    logo: "/Homepage/acceredition/MEPSC.png",
+    logo: "/optimized/Homepage/acceredition/MEPSC.png.webp",
     description: "MEPSC",
   },
   {
@@ -58,7 +59,7 @@ const RankingCard: React.FC<RankingCardProps> = ({ logo, description }) => {
       transition={{ duration: 0.5 }}
       aria-label={description}
     >
-      <img
+      <SiteImage
         src={logo}
         alt="Accreditation Logo"
         className="h-24 w-auto object-contain"
@@ -78,7 +79,7 @@ const Ranking: React.FC = () => {
       className="relative bg-center bg-cover bg-no-repeat py-12 px-4"
       style={{
         backgroundImage:
-          "url(/Homepage/accredition.jpg)",
+          "url(/optimized/Homepage/accredition.webp.webp)",
       }}
     >
       <style>
@@ -104,7 +105,7 @@ const Ranking: React.FC = () => {
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-semibold text-white">
-            Our <span className="text-green-600">Accreditations</span>
+            Our <span className="text-red-600">Accreditations</span>
           </h1>
         </div>
 

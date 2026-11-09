@@ -1,23 +1,24 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React from "react";
 import HeroCertification from "../../components/programmes/Certification/HeroCertification";
 // import CertificationOverview from "../../components/programmes/Certification/CertificationOverview";
 // import CertificationHighlights from "../../components/programmes/Certification/CertificationHighlights";
-import CertificationSchoolsCourses from "../../components/programmes/Certification/CertificationSchoolsCourses";
-import TestimonialSectionCertification from "../../components/programmes/Certification/Testimonials";
+const CertificationSchoolsCourses = React.lazy(() => import("../../components/programmes/Certification/CertificationSchoolsCourses"));
+const TestimonialSectionCertification = React.lazy(() => import("../../components/programmes/Certification/Testimonials"));
 import LogoMarquee from "../../components/common/LogoMaequee";
 import CertificationImpact from "../../components/programmes/Certification/CertificationImpact";
-import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
-import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
-import IndustryCertificationBenefitsCards from "../../components/programmes/Certification/IndustryCertificationBenefitsCards";
+const ProgramOverviewVideo = React.lazy(() => import("../../components/common/ProgramOverviewVideo"));
+const PlacementsShowcaseSection = React.lazy(() => import("../../components/common/PlacementsShowcaseSection"));
+const IndustryCertificationBenefitsCards = React.lazy(() => import("../../components/programmes/Certification/IndustryCertificationBenefitsCards"));
 
 const schoolLogos = [
   {
     name: "School for Mines, Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+    src: "/Homepage/placements/company/fleetguard.png",
   },
   {
     name: "School for Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
+    src: "/Homepage/placements/company/vedanta-removebg-preview.png",
   },
   {
     name: "School for Power & Green Energy",
@@ -25,15 +26,15 @@ const schoolLogos = [
   },
   {
     name: "School for Shipping & Logistics",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+    src: "/Homepage/placements/company/schneider_electric.png",
   },
   {
     name: "School for Construction Tech & Infra Equipments",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+    src: "/Homepage/placements/company/TATA_STEEL-removebg-preview.png",
   },
   {
     name: "School for Water, Sanitation & Facility Management",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+    src: "/Homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png",
   },
 ];
 
@@ -42,12 +43,12 @@ const IndustryAllignedCertificationPage: React.FC = () => {
     <div>
       <HeroCertification />
       <CertificationImpact />
-      <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
+      <DeferredSection><ProgramOverviewVideo videoId="Ky46MN2buqQ" /></DeferredSection>
       {/* <CertificationOverview /> */}
       {/* <CertificationHighlights /> */}
-      <CertificationSchoolsCourses />
-      <IndustryCertificationBenefitsCards />
-      <PlacementsShowcaseSection />
+      <DeferredSection><CertificationSchoolsCourses /></DeferredSection>
+      <DeferredSection><IndustryCertificationBenefitsCards /></DeferredSection>
+      <DeferredSection><PlacementsShowcaseSection /></DeferredSection>
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}
@@ -57,7 +58,7 @@ const IndustryAllignedCertificationPage: React.FC = () => {
         bg="bg-black"
         className="py-3"
       />
-      <TestimonialSectionCertification />
+      <DeferredSection><TestimonialSectionCertification /></DeferredSection>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -35,7 +36,7 @@ const FleetDetails: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,255,150,0.15),transparent_60%)]"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold mb-14 text-center text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
+        <h2 className="text-4xl md:text-5xl font-bold mb-14 text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-cyan-400">
           Fleet & Infrastructure
         </h2>
 
@@ -45,14 +46,14 @@ const FleetDetails: React.FC = () => {
               key={i}
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-green-400/50 shadow-lg hover:shadow-green-400/20"
+              className="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-red-400/50 shadow-lg hover:shadow-red-400/20"
             >
               {/* Animated border glow */}
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-green-400/40 rounded-2xl transition duration-300"></div>
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-red-400/40 rounded-2xl transition duration-300"></div>
 
               {/* Image */}
               <div className="overflow-hidden">
-                <motion.img
+                <SiteImage loading="lazy" decoding="async"
                   src={item.image}
                   alt={item.title}
                   className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
@@ -61,7 +62,7 @@ const FleetDetails: React.FC = () => {
 
               {/* Text Content */}
               <div className="p-6 text-center">
-                <h3 className="text-xl font-semibold mb-1 bg-gradient-to-r from-green-300 to-cyan-300 bg-clip-text text-transparent">
+                <h3 className="text-xl font-semibold mb-1 bg-gradient-to-r from-red-300 to-cyan-300 bg-clip-text text-transparent">
                   {item.title}
                 </h3>
                 <p className="text-gray-400 text-sm tracking-wide">
@@ -74,7 +75,7 @@ const FleetDetails: React.FC = () => {
       </div>
 
       {/* Decorative gradient glow at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-green-400/10 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-red-400/10 to-transparent"></div>
     </section>
   );
 };

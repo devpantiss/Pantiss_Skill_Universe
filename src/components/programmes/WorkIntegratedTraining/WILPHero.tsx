@@ -18,7 +18,7 @@ const WILPHero: React.FC = () => {
 
       {/* Content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto"
@@ -37,7 +37,7 @@ const WILPHero: React.FC = () => {
 
         {/* Sectors list */}
         {/* <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6 }}
           className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto"
@@ -102,7 +102,7 @@ const WILPHero: React.FC = () => {
         {/* Short CTA row */}
         <div className="mt-8 flex items-center justify-center gap-4">
           <a
-            className="inline-flex items-center gap-2 bg-green-500 text-black px-4 py-2 rounded-full font-semibold shadow-md hover:brightness-105 transition"
+            className="inline-flex items-center gap-2 bg-red-500 text-black px-4 py-2 rounded-full font-semibold shadow-md hover:brightness-105 transition"
             href="#programs"
           >
             Explore WILP programs
@@ -117,12 +117,12 @@ const WILPHero: React.FC = () => {
       </motion.div>
 
       {/* Decorative Borders */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-600 via-black to-red-600"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-green-600"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-red-600"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-red-600"></div>
 
       {/* Subtle Background Accents */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-green-500/18 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute top-10 left-10 w-64 h-64 bg-red-500/18 rounded-full blur-3xl opacity-50 animate-pulse"></div>
         <div className="absolute bottom-10 right-10 w-64 h-64 bg-red-500/18 rounded-full blur-3xl opacity-50 animate-pulse delay-1000"></div>
       </div>
     </section>

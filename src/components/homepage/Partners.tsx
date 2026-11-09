@@ -1,3 +1,5 @@
+import SiteImage from "../common/SiteImage";
+import BackgroundVideo from "../common/BackgroundVideo";
 import React, { memo } from "react";
 import Marquee from "react-fast-marquee";
 
@@ -56,7 +58,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = memo(
               className="mx-6"
               style={{ width: "200px", height: "80px" }}
             >
-              <img
+              <SiteImage decoding="async"
                 src={logo}
                 alt={`${title} Partner ${index + 1}`}
                 style={{ width: "100%", height: "100%", objectFit: "contain" }}
@@ -77,19 +79,7 @@ PartnerSection.displayName = "PartnerSection";
 const OurPartners: React.FC = () => {
   return (
     <div className="bg-black relative overflow-hidden">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743490676/12900822_1920_1080_30fps_ldejrt.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
+      <BackgroundVideo src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1743490676/12900822_1920_1080_30fps_ldejrt.mp4" className="absolute top-0 left-0 w-full h-full object-cover z-0" defer />
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-900 via-white/30 to-black z-1"></div>
       <div className="flex flex-col justify-center items-center container mx-auto py-14 px-4 sm:px-12 relative z-10">
         <div className="flex justify-center mb-6">

@@ -78,14 +78,14 @@ const PlacementsGeographicalRankingSection: React.FC = () => {
               />
 
               {/* DESIGNATED */}
-              <Bar
+              <Bar isAnimationActive={false}
                 dataKey="Designated"
                 fill="#0ea5e9"
                 radius={[4, 4, 0, 0]}
               />
 
               {/* OPTIONAL */}
-              <Bar
+              <Bar isAnimationActive={false}
                 dataKey="Optional"
                 fill="#312e81"
                 radius={[4, 4, 0, 0]}

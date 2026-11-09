@@ -23,7 +23,7 @@ const ImpactStats: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black/30 to-black"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl md:text-5xl font-bold mb-16 text-green-400 tracking-wide uppercase drop-shadow-lg">
+        <h2 className="text-3xl md:text-5xl font-bold mb-16 text-red-400 tracking-wide uppercase drop-shadow-lg">
           Impact Overview
         </h2>
 
@@ -31,13 +31,13 @@ const ImpactStats: React.FC = () => {
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              className="p-8 rounded-2xl border border-green-500/30 bg-white/10 backdrop-blur-md shadow-[0_0_25px_rgba(0,255,128,0.2)] hover:shadow-[0_0_40px_rgba(0,255,128,0.4)] transition-all duration-500"
+              className="p-8 rounded-2xl border border-red-500/30 bg-white/10 backdrop-blur-md shadow-[0_0_25px_rgba(0,255,128,0.2)] hover:shadow-[0_0_40px_rgba(0,255,128,0.4)] transition-all duration-500"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-5xl font-extrabold text-green-400 drop-shadow-md">
+              <h3 className="text-5xl font-extrabold text-red-400 drop-shadow-md">
                 {stat.value}
               </h3>
               <p className="text-gray-200 mt-3 text-lg tracking-wide">

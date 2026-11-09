@@ -1,5 +1,7 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
-import Slider from "react-slick";
+import Slider from "../common/ViewportSlider";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -103,7 +105,7 @@ const Welcome: React.FC = () => (
               }}
             >
               <div className="w-[64px] h-[64px] rounded-full overflow-hidden shadow mb-2 flex-shrink-0">
-                <img src={card.image} alt={card.heading} className="w-full h-full object-cover" />
+                <SiteImage decoding="async" loading="lazy" src={card.image} alt={card.heading} className="w-full h-full object-cover" />
               </div>
               <div className="flex-1 flex flex-col items-center text-center">
                 <h3 className="text-base md:text-lg font-bold text-[#FFBE0B]">{card.heading}</h3>

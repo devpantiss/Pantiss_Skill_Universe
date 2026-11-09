@@ -1,3 +1,4 @@
+import SiteImage from "../../common/SiteImage";
 import React from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
@@ -60,7 +61,7 @@ const DiplomaBenefitsCards: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* ===== Header ===== */}
         <div className="mb-16 text-center">
-          <p className="uppercase tracking-widest text-sm text-[#00E5A8] mb-2">
+          <p className="uppercase tracking-widest text-sm text-[var(--site-accent)] mb-2">
             Industry Aligned
           </p>
           <h2 className="text-4xl md:text-5xl font-semibold">
@@ -83,7 +84,7 @@ const DiplomaBenefitsCards: React.FC = () => {
               transition={{ delay: i * 0.07, duration: 0.4 }}
               className="
                 group relative overflow-hidden
-                border border-green-600/40
+                border border-red-600/40
                 bg-black
                 transition-shadow duration-300
                 hover:shadow-[0_0_40px_rgba(0,229,168,0.25)]
@@ -91,7 +92,7 @@ const DiplomaBenefitsCards: React.FC = () => {
             >
               {/* Image */}
               <div className="relative h-[240px]">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src={item.image}
                   alt={item.title}
                   className="h-full w-full object-cover"
@@ -99,7 +100,7 @@ const DiplomaBenefitsCards: React.FC = () => {
                 <div className="absolute inset-0 bg-black/45" />
 
                 {/* Tag */}
-                <span className="absolute left-4 top-4 text-[10px] tracking-widest text-[#FFD84D]">
+                <span className="absolute left-4 top-4 text-[10px] tracking-widest text-[var(--site-accent)]">
                   {item.tag}
                 </span>
               </div>
@@ -119,7 +120,7 @@ const DiplomaBenefitsCards: React.FC = () => {
                 {/* <button
                   className="
                     mt-4 inline-flex items-center gap-2
-                    text-sm font-medium text-[#00E5A8]
+                    text-sm font-medium text-[var(--site-accent)]
                     transition-all group-hover:gap-3
                   "
                 >
@@ -134,16 +135,10 @@ const DiplomaBenefitsCards: React.FC = () => {
         {/* ===== CTA ===== */}
         <div className="mt-18 flex justify-center mt-16">
           <a
-            href="/our-programmes/industry-alligned-certification"
-            className="
-              inline-flex items-center gap-3
-              px-9 py-4 rounded-full
-              bg-gradient-to-r from-[#00E5A8] to-[#7C4DFF]
-              text-black font-semibold
-              hover:scale-105 transition
-            "
+            href="/contact-us"
+            className="site-button"
           >
-            View Certification Programs
+            Discuss this programme
             <FaArrowRight />
           </a>
         </div>

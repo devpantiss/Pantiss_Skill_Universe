@@ -1,3 +1,4 @@
+import { useCountUp } from "../../../hooks/useCountUp";
 import { useEffect, useRef, useState } from "react";
 import {
   Wrench,
@@ -55,27 +56,6 @@ const metrics = [
    HOOK: Count Up
 ----------------------------- */
 
-const useCountUp = (end: number, enabled: boolean) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!enabled) return;
-
-    const duration = 1600;
-    const startTime = performance.now();
-
-    const animate = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      setCount(Number((progress * end).toFixed(1)));
-
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  }, [end, enabled]);
-
-  return count;
-};
 
 type Metric = (typeof metrics)[number];
 
@@ -98,7 +78,7 @@ function MetricCard({ item, visible }: { item: Metric; visible: boolean }) {
         <span className="text-sm text-gray-400">
           {item.label}
         </span>
-        <Icon className="w-5 h-5 text-green-500" />
+        <Icon className="w-5 h-5 text-red-500" />
       </div>
 
       <div className="text-4xl font-semibold tracking-tight">
@@ -135,11 +115,11 @@ export default function ITIImpact() {
   return (
     <section
       ref={ref}
-      className="relative bg-black py-24 px-4 text-white"
+      className="relative overflow-hidden bg-black py-24 px-4 text-white"
     >
       {/* Subtle background accent */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto">

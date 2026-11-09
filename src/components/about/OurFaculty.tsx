@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -131,7 +132,7 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
     <div className="relative w-full py-12 bg-black overflow-hidden">
       {/* Vibrant Blurred Circles */}
       <div
-        className="absolute top-[-15%] left-[-10%] bg-green-500 w-[350px] h-[350px] rounded-full opacity-40 pointer-events-none"
+        className="absolute top-[-15%] left-[-10%] bg-red-500 w-[350px] h-[350px] rounded-full opacity-40 pointer-events-none"
         style={{
           filter: "blur(120px)",
         }}
@@ -143,7 +144,7 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
         }}
       ></div>
       <div
-        className="absolute top-[25%] left-[20%] bg-gradient-to-tr from-red-600 to-green-500 w-[250px] h-[250px] rounded-full opacity-30 pointer-events-none"
+        className="absolute top-[25%] left-[20%] bg-gradient-to-tr from-red-600 to-red-500 w-[250px] h-[250px] rounded-full opacity-30 pointer-events-none"
         style={{
           filter: "blur(100px)",
         }}
@@ -192,7 +193,7 @@ const OurFaculty: React.FC<OurFacultyProps> = ({
                 }}
               />
               <div className="relative z-10 flex-1 p-[10px] box-border">
-                <img
+                <SiteImage decoding="async"
                   src={c.image}
                   alt={c.title}
                   loading="lazy"

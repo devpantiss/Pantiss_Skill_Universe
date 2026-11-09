@@ -1,0 +1,68 @@
+{
+  "contract": "Public Pantiss site: help learners compare industry-led pathways and contact the right team. Preserve brand and source media; use calm industrial typography and semantic tokens; require stable navigation, mobile reflow, keyboard access, and deferred media. See contractDetails and site-optimization.md.",
+  "targetViewports": [
+    "390x844",
+    "768x1024",
+    "1440x900"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "Manual scoped checks: mobile dialog traps focus, closes with Escape, and restores the trigger; resource video dialog traps and restores focus; programme and dashboard tabs support arrow keys and match their panels; added visible focus rings, labelled controls, skip link, and native controls. This is not a full WCAG certification."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "All 19 public routes were opened and scrolled at 390x844. Fixed Careers slider overflow, dashboard filter overflow, and programme decorative-background overflow. Representative programme, About, dashboard, and contact views checked at desktop; programme selector inspected at 768x1024. Screenshots captured at all three sizes."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "pass",
+      "evidence": "Route and deferred section placeholders reserve space before code loads; initial browser checks found no offscreen WebGL canvas or YouTube iframe on catalogue/programme routes."
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "Navigated to /careers/jobs?category=NoSuchCategory, observed No matching roles, clicked Show all roles, and confirmed content returned."
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "Simulated a failed /map/Orissa.geojson fetch in the browser and observed the map error notice and Retry action without a page crash. Unknown-route recovery links also verified. Global React error boundary is source-checked, not force-crashed in the browser."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "Failed remote images render Image unavailable placeholders within their original slots; simulated map-outline failure leaves the route mounted with an explanation and retry rather than an unhandled rejection."
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "All 19 routes rendered headings and completed the mobile scroll smoke checks with no error boundary or horizontal document overflow. Programme keyboard selection, dashboard tab switching, and on-demand video creation verified."
+    },
+    "permission": {
+      "status": "not-applicable",
+      "reason": "This pass covers the 19 public routes; they contain no implemented sign-in or permission flow. External LMS, ERP, and alumni services were not accessed."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x900",
+      "artifact": "site-desktop.png",
+      "observation": "Programme explorer after keyboard selection: focused ITI tab, readable panel hierarchy, consistent shared header and surfaces."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "site-mobile.png",
+      "observation": "Contact page: compact shared header, stacked navigation and contact content, no horizontal overflow."
+    },
+    {
+      "viewport": "768x1024",
+      "artifact": "site-tablet.png",
+      "observation": "Programme explorer: two-column layout remains readable, long tab labels wrap within bounds, no overflow."
+    }
+  ],
+  "contractDetails": {
+    "surface": "Pantiss Skill Universe public website",
+    "purpose": "Help learners compare training pathways and reach the appropriate team; help partners and staff find projects, resources, and performance information.",
+    "primaryAction": "Explore a programme, then contact the team.",
+    "direction": "Calm industrial: readable Inter typography, dark neutral surfaces, green primary actions, restrained motion, semantic tokens.",
+    "hierarchy": "Stable shared navigation, clear page title, primary action, progressively loaded sections.",
+    "localReferences": "Existing Pantiss brand, programme data, project portfolio, and enterprise selector in the repository.",
+    "constraints": "React 18 + Vite, no new runtime dependencies, preserve source media, mobile reflow and keyboard access, keep maps and 3D out of initial loading."
+  }
+}

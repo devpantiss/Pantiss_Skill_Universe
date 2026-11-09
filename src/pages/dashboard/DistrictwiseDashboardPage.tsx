@@ -1,10 +1,11 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React, { useMemo, useState } from "react";
 
 import DistrictFilterBar from "../../components/dashboard/districtwise/DistrictFilterBar";
 import DistrictEnrollmentChart from "../../components/dashboard/districtwise/DistrictEnrollmentChart";
 import DistrictBatchRankTable from "../../components/dashboard/districtwise/DistrictBatchRankTable";
 import DistrictEnrolledRanking from "../../components/dashboard/districtwise/DistrictEnrolledRanking";
-import DistrictOverviewMapSection from "../../components/dashboard/districtwise/DistrictOverviewMapSection";
+const DistrictOverviewMapSection = React.lazy(() => import("../../components/dashboard/districtwise/DistrictOverviewMapSection"));
 
 // -------------------- MOCK DATA (ODISHA DISTRICTS) --------------------
 const districtData = [
@@ -120,7 +121,7 @@ const DistrictwiseDashboardPage: React.FC = () => {
         setDistrict={setSelectedDistrict}
       />
 
-      <DistrictOverviewMapSection />
+      <DeferredSection><DistrictOverviewMapSection /></DeferredSection>
 
       {/* Charts */}
       <DistrictEnrollmentChart

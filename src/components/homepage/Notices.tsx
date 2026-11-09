@@ -168,7 +168,7 @@ const Notices: React.FC = () => {
                     key={item.key}
                     className="flex items-start p-2 hover:bg-gray-100 rounded transition-colors duration-200"
                   >
-                    <span className="text-green-600 mr-3">✔</span>
+                    <span className="text-red-600 mr-3">✔</span>
                     {item.content}
                   </li>
                 ))}

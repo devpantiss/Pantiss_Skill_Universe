@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 
 const WorkCloud: React.FC = () => {
@@ -41,7 +42,7 @@ const WorkCloud: React.FC = () => {
         </div>
 
         {/* Talent Card */}
-        <div className="bg-green-100 text-gray-800 p-6 rounded-lg shadow-lg w-full lg:w-1/3">
+        <div className="bg-red-100 text-gray-800 p-6 rounded-lg shadow-lg w-full lg:w-1/3">
           <h2 className="text-xl font-semibold mb-4">Talent</h2>
           <ul className="list-disc list-inside space-y-2">
             <li>Contract and Temp Staffing</li>
@@ -52,7 +53,7 @@ const WorkCloud: React.FC = () => {
           </ul>
           <div className="mt-6 flex justify-center">
             <div className="bg-orange-500 w-16 h-16 rounded-full flex items-center justify-center">
-              <img
+              <SiteImage decoding="async" loading="lazy"
                 src="https://img.icons8.com/ios-filled/50/FFFFFF/wrench.png"
                 alt="Tool Icon"
                 className="h-8 w-8"

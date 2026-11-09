@@ -100,7 +100,7 @@ const PlacementsDiversityAnalyticsSection: React.FC = () => {
                 />
 
                 {Object.keys(genderColors).map((key) => (
-                  <Bar
+                  <Bar isAnimationActive={false}
                     key={key}
                     dataKey={key}
                     stackId="a"
@@ -125,7 +125,7 @@ const PlacementsDiversityAnalyticsSection: React.FC = () => {
           <div className="h-[380px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie
+                <Pie isAnimationActive={false}
                   data={socialCategoryData}
                   dataKey="value"
                   nameKey="name"

@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { useRef, useEffect } from "react";
 
 const HorizontalScrollComponent: React.FC = () => {
@@ -49,7 +50,7 @@ const HorizontalScrollComponent: React.FC = () => {
         <div className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white snap-start">
           <div className="mt-4 w-1/2 h-screen bg-black flex flex-col justify-center items-center">
             <div className="max-w-lg flex flex-col justify-start items-start">
-              <img
+              <SiteImage decoding="async" loading="lazy"
                 src="https://labournet.in/wp-content/uploads/2021/12/Group-93.png"
                 alt="logo"
                 className="h-12 w-12"
@@ -66,7 +67,7 @@ const HorizontalScrollComponent: React.FC = () => {
             </div>
           </div>
           <div className="bg-[#D76042] h-screen flex justify-center items-center w-1/2">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://labournet.in/wp-content/uploads/2022/01/Group-1-1.svg"
               alt="img"
               className="w-64 lg:w-[650px]"
@@ -77,7 +78,7 @@ const HorizontalScrollComponent: React.FC = () => {
         <div className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white snap-start">
           <div className="mt-4 w-1/2 h-screen bg-black flex flex-col justify-center items-center">
             <div className="max-w-lg flex flex-col justify-start items-start">
-              <img
+              <SiteImage decoding="async" loading="lazy"
                 src="https://labournet.in/wp-content/uploads/2021/12/Home_Reliable_Icon.png"
                 alt="logo"
                 className="h-12 w-12"
@@ -96,7 +97,7 @@ const HorizontalScrollComponent: React.FC = () => {
             </div>
           </div>
           <div className="bg-[#D76042] h-screen flex justify-center items-center w-1/2">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://labournet.in/wp-content/uploads/2022/01/Group-209.svg"
               alt="img"
               className="w-64 lg:w-[650px]"
@@ -107,7 +108,7 @@ const HorizontalScrollComponent: React.FC = () => {
         <div className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white snap-start">
           <div className="mt-4 w-1/2 h-screen bg-black flex flex-col justify-center items-center">
             <div className="max-w-lg flex flex-col justify-start items-start">
-              <img
+              <SiteImage decoding="async" loading="lazy"
                 src="https://labournet.in/wp-content/uploads/2021/12/Home_Innovative_Icon.png"
                 alt="logo"
                 className="h-12 w-12"
@@ -126,7 +127,7 @@ const HorizontalScrollComponent: React.FC = () => {
             </div>
           </div>
           <div className="bg-[#D76042] h-screen flex justify-center items-center w-1/2">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://labournet.in/wp-content/uploads/2022/01/Frame-1.svg"
               alt="img"
               className="w-64 lg:w-[650px]"
@@ -137,7 +138,7 @@ const HorizontalScrollComponent: React.FC = () => {
         <div className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white snap-start">
           <div className="mt-4 w-1/2 h-screen bg-black flex flex-col justify-center items-center">
             <div className="max-w-lg flex flex-col justify-start items-start">
-              <img
+              <SiteImage decoding="async" loading="lazy"
                 src="https://labournet.in/wp-content/uploads/2021/12/Home_Efficient_Icon.png"
                 alt="logo"
                 className="h-12 w-12"
@@ -153,7 +154,7 @@ const HorizontalScrollComponent: React.FC = () => {
             </div>
           </div>
           <div className="bg-[#D76042] h-screen flex justify-center items-center w-1/2">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://labournet.in/wp-content/uploads/2022/01/Group-213.svg"
               alt="img"
               className="w-64 lg:w-[650px]"

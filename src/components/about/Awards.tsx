@@ -1,5 +1,8 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
-import Slider, { Settings } from "react-slick";
+import Slider from "../common/ViewportSlider";
+import type { Settings } from "react-slick";
+
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import "slick-carousel/slick/slick.css";
@@ -133,7 +136,7 @@ const Awards: React.FC = () => {
                   {/* Golden Decor with Centered Logo */}
                   <div className="col-span-3 flex justify-center">
                     <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#FFD873] to-[#D4AF37] shadow-lg">
-                      <img
+                      <SiteImage decoding="async"
                         src={award.orgLogo}
                         alt={`${award.title} organisation`}
                         className="h-16 w-16 object-contain"
@@ -144,7 +147,7 @@ const Awards: React.FC = () => {
 
                   {/* Award Image */}
                   <div className="col-span-3 flex justify-center">
-                    <img
+                    <SiteImage decoding="async"
                       src={award.imageUrl}
                       alt={award.title}
                       className="h-32 object-contain"

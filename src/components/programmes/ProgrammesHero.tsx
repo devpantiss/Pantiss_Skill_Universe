@@ -1,3 +1,4 @@
+import BackgroundVideo from "../common/BackgroundVideo";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -5,25 +6,14 @@ const ProgrammesHero: React.FC = () => {
   return (
     <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
       {/* Background Video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        <source
-          src="/programs/6618336-uhd_3840_2160_24fps.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <BackgroundVideo src="/optimized/video/programmes.mp4" className="absolute inset-0 w-full h-full object-cover" defer />
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black" />
 
       {/* Content */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         className="relative z-10 text-center px-6 max-w-3xl"
@@ -37,12 +27,12 @@ const ProgrammesHero: React.FC = () => {
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-red-600 hover:bg-red-700 text-white text-lg px-6 py-3 rounded-full shadow-lg transition">
+          <a href="#programme-directory" className="bg-red-600 hover:bg-red-700 text-white text-lg px-6 py-3 rounded-full shadow-lg transition">
             View All Programmes
-          </button>
-          <button className="bg-green-500 hover:bg-green-600 text-white text-lg px-6 py-3 rounded-full shadow-lg transition">
+          </a>
+          <a href="/contact-us" className="bg-red-500 hover:bg-red-600 text-white text-lg px-6 py-3 rounded-full shadow-lg transition">
             Admission Enquiry
-          </button>
+          </a>
         </div>
       </motion.div>
     </section>

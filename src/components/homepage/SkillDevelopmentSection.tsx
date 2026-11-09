@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -771,7 +772,7 @@ export const SkillDevelopmentSection: React.FC<SkillDevelopmentSectionProps> = (
             );
 
             const BgImg = card.bgImage ? (
-              <img
+              <SiteImage decoding="async"
                 src={card.bgImage}
                 alt={`${card.title} background`}
                 className="card-bg-img"

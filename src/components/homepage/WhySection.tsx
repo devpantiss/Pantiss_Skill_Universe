@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 
 interface CardProps {
@@ -28,7 +29,7 @@ const WhySkillNetSection: React.FC = () => {
           <Card
             icon={
               <div className="bg-orange-100 p-4 rounded-full">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src="https://cdn-icons-png.flaticon.com/512/2592/2592972.png" // Mining tools icon
                   alt="mining-tools-icon"
                   className="w-10 h-10"
@@ -41,7 +42,7 @@ const WhySkillNetSection: React.FC = () => {
           <Card
             icon={
               <div className="bg-orange-100 p-4 rounded-full">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src="https://cdn-icons-png.flaticon.com/512/2921/2921128.png" // Simulation/training icon
                   alt="simulation-icon"
                   className="w-10 h-10"
@@ -54,7 +55,7 @@ const WhySkillNetSection: React.FC = () => {
           <Card
             icon={
               <div className="bg-orange-100 p-4 rounded-full">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Career/support icon
                   alt="career-icon"
                   className="w-10 h-10"

@@ -1,4 +1,5 @@
-import React, { memo, useEffect, useState } from "react";
+import { useGeoData } from "../../../hooks/useGeoData";
+import React, { memo, useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -9,7 +10,6 @@ import {
   useMap,
 } from "react-leaflet";
 import L from "leaflet";
-import type { GeoJsonObject } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* =====================================================
@@ -105,44 +105,11 @@ const MigrationArcs = () => (
 
 const AnimatedFlights = () => {
   const map = useMap();
-
   useEffect(() => {
-    const markers: L.Marker[] = [];
-    const rafs: number[] = [];
-
-    destinations.forEach((dest, idx) => {
-      const curve = generateCurve(
-        INDIA as [number, number],
-        dest.coords as [number, number],
-      );
-      const marker = L.marker(INDIA as [number, number], {
-        icon: planeIcon,
-      }).addTo(map);
-
-      marker.bindTooltip(dest.name, {
-        direction: "top",
-        offset: [0, -10],
-        className: "flight-tooltip",
-      });
-
-      let frame = 0;
-
-      const animate = () => {
-        frame = (frame + 1) % curve.length;
-        marker.setLatLng(curve[frame]);
-        rafs[idx] = requestAnimationFrame(animate);
-      };
-
-      setTimeout(animate, idx * 900);
-      markers.push(marker);
-    });
-
-    return () => {
-      markers.forEach((m) => map.removeLayer(m));
-      rafs.forEach((r) => cancelAnimationFrame(r));
-    };
+    const markers = destinations.map(destination => L.marker(destination.coords as [number, number], { icon: planeIcon })
+      .bindTooltip(destination.name, { direction: 'top', className: 'flight-tooltip' }).addTo(map));
+    return () => { markers.forEach(marker => map.removeLayer(marker)); };
   }, [map]);
-
   return null;
 };
 
@@ -150,20 +117,16 @@ const AnimatedFlights = () => {
    MAIN COMPONENT
 ===================================================== */
 
-const api_key = "8f741830-1254-408f-a58c-cdbbf7deba3c"; // Replace with your actual API key
 
 
 const IntMobilityTracksWorldMap: React.FC = () => {
-  const [geoData, setGeoData] = useState<GeoJsonObject | null>(null);
+  const { geoData, error: mapError } = useGeoData("/map/world.geojson");
 
-  useEffect(() => {
-    fetch("/map/world.geojson")
-      .then((res) => res.json())
-      .then(setGeoData);
-  }, []);
+
 
   return (
     <section className="relative h-[620px] w-full rounded-3xl overflow-hidden">
+      {mapError && <p className="map-data-notice" role="status">Map outlines could not load. Location details are still available. <button onClick={() => window.location.reload()}>Retry</button></p>}
       {/* INLINE CSS */}
       <style>{`
         .pulse-marker {
@@ -205,8 +168,8 @@ const IntMobilityTracksWorldMap: React.FC = () => {
         style={{ background: "#020617" }}
       >
         <TileLayer
-          attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
-          url={`https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.png?api_key=${api_key}`} // Use template literal to insert API key
+          attribution='&copy; OpenStreetMap contributors &copy; CARTO'
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         />
         {geoData && (
           <GeoJSON

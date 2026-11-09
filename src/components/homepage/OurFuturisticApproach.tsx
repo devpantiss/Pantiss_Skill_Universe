@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { memo } from "react";
 
 /* ===================== TYPES ===================== */
@@ -86,7 +87,7 @@ const InfraCard = ({ item }: { item: InfraItem }) => {
 
       {/* IMAGE */}
       <div className="relative h-56">
-        <img
+        <SiteImage decoding="async" loading="lazy"
           src={item.image}
           alt={item.title}
           className="h-full w-full object-cover"

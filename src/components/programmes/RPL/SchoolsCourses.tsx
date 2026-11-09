@@ -1,3 +1,5 @@
+import SiteImage from "../../common/SiteImage";
+import BackgroundVideo from "../../common/BackgroundVideo";
 import React, { memo, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle, Play, Pause, Users, Award, Clock, ArrowUpRight } from "lucide-react";
 
@@ -59,7 +61,7 @@ const schools: School[] = [
     shortName: "Shipping & Logistics",
     description: "Global trade and supply chain management expertise",
     image: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-green-400/20 via-cyan-400/20 to-teal-400/20",
+    gradient: "from-red-400/20 via-cyan-400/20 to-teal-400/20",
     totalStudents: 1980,
     successRate: 92,
     courses: [
@@ -89,7 +91,7 @@ const schools: School[] = [
     shortName: "Tech & EV",
     description: "Cutting-edge technology training for the digital automotive age",
     image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-red-400/20 via-green-400/20 to-cyan-400/20",
+    gradient: "from-red-400/20 via-red-400/20 to-cyan-400/20",
     totalStudents: 1540,
     successRate: 97,
     courses: [
@@ -104,7 +106,7 @@ const schools: School[] = [
     shortName: "Green Jobs",
     description: "Sustainable careers for environmental conservation and clean energy",
     image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop&crop=entropy",
-    gradient: "from-green-400/20 via-emerald-400/20 to-teal-400/20",
+    gradient: "from-red-400/20 via-emerald-400/20 to-teal-400/20",
     totalStudents: 2240,
     successRate: 93,
     courses: [
@@ -125,11 +127,11 @@ const RplSchoolsCarousel: React.FC = () => {
   // Auto-scroll with pause on hover
   useEffect(() => {
     if (!isPlaying || isPaused) return;
-    
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % schools.length);
     }, 4000);
-    
+
     return () => clearInterval(interval);
   }, [isPlaying, isPaused]);
 
@@ -179,7 +181,7 @@ const RplSchoolsCarousel: React.FC = () => {
   const currentSchool = schools[currentIndex];
 
   return (
-    <section 
+    <section
       className="relative py-20 overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -191,33 +193,15 @@ const RplSchoolsCarousel: React.FC = () => {
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        //   poster="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1920&h=1080&fit=crop&crop=entropy"
-        >
-          <source
-            src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742994033/12700136_1920_1080_30fps_zajh9b.mp4"
-            type="video/mp4"
-          />
-          {/* <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-working-in-a-factory-with-heavy-machinery-4129-large.mp4"
-            type="video/mp4"
-          /> */}
-          {/* Fallback for browsers that don't support video */}
-          <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black"></div>
-        </video>
-        
+        <BackgroundVideo src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1742994033/12700136_1920_1080_30fps_zajh9b.mp4" className="w-full h-full object-cover" defer />
+
         {/* Video Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-black/50 to-black"></div>
-        
+
         {/* Animated Overlay Effects */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-green-600/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-red-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-red-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-red-600/20 to-orange-600/20 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
       </div>
@@ -225,16 +209,16 @@ const RplSchoolsCarousel: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-red-100 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-red-100 to-red-100 bg-clip-text text-transparent">
             RPL Schools & Programs
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Discover industry-leading skill development programs aligned with NSQF standards
           </p>
           <div className="mt-6 flex items-center justify-center space-x-4">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-green-500"></div>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-green-500"></div>
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-red-500"></div>
+            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-red-500"></div>
           </div>
         </div>
 
@@ -243,15 +227,15 @@ const RplSchoolsCarousel: React.FC = () => {
           {/* Navigation Buttons */}
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-green-500"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-red-500"
             aria-label="Previous school"
           >
             <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </button>
-          
+
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-green-500"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-red-500"
             aria-label="Next school"
           >
             <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
@@ -261,24 +245,24 @@ const RplSchoolsCarousel: React.FC = () => {
           <div className="mx-auto max-w-5xl">
             <div className="relative group">
               <div className={`absolute inset-0 bg-gradient-to-r ${currentSchool.gradient} rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500`}></div>
-              
+
               <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
                 {/* Image Section */}
                 <div className="relative h-64 md:h-80 overflow-hidden">
-                  <img 
+                  <SiteImage decoding="async" loading="lazy"
                     src={currentSchool.image}
                     alt={currentSchool.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  
+
                   {/* Overlay Stats */}
                   <div className="absolute top-6 right-6 flex flex-col space-y-2">
-                    <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                    <div className="bg-red-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
                       <Award className="w-4 h-4 mr-1" />
                       {currentSchool.successRate}% Success
                     </div>
-                    <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                    <div className="bg-red-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
                       <Users className="w-4 h-4 mr-1" />
                       {currentSchool.totalStudents.toLocaleString()} Students
                     </div>
@@ -298,25 +282,25 @@ const RplSchoolsCarousel: React.FC = () => {
                 {/* Content Section */}
                 <div className="p-8">
                   <h4 className="text-xl font-semibold text-white mb-6 flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
+                    <CheckCircle className="w-5 h-5 text-red-400 mr-2" />
                     NSQF-Aligned Courses
                   </h4>
-                  
+
                   <div className="grid gap-4">
                     {currentSchool.courses.map((course, index) => (
-                      <div 
+                      <div
                         key={index}
                         className="group/course bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <h5 className="font-medium text-white group-hover/course:text-green-300 transition-colors">
+                          <h5 className="font-medium text-white group-hover/course:text-red-300 transition-colors">
                             {course.name}
                           </h5>
                           <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover/course:text-white transition-colors" />
                         </div>
-                        
+
                         <div className="flex items-center space-x-4 text-sm text-gray-300">
-                          <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded-lg font-medium">
+                          <span className="bg-red-500/20 text-red-300 px-2 py-1 rounded-lg font-medium">
                             Level {course.nsqfLevel}
                           </span>
                           <span className="flex items-center">
@@ -356,7 +340,7 @@ const RplSchoolsCarousel: React.FC = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`transition-all duration-300 rounded-full ${
                   currentIndex === index
-                    ? "w-8 h-3 bg-green-500"
+                    ? "w-8 h-3 bg-red-500"
                     : "w-3 h-3 bg-white/30 hover:bg-white/50"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

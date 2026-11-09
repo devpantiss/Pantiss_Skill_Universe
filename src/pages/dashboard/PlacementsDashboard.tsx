@@ -1,12 +1,13 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React, { useState } from "react";
 import PlacementsFilterSection from "../../components/dashboard/placements/PlacementsFilterSection";
-import PlacementsOverviewSection from "../../components/dashboard/placements/PlacementsOverviewSection";
-import DistrictPerformanceAndTrendSection from "../../components/dashboard/placements/DistrictPerformanceAndTrendSection";
-import PlacementsDiversityAnalyticsSection from "../../components/dashboard/placements/PlacementsDiversityAnalyticsSection";
-import PlacementsGeographicalRankingSection from "../../components/dashboard/placements/PlacementsGeographicalRankingSection";
-import EstablishmentProfileAnalyticsSection from "../../components/dashboard/placements/EstablishmentProfileAnalyticsSection";
-import TrainingAndQualificationAnalyticsSection from "../../components/dashboard/placements/TrainingAndQualificationAnalyticsSection";
-import TopEnrolledCoursesSection from "../../components/dashboard/placements/TopEnrolledCoursesSection";
+const PlacementsOverviewSection = React.lazy(() => import("../../components/dashboard/placements/PlacementsOverviewSection"));
+const DistrictPerformanceAndTrendSection = React.lazy(() => import("../../components/dashboard/placements/DistrictPerformanceAndTrendSection"));
+const PlacementsDiversityAnalyticsSection = React.lazy(() => import("../../components/dashboard/placements/PlacementsDiversityAnalyticsSection"));
+const PlacementsGeographicalRankingSection = React.lazy(() => import("../../components/dashboard/placements/PlacementsGeographicalRankingSection"));
+const EstablishmentProfileAnalyticsSection = React.lazy(() => import("../../components/dashboard/placements/EstablishmentProfileAnalyticsSection"));
+const TrainingAndQualificationAnalyticsSection = React.lazy(() => import("../../components/dashboard/placements/TrainingAndQualificationAnalyticsSection"));
+const TopEnrolledCoursesSection = React.lazy(() => import("../../components/dashboard/placements/TopEnrolledCoursesSection"));
 
 const PlacementsDashboard: React.FC = () => {
   const [fy, setFy] = useState("All");
@@ -33,13 +34,13 @@ const PlacementsDashboard: React.FC = () => {
         setContractType={setContractType}
       />
 
-      <PlacementsOverviewSection />
-      <DistrictPerformanceAndTrendSection />
-      <PlacementsDiversityAnalyticsSection />
-      <PlacementsGeographicalRankingSection />
-      <EstablishmentProfileAnalyticsSection />
-      <TrainingAndQualificationAnalyticsSection />
-      <TopEnrolledCoursesSection />
+      <DeferredSection><PlacementsOverviewSection /></DeferredSection>
+      <DeferredSection><DistrictPerformanceAndTrendSection /></DeferredSection>
+      <DeferredSection><PlacementsDiversityAnalyticsSection /></DeferredSection>
+      <DeferredSection><PlacementsGeographicalRankingSection /></DeferredSection>
+      <DeferredSection><EstablishmentProfileAnalyticsSection /></DeferredSection>
+      <DeferredSection><TrainingAndQualificationAnalyticsSection /></DeferredSection>
+      <DeferredSection><TopEnrolledCoursesSection /></DeferredSection>
     </div>
   );
 };

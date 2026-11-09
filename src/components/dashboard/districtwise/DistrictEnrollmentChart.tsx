@@ -6,18 +6,18 @@ import {
     Tooltip,
     ResponsiveContainer,
   } from "recharts";
-  
+
   type Props = {
     data: { district: string; enrolled: number }[];
   };
-  
+
   export default function DistrictEnrollmentChart({ data }: Props) {
     return (
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
         <h3 className="text-gray-100 font-semibold mb-4">
           District-wise Enrolled Candidates
         </h3>
-  
+
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data}>
@@ -36,11 +36,10 @@ import {
                   color: "#f9fafb",
                 }}
               />
-              <Bar dataKey="enrolled" fill="#dc2626" />
+              <Bar isAnimationActive={false} dataKey="enrolled" fill="#dc2626" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
     );
   }
-  

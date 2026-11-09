@@ -5,19 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // Split heavy vendor libraries into separate chunks
-          'vendor-three': ['three'],
-          'vendor-gsap': ['gsap'],
-          'vendor-framer': ['framer-motion', 'motion'],
-          'vendor-charts': ['recharts'],
-          'vendor-maps': ['leaflet', 'react-leaflet'],
-          'vendor-ui': ['react-slick', 'slick-carousel', 'react-fast-marquee'],
-        },
-      },
-    },
+    // Let Rollup preserve route boundaries. Grouping unrelated packages into
+    // manual vendor chunks pulled dashboard charts into the home page preload.
     // Enable CSS code splitting
     cssCodeSplit: true,
   },

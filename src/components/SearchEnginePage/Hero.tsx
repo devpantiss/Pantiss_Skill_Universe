@@ -1,3 +1,5 @@
+import SiteImage from "../common/SiteImage";
+import BackgroundVideo from "../common/BackgroundVideo";
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,21 +8,7 @@ const HeroSection: React.FC = memo(() => {
   return (
     <div className="relative mt-12 text-white overflow-hidden">
       {/* Background Video */}
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-        preload="auto"
-      >
-        <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742999025/9310125-uhd_3840_2160_30fps_l4ievp.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
+      <BackgroundVideo src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1742999025/9310125-uhd_3840_2160_30fps_l4ievp.mp4" className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none" defer />
 
       {/* Dark Overlay for Text Visibility */}
       <div className="absolute inset-0 bg-black/40"></div>
@@ -83,7 +71,7 @@ const HeroSection: React.FC = memo(() => {
 
         {/* Right Section: Image */}
         <div className="lg:w-1/2 hidden lg:flex justify-center items-center animate-fade-in">
-          <img
+          <SiteImage
             src="https://labournet.in/wp-content/uploads/2021/12/HomeBanner_warehouseManager_LowRes-2-1.png"
             alt="Skilled Worker in a warehouse"
             className="w-full max-w-md rounded-lg shadow-lg"

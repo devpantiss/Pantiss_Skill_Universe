@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const DiplomaHero: React.FC = () => {
   // Use Vite's BASE_URL so this works even when deployed under a sub-path.
-  const heroImageUrl = "/programs/Hero/hero_1.jpg";
+  const heroImageUrl = "/optimized/programs/Hero/hero_1.jpg.webp";
 
   return (
     <section className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden bg-black">
@@ -20,13 +20,13 @@ const DiplomaHero: React.FC = () => {
 
       {/* Content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto"
       >
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight font-sans">
-          Program Introduction{" "}
+          Diploma & polytechnic programmes{" "}
         </h1>
 
         <p className="text-lg md:text-xl text-gray-100 drop-shadow-md leading-relaxed">

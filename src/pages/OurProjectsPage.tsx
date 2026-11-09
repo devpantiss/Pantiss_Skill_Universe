@@ -1,3 +1,4 @@
+import SiteImage from "../components/common/SiteImage";
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { ArrowUpRight, Filter, GraduationCap, MapPin, Search } from 'lucide-react';
@@ -15,7 +16,7 @@ function PortfolioCard({ project }: { project: SkillingProject }) {
   return (
     <article id={project.id} className="portfolio-card">
       <div className="portfolio-card-image">
-        <img src={project.image} alt={`${project.sector} sector`} width="720" height="400" loading="lazy" />
+        <SiteImage decoding="async" src={project.image} alt={`${project.sector} sector`} width="720" height="400" loading="lazy" />
         <span className="portfolio-number">{number}</span>
         <span className="portfolio-badge">{project.status === 'completed' ? 'Completed' : project.status === 'ongoing' ? 'Ongoing' : 'Skilling initiative'}</span>
       </div>

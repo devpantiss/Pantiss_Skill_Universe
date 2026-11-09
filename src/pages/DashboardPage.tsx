@@ -8,7 +8,7 @@ import DashboardFilters from '../components/dashboard/DashboardFilters'
 
 const DashboardPage: React.FC = () => {
   return (
-    <div className='pt-36 lg:pt-48 px-4 bg-black'>
+    <div className='px-0 bg-black'>
         <DashboardFilters />
         {/* <SkillsAnalyticsDashboard />
         <EnrollmentPivotSection />

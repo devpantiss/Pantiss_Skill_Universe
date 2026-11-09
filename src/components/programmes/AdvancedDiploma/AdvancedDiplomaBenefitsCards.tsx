@@ -47,7 +47,7 @@ const AdvancedDiplomaBenefitsCards: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="uppercase tracking-widest text-sm text-[#00E5A8] mb-2">
+          <p className="uppercase tracking-widest text-sm text-[var(--site-accent)] mb-2">
             Why Choose Pantiss
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white">
@@ -83,7 +83,7 @@ const AdvancedDiplomaBenefitsCards: React.FC = () => {
 
               {/* Content */}
               <div className="relative z-10 p-8 flex flex-col justify-end h-[380px]">
-                <span className="text-xs uppercase tracking-widest text-[#FFD84D] mb-2">
+                <span className="text-xs uppercase tracking-widest text-[var(--site-accent)] mb-2">
                   {item.tag}
                 </span>
 
@@ -97,13 +97,7 @@ const AdvancedDiplomaBenefitsCards: React.FC = () => {
 
                 {/* CTA */}
                 <button
-                  className="
-                    inline-flex items-center gap-3 w-fit
-                    px-6 py-3 rounded-full
-                    bg-gradient-to-r from-[#00E5A8] to-[#7C4DFF]
-                    text-black font-semibold
-                    hover:scale-105 transition
-                  "
+                  className="site-button"
                 >
                   Explore
                   <FaArrowRight />

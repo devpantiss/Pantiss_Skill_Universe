@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 
@@ -66,7 +67,7 @@ const ProgramCard = memo(
               backgroundRepeat: "no-repeat",
             }}
           >
-            <img
+            <SiteImage
               src={program.image}
               alt={`${program.title} background`}
               className="w-full h-full object-cover opacity-0"

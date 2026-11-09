@@ -1,5 +1,7 @@
+import SiteImage from "../../common/SiteImage";
 import React from "react";
-import Slider from "react-slick";
+import Slider from "../../common/ViewportSlider";
+
 import "./certifications.css";
 
 interface Certification {
@@ -21,7 +23,7 @@ const certificationsData: Certification[] = [
     title: "NSDC (National Skill Development Council)",
     description: "Industry Engagement Partner",
     imageUrl:
-      "/About/certification/ski.jpg",
+      "/optimized/About/certification/ski.jpg.webp",
     logoUrl: "/cert/NSDC.png",
   },
   {
@@ -30,13 +32,13 @@ const certificationsData: Certification[] = [
     description: "Industry Engagement Partner",
     imageUrl:
       "https://www.ualberta.ca/en/folio/media-library/2023/11/231109-women-entrepreneurs-main-16x9-3000px.jpg",
-    logoUrl: "/cert/MEPSC.png",
+    logoUrl: "/optimized/cert/MEPSC.png.webp",
   },
   {
     title: "SCMS (Skill Council for Mining Sector)",
     description: "Authorized Training Partner",
     imageUrl:
-      "/About/certification/mining_1.jpg",
+      "/optimized/About/certification/mining_1.jpg.webp",
     logoUrl: "/cert/SCMS.png",
   },
   {
@@ -50,7 +52,7 @@ const certificationsData: Certification[] = [
     title: "Agriculture Skill Council of India",
     description: "Authorized Training Partner",
     imageUrl:
-      "/About/certification/agri.jpg",
+      "/optimized/About/certification/agri.jpg.webp",
     logoUrl: "/cert/asci.png",
   },
 ];
@@ -77,7 +79,7 @@ const Certifications: React.FC = () => {
       className="relative bg-gray-950 text-white py-24"
       style={{
         backgroundImage:
-          "url('/About/cert_bg.jpg')",
+          "url('/optimized/About/cert_bg.jpg.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -89,7 +91,7 @@ const Certifications: React.FC = () => {
         {/* ===== Logo Strip ===== */}
         <div className="mb-10 flex flex-wrap items-center justify-center gap-8">
           {certificationsData.map((c, i) => (
-            <img
+            <SiteImage decoding="async" loading="lazy"
               key={i}
               src={c.logoUrl}
               alt={c.title}
@@ -118,7 +120,7 @@ const Certifications: React.FC = () => {
               <div className="flex h-[520px] flex-col overflow-hidden border border-gray-700 bg-gray-900/80 backdrop-blur transition hover:shadow-[0_0_28px_rgba(220,38,38,0.45)]">
                 {/* Image */}
                 <div className="relative h-[300px]">
-                  <img
+                  <SiteImage decoding="async" loading="lazy"
                     src={cert.imageUrl}
                     alt={cert.title}
                     className="h-full w-full object-cover"
@@ -131,7 +133,7 @@ const Certifications: React.FC = () => {
                   <div
                     className="flex h-14 w-32 items-center justify-center rounded-md px-3 transition hover:scale-105"
                   >
-                    <img
+                    <SiteImage decoding="async" loading="lazy"
                       src={cert.logoUrl}
                       alt={cert.title}
                       className="max-h-10 max-w-full object-contain"
@@ -141,7 +143,7 @@ const Certifications: React.FC = () => {
                     <h3 className="text-lg font-semibold mb-2">{cert.title}</h3>
                     <p className="text-sm text-gray-300">{cert.description}</p>
                   </div>
-                  <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-red-600 to-green-600" />
+                  <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-red-600 to-red-600" />
                 </div>
               </div>
             </div>

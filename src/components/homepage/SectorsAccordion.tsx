@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { memo, useState, useMemo, useCallback, useEffect } from "react";
 import { FaBookOpen, FaBed, FaChalkboardTeacher, FaFootballBall, FaTheaterMasks, FaEllipsisH } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -21,7 +22,7 @@ const campusLifeData: CampusLife[] = [
   },
   {
     title: "Hostel",
-    color: "bg-green-600",
+    color: "bg-red-600",
     description:
       "Comfortable, secure hostels and modern amenities for students from all backgrounds. Make lifelong friendships, experience cultural exchange, and focus on your dreams worry-free.",
     icon: FaBed,
@@ -37,7 +38,7 @@ const campusLifeData: CampusLife[] = [
   },
   {
     title: "Play",
-    color: "bg-green-600",
+    color: "bg-red-600",
     description:
       "From vibrant sports grounds to indoor games & e-sports zones—balance your academics with healthy competition, fitness, and fun. Teamwork that builds true confidence.",
     icon: FaFootballBall,
@@ -94,7 +95,7 @@ const LifeItem = memo(
         }}
         tabIndex={0}
       >
-        <img
+        <SiteImage
           src={isActive ? sector.backgroundImage : sector.backgroundImage.replace("w=800", "w=200")}
           alt={`${sector.title} background`}
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -122,7 +123,7 @@ const LifeItem = memo(
             <p className="mt-4 text-base text-gray-200 max-w-md mx-auto leading-relaxed">{sector.description}</p>
             <Link
               to={`/life/${sector.title.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`}
-              className="mt-6 inline-block px-4 py-2 bg-green-600 text-black font-semibold rounded-md hover:bg-green-700 transition-colors duration-300"
+              className="mt-6 inline-block px-4 py-2 bg-red-600 text-black font-semibold rounded-md hover:bg-red-700 transition-colors duration-300"
             >
               Learn More
             </Link>
@@ -185,7 +186,7 @@ const LifeOnCampusAccordion: React.FC = () => {
     <section className="w-full flex justify-center py-16 bg-black relative overflow-hidden">
       {/* Large Blurry Circles */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-green-600 rounded-full blur-3xl opacity-30 z-0" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
 
       {/* Small Blurry Circles */}
       <div className="absolute top-10 right-10 w-32 h-32 bg-blue-600 rounded-full blur-3xl opacity-30 z-0" />
@@ -195,11 +196,11 @@ const LifeOnCampusAccordion: React.FC = () => {
       <div className="absolute top-1/4 right-1/3 w-32 h-32 bg-cyan-600 rounded-full blur-3xl opacity-30 z-0" />
       <div className="absolute bottom-1/4 left-1/3 w-32 h-32 bg-orange-600 rounded-full blur-3xl opacity-30 z-0" />
       <div className="absolute top-1/2 left-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
-      <div className="absolute bottom-1/2 right-10 w-32 h-32 bg-green-600 rounded-full blur-3xl opacity-30 z-0" />
+      <div className="absolute bottom-1/2 right-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
 
       <div className="max-w-7xl w-full px-6 text-center relative z-10">
         <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white [will-change:transform]">
-          Life of a <span className="text-green-600">Pantiss Student</span>
+          Life of a <span className="text-red-600">Pantiss Student</span>
         </h2>
         <p className="text-gray-300 mb-10 text-lg">
           Experience every aspect—study, hostel, learning, play, and more—in a vibrant and supportive campus community.
@@ -213,7 +214,7 @@ const LifeOnCampusAccordion: React.FC = () => {
         </div>
         <Link
           to="/student-life"
-          className="inline-block mt-8 px-4 py-2 bg-green-600 text-black font-semibold rounded-md hover:bg-green-700 transition-colors duration-300"
+          className="inline-block mt-8 px-4 py-2 bg-red-600 text-black font-semibold rounded-md hover:bg-red-700 transition-colors duration-300"
           aria-label="Explore all aspects of student life"
         >
           Explore All

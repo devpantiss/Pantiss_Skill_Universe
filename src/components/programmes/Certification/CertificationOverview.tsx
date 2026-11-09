@@ -1,6 +1,7 @@
 import React, { memo, useState } from "react";
 import { motion, Variants } from "framer-motion";
-import Slider from "react-slick";
+import Slider from "../../common/ViewportSlider";
+
 
 // Define interfaces for type safety
 interface ImpactData {
@@ -133,7 +134,7 @@ interface CustomArrowProps {
 
 const CustomPrevArrow = ({ onClick }: CustomArrowProps) => (
   <button
-    className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-500"
+    className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-500"
     onClick={onClick}
     aria-label="Previous sector"
   >
@@ -145,7 +146,7 @@ const CustomPrevArrow = ({ onClick }: CustomArrowProps) => (
 
 const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   <button
-    className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-500"
+    className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-500"
     onClick={onClick}
     aria-label="Next sector"
   >
@@ -193,7 +194,7 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
         {/* Header */}
         <motion.div variants={itemVariants as Variants} className="text-center mb-12 lg:mb-16">
           {/* <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Program <span className="text-green-500"></span> Introduction
+            Program <span className="text-red-500"></span> Introduction
           </h2> */}
           <p className="text-lg text-white/80 max-w-3xl mx-auto">
             Modular, industry-designed certification programs to upskill and reskill professionals for immediate job-readiness across core sectors:
@@ -263,12 +264,12 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
               <div className="text-sm text-white/60 mt-1">{currentSector?.name}</div>
             </div>
             <div className="bg-white/5 rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-green-500">{currentImpact.trained.toLocaleString()}</div>
+              <div className="text-3xl font-bold text-red-500">{currentImpact.trained.toLocaleString()}</div>
               <div className="text-white/80">Professionals Upskilled</div>
               <div className="text-sm text-white/60 mt-1">Industry-ready</div>
             </div>
             <div className="bg-white/5 rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-green-400">{currentImpact.placed.toLocaleString()}</div>
+              <div className="text-3xl font-bold text-red-400">{currentImpact.placed.toLocaleString()}</div>
               <div className="text-white/80">Career Transitions</div>
               <div className="text-sm text-white/60 mt-1">Placement & Role Moves</div>
             </div>

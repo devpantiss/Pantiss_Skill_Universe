@@ -1,20 +1,21 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React from "react";
 import DualTrainingHero from "../../components/programmes/DualTraining/Hero";
-import DualTrainingHighlight from "../../components/programmes/DualTraining/Highlights";
-import DualTrainingOverview from "../../components/programmes/DualTraining/DualTrainingOverview";
-import DualTrainingSchoolsCarousel from "../../components/programmes/DualTraining/SchoolsCourses";
-import TestimonialSectionDualTraining from "../../components/programmes/DualTraining/Testimonials";
+const DualTrainingHighlight = React.lazy(() => import("../../components/programmes/DualTraining/Highlights"));
+const DualTrainingOverview = React.lazy(() => import("../../components/programmes/DualTraining/DualTrainingOverview"));
+const DualTrainingSchoolsCarousel = React.lazy(() => import("../../components/programmes/DualTraining/SchoolsCourses"));
+const TestimonialSectionDualTraining = React.lazy(() => import("../../components/programmes/DualTraining/Testimonials"));
 import LogoMarquee from "../../components/common/LogoMaequee";
-import ApprenticeshipBenefitsCards from "../../components/programmes/DualTraining/ApprenticeshipBenefitsCards";
+const ApprenticeshipBenefitsCards = React.lazy(() => import("../../components/programmes/DualTraining/ApprenticeshipBenefitsCards"));
 
 const schoolLogos = [
   {
     name: "School for Mines, Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+    src: "/Homepage/placements/company/fleetguard.png",
   },
   {
     name: "School for Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
+    src: "/Homepage/placements/company/vedanta-removebg-preview.png",
   },
   {
     name: "School for Power & Green Energy",
@@ -22,15 +23,15 @@ const schoolLogos = [
   },
   {
     name: "School for Shipping & Logistics",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+    src: "/Homepage/placements/company/schneider_electric.png",
   },
   {
     name: "School for Construction Tech & Infra Equipments",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+    src: "/Homepage/placements/company/TATA_STEEL-removebg-preview.png",
   },
   {
     name: "School for Water, Sanitation & Facility Management",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+    src: "/Homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png",
   },
 ];
 
@@ -38,8 +39,8 @@ const ApprenticeshipAndDualTrainingPage: React.FC = () => {
   return (
     <div>
       <DualTrainingHero />
-      <DualTrainingOverview />
-      <DualTrainingSchoolsCarousel />
+      <DeferredSection><DualTrainingOverview /></DeferredSection>
+      <DeferredSection><DualTrainingSchoolsCarousel /></DeferredSection>
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}
@@ -49,9 +50,9 @@ const ApprenticeshipAndDualTrainingPage: React.FC = () => {
         bg="bg-black"
         className="py-3"
       />
-      <DualTrainingHighlight />
-      <ApprenticeshipBenefitsCards />
-      <TestimonialSectionDualTraining />
+      <DeferredSection><DualTrainingHighlight /></DeferredSection>
+      <DeferredSection><ApprenticeshipBenefitsCards /></DeferredSection>
+      <DeferredSection><TestimonialSectionDualTraining /></DeferredSection>
     </div>
   );
 };

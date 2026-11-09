@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -90,16 +91,16 @@ const FeaturedProgrammes = () => {
       {/* === Glowing Background Orbs === */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-20 left-20 w-72 h-72 bg-red-600/30 rounded-full blur-[120px]"></div>
-        <div className="absolute top-1/3 right-20 w-96 h-96 bg-green-500/25 rounded-full blur-[160px]"></div>
+        <div className="absolute top-1/3 right-20 w-96 h-96 bg-red-500/25 rounded-full blur-[160px]"></div>
         <div className="absolute bottom-10 left-1/2 w-80 h-80 bg-red-600/20 rounded-full blur-[150px]"></div>
       </div>
 
       {/* Heading */}
       <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-white relative z-10">
         Featured Programmes
-        <span className="absolute left-1/2 -bottom-3 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full"></span>
+        <span className="absolute left-1/2 -bottom-3 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-red-600 to-red-500 rounded-full"></span>
       </h2>
-      
+
       {/* Slider */}
       <div className="relative slider-container z-10">
         <Slider {...settings}>
@@ -125,26 +126,26 @@ const ProgrammeCard = ({ programme }: ProgrammeCardProps) => {
       shadow-[0_4px_20px_rgba(220,38,38,0.25)] hover:shadow-[0_6px_24px_rgba(34,197,94,0.35)]
       group cursor-pointer transition-all duration-300
       transform perspective-1000 hover:scale-105
-      focus-visible:ring-2 focus-visible:ring-green-500
+      focus-visible:ring-2 focus-visible:ring-red-500
     ">
       {/* Image */}
       <div className="relative h-80 overflow-hidden">
-        <img 
-          src={programme.imageUrl} 
+        <SiteImage decoding="async" loading="lazy"
+          src={programme.imageUrl}
           alt={programme.title}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
       </div>
-      
+
       {/* Content */}
       <div className="p-6">
         <h3 className="text-xl font-semibold text-red-600 mb-2">{programme.title}</h3>
         <p className="text-gray-300 text-sm leading-relaxed mb-4">{programme.description}</p>
-        
+
         <button className="
-          inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-600 to-green-500 text-white
-          rounded-md shadow-md hover:from-red-500 hover:to-green-400 transition-all duration-300 font-semibold text-sm
+          inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white
+          rounded-md shadow-md hover:from-red-500 hover:to-red-400 transition-all duration-300 font-semibold text-sm
         ">
           Learn More
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">

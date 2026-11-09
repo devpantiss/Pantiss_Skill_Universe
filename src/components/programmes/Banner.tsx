@@ -27,8 +27,8 @@ const ProgrammesBanner: React.FC = () => {
           and more — building a workforce ready for tomorrow.
         </p>
       </div>
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 via-black to-red-600"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-green-500"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-black to-red-600"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-red-500"></div>
 
     </section>
   );

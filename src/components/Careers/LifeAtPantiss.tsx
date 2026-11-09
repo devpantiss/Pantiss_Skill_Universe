@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,7 @@ type CardProps = {
 const cardData: CardProps[] = [
   {
     image:
-      "/careers/life/diversity.jpg",
+      "/optimized/careers/life/diversity.jpg.webp",
     text: "Inclusiveness & Diversity",
     path: "/life-at-pantiss/inclusiveness-and-diversity",
   },
@@ -31,13 +32,13 @@ const cardData: CardProps[] = [
   },
   {
     image:
-      "/careers/life/smartworks-coworking-Uz8THWPXwhI-unsplash.jpg",
+      "/optimized/careers/life/smartworks-coworking-Uz8THWPXwhI-unsplash.jpg.webp",
     text: "Meet the Leaders",
     path: "/life-at-pantiss/meet-the-leaders",
   },
   {
     image:
-      "/careers/life/marcel-strauss-fzqxoFJytiE-unsplash.jpg",
+      "/optimized/careers/life/marcel-strauss-fzqxoFJytiE-unsplash.jpg.webp",
     text: "Mental Health & Wellbeing",
     path: "/life-at-pantiss/investing-in-mental-health",
   },
@@ -54,7 +55,7 @@ const Card = memo(
       ${isLarge ? "h-[550px]" : "h-64"}`}
     >
       <Link to={path}>
-        <img
+        <SiteImage decoding="async"
           src={image}
           alt={text}
           loading="lazy"
@@ -82,7 +83,7 @@ const LifeAtPantiss: React.FC = () => {
   const largeCard = useMemo<CardProps>(
     () => ({
       image:
-        "/careers/life/team.jpeg",
+        "/optimized/careers/life/team.jpeg.webp",
       text: "People of Pantiss",
       path: "/life-at-pantiss/people-at-pantiss",
       isLarge: true,

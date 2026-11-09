@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
-import Slider from "react-slick";
+import Slider from "../common/ViewportSlider";
+import type SlickSlider from "react-slick";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FiSearch } from "react-icons/fi";
@@ -113,7 +115,7 @@ const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
 const ProgrammeSection: React.FC = () => {
   const [tab, setTab] = useState<"operator" | "technician">("operator");
   const [search, setSearch] = useState("");
-  const sliderRef = useRef<Slider>(null);
+  const sliderRef = useRef<SlickSlider>(null);
 
   const courseList =
     tab === "operator"

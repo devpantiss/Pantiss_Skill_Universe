@@ -1,23 +1,24 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React from "react";
 import DiplomaHero from "../../components/programmes/DiplomaAndAdvancedDiploma/Hero";
 // import DiplomaOverview from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaOverview";
-import DiplomaSchoolsCourses from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaSchoolsCourses";
+const DiplomaSchoolsCourses = React.lazy(() => import("../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaSchoolsCourses"));
 // import DiplomaHighlights from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaHighlights";
-import TestimonialSectionDiploma from "../../components/programmes/DiplomaAndAdvancedDiploma/Testimonials";
+const TestimonialSectionDiploma = React.lazy(() => import("../../components/programmes/DiplomaAndAdvancedDiploma/Testimonials"));
 import LogoMarquee from "../../components/common/LogoMaequee";
-import DiplomaBenefits from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaBenefits";
+const DiplomaBenefits = React.lazy(() => import("../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaBenefits"));
 import DiplomaImpact from "../../components/programmes/DiplomaAndAdvancedDiploma/DiplomaImpact";
-import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
-import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
+const ProgramOverviewVideo = React.lazy(() => import("../../components/common/ProgramOverviewVideo"));
+const PlacementsShowcaseSection = React.lazy(() => import("../../components/common/PlacementsShowcaseSection"));
 
 const schoolLogos = [
   {
     name: "School for Mines, Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+    src: "/Homepage/placements/company/fleetguard.png",
   },
   {
     name: "School for Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
+    src: "/Homepage/placements/company/vedanta-removebg-preview.png",
   },
   {
     name: "School for Power & Green Energy",
@@ -25,15 +26,15 @@ const schoolLogos = [
   },
   {
     name: "School for Shipping & Logistics",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+    src: "/Homepage/placements/company/schneider_electric.png",
   },
   {
     name: "School for Construction Tech & Infra Equipments",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+    src: "/Homepage/placements/company/TATA_STEEL-removebg-preview.png",
   },
   {
     name: "School for Water, Sanitation & Facility Management",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+    src: "/Homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png",
   },
 ];
 
@@ -42,11 +43,11 @@ const DiplomaAndAdvancedDiplomaPage: React.FC = () => {
     <div>
       <DiplomaHero />
       <DiplomaImpact />
-      <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
+      <DeferredSection><ProgramOverviewVideo videoId="Ky46MN2buqQ" /></DeferredSection>
       {/* <DiplomaOverview /> */}
-      <DiplomaBenefits />
-      <DiplomaSchoolsCourses />
-      <PlacementsShowcaseSection />
+      <DeferredSection><DiplomaBenefits /></DeferredSection>
+      <DeferredSection><DiplomaSchoolsCourses /></DeferredSection>
+      <DeferredSection><PlacementsShowcaseSection /></DeferredSection>
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}
@@ -57,7 +58,7 @@ const DiplomaAndAdvancedDiplomaPage: React.FC = () => {
         className="py-3"
       />
       {/* <DiplomaHighlights /> */}
-      <TestimonialSectionDiploma />
+      <DeferredSection><TestimonialSectionDiploma /></DeferredSection>
     </div>
   );
 };

@@ -1,15 +1,17 @@
+import SiteImage from "../common/SiteImage";
 import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useViewportActivity } from "../../hooks/useViewportActivity";
 import { Link } from "react-router-dom";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const slides = [
-  "/Homepage/why/mines.jpg",
-  "/Homepage/why/steel.jpg",
-  "/Homepage/why/greenenergy.jpg",
-  "/Homepage/why/shippingandlogistics.jpg",
-  "/Homepage/why/construction.jpg",
-  "/Homepage/why/greenjobs.jpg"
+  "/Homepage/why/mines.webp",
+  "/Homepage/why/steel.webp",
+  "/optimized/Homepage/why/greenenergy.webp.webp",
+  "/optimized/Homepage/why/shippingandlogistics.webp.webp",
+  "/Homepage/why/construction.webp",
+  "/Homepage/why/greenjobs.webp"
 ];
 
 const schoolLogos = [
@@ -59,18 +61,19 @@ const scrollAnimationStyle = `
 `;
 
 const WhyPantissSkillUniversity: React.FC = React.memo(() => {
+  const { ref, active } = useViewportActivity<HTMLDivElement>();
   const [current, setCurrent] = useState(0);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (shouldReduceMotion) return;
+    if (shouldReduceMotion || !active) return;
 
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [shouldReduceMotion]);
+  }, [shouldReduceMotion, active]);
 
   const handlePrev = useCallback(() => {
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
@@ -81,7 +84,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
   }, []);
 
   return (
-    <div className="relative w-full h-[690px] overflow-hidden font-sans">
+    <div ref={ref} className="relative w-full h-[690px] overflow-hidden font-sans">
       <style>{scrollAnimationStyle}</style>
 
       {/* Background Image Slider — only render current slide */}
@@ -90,6 +93,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
           key={current}
           src={slides[current]}
           alt={`Campus view ${current + 1}`}
+          decoding="async"
           className="absolute top-0 left-0 w-full h-full object-cover"
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -111,7 +115,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
             transition={{ duration: 0.8 }}
           >
             WHY <span className="text-red-600">PANTISS SKILL</span>{" "}
-            <span className="text-green-600">UNIVERSE</span>?
+            <span className="text-red-600">UNIVERSE</span>?
           </motion.h2>
           <motion.p
             className="text-base sm:text-lg mb-4 leading-relaxed text-gray-100"
@@ -141,7 +145,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
           >
             <Link
               to="/about"
-              className="inline-flex rounded-lg border-2 border-white px-6 py-3 font-semibold text-white transition-all duration-300 hover:border-green-600 hover:bg-green-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-300"
+              className="inline-flex rounded-lg border-2 border-white px-6 py-3 font-semibold text-white transition-all duration-300 hover:border-red-600 hover:bg-red-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
             >
               Learn More About Pantiss
             </Link>
@@ -156,7 +160,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
             </h3>
           </div>
           <div className="flex-1 overflow-hidden relative">
-            <div className="school-logo-scroll">
+            <div className="school-logo-scroll" style={{ animationPlayState: active ? "running" : "paused" }}>
               <div className="flex flex-col items-center gap-6 pt-4">
                 {/* Render the logos twice for seamless loop */}
                 {[...schoolLogos, ...schoolLogos].map((school, idx) => (
@@ -166,7 +170,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
                     style={{ height: "120px" }}
                   >
                     <div className="w-48 h-24 flex items-center justify-center">
-                      <img
+                      <SiteImage
                         src={school.src}
                         alt={`${school.name} logo`}
                         className="max-w-full max-h-full object-contain"
@@ -206,7 +210,7 @@ const WhyPantissSkillUniversity: React.FC = React.memo(() => {
 
       {/* Subscribe Tag */}
       <motion.div
-        className="absolute -right-12 top-1/2 transform -translate-y-1/2 z-40 bg-green-600 text-white px-3 py-1.5 rotate-90 origin-bottom-right font-bold shadow-md rounded-sm"
+        className="absolute -right-12 top-1/2 transform -translate-y-1/2 z-40 bg-red-600 text-white px-3 py-1.5 rotate-90 origin-bottom-right font-bold shadow-md rounded-sm"
         whileHover={{ scale: 1.1 }}
         transition={{ duration: 0.3 }}
       >

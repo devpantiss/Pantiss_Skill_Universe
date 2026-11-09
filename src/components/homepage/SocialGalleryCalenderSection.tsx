@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { useState, useMemo } from "react";
 import Modal from "react-modal";
 import {
@@ -19,18 +20,18 @@ const monthsFull = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 
 // Static Data
 const GALLERY = [
-  "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1444210971048-6130cf0c46cf?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1512446733611-9099a758e0da?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=600&q=80",
+  { src: "/Homepage/gallery/workshop-learning-thumb.webp", fullSrc: "/Homepage/gallery/workshop-learning.webp", alt: "Students working together during a practical workshop" },
+  { src: "/Homepage/gallery/electrical-practice-thumb.webp", fullSrc: "/Homepage/gallery/electrical-practice.webp", alt: "Trainee practising electrical installation on a training board" },
+  { src: "/Homepage/gallery/classroom-session-thumb.webp", fullSrc: "/Homepage/gallery/classroom-session.webp", alt: "Students attending a classroom training session" },
+  { src: "/Homepage/gallery/guided-practical-thumb.webp", fullSrc: "/Homepage/gallery/guided-practical.webp", alt: "Trainer guiding students through a hands-on exercise" },
+  { src: "/Homepage/gallery/equipment-briefing-thumb.webp", fullSrc: "/Homepage/gallery/equipment-briefing.webp", alt: "Trainees receiving an equipment briefing with safety helmets" },
+  { src: "/Homepage/gallery/mechanical-workshop-thumb.webp", fullSrc: "/Homepage/gallery/mechanical-workshop.webp", alt: "Trainees learning together in a mechanical workshop" },
+  { src: "/Homepage/gallery/field-demonstration-thumb.webp", fullSrc: "/Homepage/gallery/field-demonstration.webp", alt: "Students observing a field demonstration beside training equipment" },
+  { src: "/Homepage/gallery/practical-skills-thumb.webp", fullSrc: "/Homepage/gallery/practical-skills.webp", alt: "Trainees practising a task together during field training" },
+  { src: "/Homepage/gallery/training-group-thumb.webp", fullSrc: "/Homepage/gallery/training-group.webp", alt: "Group of trainees wearing helmets and safety vests" },
+  { src: "/Homepage/gallery/skills-showcase-thumb.webp", fullSrc: "/Homepage/gallery/skills-showcase.webp", alt: "Students demonstrating technical skills at a showcase" },
+  { src: "/Homepage/gallery/simulator-training-thumb.webp", fullSrc: "/Homepage/gallery/simulator-training.webp", alt: "Students learning with a trainer at a simulator station" },
+  { src: "/Homepage/gallery/operator-training-thumb.webp", fullSrc: "/Homepage/gallery/operator-training.webp", alt: "Trainee in the cabin of an excavator during operator training" },
 ];
 
 const EVENTS = [
@@ -100,13 +101,13 @@ const DashboardSection: React.FC = () => {
 
   return (
     <section
-      className="w-full py-20 relative overflow-hidden bg-[length:cover] bg-center bg-no-repeat bg-[url('/Homepage/announcements_bg.jpg')]"
+      className="w-full py-20 relative overflow-hidden bg-[length:cover] bg-center bg-no-repeat bg-[url('/optimized/Homepage/announcements_bg.jpg.webp')]"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-0"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Announcements Header */}
         <div className="mb-14 text-center">
-          <h2 className="text-white text-4xl font-extrabold border-b-4 border-green-600 pb-4 inline-block">
+          <h2 className="text-white text-4xl font-extrabold border-b-4 border-red-600 pb-4 inline-block">
             📣 Announcements
           </h2>
           <p className="text-gray-50 text-xl mt-4">
@@ -143,13 +144,13 @@ const DashboardSection: React.FC = () => {
                 id={`left-tab-content-${activeLeftTab}`}
                 className="flex-1 bg-white/10 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-red-600"
               >
-                <h3 className="text-green-600 text-2xl font-semibold mb-4 flex items-center">
+                <h3 className="text-red-600 text-2xl font-semibold mb-4 flex items-center">
                   📋 {leftTabData[activeLeftTab].title}
                 </h3>
                 <p className="text-gray-300 text-lg mb-5 leading-relaxed">
                   {leftTabData[activeLeftTab].content}
                 </p>
-                <button type="button" className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-300">
+                <button type="button" className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300">
                   View All →
                 </button>
               </div>
@@ -178,13 +179,13 @@ const DashboardSection: React.FC = () => {
                 id={`right-tab-content-${activeRightTab}`}
                 className="flex-1 bg-white/10 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-red-600"
               >
-                <h3 className="text-green-600 text-2xl font-semibold mb-4 flex items-center">
+                <h3 className="text-red-600 text-2xl font-semibold mb-4 flex items-center">
                   {activeRightTab === "Tenders" ? "📑" : "📊"} {rightTabData[activeRightTab].title}
                 </h3>
                 <p className="text-gray-300 text-lg mb-5 leading-relaxed">
                   {rightTabData[activeRightTab].content}
                 </p>
-                <button type="button" className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-300">
+                <button type="button" className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300">
                   View All →
                 </button>
               </div>
@@ -192,8 +193,8 @@ const DashboardSection: React.FC = () => {
           </div>
 
           {/* Calendar - Left Middle Section */}
-          <div className="col-span-1 sm:col-span-1 lg:col-span-1 row-span-2 bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl ring-2 ring-green-600 p-6 flex flex-col">
-            <h3 className="text-2xl font-bold text-green-600 mb-3">Events</h3>
+          <div className="col-span-1 sm:col-span-1 lg:col-span-1 row-span-2 bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl ring-2 ring-red-600 p-6 flex flex-col">
+            <h3 className="text-2xl font-bold text-red-600 mb-3">Events</h3>
             <div className="flex-1">
               <Calendar
                 month={calendarMonth}
@@ -215,7 +216,7 @@ const DashboardSection: React.FC = () => {
             </div>
             <div className="mt-3">
               {eventOnDate ? (
-                <div className="w-full bg-green-600 text-black/90 rounded-xl py-3 px-5 shadow font-semibold text-center">
+                <div className="w-full bg-red-600 text-black/90 rounded-xl py-3 px-5 shadow font-semibold text-center">
                   <div className="font-extrabold text-lg mb-1">{eventOnDate.name}</div>
                   <div className="text-base">{eventOnDate.desc}</div>
                 </div>
@@ -228,26 +229,26 @@ const DashboardSection: React.FC = () => {
           </div>
 
           {/* Gallery - Right Middle Section */}
-          <div className="col-span-1 sm:col-span-1 lg:col-span-1 row-span-2 bg-white/10 backdrop-blur-xl rounded-2xl ring-2 ring-green-600 border border-white/10 shadow-xl p-4 flex flex-col">
+          <div className="col-span-1 sm:col-span-1 lg:col-span-1 row-span-2 bg-white/10 backdrop-blur-xl rounded-2xl ring-2 ring-red-600 border border-white/10 shadow-xl p-4 flex flex-col">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-2xl font-bold text-green-600 tracking-tight">Campus Gallery</h3>
-              <span className="text-sm text-green-600 font-semibold">{GALLERY.length} Photos</span>
+              <h3 className="text-2xl font-bold text-red-600 tracking-tight">Campus Gallery</h3>
+              <span className="text-sm text-red-600 font-semibold">{GALLERY.length} Photos</span>
             </div>
             <div className="flex-1 overflow-y-auto pr-1">
               <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
-                {GALLERY.map((src, i) => (
+                {GALLERY.map(({ src, alt }, i) => (
                   <button
                     type="button"
-                    key={i}
-                    className="relative rounded-lg aspect-[4/3] border-0 shadow bg-white/10 overflow-hidden group focus-visible:ring-2 focus-visible:ring-green-600 hover:scale-105 transition"
+                    key={src}
+                    className="relative rounded-lg aspect-[4/3] border-0 shadow bg-white/10 overflow-hidden group focus-visible:ring-2 focus-visible:ring-red-600 hover:scale-105 transition"
                     onClick={() => setModalIdx(i)}
-                    aria-label={`View gallery image ${i + 1}`}
+                    aria-label={`View photo: ${alt}`}
                     tabIndex={0}
                   >
-                    <img
+                    <SiteImage
                       src={src}
-                      alt={`Gallery ${i + 1}`}
-                      className="h-full w-full object-cover transition group-hover:brightness-[.82] group-hover:blur-[2px]"
+                      alt={alt}
+                      className="h-full w-full object-cover transition group-hover:brightness-[.82] "
                       loading="lazy"
                       decoding="async"
                     />
@@ -284,11 +285,11 @@ const DashboardSection: React.FC = () => {
                   >
                     ✕
                   </button>
-                  <img
-                    src={GALLERY[modalIdx]}
-                    alt={`Gallery fullscreen ${modalIdx + 1}`}
-                    className="object-contain max-h-[82vh] max-w-4xl rounded-xl shadow-2xl"
-                    loading="lazy"
+                  <SiteImage
+                    src={GALLERY[modalIdx].fullSrc}
+                    alt={GALLERY[modalIdx].alt}
+                    className="object-contain max-h-[82vh] max-w-[92vw] lg:max-w-4xl rounded-xl shadow-2xl"
+                    loading="eager"
                     decoding="async"
                   />
                 </div>
@@ -330,16 +331,16 @@ function Calendar({
       <div className="flex justify-between items-center mb-2">
         <button
           type="button"
-          className="px-2 py-1 text-white text-xl focus:ring-2 focus:ring-green-600 rounded hover:bg-red-600/20"
+          className="px-2 py-1 text-white text-xl focus:ring-2 focus:ring-red-600 rounded hover:bg-red-600/20"
           onClick={onPrevMonth}
           aria-label="Previous month"
         >
           ‹
         </button>
-        <div className="text-green-600 text-sm font-bold">{monthsFull[month]} {year}</div>
+        <div className="text-red-600 text-sm font-bold">{monthsFull[month]} {year}</div>
         <button
           type="button"
-          className="px-2 py-1 text-white text-xl focus:ring-2 focus:ring-green-600 rounded hover:bg-red-600/20"
+          className="px-2 py-1 text-white text-xl focus:ring-2 focus:ring-red-600 rounded hover:bg-red-600/20"
           onClick={onNextMonth}
           aria-label="Next month"
         >
@@ -348,7 +349,7 @@ function Calendar({
       </div>
       <div className="flex w-full text-center pb-1">
         {daysShort.map((day, index) => (
-          <div key={`${day}-${index}`} className="flex-1 text-xs font-bold text-green-600">{day}</div>
+          <div key={`${day}-${index}`} className="flex-1 text-xs font-bold text-red-600">{day}</div>
         ))}
       </div>
       <div className="flex flex-col w-full">
@@ -360,7 +361,7 @@ function Calendar({
               const hasEvent = eventDatesSet.has(currStr);
               let ring = "";
               if (isSameDay(date, selected)) ring = "ring-2 ring-red-600 z-10";
-              else if (isToday(date)) ring = "ring-2 ring-green-600 z-10";
+              else if (isToday(date)) ring = "ring-2 ring-red-600 z-10";
               else if (!isCurMon) ring = "opacity-40";
               return (
                 <button
@@ -372,7 +373,7 @@ function Calendar({
                     transition
                     ${ring}
                     ${isCurMon ? "text-white bg-white/10 hover:bg-red-600/60 hover:text-white" : "text-gray-400"}
-                    ${hasEvent ? "border-b-4 border-green-600" : ""}
+                    ${hasEvent ? "border-b-4 border-red-600" : ""}
                     outline-none focus:ring-2 focus:ring-red-600
                   `}
                   onClick={() => onSelectDate(date)}

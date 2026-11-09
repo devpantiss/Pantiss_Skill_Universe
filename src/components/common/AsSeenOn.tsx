@@ -1,5 +1,7 @@
+import SiteImage from "./SiteImage";
 import React from "react";
-import Slider from "react-slick";
+import Slider from "./ViewportSlider";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -66,28 +68,28 @@ const AsSeenOn: React.FC = () => {
         <Slider {...settings} className="gap-x-4">
           {/* Example logo items */}
           <div className="px-4">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/330px-DTE_pic_hrwr2q.jpg"
               alt="Max Healthcare"
               className="h-16 lg:h-24 mx-auto object-contain"
             />
           </div>
           <div className="px-4">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/CBC_logo.svg_ixkcmg.png"
               alt="Nash"
               className="h-16 lg:h-24 mx-auto object-contain"
             />
           </div>
           <div className="px-4">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055539/the-telegraph-logo-vector-removebg-preview_ovbazt.png"
               alt="Panasonic"
               className="h-16 lg:h-24 mx-auto object-contain"
             />
           </div>
           <div className="px-4">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/pngwing.com_7_ixeqav.png"
               alt="RPG"
               className="h-16 lg:h-24 mx-auto object-contain"

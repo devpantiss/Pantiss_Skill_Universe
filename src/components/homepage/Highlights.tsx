@@ -126,13 +126,13 @@ const newsItems: NewsItem[] = [
 // NewsCard Component
 // ====================
 const NewsCard: React.FC<NewsCardProps> = memo(({ item }) => (
-  <div className="group ring-1 ring-green-600 flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl hover:ring-white bg-transparent hover:bg-green-600 transition-all duration-300">
-    <div className="p-6 transition-all duration-300 group-hover:bg-green-600">
-      <p className="text-2xl font-bold flex justify-start items-center uppercase text-green-600 group-hover:text-white mb-2 transition-all duration-300">
+  <div className="group ring-1 ring-red-600 flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl hover:ring-white bg-transparent hover:bg-red-600 transition-all duration-300">
+    <div className="p-6 transition-all duration-300 group-hover:bg-red-600">
+      <p className="text-2xl font-bold flex justify-start items-center uppercase text-red-600 group-hover:text-white mb-2 transition-all duration-300">
         {categoryIcons[item.category]}
         {item.category}
       </p>
-      <h2 className="text-lg font-semibold mb-4 text-green-600 group-hover:text-white transition-all duration-300">
+      <h2 className="text-lg font-semibold mb-4 text-red-600 group-hover:text-white transition-all duration-300">
         {item.title}
       </h2>
       <p className="text-gray-50 group-hover:text-white mb-6 line-clamp-3 transition-all duration-300">
@@ -151,7 +151,7 @@ const NewsCard: React.FC<NewsCardProps> = memo(({ item }) => (
         className="h-48 relative bg-cover bg-center"
         style={{ backgroundImage: `url(${item.imageUrl})` }}
       >
-        <div className="absolute top-0 left-[10%] w-0 h-0 border-l-[25px] border-l-transparent border-r-[25px] border-r-transparent border-t-[25px] border-t-transparent group-hover:border-t-green-600 transition-all duration-300"></div>
+        <div className="absolute top-0 left-[10%] w-0 h-0 border-l-[25px] border-l-transparent border-r-[25px] border-r-transparent border-t-[25px] border-t-transparent group-hover:border-t-red-600 transition-all duration-300"></div>
       </div>
     )}
   </div>
@@ -169,14 +169,14 @@ const Highlights: React.FC = () => {
       {/* Background circles for gradient depth */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-pink-500 rounded-full blur-3xl opacity-40"></div>
       <div className="absolute bottom-32 right-20 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute top-1/2 left-1/4 w-28 h-28 bg-green-400 rounded-full blur-2xl opacity-30"></div>
+      <div className="absolute top-1/2 left-1/4 w-28 h-28 bg-red-400 rounded-full blur-2xl opacity-30"></div>
       <div className="absolute bottom-10 left-1/3 w-24 h-24 bg-yellow-500 rounded-full blur-2xl opacity-20"></div>
 
       {/* Smaller glowing circles */}
       <div className="absolute top-10 right-1/3 w-16 h-16 bg-red-500 rounded-full blur-xl opacity-40"></div>
       <div className="absolute top-1/4 right-10 w-12 h-12 bg-red-500 rounded-full blur-lg opacity-40"></div>
       <div className="absolute bottom-20 left-10 w-14 h-14 bg-blue-400 rounded-full blur-lg opacity-30"></div>
-      <div className="absolute bottom-1/4 right-1/2 w-10 h-10 bg-green-500 rounded-full blur-md opacity-40"></div>
+      <div className="absolute bottom-1/4 right-1/2 w-10 h-10 bg-red-500 rounded-full blur-md opacity-40"></div>
 
       <section className="relative container mx-auto py-10 z-10">
         <div className="flex justify-center mb-8">

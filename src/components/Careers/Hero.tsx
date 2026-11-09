@@ -1,11 +1,12 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative flex min-h-[92vh] w-full items-end overflow-hidden bg-[#070707] pt-36">
-      <img
-        src="/Homepage/campuses/shipping.jpg"
+    <section className="relative flex min-h-[92vh] w-full items-end overflow-hidden bg-[#070707] pt-16">
+      <SiteImage decoding="async"
+        src="/optimized/Homepage/campuses/shipping.jpg.webp"
         alt="Pantiss Skill University campus"
         className="absolute inset-0 h-full w-full object-cover opacity-80"
       />

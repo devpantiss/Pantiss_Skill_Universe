@@ -1,3 +1,4 @@
+import { useCountUp } from "../../../hooks/useCountUp";
 import { useEffect, useRef, useState } from "react";
 import {
   Users,
@@ -17,26 +18,6 @@ const metrics = [
   { label: "Learners with Language Support", value: 2400, suffix: "+", icon: Users },
 ];
 
-const useCountUp = (end: number, enabled: boolean) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!enabled) return;
-
-    const duration = 1600;
-    const startTime = performance.now();
-
-    const animate = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      setCount(Number((progress * end).toFixed(1)));
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  }, [end, enabled]);
-
-  return count;
-};
 
 type Metric = (typeof metrics)[number];
 
@@ -88,7 +69,7 @@ export default function IntMobilityImpact() {
   }, []);
 
   return (
-    <section ref={ref} className="relative bg-black py-24 px-4 text-white">
+    <section ref={ref} className="relative overflow-hidden bg-black py-24 px-4 text-white">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
       </div>

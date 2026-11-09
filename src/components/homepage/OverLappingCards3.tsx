@@ -1,23 +1,12 @@
+import SiteImage from "../common/SiteImage";
+import BackgroundVideo from "../common/BackgroundVideo";
 import React from "react";
 
 const OverLappingCards3: React.FC = () => {
   return (
     <div className="relative bg-transparent">
       {/* Background Video */}
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-      >
-        <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742994000/16498883-hd_1920_1080_24fps_zb7mxr.mp4" // Kept the same video; replace if needed
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
+      <BackgroundVideo src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1742994000/16498883-hd_1920_1080_24fps_zb7mxr.mp4" className="absolute top-0 left-0 w-full h-full object-cover" defer />
 
       {/* Dark Overlay for Text Visibility */}
       <div className="absolute inset-0 bg-black/20"></div>
@@ -43,7 +32,7 @@ const OverLappingCards3: React.FC = () => {
             <li>Guidance on Skill Requirements</li>
           </ul>
           <div className="relative">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" // Icon: Compass (exploration)
               alt="exploration-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
@@ -61,7 +50,7 @@ const OverLappingCards3: React.FC = () => {
             <li>Certification Guidance</li>
           </ul>
           <div className="relative">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://cdn-icons-png.flaticon.com/512/2040/2040730.png" // Icon: Graduation cap (skill development)
               alt="skill-development-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
@@ -70,7 +59,7 @@ const OverLappingCards3: React.FC = () => {
         </div>
 
         {/* Card 3 */}
-        <div className="absolute top-[500px] right-[500px] bg-green-200 text-gray-800 p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
+        <div className="absolute top-[500px] right-[500px] bg-red-200 text-gray-800 p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
           <h3 className="text-lg font-bold mb-4">Job Placement Support</h3>
           <ul className="list-disc pl-5 space-y-1">
             <li>Connect with Mining Employers</li>
@@ -80,7 +69,7 @@ const OverLappingCards3: React.FC = () => {
             <li>Post-Placement Guidance</li>
           </ul>
           <div className="relative">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Icon: Career path (job placement)
               alt="job-placement-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"

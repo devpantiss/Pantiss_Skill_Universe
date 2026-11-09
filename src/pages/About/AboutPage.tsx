@@ -1,18 +1,19 @@
-import React, { Suspense, lazy } from "react";
+import DeferredSection from "../../components/common/DeferredSection";
+import React, { lazy } from "react";
 import AboutHero from "../../components/about/AboutHero";
-import VisionMissionGoal from "../../components/about/VisionMissionGoal";
+const VisionMissionGoal = React.lazy(() => import("../../components/about/VisionMissionGoal"));
 // import ScrollVelocity from "../../components/common/ScrollVelocity";
-import AboutImpact from "../../components/about/AboutImpact";
-import HeroInfoSection from "../../components/about/FoundersSection";
+const AboutImpact = React.lazy(() => import("../../components/about/AboutImpact"));
+const HeroInfoSection = React.lazy(() => import("../../components/about/FoundersSection"));
 
 const ThreeDMarquee = lazy(() => import("../../components/about/ThreeDMarqueeDemo").then(module => ({ default: module.ThreeDMarquee })));
 
 // import OurFaculty from "../../components/about/OurFaculty";
 // import OurFacilities from "../../components/about/OurFacilities";
 // import ScrollVelocityImages from "../../components/common/ScrollVelocityImages";
-import Certifications from "../../components/about/Certifications/Certifications";
-import Milestones from "../../components/about/Milestones/Milestones";
-import Awards from "../../components/about/Awards";
+const Certifications = React.lazy(() => import("../../components/about/Certifications/Certifications"));
+const Milestones = React.lazy(() => import("../../components/about/Milestones/Milestones"));
+const Awards = React.lazy(() => import("../../components/about/Awards"));
 
 const AboutPage: React.FC = () => {
   // const images = [
@@ -35,27 +36,27 @@ const AboutPage: React.FC = () => {
   // ];
 
   const images = [
-    "/About/carousel/Gallery_.JPG",
-    "/About/carousel/Gallery_1.JPG",
-    "/About/carousel/Gallery_2.jpg",
-    "/About/carousel/Gallery_3.JPG",
+    "/optimized/About/carousel/Gallery_.JPG.webp",
+    "/optimized/About/carousel/Gallery_1.JPG.webp",
+    "/optimized/About/carousel/Gallery_2.jpg.webp",
+    "/optimized/About/carousel/Gallery_3.JPG.webp",
     "/About/carousel/Gallery_4.JPG",
-    "/About/carousel/Gallery_5.JPG",
-    "/About/carousel/Gallery_6.JPG",
-    "/About/carousel/Gallery_7.JPG",
-    "/About/carousel/Gallery_8.JPG",
-    "/About/carousel/Gallery_9.JPG",
-    "/About/carousel/Gallery_10.JPG",
-    "/About/carousel/Gallery_11.jpg",
-    "/About/carousel/Gallery_12.JPG",
+    "/optimized/About/carousel/Gallery_5.JPG.webp",
+    "/optimized/About/carousel/Gallery_6.JPG.webp",
+    "/optimized/About/carousel/Gallery_7.JPG.webp",
+    "/optimized/About/carousel/Gallery_8.JPG.webp",
+    "/optimized/About/carousel/Gallery_9.JPG.webp",
+    "/optimized/About/carousel/Gallery_10.JPG.webp",
+    "/optimized/About/carousel/Gallery_11.jpg.webp",
+    "/optimized/About/carousel/Gallery_12.JPG.webp",
     "/About/carousel/Gallery_13.jpg",
-    "/About/carousel/Gallery_14.jpg",
-    "/About/carousel/Gallery_15.jpeg",
-    "/About/carousel/Gallery_16.jpeg",
-    "/About/carousel/Gallery_17.jpg",
-    "/About/carousel/Gallery_18.jpg",
+    "/optimized/About/carousel/Gallery_14.jpg.webp",
+    "/optimized/About/carousel/Gallery_15.jpeg.webp",
+    "/optimized/About/carousel/Gallery_16.jpeg.webp",
+    "/optimized/About/carousel/Gallery_17.jpg.webp",
+    "/optimized/About/carousel/Gallery_18.jpg.webp",
     "/About/carousel/Gallery_19.webp",
-    "/About/carousel/Gallery_22.JPG",
+    "/optimized/About/carousel/Gallery_22.JPG.webp",
   ];
   // const Faculty = [
   //   {
@@ -256,17 +257,17 @@ const AboutPage: React.FC = () => {
   return (
     <div className="bg-black">
       <AboutHero />
-      <VisionMissionGoal />
-      <AboutImpact />
+      <DeferredSection><VisionMissionGoal /></DeferredSection>
+      <DeferredSection height="min-h-[280px]"><AboutImpact /></DeferredSection>
       <div id="founders">
-        <HeroInfoSection />
+        <DeferredSection><HeroInfoSection /></DeferredSection>
       </div>
-      <div className="w-full h-[700px] bg-black p-2 ring-1 ring-neutral-700/10 dark:bg-gradient-to-b dark:from-black dark:via-green-600 dark:to-black border border-white/10 rounded-xl relative">
-        <Suspense fallback={<div className="absolute inset-0 flex items-center justify-center text-white/50">Loading 3D Gallery...</div>}>
+      <div className="w-full h-[700px] bg-black p-2 ring-1 ring-neutral-700/10 dark:bg-gradient-to-b dark:from-black dark:via-red-600 dark:to-black border border-white/10 rounded-xl relative">
+        <DeferredSection height="min-h-[700px]">
           <ThreeDMarquee images={images} />
-        </Suspense>
+        </DeferredSection>
       </div>
-      <Milestones />
+      <DeferredSection><Milestones /></DeferredSection>
       {/* <div id="faculty" className="h-full relative">
         <OurFaculty
           heading="Our Advisory Board"
@@ -277,8 +278,8 @@ const AboutPage: React.FC = () => {
           ease="power3.out"
         />
       </div> */}
-      <Awards />
-      <Certifications />
+      <DeferredSection><Awards /></DeferredSection>
+      <DeferredSection><Certifications /></DeferredSection>
       {/* <div id="faculty" className="h-full relative">
         <OurFaculty
           heading="Our Faculties"

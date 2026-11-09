@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { memo, useState, useMemo } from "react";
 
 interface Feature {
@@ -164,7 +165,7 @@ const CampusExperience: React.FC = () => {
           >
             {/* Dynamic Image */}
             <div className="w-full bg-gray-300 rounded-md overflow-hidden mb-4">
-              <img
+              <SiteImage
                 src={locationContent[activeTab]?.image || ""}
                 alt={`${activeTab} Campus View`}
                 className="w-full h-[450px] object-cover"

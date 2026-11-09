@@ -1,6 +1,8 @@
+import SiteImage from "../common/SiteImage";
 import React, { memo, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import Slider from "react-slick";
+import Slider from "../common/ViewportSlider";
+
 
 export type CareerArea = {
   title: string;
@@ -12,12 +14,12 @@ const careerAreas: CareerArea[] = [
   {
     title: "Skill Training & Delivery",
     count: 2,
-    img: "/careers/vocational.JPG",
+    img: "/optimized/careers/vocational.JPG.webp",
   },
   {
     title: "Curriculum & Instructional Design",
     count: 1,
-    img: "/careers/curriculum.jpeg",
+    img: "/optimized/careers/curriculum.jpeg.webp",
   },
   {
     title: "Industry Partnerships & Placements",
@@ -27,22 +29,22 @@ const careerAreas: CareerArea[] = [
   {
     title: "Assessment, Certification & RPL",
     count: 1,
-    img: "/careers/Assessment.jpeg",
+    img: "/optimized/careers/Assessment.jpeg.webp",
   },
   {
     title: "Monitoring, Evaluation & Quality",
     count: 1,
-    img: "/careers/M&E.jpg",
+    img: "/optimized/careers/M&E.jpg.webp",
   },
   {
     title: "Skill Lab & Infrastructure Management",
     count: 1,
-    img: "/careers/ICT.jpg",
+    img: "/optimized/careers/ICT.jpg.webp",
   },
   {
     title: "EdTech & Digital Learning Systems",
     count: 2,
-    img: "/careers/edtech.jpeg",
+    img: "/optimized/careers/edtech.jpeg.webp",
   },
 ];
 
@@ -89,7 +91,7 @@ const CareersCategory: React.FC = () => {
               }
             >
               <div className="group relative h-[330px] overflow-hidden rounded-md border border-white/10 bg-[#080808] shadow-xl shadow-black/20 transition hover:-translate-y-1 hover:border-[#d9a441]/70">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src={area.img}
                   alt={area.title}
                   className="h-48 w-full object-cover opacity-85 transition duration-300 group-hover:scale-105 group-hover:opacity-100"

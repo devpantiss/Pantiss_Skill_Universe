@@ -1,16 +1,17 @@
+import DeferredSection from "../components/common/DeferredSection";
 import React from 'react'
 import HeroSection from '../components/Collaboration/Hero'
-import PartnersLogos from '../components/Collaboration/PartnersLogos'
+const PartnersLogos = React.lazy(() => import("../components/Collaboration/PartnersLogos"));
 import CollabImpact from '../components/Collaboration/CollabImpact'
-import MouSection from '../components/Collaboration/MouSection'
+const MouSection = React.lazy(() => import("../components/Collaboration/MouSection"));
 
 const Collaborations: React.FC = () => {
   return (
     <div>
       <HeroSection />
-      <PartnersLogos />
+      <DeferredSection><PartnersLogos /></DeferredSection>
       <CollabImpact />
-      <MouSection />
+      <DeferredSection><MouSection /></DeferredSection>
     </div>
   )
 }

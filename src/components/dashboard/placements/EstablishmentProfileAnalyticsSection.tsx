@@ -75,11 +75,11 @@ const EstablishmentProfileAnalyticsSection: React.FC = () => {
                     border: "1px solid #1f2937",
                     color: "#f9fafb",
                   }}
-                  formatter={(value?: number) => 
+                  formatter={(value?: number) =>
                     typeof value === "number" ? value.toLocaleString() : ""}
                 />
 
-                <Bar
+                <Bar isAnimationActive={false}
                   dataKey="active"
                   fill="#2563eb"
                   radius={[4, 4, 0, 0]}
@@ -130,7 +130,7 @@ const EstablishmentProfileAnalyticsSection: React.FC = () => {
                 />
 
                 {/* ACTIVE */}
-                <Bar
+                <Bar isAnimationActive={false}
                   dataKey="active"
                   fill="#2563eb"
                   radius={[4, 4, 0, 0]}
@@ -138,7 +138,7 @@ const EstablishmentProfileAnalyticsSection: React.FC = () => {
                 />
 
                 {/* REGISTERED */}
-                <Bar
+                <Bar isAnimationActive={false}
                   dataKey="registered"
                   fill="#f97316"
                   radius={[4, 4, 0, 0]}

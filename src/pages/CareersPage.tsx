@@ -1,10 +1,11 @@
+import DeferredSection from "../components/common/DeferredSection";
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Hero from "../components/Careers/Hero";
-import LifeAtPantiss from "../components/Careers/LifeAtPantiss";
-import CareersCategory from "../components/Careers/CareersCategory";
-import BenefitsPantiss from "../components/Careers/BenefitsPantiss";
-import TestimonialSlider from "../components/Careers/TestimonialSlider";
+const LifeAtPantiss = React.lazy(() => import("../components/Careers/LifeAtPantiss"));
+const CareersCategory = React.lazy(() => import("../components/Careers/CareersCategory"));
+const BenefitsPantiss = React.lazy(() => import("../components/Careers/BenefitsPantiss"));
+const TestimonialSlider = React.lazy(() => import("../components/Careers/TestimonialSlider"));
 
 
 const CareersPage: React.FC = () => {
@@ -18,14 +19,14 @@ const CareersPage: React.FC = () => {
   }, [location.state]);
 
   return (
-    <div className="bg-[#070707] py-12 text-white">
+    <div className="bg-[#070707] text-white">
       <Hero />
       <div ref={lifeRef}>
-        <LifeAtPantiss />
+        <DeferredSection><LifeAtPantiss /></DeferredSection>
       </div>
-      <CareersCategory />
-      <BenefitsPantiss />
-      <TestimonialSlider />
+      <DeferredSection><CareersCategory /></DeferredSection>
+      <DeferredSection><BenefitsPantiss /></DeferredSection>
+      <DeferredSection><TestimonialSlider /></DeferredSection>
     </div>
   );
 };

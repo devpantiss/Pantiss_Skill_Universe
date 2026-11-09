@@ -202,7 +202,7 @@ const CoreIndustriesJobRolesMarquee: React.FC = () => {
                           group/pill relative
                           px-6 py-3 rounded-full
                           text-sm font-medium whitespace-nowrap
-                          bg-white/[0.03] border border-green-600
+                          bg-white/[0.03] border border-red-600
                           text-white/70
                           hover:text-white
                           transition-all duration-300

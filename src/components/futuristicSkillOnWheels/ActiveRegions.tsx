@@ -20,7 +20,7 @@ const ActiveRegions: React.FC = () => {
 
       {/* 🌐 Content */}
       <div className="relative max-w-6xl mx-auto px-6 text-center z-10">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-5xl font-bold mb-12 bg-gradient-to-r from-red-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
           Active Regions
         </h2>
 
@@ -29,10 +29,10 @@ const ActiveRegions: React.FC = () => {
             <div
               key={i}
               className="relative group bg-gray-900/50 border border-gray-700 rounded-2xl p-8 shadow-xl backdrop-blur-md
-                         hover:border-green-400/60 hover:shadow-[0_0_25px_rgba(0,255,160,0.4)] transition-all duration-500"
+                         hover:border-red-400/60 hover:shadow-[0_0_25px_rgba(0,255,160,0.4)] transition-all duration-500"
             >
               {/* Glow accent */}
-              <div className="absolute -inset-[1px] bg-gradient-to-r from-green-400 via-cyan-400 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition duration-500" />
+              <div className="absolute -inset-[1px] bg-gradient-to-r from-red-400 via-cyan-400 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition duration-500" />
               
               <h3 className="relative text-2xl font-semibold z-10">{region.name}</h3>
               <p className="relative text-gray-300 mt-3 z-10 text-lg">{region.impact}</p>

@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 import { MapPin, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -8,42 +9,42 @@ const campuses = [
     name: "Pantiss Skill Resort",
     district: "Angul, Odisha",
     focus: "Mining",
-    bgImage: "/Homepage/campuses/mining.jpg",
+    bgImage: "/Homepage/campuses/mining.webp",
   },
   {
     campus: "Kalahandi Campus",
     name: "Pantiss Skill Resort",
     district: "Kalahandi, Odisha",
     focus: "Aviation",
-    bgImage: "/Homepage/campuses/aviation.jpg",
+    bgImage: "/optimized/Homepage/campuses/aviation.webp.webp",
   },
   {
     campus: "Paradip Campus",
     name: "Pantiss Skill Resort",
     district: "Jagatsinghpur, Odisha",
     focus: "Shipping & Logistics",
-    bgImage: "/Homepage/campuses/shipping.jpg",
+    bgImage: "/optimized/Homepage/campuses/shipping.webp.webp",
   },
   {
     campus: "Jharsuguda Campus",
     name: "Pantiss Skill Resort",
     district: "Jharsuguda, Odisha",
     focus: "Construction Tech & Infra Equipment",
-    bgImage: "/Homepage/campuses/construct.jpg",
+    bgImage: "/optimized/Homepage/campuses/construct.webp.webp",
   },
   {
     campus: "Sukinda Campus",
     name: "Pantiss Skill Resort",
     district: "Jajpur, Odisha",
     focus: "Power & Green Energy",
-    bgImage: "/Homepage/campuses/greenenergy.jpg",
+    bgImage: "/optimized/Homepage/campuses/greenenergy.webp.webp",
   },
   {
     campus: "Joda Campus",
     name: "Pantiss Skill Resort",
     district: "Keonjhar, Odisha",
     focus: "Green Jobs",
-    bgImage: "/Homepage/campuses/rise.JPG",
+    bgImage: "/optimized/Homepage/campuses/rise.JPG.webp",
   },
 ];
 
@@ -125,8 +126,8 @@ const Campuses: React.FC = () => {
 
         {/* CTA */}
         <div className="text-center mt-16 flex flex-col lg:flex-row items-center justify-center gap-6">
-          <img
-            src="/Homepage/dash_image_1.png"
+          <SiteImage
+            src="/optimized/Homepage/dash_image_1.png.webp"
             alt=""
             className="w-36 lg:w-44 h-36 lg:h-44 object-contain drop-shadow-xl"
             aria-hidden="true"
@@ -136,16 +137,16 @@ const Campuses: React.FC = () => {
 
           <Link
             to="/skill-dashboard"
-            className="px-8 py-4 bg-green-600
+            className="px-8 py-4 bg-red-600
                        text-white font-semibold rounded-xl
-                       shadow-lg shadow-green-600/30
+                       shadow-lg shadow-red-600/30
                        hover:scale-[1.03] transition-all duration-300"
           >
             Explore Skill & Jobs Dashboard
           </Link>
 
-          <img
-            src="/Homepage/dash_image_2.png"
+          <SiteImage
+            src="/optimized/Homepage/dash_image_2.png.webp"
             alt=""
             className="w-36 lg:w-44 h-36 lg:h-44 object-contain drop-shadow-xl"
             aria-hidden="true"

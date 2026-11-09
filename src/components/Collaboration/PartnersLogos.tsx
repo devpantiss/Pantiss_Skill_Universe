@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { useState, useEffect, useRef } from "react";
 
 interface Partner {
@@ -114,7 +115,7 @@ const FloatingOrb: React.FC<FloatingOrbProps> = ({ size, color, position, delay 
 const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
   const [cardRef, cardIsVisible] = useIntersectionObserver();
   const theme = categoryThemes[partner.category];
-  
+
   return (
     <div
       ref={cardRef}
@@ -132,7 +133,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
         hover:scale-[1.02] hover:${theme.glow}
         transition-all duration-700 ease-out
         overflow-hidden
-        before:absolute before:inset-0 
+        before:absolute before:inset-0
         before:bg-gradient-to-br before:from-white/10 before:via-transparent before:to-transparent
         before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500
         after:absolute after:inset-0 after:rounded-3xl
@@ -142,15 +143,15 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
       `}>
         {/* Animated corner accent */}
         <div className={`
-          absolute top-0 right-0 w-8 h-8 ${theme.accent} 
+          absolute top-0 right-0 w-8 h-8 ${theme.accent}
           opacity-40 rounded-bl-2xl
           transform scale-0 group-hover:scale-100 origin-top-right
           transition-transform duration-500
         `} />
-        
+
         {/* Main content */}
         <div className="relative z-20 h-full flex items-center justify-center p-6">
-          <img
+          <SiteImage decoding="async"
             src={partner.logo}
             alt={partner.name}
             className="
@@ -174,15 +175,15 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
             {partner.name}
           </div>
         </div>
-        
+
         {/* Floating tooltip */}
         <div className="
           absolute -top-14 left-1/2 transform -translate-x-1/2
           bg-gray-900/95 backdrop-blur-md text-gray-200 text-sm font-medium
           px-4 py-2 rounded-2xl border border-gray-200/20
-          opacity-0 group-hover:opacity-100 
+          opacity-0 group-hover:opacity-100
           translate-y-2 group-hover:translate-y-0
-          transition-all duration-300 pointer-events-none 
+          transition-all duration-300 pointer-events-none
           whitespace-nowrap z-30 shadow-2xl
         ">
           {partner.name}
@@ -199,9 +200,9 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
 const PartnersLogos: React.FC = () => {
   const [sectionRef, sectionIsVisible] = useIntersectionObserver();
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  
-  const filteredPartners = activeFilter === 'all' 
-    ? partners 
+
+  const filteredPartners = activeFilter === 'all'
+    ? partners
     : partners.filter(partner => partner.category === activeFilter);
 
   const categories: string[] = ['all', ...new Set(partners.map(p => p.category))];
@@ -211,28 +212,28 @@ const PartnersLogos: React.FC = () => {
       {/* Ethereal background effects */}
       <div className="pointer-events-none absolute inset-0 z-0">
         {/* Main ambient orbs */}
-        <FloatingOrb 
-          size="w-96 h-96" 
-          color="bg-rose-500" 
-          position={{ top: '10%', left: '5%' }} 
+        <FloatingOrb
+          size="w-96 h-96"
+          color="bg-rose-500"
+          position={{ top: '10%', left: '5%' }}
           delay={0}
         />
-        <FloatingOrb 
-          size="w-80 h-80" 
-          color="bg-teal-500" 
-          position={{ top: '20%', right: '10%' }} 
+        <FloatingOrb
+          size="w-80 h-80"
+          color="bg-teal-500"
+          position={{ top: '20%', right: '10%' }}
           delay={1.5}
         />
-        <FloatingOrb 
-          size="w-64 h-64" 
-          color="bg-rose-400" 
-          position={{ bottom: '25%', left: '15%' }} 
+        <FloatingOrb
+          size="w-64 h-64"
+          color="bg-rose-400"
+          position={{ bottom: '25%', left: '15%' }}
           delay={3}
         />
-        <FloatingOrb 
-          size="w-72 h-72" 
-          color="bg-teal-400" 
-          position={{ bottom: '10%', right: '20%' }} 
+        <FloatingOrb
+          size="w-72 h-72"
+          color="bg-teal-400"
+          position={{ bottom: '10%', right: '20%' }}
           delay={2}
         />
 
@@ -275,12 +276,12 @@ const PartnersLogos: React.FC = () => {
             <h2 className="text-6xl md:text-8xl lg:text-9xl font-black text-transparent bg-clip-text bg-white mb-8 tracking-tighter leading-none">
               Partners
             </h2>
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-green-500 to-green-400 rounded-full animate-bounce opacity-60" />
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-bounce opacity-60" />
             <div className="absolute -bottom-2 -left-6 w-6 h-6 bg-gradient-to-r from-red-500 to-red-500 rounded-full animate-ping opacity-40" />
           </div>
-          
+
           <div className="w-48 h-1 bg-gradient-to-r from-transparent via-gray-200/60 to-transparent mx-auto mb-8 rounded-full" />
-          
+
           <p className="text-2xl md:text-3xl text-gray-200 max-w-4xl mx-auto font-light leading-relaxed tracking-wide">
             Where Innovation Meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-rose-400 font-semibold">Excellence</span>
           </p>
@@ -295,7 +296,7 @@ const PartnersLogos: React.FC = () => {
           {categories.map((category) => {
             const isActive = activeFilter === category;
             const theme = categoryThemes[category as Partner['category']] || categoryThemes.government;
-            
+
             return (
               <button
                 key={category}
@@ -303,11 +304,11 @@ const PartnersLogos: React.FC = () => {
                 className={`
                   relative px-8 py-4 rounded-2xl font-semibold text-sm uppercase tracking-widest
                   transition-all duration-500 transform hover:scale-105 overflow-hidden
-                  ${isActive 
-                    ? `bg-gradient-to-r ${theme.gradient} text-white shadow-lg ${theme.glow} border ${theme.border}` 
+                  ${isActive
+                    ? `bg-gradient-to-r ${theme.gradient} text-white shadow-lg ${theme.glow} border ${theme.border}`
                     : 'bg-gray-800/50 backdrop-blur-sm text-gray-200 hover:bg-gray-700/60 hover:text-white border border-gray-700/50'
                   }
-                  before:absolute before:inset-0 before:bg-gradient-to-r 
+                  before:absolute before:inset-0 before:bg-gradient-to-r
                   before:from-transparent before:via-white/10 before:to-transparent
                   before:translate-x-[-100%] before:transition-transform before:duration-700
                   hover:before:translate-x-[100%]
@@ -363,10 +364,10 @@ const PartnersLogos: React.FC = () => {
           ${sectionIsVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}
         `} style={{ transitionDelay: '700ms' }}>
           {filteredPartners.map((partner, idx) => (
-            <PartnerCard 
+            <PartnerCard
               key={`${partner.name}-${activeFilter}`}
-              partner={partner} 
-              index={idx} 
+              partner={partner}
+              index={idx}
               isVisible={sectionIsVisible}
             />
           ))}

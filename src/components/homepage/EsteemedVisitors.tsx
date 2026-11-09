@@ -1,5 +1,7 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
-import Slider from "react-slick";
+import Slider from "../common/ViewportSlider";
+
 import type { CustomArrowProps } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -94,7 +96,7 @@ const EsteemedVisitors: React.FC = () => {
           {visitors.map((visitor, index) => (
             <div key={index} className="px-4">
               <div className="text-center bg-orange-600 rounded-2xl overflow-hidden shadow-md transition transform hover:scale-105 h-[360px] duration-300">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src={visitor.image}
                   alt={visitor.name}
                   className="w-full h-[250px] object-cover"

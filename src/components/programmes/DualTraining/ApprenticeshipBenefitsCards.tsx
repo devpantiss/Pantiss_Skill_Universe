@@ -134,8 +134,8 @@ const ApprenticeshipBenefitsCards: React.FC<{ className?: string }> = ({ classNa
         {/* CTA */}
         <div className="mt-10 flex items-center justify-center gap-4">
           <a
-            href="/our-programmes/apprenticeship-and-dual-training"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-400 to-pink-500 text-black font-semibold shadow-lg hover:scale-[1.02] transition"
+            href="/contact-us"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-red-400 to-pink-500 text-black font-semibold shadow-lg hover:scale-[1.02] transition"
           >
             View Apprenticeship Programs
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">

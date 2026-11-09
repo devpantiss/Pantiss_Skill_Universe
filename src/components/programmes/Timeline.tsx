@@ -44,7 +44,7 @@ const programs: Program[] = [
     id: "diploma-polytechnic",
     name: "Diploma / Polytechnic Programs",
     icon: <GraduationCap className="w-5 h-5" />,
-    color: "from-green-500 to-green-500",
+    color: "from-red-500 to-red-500",
     description:
       "Three-year technical diploma programs aligned with AICTE and NSQF Level 5–6 framework for middle-level technical roles.",
     timeline: [
@@ -109,7 +109,7 @@ const programs: Program[] = [
     id: "iti",
     name: "Industrial Training Institute (ITI) Programs",
     icon: <CheckCircle className="w-5 h-5" />,
-    color: "from-green-500 to-green-500",
+    color: "from-red-500 to-red-500",
     description:
       "NSQF Level 3–5 training programs aligned with NCVT/SCVT standards for technical trades.",
     timeline: [
@@ -174,7 +174,7 @@ const programs: Program[] = [
   //   id: "advanced-diploma",
   //   name: "Advanced Diploma Programs",
   //   icon: <Award className="w-5 h-5" />,
-  //   color: "from-green-500 to-green-500",
+  //   color: "from-red-500 to-red-500",
   //   description:
   //     "NSQF Level 6–7 courses for advanced specialization and supervisory roles under AICTE–NSDC collaboration.",
   //   timeline: [
@@ -239,7 +239,7 @@ const programs: Program[] = [
   //   id: "apprenticeship-dual",
   //   name: "Apprenticeship & Dual Training Programs",
   //   icon: <Building className="w-5 h-5" />,
-  //   color: "from-green-500 to-green-500",
+  //   color: "from-red-500 to-red-500",
   //   description:
   //     "On-the-job training under the Apprentices Act, blending institutional learning with industrial exposure.",
   //   timeline: [
@@ -304,7 +304,7 @@ const programs: Program[] = [
     id: "industry-certification",
     name: "Industry-Aligned Skill Certification & Apprenticeship Programs",
     icon: <Target className="w-5 h-5" />,
-    color: "from-green-500 to-green-500",
+    color: "from-red-500 to-red-500",
     description:
       "Jointly designed programs with sector skill councils and industry partners ensuring job-readiness.",
     timeline: [
@@ -358,7 +358,7 @@ const programs: Program[] = [
     id: "upskilling-reskilling",
     name: "Workmen Upskilling & Reskilling Programs",
     icon: <TrendingUp className="w-5 h-5" />,
-    color: "from-green-500 to-green-500",
+    color: "from-red-500 to-red-500",
     description:
       "Targeted interventions under PMKVY and DDU-GKY to enhance existing workforce competencies.",
     timeline: [
@@ -423,7 +423,7 @@ const programs: Program[] = [
   //   id: "witp",
   //   name: "Work Integrated Training Programs (WITP)",
   //   icon: <Briefcase className="w-5 h-5" />,
-  //   color: "from-green-500 to-green-500",
+  //   color: "from-red-500 to-red-500",
   //   description:
   //     "Programs integrating academic learning with workplace exposure, aligned to NSQF Level 5–7.",
   //   timeline: [
@@ -477,7 +477,7 @@ const programs: Program[] = [
     id: "bootcamp",
     name: "Skill Development Bootcamp",
     icon: <Zap className="w-5 h-5" />,
-    color: "from-green-500 to-green-500",
+    color: "from-red-500 to-red-500",
     description:
       "Short-term intensive programs under PMKVY focusing on rapid employability skills.",
     timeline: [
@@ -531,7 +531,7 @@ const programs: Program[] = [
   //   id: "bridge-foundation",
   //   name: "Bridge & Foundation Program",
   //   icon: <Heart className="w-5 h-5" />,
-  //   color: "from-green-500 to-green-500",
+  //   color: "from-red-500 to-red-500",
   //   description:
   //     "Preparatory programs for school dropouts and marginalized youth to enter formal skilling pathways.",
   //   timeline: [
@@ -585,7 +585,7 @@ const programs: Program[] = [
     id: "international-mobility",
     name: "International Mobility Program",
     icon: <Globe className="w-5 h-5" />,
-    color: "from-green-500 to-green-500",
+    color: "from-red-500 to-red-500",
     description:
       "Skill programs designed for overseas employment under India International Skill Centers (IISCs).",
     timeline: [
@@ -724,26 +724,26 @@ export default function ProgramTimeline() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Large floating circles */}
         <div className="absolute top-10 left-20 w-80 h-80 bg-rose-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-40 right-32 w-96 h-96 bg-green-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-40 right-32 w-96 h-96 bg-red-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute bottom-40 left-40 w-72 h-72 bg-rose-500/25 rounded-full blur-3xl animate-bounce delay-2000"></div>
-        <div className="absolute bottom-20 right-20 w-64 h-64 bg-green-500/20 rounded-full blur-3xl animate-pulse delay-3000"></div>
+        <div className="absolute bottom-20 right-20 w-64 h-64 bg-red-500/20 rounded-full blur-3xl animate-pulse delay-3000"></div>
 
         {/* Medium floating circles */}
-        <div className="absolute top-60 left-1/3 w-48 h-48 bg-green-500/30 rounded-full blur-2xl animate-bounce delay-4000"></div>
+        <div className="absolute top-60 left-1/3 w-48 h-48 bg-red-500/30 rounded-full blur-2xl animate-bounce delay-4000"></div>
         <div className="absolute top-32 right-1/3 w-56 h-56 bg-rose-500/25 rounded-full blur-2xl animate-pulse delay-500"></div>
-        <div className="absolute bottom-60 left-1/4 w-40 h-40 bg-green-500/35 rounded-full blur-2xl animate-bounce delay-1500"></div>
+        <div className="absolute bottom-60 left-1/4 w-40 h-40 bg-red-500/35 rounded-full blur-2xl animate-bounce delay-1500"></div>
         <div className="absolute top-2/3 right-1/4 w-52 h-52 bg-rose-500/20 rounded-full blur-2xl animate-pulse delay-2500"></div>
 
         {/* Small accent circles */}
-        <div className="absolute top-20 left-1/2 w-32 h-32 bg-green-500/40 rounded-full blur-xl animate-ping delay-1000"></div>
+        <div className="absolute top-20 left-1/2 w-32 h-32 bg-red-500/40 rounded-full blur-xl animate-ping delay-1000"></div>
         <div className="absolute bottom-40 right-1/2 w-28 h-28 bg-rose-500/35 rounded-full blur-xl animate-ping delay-3500"></div>
-        <div className="absolute top-1/3 left-10 w-24 h-24 bg-green-500/45 rounded-full blur-lg animate-ping delay-2000"></div>
+        <div className="absolute top-1/3 left-10 w-24 h-24 bg-red-500/45 rounded-full blur-lg animate-ping delay-2000"></div>
         <div className="absolute bottom-80 right-10 w-36 h-36 bg-rose-500/30 rounded-full blur-xl animate-bounce delay-4500"></div>
 
         {/* Extra scattered circles */}
-        <div className="absolute top-1/4 left-3/4 w-44 h-44 bg-green-500/25 rounded-full blur-2xl animate-pulse delay-3000"></div>
+        <div className="absolute top-1/4 left-3/4 w-44 h-44 bg-red-500/25 rounded-full blur-2xl animate-pulse delay-3000"></div>
         <div className="absolute bottom-1/4 left-1/5 w-60 h-60 bg-rose-500/15 rounded-full blur-3xl animate-bounce delay-5000"></div>
-        <div className="absolute top-3/4 right-3/4 w-32 h-32 bg-green-500/30 rounded-full blur-xl animate-ping delay-4000"></div>
+        <div className="absolute top-3/4 right-3/4 w-32 h-32 bg-red-500/30 rounded-full blur-xl animate-ping delay-4000"></div>
         <div className="absolute top-1/6 right-1/6 w-48 h-48 bg-rose-500/20 rounded-full blur-2xl animate-pulse delay-6000"></div>
       </div>
 
@@ -753,7 +753,7 @@ export default function ProgramTimeline() {
           <div className="max-w-4xl mx-auto space-y-6">
             <h1 className="text-6xl lg:text-7xl font-black tracking-tight">
               <p className="">
-                Our <span className="text-green-500">Training</span>
+                Our <span className="text-red-500">Training</span>
               </p>
               <span className="text-white">Timeline</span>
             </h1>
@@ -783,7 +783,7 @@ export default function ProgramTimeline() {
                     className={`p-2 rounded-lg flex-shrink-0 ${
                       activeTab === program.id
                         ? "bg-red-600"
-                        : "bg-green-500 group-hover:bg-gray-500/50"
+                        : "bg-red-500 group-hover:bg-gray-500/50"
                     } transition-colors`}
                   >
                     {program.icon}
@@ -817,8 +817,8 @@ export default function ProgramTimeline() {
                   </div>
                   <div className="text-gray-200 font-medium">Total Hours</div>
                 </div>
-                <div className="bg-gray-900/80 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 text-center">
-                  <div className="text-3xl font-black text-green-500 mb-2">
+                <div className="bg-gray-900/80 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 text-center">
+                  <div className="text-3xl font-black text-red-500 mb-2">
                     {programStats.phases}
                   </div>
                   <div className="text-gray-200 font-medium">
@@ -846,7 +846,7 @@ export default function ProgramTimeline() {
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Central Timeline Line */}
-              <div className="absolute -z-20 left-1/2 transform -translate-x-0.5 w-1 h-full bg-gradient-to-b from-red-600 via-green-500 to-red-600 rounded-full"></div>
+              <div className="absolute -z-20 left-1/2 transform -translate-x-0.5 w-1 h-full bg-gradient-to-b from-red-600 via-red-500 to-red-600 rounded-full"></div>
 
               <div className="space-y-16">
                 {activeProgram?.timeline.map((event, index) => {
@@ -854,8 +854,8 @@ export default function ProgramTimeline() {
                   const isVisible = visibleElements.has(event.id.toString());
                   const categoryInfo = categoryConfig[event.category];
                   const isRedCard = index % 2 === 0; // Alternate between red and green
-                  const cardColor = isRedCard ? "bg-red-600/80" : "bg-green-500/80";
-                  const iconColor = isRedCard ? "text-green-500" : "text-red-600";
+                  const cardColor = isRedCard ? "bg-red-600/80" : "bg-red-500/80";
+                  const iconColor = isRedCard ? "text-red-500" : "text-red-600";
 
                   return (
                     <div
@@ -883,7 +883,7 @@ export default function ProgramTimeline() {
                         >
                           {/* Category Badge */}
                           <div
-                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm ${isRedCard ? "bg-green-500/90" : "bg-red-600/90"} text-white border border-white/20`}
+                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm ${isRedCard ? "bg-red-500/90" : "bg-red-600/90"} text-white border border-white/20`}
                           >
                             {categoryInfo.icon}
                             {categoryInfo.label}
@@ -900,7 +900,7 @@ export default function ProgramTimeline() {
                           {/* Event Details Grid */}
                           <div className="grid grid-cols-2 gap-4">
                             <div className="flex items-center gap-3 text-white/90">
-                              <div className={`p-2 ${isRedCard ? "bg-green-500/20" : "bg-red-600/20"} rounded-lg backdrop-blur-sm border border-white/10`}>
+                              <div className={`p-2 ${isRedCard ? "bg-red-500/20" : "bg-red-600/20"} rounded-lg backdrop-blur-sm border border-white/10`}>
                                 <Calendar className={`w-4 h-4 ${iconColor}`} />
                               </div>
                               <div>
@@ -913,7 +913,7 @@ export default function ProgramTimeline() {
                               </div>
                             </div>
                             <div className="flex items-center gap-3 text-white/90">
-                              <div className={`p-2 ${isRedCard ? "bg-green-500/20" : "bg-red-600/20"} rounded-lg backdrop-blur-sm border border-white/10`}>
+                              <div className={`p-2 ${isRedCard ? "bg-red-500/20" : "bg-red-600/20"} rounded-lg backdrop-blur-sm border border-white/10`}>
                                 <Clock className={`w-4 h-4 ${iconColor}`} />
                               </div>
                               <div>
@@ -926,7 +926,7 @@ export default function ProgramTimeline() {
                               </div>
                             </div>
                             <div className="flex items-center gap-3 text-white/90">
-                              <div className={`p-2 ${isRedCard ? "bg-green-500/20" : "bg-red-600/20"} rounded-lg backdrop-blur-sm border border-white/10`}>
+                              <div className={`p-2 ${isRedCard ? "bg-red-500/20" : "bg-red-600/20"} rounded-lg backdrop-blur-sm border border-white/10`}>
                                 <MapPin className={`w-4 h-4 ${iconColor}`} />
                               </div>
                               <div>
@@ -939,7 +939,7 @@ export default function ProgramTimeline() {
                               </div>
                             </div>
                             <div className="flex items-center gap-3 text-white/90">
-                              <div className={`p-2 ${isRedCard ? "bg-green-500/20" : "bg-red-600/20"} rounded-lg backdrop-blur-sm border border-white/10`}>
+                              <div className={`p-2 ${isRedCard ? "bg-red-500/20" : "bg-red-600/20"} rounded-lg backdrop-blur-sm border border-white/10`}>
                                 <Users className={`w-4 h-4 ${iconColor}`} />
                               </div>
                               <div>
@@ -958,7 +958,7 @@ export default function ProgramTimeline() {
                         <div
                           className={`absolute top-1/2 transform -translate-y-1/2 ${
                             isEven ? "-right-6" : "-left-6"
-                          } w-12 h-12 ${isRedCard ? "bg-green-500" : "bg-red-600"} rounded-full flex items-center justify-center shadow-lg z-20 border-4 border-gray-900 backdrop-blur-sm`}
+                          } w-12 h-12 ${isRedCard ? "bg-red-500" : "bg-red-600"} rounded-full flex items-center justify-center shadow-lg z-20 border-4 border-gray-900 backdrop-blur-sm`}
                         >
                           <span className="text-white">
                             {categoryInfo.icon}
@@ -969,7 +969,7 @@ export default function ProgramTimeline() {
                         <div
                           className={`absolute top-1/2 transform -translate-y-0.5 ${
                             isEven ? "-right-3" : "-left-3"
-                          } w-6 h-1 ${isRedCard ? "bg-green-500" : "bg-red-600"} z-10`}
+                          } w-6 h-1 ${isRedCard ? "bg-red-500" : "bg-red-600"} z-10`}
                         ></div>
                       </div>
                     </div>
@@ -982,10 +982,10 @@ export default function ProgramTimeline() {
                 <div
                   className="
       relative bg-gray-900/30 backdrop-blur-md rounded-3xl p-8 text-center
-      border border-green-500/20 shadow-[0_4px_30px_rgba(20,184,166,0.2)]
+      border border-red-500/20 shadow-[0_4px_30px_rgba(20,184,166,0.2)]
       hover:bg-gray-900/40 hover:shadow-[0_4px_30px_rgba(20,184,166,0.3)]
       transition-all duration-300
-      before:absolute before:inset-0 before:bg-gradient-to-r before:from-rose-500/10 before:to-green-500/10
+      before:absolute before:inset-0 before:bg-gradient-to-r before:from-rose-500/10 before:to-red-500/10
       before:rounded-3xl before:opacity-0 before:transform before:scale-95
       before:transition-all before:duration-500
       hover:before:opacity-100 hover:before:scale-100
@@ -1005,7 +1005,7 @@ export default function ProgramTimeline() {
           </div>
         </section>
       </div>
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 via-black to-red-600"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-black to-red-600"></div>
 
     </div>
   );

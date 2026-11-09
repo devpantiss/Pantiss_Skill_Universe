@@ -1,5 +1,9 @@
-import React, { memo, useRef, useEffect, useState } from "react";
+import SiteImage from "../common/SiteImage";
+import React, { memo } from "react";
 import Marquee from "react-fast-marquee";
+import BackgroundVideo from "../common/BackgroundVideo";
+import { useViewportActivity } from "../../hooks/useViewportActivity";
+import { useReducedMotion } from "framer-motion";
 
 // Interfaces
 interface Stat {
@@ -29,7 +33,7 @@ const statsData: Stat[] = [
 ];
 
 const companiesData: Company[] = [
-  { name: "Vedanta Resources", logo: "/Homepage/placements/company/vedanta-removebg-preview.png" },
+  { name: "Vedanta Resources", logo: "/optimized/Homepage/placements/company/vedanta-removebg-preview.png.webp" },
   { name: "Tata Steel", logo: "/Homepage/placements/company/TATA_STEEL-removebg-preview.png" },
   { name: "Wistron", logo: "/Homepage/placements/company/Wistron.webp" },
   { name: "Jindal Steel & Power", logo: "/Homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png" },
@@ -93,7 +97,7 @@ const StatCard = memo(({ stat }: { stat: Stat }) => (
 
 const CompanyLogo = memo(({ company }: { company: Company }) => (
   <div className="flex-shrink-0 w-44 h-44 flex items-center justify-center p-4">
-    <img
+    <SiteImage decoding="async"
       src={company.logo}
       alt={company.name}
       className="w-full h-full object-contain"
@@ -104,7 +108,7 @@ const CompanyLogo = memo(({ company }: { company: Company }) => (
 
 const StudentCard = memo(({ student }: { student: Student }) => (
   <div className="flex-shrink-0 w-64 bg-transparent rounded-lg text-center">
-    <img
+    <SiteImage decoding="async"
       src={student.image}
       alt={student.name}
       className="w-44 h-44 rounded-full object-cover mx-auto mb-4 border-2 border-orange-500"
@@ -118,54 +122,19 @@ const StudentCard = memo(({ student }: { student: Student }) => (
 
 // Main Section
 const PlacementsSection: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (videoRef.current) videoRef.current.play().catch(() => {});
-        } else {
-          if (videoRef.current) videoRef.current.pause();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+  const { ref, active } = useViewportActivity<HTMLElement>();
+  const reducedMotion = useReducedMotion();
   return (
-    <section ref={sectionRef} className="relative py-16 overflow-hidden bg-black">
-      {/* Background Video — lazy loaded */}
-      <video
-        ref={videoRef}
-        loop
-        muted
-        playsInline
-        preload="none"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        {isVisible && (
-          <source
-            src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743490663/12266398_1920_1080_30fps_njenhk.mp4"
-            type="video/mp4"
-          />
-        )}
-      </video>
+    <section ref={ref} className="relative py-16 overflow-hidden bg-black">
+      <BackgroundVideo
+        src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1743490663/12266398_1920_1080_30fps_njenhk.mp4"
+        className="absolute inset-0 h-full w-full z-0" />
 
       {/* Blurry Circles Overlay */}
       <div className="absolute inset-0 z-5">
       {/* Large Blurry Circles */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-green-600 rounded-full blur-3xl opacity-30 z-0" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
 
       {/* Small Blurry Circles */}
       <div className="absolute top-10 right-10 w-32 h-32 bg-blue-600 rounded-full blur-3xl opacity-30 z-0" />
@@ -175,7 +144,7 @@ const PlacementsSection: React.FC = () => {
       <div className="absolute top-1/4 right-1/3 w-32 h-32 bg-cyan-600 rounded-full blur-3xl opacity-30 z-0" />
       <div className="absolute bottom-1/4 left-1/3 w-32 h-32 bg-orange-600 rounded-full blur-3xl opacity-30 z-0" />
       <div className="absolute top-1/2 left-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
-      <div className="absolute bottom-1/2 right-10 w-32 h-32 bg-green-600 rounded-full blur-3xl opacity-30 z-0" />
+      <div className="absolute bottom-1/2 right-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
       </div>
 
       {/* Dark Gradient Overlay (kept for readability) */}
@@ -203,7 +172,7 @@ const PlacementsSection: React.FC = () => {
 
           {/* Marquee Content */}
           <div className="lg:w-2/3">
-            <Marquee gradient={false} speed={40} pauseOnHover>
+            <Marquee play={active && !reducedMotion} gradient={false} speed={40} pauseOnHover>
               {companiesData.map((company, i) => (
                 <CompanyLogo key={`${company.name}-${i}`} company={company} />
               ))}
@@ -215,7 +184,7 @@ const PlacementsSection: React.FC = () => {
               </h3>
             </div>
 
-            <Marquee gradient={false} speed={40} pauseOnHover>
+            <Marquee play={active && !reducedMotion} gradient={false} speed={40} pauseOnHover>
               {studentsData.map((student, i) => (
                 <StudentCard key={`${student.name}-${i}`} student={student} />
               ))}

@@ -1,10 +1,14 @@
+import BrandLogo from "./BrandLogo";
 // Header.tsx — Ultra Enterprise Version (Performance Optimized)
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
+import { useReducedMotion } from "framer-motion";
 import {
   FaBars,
+  FaChevronDown,
+  FaArrowRight,
   FaStar,
   FaAward,
   FaBrain,
@@ -65,6 +69,21 @@ const programData: NavSubLink[] = [
     icon: <FaAward />,
   },
 ];
+
+function ProgrammeMenu({ compact = false, onSelect }: { compact?: boolean; onSelect: () => void }) {
+  const viewAll = programData[0];
+  return <div className={compact ? 'header-programme-menu header-programme-menu-mobile' : 'header-programme-menu'}>
+    <div className="header-dropdown-heading"><div><span className="header-dropdown-eyebrow">Find your pathway</span><h3>Programmes at Pantiss</h3></div>
+      <Link to={viewAll.path} onClick={onSelect} className="header-dropdown-view-all">{viewAll.name}<FaArrowRight aria-hidden="true" /></Link>
+    </div>
+    <div className="header-programme-grid">{programData.slice(1).map(program => <Link key={program.path} to={program.path} onClick={onSelect} className="header-programme-option">
+      <span className="header-programme-icon" aria-hidden="true">{program.icon}</span>
+      <span className="header-programme-copy"><strong>{program.name}</strong><span>{program.description}</span></span>
+      <FaArrowRight className="header-programme-arrow" aria-hidden="true" />
+    </Link>)}</div>
+    <div className="header-dropdown-footer"><span>Not sure where to start?</span><Link to="/contact-us" onClick={onSelect}>Speak to our team<FaArrowRight aria-hidden="true" /></Link></div>
+  </div>;
+}
 
 /* ================= NAV DATA ================= */
 
@@ -182,7 +201,9 @@ const isNavLinkActive = (link: NavLink, currentPath: string) =>
 /* ================= COMPONENT ================= */
 
 const Header: React.FC = React.memo(() => {
+  const shouldReduceMotion = useReducedMotion();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [portalsOpen, setPortalsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [comingSoonNotice, setComingSoonNotice] = useState<string | null>(null);
@@ -190,8 +211,32 @@ const Header: React.FC = React.memo(() => {
   const location = useLocation();
   const navigate = useNavigate();
   const headerRef = useRef<HTMLElement>(null);
+  const dropdownTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const portalTriggerRef = useRef<HTMLButtonElement>(null);
+  const portalPanelRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const underlineRef = useRef<HTMLDivElement>(null);
+
+  // Reserve the expanded header height without moving content as it collapses on scroll.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header || isScrolled || mobileMenuOpen) return;
+    const measure = () => document.documentElement.style.setProperty('--site-header-height', `${Math.ceil(header.getBoundingClientRect().height)}px`);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, [isScrolled, mobileMenuOpen]);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const measure = () => header.style.setProperty('--header-dropdown-top', `${Math.ceil(header.getBoundingClientRect().bottom)}px`);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
 
   /* ================= SCROLL (throttled with rAF) ================= */
 
@@ -214,11 +259,15 @@ const Header: React.FC = React.memo(() => {
   useEffect(() => {
     setOpenDropdown(null);
     setMobileMenuOpen(false);
+    setPortalsOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        if (portalPanelRef.current?.contains(document.activeElement)) portalTriggerRef.current?.focus();
+        if (document.activeElement?.closest("[data-header-dropdown]")) dropdownTriggerRef.current?.focus();
+        setPortalsOpen(false);
         setOpenDropdown(null);
         setMobileMenuOpen(false);
         setComingSoonNotice(null);
@@ -274,6 +323,8 @@ const Header: React.FC = React.memo(() => {
 
   const handleNavClick = useCallback((item: NavSubLink) => {
     if (isComingSoon(item.name)) return;
+    setOpenDropdown(null);
+    setMobileMenuOpen(false);
 
     if (shouldOpenNewTab(item.name)) {
       window.open(item.path, "_blank", "noopener,noreferrer");
@@ -286,19 +337,19 @@ const Header: React.FC = React.memo(() => {
 
   const announcementTexts = [
     "Call +91 9874875876 for inquiries",
-    "Admission open for 2024 batch",
-    "Upcoming event on August 15th",
+    "Explore industry-led skill programmes",
+    "Learn. Upskill. Empower.",
   ];
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 w-full z-50">
+    <header ref={headerRef} className="legacy-header fixed top-0 left-0 w-full z-50">
 
       {/* ================= TOP BAR ================= */}
 
       <div className="w-full bg-red-600 text-white text-sm">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-1">
 
-          <Marquee pauseOnHover speed={50} gradient={false}>
+          <Marquee play={!shouldReduceMotion} pauseOnHover speed={50} gradient={false}>
             {announcementTexts.map((t, i) => (
               <span key={i} className="mx-6">{t}</span>
             ))}
@@ -340,12 +391,10 @@ const Header: React.FC = React.memo(() => {
 
           <Link
             to="/"
-            className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+            className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
             aria-label="Pantiss Skill Universe home"
           >
-            <img
-              src="/PSU_H.png"
-              alt="Pantiss Skill Universe"
+            <BrandLogo
               className={`transition-all ${isScrolled ? "h-16" : "h-24"}`}
               width={220}
               height={96}
@@ -359,7 +408,7 @@ const Header: React.FC = React.memo(() => {
             {/* Animated underline */}
             <div
               ref={underlineRef}
-              className="absolute bottom-0 h-[2px] bg-green-400 opacity-0 transition-all duration-300"
+              className="absolute bottom-0 h-[2px] bg-red-400 opacity-0 transition-all duration-300"
             />
 
             {navLinks.map(link => {
@@ -368,19 +417,19 @@ const Header: React.FC = React.memo(() => {
               const isActive = isNavLinkActive(link, location.pathname);
 
               return (
-                <div key={link.name} className="relative">
+                <div key={link.name} className="relative" onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenDropdown(null); }}>
 
                   {hasSub ? (
                     <button
                       type="button"
                       aria-expanded={isOpen}
-                      aria-haspopup="true"
-                      onClick={() => toggleDropdown(link.name)}
+                      aria-controls={link.name === "Programs" ? "header-programmes-menu" : "header-study-menu"}
+                      onClick={event => { dropdownTriggerRef.current = event.currentTarget; toggleDropdown(link.name); }}
                       data-active-marker={isActive ? "true" : undefined}
-                      className={`py-6 font-semibold transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${isActive ? "text-green-400" : "text-gray-200"
+                      className={`py-6 font-semibold transition hover:text-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 ${isActive ? "text-red-400" : "text-gray-200"
                         }`}
                     >
-                      {link.name}
+                      {link.name}<FaChevronDown className="header-dropdown-chevron" aria-hidden="true" />
                     </button>
                   ) : isExternalPath(link.path!) ? (
                     <a
@@ -389,7 +438,7 @@ const Header: React.FC = React.memo(() => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${link.name} (opens in a new tab)`}
-                      className="block py-6 font-semibold text-gray-200 transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                      className="block py-6 font-semibold text-gray-200 transition hover:text-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
                     >
                       {link.name}
                     </a>
@@ -398,113 +447,24 @@ const Header: React.FC = React.memo(() => {
                       data-path={link.path}
                       data-active-marker={isActive ? "true" : undefined}
                       to={link.path!}
-                      className={`block py-6 font-semibold transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${isActive ? "text-green-400" : "text-gray-200"
+                      className={`block py-6 font-semibold transition hover:text-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 ${isActive ? "text-red-400" : "text-gray-200"
                         }`}
                     >
                       {link.name}
                     </Link>
                   )}
 
-                  {/* ================= PROGRAMS MEGA ================= */}
-
                   {isOpen && link.name === "Programs" && (
-                    <div className="
-                      fixed left-0 top-[170px] w-full
-                      bg-black/90 backdrop-blur-xl border-t border-gray-700
-                      shadow-2xl animate-[fadeIn_.25s_ease]
-                    ">
-                      <div className="max-w-7xl mx-auto px-12 py-12">
-
-                        <h3 className="text-xs tracking-widest text-gray-400 uppercase mb-8">
-                          Programs
-                        </h3>
-
-                        <div className="grid grid-cols-3 gap-6">
-
-                          {programData.map(program => (
-                            <Link
-                              key={program.name}
-                              to={program.path}
-                              className="
-                                group p-6 rounded-xl border border-gray-700
-                                hover:border-green-400 hover:bg-white/5
-                                transition-all text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400
-                              "
-                            >
-                              <div className="text-green-400 text-xl mb-3">
-                                {program.icon}
-                              </div>
-
-                              <div className="text-sm font-semibold text-gray-200 group-hover:text-green-400">
-                                {program.name}
-                              </div>
-
-                              <div className="text-xs text-gray-400 mt-2">
-                                {program.description}
-                              </div>
-                            </Link>
-                          ))}
-
-                        </div>
-
-                      </div>
-                    </div>
+                    <div id="header-programmes-menu" data-header-dropdown className="header-mega-panel header-mega-programmes"><ProgrammeMenu onSelect={() => setOpenDropdown(null)} /></div>
                   )}
-
-                  {/* ================= STUDY PSU ================= */}
-
                   {isOpen && link.name === "Study at PSU" && (
-                    <div className="
-                      fixed left-0 top-[170px] w-full
-                      bg-black/90 backdrop-blur-xl border-t border-gray-700
-                      shadow-2xl animate-[fadeIn_.25s_ease]
-                    ">
-                      <div className="max-w-7xl mx-auto px-12 py-12 grid grid-cols-3 gap-16">
-
-                        {link.subLinks!.map(section => (
-                          <div key={section.name}>
-                            <h3 className="text-xs tracking-widest text-gray-400 uppercase mb-6">
-                              {section.name}
-                            </h3>
-
-                            <ul className="space-y-3">
-                              {section.children?.map(child => {
-                                const comingSoon = isComingSoon(child.name);
-
-                                return (
-                                  <li key={child.name}>
-                                    <button
-                                      type="button"
-                                      onClick={() => handleNavClick(child)}
-                                      disabled={comingSoon}
-                                      className={`
-                                        w-full text-left px-3 py-2 rounded-lg
-                                        flex justify-between items-center
-                                        ${comingSoon
-                                          ? "text-gray-500 cursor-not-allowed"
-                                          : "text-gray-200 hover:bg-white/5 hover:text-green-400"}
-                                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400
-                                      `}
-                                    >
-                                      {child.name}
-
-                                      {comingSoon && (
-                                        <span className="
-                                          text-xs px-2 py-1 rounded-full text-center
-                                          bg-gray-700 text-white animate-pulse
-                                        ">
-                                          Coming Soon
-                                        </span>
-                                      )}
-                                    </button>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        ))}
-
-                      </div>
+                    <div id="header-study-menu" data-header-dropdown className="header-mega-panel">
+                      <div className="header-dropdown-heading"><div><span className="header-dropdown-eyebrow">Explore our universe</span><h3>Study at PSU</h3></div><span className="header-dropdown-intro">Schools, campuses & opportunities</span></div>
+                      <div className="header-study-grid">{link.subLinks!.map(section => <section key={section.name} className="header-study-group">
+                        <h4>{section.name}</h4><ul>{section.children?.map(child => <li key={child.name}><button type="button" onClick={() => handleNavClick(child)} disabled={isComingSoon(child.name)} className="header-study-option">
+                          <span>{child.name}</span>{isComingSoon(child.name) ? <span className="header-unavailable-badge">Soon</span> : <FaArrowRight aria-hidden="true" />}
+                        </button></li>)}</ul>
+                      </section>)}</div>
                     </div>
                   )}
 
@@ -516,8 +476,8 @@ const Header: React.FC = React.memo(() => {
 
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md p-3 text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 lg:hidden"
-            onClick={() => setMobileMenuOpen((open) => !open)}
+            className="inline-flex items-center justify-center rounded-md p-3 text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 lg:hidden"
+            onClick={() => { setPortalsOpen(false); setMobileMenuOpen((open) => !open); }}
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -528,7 +488,7 @@ const Header: React.FC = React.memo(() => {
       </div>
 
       {mobileMenuOpen && (
-        <div className="max-h-[calc(100vh-96px)] overflow-y-auto border-b border-gray-800 bg-black px-6 py-4 text-white shadow-2xl lg:hidden">
+        <div className="mobile-navigation-panel overflow-y-auto border-b border-gray-800 bg-black px-6 py-4 text-white shadow-2xl lg:hidden">
           <nav aria-label="Mobile navigation" className="space-y-2">
             {navLinks.map((link) => {
               const hasSub = !!link.subLinks;
@@ -543,7 +503,7 @@ const Header: React.FC = React.memo(() => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${link.name} (opens in a new tab)`}
-                    className="block rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                    className="block rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
                   >
                     {link.name}
                   </a>
@@ -551,7 +511,7 @@ const Header: React.FC = React.memo(() => {
                   <Link
                     key={link.name}
                     to={link.path!}
-                    className={`block rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${isActive ? "bg-white/10 text-green-400" : ""
+                    className={`block rounded-lg px-3 py-3 font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 ${isActive ? "bg-white/10 text-red-400" : ""
                       }`}
                   >
                     {link.name}
@@ -563,7 +523,7 @@ const Header: React.FC = React.memo(() => {
                 <div key={link.name}>
                   <button
                     type="button"
-                    className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-left font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${isActive ? "bg-white/10 text-green-400" : ""
+                    className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-left font-semibold transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 ${isActive ? "bg-white/10 text-red-400" : ""
                       }`}
                     onClick={() => toggleDropdown(link.name)}
                     aria-expanded={isOpen}
@@ -571,12 +531,12 @@ const Header: React.FC = React.memo(() => {
                     {link.name}
                     <span aria-hidden="true">{isOpen ? "−" : "+"}</span>
                   </button>
-                  {isOpen && (
-                    <div className="mt-2 space-y-2 rounded-lg border border-white/10 bg-white/5 p-3">
-                      {(link.name === "Programs" ? programData : link.subLinks!).map((item) => (
+                  {isOpen && (link.name === "Programs" ? <ProgrammeMenu compact onSelect={() => { setOpenDropdown(null); setMobileMenuOpen(false); }} /> : (
+                    <div className="header-mobile-study">
+                      {link.subLinks!.map((item) => (
                         item.children ? (
                           <div key={item.name} className="space-y-1">
-                            <p className="px-2 py-1 text-xs font-bold uppercase tracking-widest text-green-400">
+                            <p className="px-2 py-1 text-xs font-bold uppercase tracking-widest text-red-400">
                               {item.name}
                             </p>
                             {item.children.map((child) => {
@@ -588,7 +548,7 @@ const Header: React.FC = React.memo(() => {
                                   type="button"
                                   disabled={comingSoon}
                                   onClick={() => handleNavClick(child)}
-                                  className="flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-sm text-gray-200 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                                  className="flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-sm text-gray-200 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
                                 >
                                   {child.name}
                                   {comingSoon && <span className="text-xs text-gray-400">Soon</span>}
@@ -600,14 +560,14 @@ const Header: React.FC = React.memo(() => {
                           <Link
                             key={item.name}
                             to={item.path}
-                            className="block rounded-md px-2 py-2 text-sm text-gray-200 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+                            className="block rounded-md px-2 py-2 text-sm text-gray-200 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
                           >
                             {item.name}
                           </Link>
                         )
                       ))}
                     </div>
-                  )}
+                  ))}
                 </div>
               );
             })}
@@ -615,44 +575,27 @@ const Header: React.FC = React.memo(() => {
         </div>
       )}
 
-      {/* ================= SECONDARY ================= */}
-
+      {/* Keep the desktop portal row; disclose a complete touch-friendly grid on mobile. */}
       {!isScrolled && (
-        <div className="border-y border-red-600 bg-black text-white">
-          <div className="max-w-7xl mx-auto flex justify-end gap-6 px-6 py-2">
-            {secondaryLinks.map(link => {
-              const Icon = link.icon;
-              return link.comingSoon ? (
-                <button
-                  key={link.name}
-                  type="button"
-                  onClick={() => setComingSoonNotice(link.name)}
-                  className="flex items-center gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
-                  aria-label={`${link.name} — coming soon`}
-                >
-                  <Icon /> {link.name}
-                </button>
-              ) : isExternalPath(link.path) ? (
-                <a
-                  key={link.name}
-                  href={link.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${link.name} (opens in a new tab)`}
-                  className="flex items-center gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
-                >
-                  <Icon /> {link.name}
-                </a>
-              ) : (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className="flex items-center gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
-                >
-                  <Icon /> {link.name}
-                </Link>
-              );
-            })}
+        <div className="portal-navigation" data-open={portalsOpen}>
+          <div className="portal-navigation-inner">
+            <button ref={portalTriggerRef} type="button" className="portal-navigation-toggle"
+              aria-expanded={portalsOpen} aria-controls="header-portals"
+              onClick={() => { setMobileMenuOpen(false); setOpenDropdown(null); setPortalsOpen(open => !open); }}>
+              <span>Quick access <strong>Portals</strong></span>
+              <FaChevronDown aria-hidden="true" />
+            </button>
+            <nav ref={portalPanelRef} id="header-portals" aria-label="Portals" className="portal-navigation-links">
+              {secondaryLinks.map(link => {
+                const Icon = link.icon;
+                const content = <><Icon aria-hidden="true" /><span>{link.name}</span></>;
+                return link.comingSoon ? (
+                  <button key={link.name} type="button" onClick={() => setComingSoonNotice(link.name)} aria-label={`${link.name} — coming soon`}>{content}<span className="portal-soon">Soon</span></button>
+                ) : isExternalPath(link.path) ? (
+                  <a key={link.name} href={link.path} target="_blank" rel="noopener noreferrer" aria-label={`${link.name} (opens in a new tab)`}>{content}</a>
+                ) : <Link key={link.name} to={link.path}>{content}</Link>;
+              })}
+            </nav>
           </div>
         </div>
       )}
@@ -670,7 +613,7 @@ const Header: React.FC = React.memo(() => {
           <button
             type="button"
             onClick={() => setComingSoonNotice(null)}
-            className="ml-1 rounded-md p-1 text-gray-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+            className="ml-1 rounded-md p-1 text-gray-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
             aria-label="Dismiss coming soon notice"
           >
             <FaTimes aria-hidden="true" />

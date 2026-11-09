@@ -1,3 +1,5 @@
+import SiteImage from "../common/SiteImage";
+import { useCountUp } from "../../hooks/useCountUp";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -40,25 +42,6 @@ const panels: AccordionPanel[] = [
 
 /* ===================== COUNT UP ===================== */
 
-const useCountUp = (end: number, enabled: boolean, duration = 1600) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!enabled) return;
-
-    const startTime = performance.now();
-
-    const animate = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      setCount(Math.floor(progress * end));
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  }, [end, enabled, duration]);
-
-  return count;
-};
 
 function ImpactStatCard({
   stat,
@@ -73,7 +56,7 @@ function ImpactStatCard({
 
   return (
     <div className="relative">
-      <div className="text-5xl md:text-6xl font-light text-green-400">
+      <div className="text-5xl md:text-6xl font-light text-red-400">
         {animatedValue}
         {stat.suffix}
       </div>
@@ -123,7 +106,7 @@ export default function PSMSAOurProgrammesHero() {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#0a0505] text-white mt-28">
+    <section className="relative w-full overflow-hidden bg-[#0a0505] text-white">
 
       {/* ===================== RED + GREEN ENTERPRISE BACKGROUND ===================== */}
       <div className="absolute inset-0">
@@ -169,7 +152,7 @@ export default function PSMSAOurProgrammesHero() {
               </button>
 
               {/* Secondary */}
-              <button className="group inline-flex items-center gap-3 border border-green-500/40 px-10 py-4 text-xs font-semibold tracking-widest text-green-400 transition hover:bg-green-500/10 hover:text-green-300">
+              <button className="group inline-flex items-center gap-3 border border-red-500/40 px-10 py-4 text-xs font-semibold tracking-widest text-red-400 transition hover:bg-red-500/10 hover:text-red-300">
                 TALK TO US
                 <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
               </button>
@@ -197,7 +180,7 @@ export default function PSMSAOurProgrammesHero() {
                     ].join(" ")}
                   >
                     {/* Plus */}
-                    <div className="absolute top-6 left-1/2 -translate-x-1/2 text-green-400 text-2xl">
+                    <div className="absolute top-6 left-1/2 -translate-x-1/2 text-red-400 text-2xl">
                       +
                     </div>
 
@@ -212,7 +195,7 @@ export default function PSMSAOurProgrammesHero() {
                           className="h-full w-full px-6 py-6"
                         >
                           <div className="relative h-[260px] w-full overflow-hidden border border-white/10 bg-black/20">
-                            <img
+                            <SiteImage decoding="async" loading="lazy"
                               src={panel.image}
                               alt={panel.id}
                               className="h-full w-full object-cover"

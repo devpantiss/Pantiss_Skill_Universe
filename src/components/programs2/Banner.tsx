@@ -23,7 +23,7 @@ const ProgrammesBanner: React.FC = () => {
       {/* Ambient Glow Orbs */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 left-10 w-[420px] h-[420px] bg-purple-600/25 rounded-full blur-[140px]" />
-        <div className="absolute bottom-[-120px] right-10 w-[520px] h-[520px] bg-green-500/15 rounded-full blur-[160px]" />
+        <div className="absolute bottom-[-120px] right-10 w-[520px] h-[520px] bg-red-500/15 rounded-full blur-[160px]" />
         <div className="absolute top-1/2 left-1/2 w-[520px] h-[520px] bg-purple-600/10 rounded-full blur-[180px] -translate-x-1/2 -translate-y-1/2" />
       </div>
 
@@ -39,7 +39,7 @@ const ProgrammesBanner: React.FC = () => {
         {/* Title */}
         <h1 className="mt-6 text-4xl md:text-6xl font-extrabold tracking-tight leading-tight drop-shadow-lg">
           Our{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-green-400">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-600 to-red-400">
             Skill Development
           </span>{" "}
           Programmes
@@ -95,8 +95,8 @@ const ProgrammesBanner: React.FC = () => {
       </div>
 
       {/* Top & Bottom Accent Lines */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-green-500 via-black to-purple-600 opacity-90" />
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-600 via-black to-green-500 opacity-90" />
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 via-black to-purple-600 opacity-90" />
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-600 via-black to-red-500 opacity-90" />
     </section>
   );
 };

@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 // WomenInMining.tsx
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,25 +8,25 @@ const roleCards = [
   {
     id: "dumper",
     title: "Dumper Operator",
-    image: "/Homepage/womenInMining/dumper_volvo.png",
+    image: "/optimized/Homepage/womenInMining/dumper_volvo.png.webp",
     description: "Mastering heavy-payload logistics in challenging terrains."
   },
   {
     id: "excavator",
     title: "Excavator Operator",
-    image: "/Homepage/womenInMining/exca.jpg",
+    image: "/optimized/Homepage/womenInMining/exca.jpg.webp",
     description: "Precision-based earthmover operations for global mining."
   },
   {
     id: "crane",
     title: "Crane Operator",
-    image: "/Homepage/womenInMining/crane.jpg",
+    image: "/optimized/Homepage/womenInMining/crane.jpg.webp",
     description: "High-altitude structural lifting and maritime logistics."
   },
   {
     id: "loader",
     title: "Loader Operator",
-    image: "/Homepage/womenInMining/loader.jpg",
+    image: "/optimized/Homepage/womenInMining/loader.jpg.webp",
     description: "Optimizing material flow with efficiency and power."
   },
 ];
@@ -46,14 +47,14 @@ const WomenInMining: React.FC = () => {
   return (
     <section className="relative w-full text-white py-24 overflow-hidden">
       {/* Optimized Background: Hardware Accelerated Parallax */}
-      <div 
+      <div
         className="absolute inset-0 z-0 bg-fixed bg-center bg-cover grayscale-[0.2] will-change-transform"
         style={{
-          backgroundImage: "url('/Homepage/women-in-mining.png')",
+          backgroundImage: "url('/optimized/Homepage/women-in-mining.png.webp')",
           transform: "translateZ(0)"
         }}
       />
-      
+
       {/* Optimize Glow Layers */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[1]">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-black/40 to-[#0a0a0a] will-change-opacity" />
@@ -63,7 +64,7 @@ const WomenInMining: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
-          
+
           {/* LEFT: MINIMALIST CONTENT */}
           <div className="w-full lg:w-[40%] space-y-12">
             <div className="space-y-6">
@@ -82,20 +83,20 @@ const WomenInMining: React.FC = () => {
               </h2>
 
               <p className="text-xl text-slate-400 font-medium leading-relaxed max-w-md">
-                We are building a future where expertise knows no gender. 
+                We are building a future where expertise knows no gender.
                 Pioneering professional growth in heavy engineering and global logistics.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-6 items-center">
-              <button 
+              <button
                 onClick={() => window.location.href = "/our-programmes"}
                 className="px-10 py-5 bg-red-600 text-white font-black text-xs tracking-widest uppercase rounded-full hover:bg-red-700 transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-600/20 flex items-center gap-3"
               >
                 Join the Network <FaArrowRight className="w-3 h-3" />
               </button>
-              
-              <button 
+
+              <button
                 onClick={() => window.location.href = "/about"}
                 className="text-xs font-black tracking-widest uppercase border-b-2 border-white/20 hover:border-red-600 transition-colors py-1"
               >
@@ -126,13 +127,13 @@ const WomenInMining: React.FC = () => {
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute inset-0"
                 >
-                  <img 
-                    src={roleCards[activeIndex].image} 
+                  <SiteImage decoding="async" loading="lazy"
+                    src={roleCards[activeIndex].image}
                     alt={roleCards[activeIndex].title}
                     className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                  
+
                   {/* SLIDE CONTENT */}
                   <div className="absolute bottom-12 left-12 right-12">
                     <motion.div
@@ -154,13 +155,13 @@ const WomenInMining: React.FC = () => {
 
               {/* CONTROLS */}
               <div className="absolute top-1/2 -translate-y-1/2 right-8 flex flex-col gap-4 z-20">
-                <button 
+                <button
                   onClick={prevSlide}
                   className="w-12 h-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition-all active:scale-90"
                 >
                   <FaChevronLeft className="w-3 h-3 text-white" />
                 </button>
-                <button 
+                <button
                   onClick={nextSlide}
                   className="w-12 h-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition-all active:scale-90"
                 >
@@ -171,7 +172,7 @@ const WomenInMining: React.FC = () => {
               {/* INDICATORS */}
               <div className="absolute bottom-12 right-12 flex gap-3">
                 {roleCards.map((_, i) => (
-                  <div 
+                  <div
                     key={i}
                     className={`h-1.5 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-10 bg-red-600' : 'w-4 bg-white/20'}`}
                   />

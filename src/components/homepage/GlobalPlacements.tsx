@@ -1,5 +1,7 @@
+import SiteImage from "../common/SiteImage";
 // GlobalPlacements.tsx
 import React from "react";
+import BackgroundVideo from "../common/BackgroundVideo";
 import { motion } from "framer-motion";
 import { ArrowRight, Globe, TrendingUp, Users, ShieldCheck } from "lucide-react";
 
@@ -14,15 +16,8 @@ const GlobalPlacements: React.FC = () => {
     <section className="relative w-full overflow-hidden bg-black py-24 lg:py-32">
       {/* --- BACKGROUND VIDEO WITH CINEMATIC OVERLAY --- */}
       <div className="absolute inset-0 z-0">
-        <video
-          className="w-full h-full object-cover opacity-40 grayscale-[0.4] will-change-transform"
-          src="/Homepage/3125427-uhd_3840_2160_25fps.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ transform: "translateZ(0)" }}
-        />
+        <BackgroundVideo src="/Homepage/3125427-uhd_3840_2160_25fps.mp4"
+          className="w-full h-full opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent will-change-opacity" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 will-change-opacity" />
       </div>
@@ -107,8 +102,9 @@ const GlobalPlacements: React.FC = () => {
             <div className="relative aspect-[16/11] rounded-[40px] overflow-hidden bg-white/5 border border-white/10 p-6 backdrop-blur-xl group">
               {/* Map Image with Inner Glow */}
               <div className="relative h-full w-full rounded-[32px] overflow-hidden ring-1 ring-white/10">
-                <img
-                  src="/Homepage/world_map.png"
+                <SiteImage
+                  src="/Homepage/world_map.webp"
+                  loading="lazy" decoding="async"
                   alt="World map showing placement regions"
                   className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-1000"
                 />

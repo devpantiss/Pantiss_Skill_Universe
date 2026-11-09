@@ -1,21 +1,22 @@
+import DeferredSection from "../components/common/DeferredSection";
 import React from 'react'
 import ProgrammesHero from '../components/programmes/ProgrammesHero'
-import ProgrammesCategory from '../components/programmes/ProgrammesCategory'
-import JobRolesMarquee from '../components/programmes/JobRolesMarquee'
+const ProgrammesCategory = React.lazy(() => import("../components/programmes/ProgrammesCategory"));
+const JobRolesMarquee = React.lazy(() => import("../components/programmes/JobRolesMarquee"));
 // import ProgrammesBanner from '../components/programmes/Banner'
-import ProgramTimeline from '../components/programmes/Timeline'
-import WhyProgrammesBanner from '../components/programmes/WhyProgrammes'
+const ProgramTimeline = React.lazy(() => import("../components/programmes/Timeline"));
+const WhyProgrammesBanner = React.lazy(() => import("../components/programmes/WhyProgrammes"));
 // import FeaturedProgrammes from '../components/programmes/FeaturedProgrammes'
 
 const ProgramsPage: React.FC = () => {
   return (
     <div>
       <ProgrammesHero />
-      <ProgrammesCategory />
+      <DeferredSection><ProgrammesCategory /></DeferredSection>
       {/* <ProgrammesBanner /> */}
-      <JobRolesMarquee />
-      <WhyProgrammesBanner />
-      <ProgramTimeline />
+      <DeferredSection><JobRolesMarquee /></DeferredSection>
+      <DeferredSection><WhyProgrammesBanner /></DeferredSection>
+      <DeferredSection><ProgramTimeline /></DeferredSection>
       {/* <FeaturedProgrammes /> */}
     </div>
   )

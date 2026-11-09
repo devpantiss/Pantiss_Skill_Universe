@@ -1,12 +1,13 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React from 'react'
-import AttendanceRow1 from '../../components/dashboard/attendance/AttendanceRow1'
-import AttendanceRow2 from '../../components/dashboard/attendance/AttendanceRow2'
+const AttendanceRow1 = React.lazy(() => import("../../components/dashboard/attendance/AttendanceRow1"));
+const AttendanceRow2 = React.lazy(() => import("../../components/dashboard/attendance/AttendanceRow2"));
 
 const AttendanceDashboard: React.FC = () => {
   return (
     <div>
-        <AttendanceRow1 />
-        <AttendanceRow2 />
+        <DeferredSection><AttendanceRow1 /></DeferredSection>
+        <DeferredSection><AttendanceRow2 /></DeferredSection>
     </div>
   )
 }

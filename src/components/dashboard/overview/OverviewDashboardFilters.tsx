@@ -75,7 +75,7 @@ const OverviewDashboardFilters: React.FC = () => {
         {dropdownFilters.map((filter) => (
           <div key={filter.label} className="flex flex-col gap-1">
             <label className="text-xs text-zinc-400">{filter.label}</label>
-            <select
+            <select aria-label={filter.label}
               className="bg-zinc-900 border border-zinc-800 rounded-md px-3 py-2 text-sm text-zinc-200 focus:border-red-600 focus:outline-none"
               value={values[filter.label] || ""}
               onChange={(e) =>
@@ -99,7 +99,7 @@ const OverviewDashboardFilters: React.FC = () => {
           {yesNoFilters.map((label) => (
             <div key={label} className="flex flex-col gap-1">
               <label className="text-xs text-zinc-400">{label}</label>
-              <select
+              <select aria-label={label}
                 className="bg-zinc-900 border border-zinc-800 rounded-md px-3 py-2 text-sm text-zinc-200 focus:border-red-600 focus:outline-none"
                 value={values[label] || ""}
                 onChange={(e) =>

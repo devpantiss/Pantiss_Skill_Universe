@@ -1,14 +1,16 @@
-import "./App.css";
 import React, { Suspense, useEffect } from "react";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
+import HomePage from "./pages/HomePage";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-import "leaflet/dist/leaflet.css";
+import { MotionConfig } from "framer-motion";
+import { Link } from "react-router-dom";
+import PageErrorBoundary from "./components/common/PageErrorBoundary";
 
 const HIDE_LAYOUT_ROUTES = [
   "/job-search-engine/business/auth",
@@ -16,7 +18,7 @@ const HIDE_LAYOUT_ROUTES = [
 ];
 
 // --- Route-level code splitting via React.lazy ---
-const HomePage = React.lazy(() => import("./pages/HomePage"));
+
 const AboutPage = React.lazy(() => import("./pages/About/AboutPage"));
 const Collaborations = React.lazy(() => import("./pages/Collaborations"));
 const ContactPage = React.lazy(() => import("./pages/ContactPage"));
@@ -36,15 +38,13 @@ const ResourcesPage = React.lazy(() => import("./pages/ResourcesPage"));
 const OurProjectsPage = React.lazy(() => import("./pages/OurProjectsPage"));
 const Placements = React.lazy(() => import("./pages/Placements"));
 
-// Lightweight loading fallback
 const PageLoadingFallback = () => (
-  <div
-    className="flex min-h-[60vh] items-center justify-center bg-black text-white"
-    role="status"
-    aria-live="polite"
-  >
+  <div className="site-loading" role="status" aria-live="polite">
     <span className="sr-only">Loading page</span>
-    <div className="h-10 w-10 rounded-full border-4 border-green-500 border-t-transparent motion-safe:animate-spin" />
+    <div className="site-loading-block" style={{ width: '140px' }} />
+    <div className="site-loading-block site-loading-title" />
+    <div className="site-loading-block" /><div className="site-loading-block" style={{ width: '65%' }} />
+    <div className="site-loading-block site-loading-media" />
   </div>
 );
 
@@ -61,11 +61,19 @@ function ScrollToTop() {
 function LayoutWrapper() {
   const location = useLocation();
   const hideLayout = HIDE_LAYOUT_ROUTES.includes(location.pathname);
+  useEffect(() => {
+    const segment = location.pathname.split('/').filter(Boolean).pop();
+    const title = segment ? segment.replace(/-/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase()) : 'Industry-led Skills & Training';
+    document.title = `${title} | Pantiss Skill Universe`;
+  }, [location.pathname]);
 
   return (
     <>
       <ScrollToTop />
+      <a href="#main-content" className="skip-link">Skip to content</a>
       {!hideLayout && <Header />}
+      <main id="main-content" tabIndex={-1} className={hideLayout ? undefined : "site-main"}>
+      <PageErrorBoundary key={location.pathname}>
       <Suspense fallback={<PageLoadingFallback />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -87,8 +95,11 @@ function LayoutWrapper() {
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/our-projects" element={<OurProjectsPage />} />
           <Route path="/placements" element={<Placements />} />
+          <Route path="*" element={<section className="site-message"><p className="site-eyebrow">Page not found</p><h1>A new direction awaits.</h1><p>This address doesn’t match a page. Explore our programmes or return home.</p><Link className="site-button" to="/">Return home</Link></section>} />
         </Routes>
       </Suspense>
+      </PageErrorBoundary>
+      </main>
       {!hideLayout && <Footer />}
     </>
   );
@@ -96,9 +107,9 @@ function LayoutWrapper() {
 
 function App() {
   return (
-    <Router>
-      <LayoutWrapper />
-    </Router>
+    <MotionConfig reducedMotion="user">
+      <Router><LayoutWrapper /></Router>
+    </MotionConfig>
   );
 }
 

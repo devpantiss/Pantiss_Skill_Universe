@@ -1,5 +1,8 @@
+import SiteImage from "../../common/SiteImage";
 import React from "react";
-import Slider, { Settings } from "react-slick";
+import Slider from "../../common/ViewportSlider";
+import type { Settings } from "react-slick";
+
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import "slick-carousel/slick/slick.css";
@@ -36,7 +39,7 @@ const milestonesData: Milestone[] = [
     description:
       "Conceived the vision of building an industry-led skilling ecosystem dedicated to preparing India's blue-collar workforce for the future through practical, employment-focused education.",
     imageUrl:
-      "/About/Milestones/PSU_2022.png",
+      "/optimized/About/Milestones/PSU_2022.png.webp",
   },
   {
     year: "2023",
@@ -49,7 +52,7 @@ const milestonesData: Milestone[] = [
     description:
       "Partnered with leading organizations across mining, shipping & logistics, construction, manufacturing, and green energy to identify workforce demands and co-create industry-relevant skilling pathways.",
     imageUrl:
-      "/About/Milestones/PSU_2023.png",
+      "/optimized/About/Milestones/PSU_2023.png.webp",
   },
   {
     year: "2024",
@@ -62,7 +65,7 @@ const milestonesData: Milestone[] = [
     description:
       "Developed competency-based curricula aligned with National Occupational Standards and real industry requirements, integrating practical learning, simulations, and certification pathways.",
     imageUrl:
-      "/About/Milestones/PSU_2024.png",
+      "/optimized/About/Milestones/PSU_2024.png.webp",
   },
   {
     year: "2025",
@@ -75,7 +78,7 @@ const milestonesData: Milestone[] = [
     description:
       "Officially launched Pantiss Skill Universe with specialized schools in Mining, Shipping & Logistics, Green Energy, Construction Technology, and Advanced Manufacturing to build an industry-ready workforce.",
     imageUrl:
-      "/About/Milestones/PSU_2025.png",
+      "/optimized/About/Milestones/PSU_2025.png.webp",
   },
   {
     year: "2026",
@@ -88,7 +91,7 @@ const milestonesData: Milestone[] = [
     description:
       "Expanded training infrastructure, digital learning platforms, apprenticeship programs, placement ecosystems, and industry-linked career pathways to empower thousands of skilled professionals across India.",
     imageUrl:
-      "/About/Milestones/PSU_2026.png",
+      "/optimized/About/Milestones/PSU_2026.png.webp",
   },
 ];
 
@@ -175,7 +178,7 @@ const Milestones: React.FC = () => {
               <div className="grid items-center gap-10 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl lg:grid-cols-12 lg:p-10">
                 {/* Image */}
                 <div className="relative overflow-hidden rounded-2xl lg:col-span-7">
-                  <img
+                  <SiteImage decoding="async"
                     src={milestone.imageUrl}
                     alt={milestone.year}
                     className="h-52 w-full object-cover lg:h-[420px]"

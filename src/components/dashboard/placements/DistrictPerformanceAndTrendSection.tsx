@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useGeoData } from "../../../hooks/useGeoData";
+import { useState } from "react";
 import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
-import type { Feature, GeoJsonObject, Geometry } from "geojson";
+import type { Feature, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 import {
   AreaChart,
@@ -62,14 +63,10 @@ const colorByValue = (v: number, max: number) => {
 /* ===================== COMPONENT ===================== */
 
 export default function DistrictPerformanceAndTrendSection() {
-  const [geoJson, setGeoJson] = useState<GeoJsonObject | null>(null);
+  const { geoData: geoJson } = useGeoData("/map/Orissa.geojson");
   const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch("/map/Orissa.geojson")
-      .then((r) => r.json())
-      .then(setGeoJson);
-  }, []);
+
 
   const maxEngaged = Math.max(...districtData.map((d) => d.engaged));
 
@@ -163,7 +160,7 @@ export default function DistrictPerformanceAndTrendSection() {
                   }}
                 />
 
-                <Area
+                <Area isAnimationActive={false}
                   type="monotone"
                   dataKey="engaged"
                   stroke="#3b82f6"
@@ -171,7 +168,7 @@ export default function DistrictPerformanceAndTrendSection() {
                   fillOpacity={0.4}
                   name="Engaged"
                 />
-                <Area
+                <Area isAnimationActive={false}
                   type="monotone"
                   dataKey="completed"
                   stroke="#6366f1"
@@ -179,7 +176,7 @@ export default function DistrictPerformanceAndTrendSection() {
                   fillOpacity={0.35}
                   name="Completed Training"
                 />
-                <Area
+                <Area isAnimationActive={false}
                   type="monotone"
                   dataKey="dropouts"
                   stroke="#f97316"

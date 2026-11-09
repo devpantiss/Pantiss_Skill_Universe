@@ -1,5 +1,8 @@
+import SiteImage from "../common/SiteImage";
+import type SlickSlider from "react-slick";
 import React, { useRef } from "react";
-import Slider from "react-slick";
+import Slider from "../common/ViewportSlider";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
@@ -13,11 +16,11 @@ type Testimonial = {
 };
 
 const TestimonialSlider: React.FC = () => {
-  const sliderRef = useRef<Slider | null>(null);
+  const sliderRef = useRef<SlickSlider | null>(null);
 
   const testimonials: Testimonial[] = [
     {
-      image: "/teams/dwarka.png",
+      image: "/optimized/teams/dwarka.png.webp",
       quote:
         "As the Lead for Water, Sanitation, and Hygiene at Pantiss Foundation, I am committed to ensuring that every community we serve has access to safe water, proper sanitation, and hygienic living conditions. Our work goes beyond infrastructure — it’s about restoring dignity, promoting health, and empowering people to build cleaner, safer futures. Each project is a step toward a healthier, more equitable society.",
       name: "Mr. Dwarka Prasad Bisoyi",
@@ -42,7 +45,7 @@ const TestimonialSlider: React.FC = () => {
       location: "Bhubaneswar, Odisha",
     },
     {
-      image: "/teams/manasi.jpeg",
+      image: "/optimized/teams/manasi.jpeg.webp",
       quote:
         "As an Associate in Social Compliance and Safeguarding at Pantiss Foundation, I take pride in ensuring that our programs uphold the highest standards of ethics, safety, and inclusivity. Every initiative we undertake is guided by the principles of dignity and protection for all. It’s inspiring to work in an environment that not only drives social impact but also prioritizes the well-being and rights of every individual we serve.",
       name: "Manasi Behera",
@@ -102,7 +105,7 @@ const TestimonialSlider: React.FC = () => {
 
                   {/* IMAGE */}
                   <div className="w-full lg:w-1/3 flex justify-center">
-                    <img
+                    <SiteImage decoding="async" loading="lazy"
                       src={testimonial.image}
                       alt={testimonial.name}
                       className="h-[420px] w-[330px] rounded-md border border-white/10 object-cover shadow-lg"

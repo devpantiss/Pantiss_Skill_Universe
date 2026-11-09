@@ -77,7 +77,7 @@ const ProgramPlacementsSection: React.FC = () => {
                 "
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <Icon className="w-5 h-5 text-green-500" />
+                  <Icon className="w-5 h-5 text-red-500" />
                   <h3 className="text-lg font-semibold">
                     {item.title}
                   </h3>
@@ -105,7 +105,7 @@ const ProgramPlacementsSection: React.FC = () => {
                   text-center
                 "
               >
-                <Icon className="w-6 h-6 text-green-500 mx-auto mb-4" />
+                <Icon className="w-6 h-6 text-red-500 mx-auto mb-4" />
                 <div className="text-3xl font-semibold mb-2">
                   {stat.value}
                 </div>

@@ -170,9 +170,9 @@ const EnrollmentAnalyticsSection: React.FC = () => {
                   <YAxis tick={{ fill: "#a1a1aa", fontSize: 12 }} />
                   <Tooltip content={<DarkTooltip />} />
                   <Legend />
-                  <Bar dataKey="female" stackId="a" fill="#ec4899" />
-                  <Bar dataKey="male" stackId="a" fill="#3b82f6" />
-                  <Bar dataKey="tg" stackId="a" fill="#facc15" />
+                  <Bar isAnimationActive={false} dataKey="female" stackId="a" fill="#ec4899" />
+                  <Bar isAnimationActive={false} dataKey="male" stackId="a" fill="#3b82f6" />
+                  <Bar isAnimationActive={false} dataKey="tg" stackId="a" fill="#facc15" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -196,8 +196,8 @@ const EnrollmentAnalyticsSection: React.FC = () => {
                     <XAxis type="number" tick={{ fill: "#a1a1aa" }} />
                     <YAxis type="category" dataKey="name" tick={{ fill: "#a1a1aa" }} />
                     <Tooltip content={<DarkTooltip />} />
-                    <Bar dataKey="female" stackId="a" fill="#ec4899" />
-                    <Bar dataKey="male" stackId="a" fill="#3b82f6" />
+                    <Bar isAnimationActive={false} dataKey="female" stackId="a" fill="#ec4899" />
+                    <Bar isAnimationActive={false} dataKey="male" stackId="a" fill="#3b82f6" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -209,7 +209,7 @@ const EnrollmentAnalyticsSection: React.FC = () => {
                   <PieChart>
                     <Tooltip content={<DarkTooltip />} />
                     <Legend />
-                    <Pie data={genderData} dataKey="value" innerRadius={55} outerRadius={80}>
+                    <Pie isAnimationActive={false} data={genderData} dataKey="value" innerRadius={55} outerRadius={80}>
                       {genderData.map((_, i) => (
                         <Cell key={i} fill={COLORS[i]} />
                       ))}
@@ -225,7 +225,7 @@ const EnrollmentAnalyticsSection: React.FC = () => {
                   <PieChart>
                     <Tooltip content={<DarkTooltip />} />
                     <Legend />
-                    <Pie data={casteData} dataKey="value" innerRadius={50} outerRadius={80}>
+                    <Pie isAnimationActive={false} data={casteData} dataKey="value" innerRadius={50} outerRadius={80}>
                       {casteData.map((_, i) => (
                         <Cell key={i} fill={COLORS[i]} />
                       ))}

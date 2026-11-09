@@ -1,5 +1,10 @@
+import SiteImage from "../../common/SiteImage";
+import BackgroundVideo from "../../common/BackgroundVideo";
 import React, { useState, useRef } from "react";
-import Slider, { Settings } from "react-slick";
+import Slider from "../../common/ViewportSlider";
+import type { Settings } from "react-slick";
+import type SlickSlider from "react-slick";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { gsap } from "gsap";
@@ -73,7 +78,7 @@ const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
 );
 
 const IntMobilityTestimonials: React.FC = () => {
-  const sliderRef = useRef<Slider>(null);
+  const sliderRef = useRef<SlickSlider>(null);
   const [activeTab, setActiveTab] = useState<"Students" | "Trainers" | "Industries">("Industries");
 
   const handleBeforeChange = (current: number, next: number) => {
@@ -119,9 +124,7 @@ const IntMobilityTestimonials: React.FC = () => {
   return (
     <section className="relative w-full py-20" aria-label="International Mobility Testimonials">
       <div className="absolute inset-0 z-0">
-        <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-          <source src="/Homepage/HomePage_Hero.mp4" type="video/mp4" />
-        </video>
+        <BackgroundVideo src="/Homepage/hero-optimized.mp4" className="w-full h-full object-cover" defer />
       </div>
 
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-black" />
@@ -160,7 +163,7 @@ const IntMobilityTestimonials: React.FC = () => {
                 <div key={index} className="px-4">
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl p-6 flex flex-col items-start relative h-full transition-all duration-300">
                     <div className="mb-8">
-                      <img
+                      <SiteImage decoding="async"
                         src={testimonial.logo || defaultImage}
                         alt="Company Logo"
                         className="h-16 object-contain"
@@ -175,7 +178,7 @@ const IntMobilityTestimonials: React.FC = () => {
 
                     <div className="flex items-center mt-auto">
                       <div className="w-14 h-14 rounded-full overflow-hidden mr-5">
-                        <img
+                        <SiteImage decoding="async"
                           src={testimonial.photo || defaultImage}
                           alt={testimonial.name}
                           className="object-cover w-full h-full"

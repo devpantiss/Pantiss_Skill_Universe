@@ -18,7 +18,7 @@ const RplHero: React.FC = () => {
 
       {/* Content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto"
@@ -34,12 +34,12 @@ const RplHero: React.FC = () => {
       </motion.div>
 
       {/* Decorative Borders */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-600 via-black to-red-600"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-green-600"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-red-600"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-black to-red-600"></div>
 
       {/* Subtle Background Accents */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-green-500/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute top-10 left-10 w-64 h-64 bg-red-500/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
         <div className="absolute bottom-10 right-10 w-64 h-64 bg-red-500/20 rounded-full blur-3xl opacity-50 animate-pulse delay-1000"></div>
       </div>
     </section>

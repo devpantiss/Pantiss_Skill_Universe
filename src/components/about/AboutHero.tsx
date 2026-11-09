@@ -8,7 +8,7 @@ const AboutHero: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('/About/about_hero.jpg')",
+            "url('/optimized/About/about_hero.jpg.webp')",
         }}
       />
 
@@ -21,10 +21,10 @@ const AboutHero: React.FC = () => {
           <div className="text-center md:text-left md:mb-16">
             <h1 className="text-4xl md:text-6xl font-extrabold mb-4">
               <span className="text-red-600">Who</span>{" "}
-              <span className="text-green-600">We Are</span>
+              <span className="text-red-600">We Are</span>
             </h1>
             <p className="text-gray-200 md:text-lg leading-relaxed max-w-2xl mx-auto md:mx-0">
-              <span className="text-green-600 font-semibold">
+              <span className="text-red-600 font-semibold">
                 Pantiss Skill Universe
               </span>{" "}
               is dedicated to empowering communities through skill development,

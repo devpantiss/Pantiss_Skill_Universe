@@ -1,3 +1,4 @@
+import SiteImage from "./SiteImage";
 import React from "react";
 
 interface Logo {
@@ -32,7 +33,7 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
             {heading}
           </h2>
-          <span className="block mt-2 h-1 w-24 mx-auto bg-gradient-to-r from-green-500 to-red-500 rounded-full" />
+          <span className="block mt-2 h-1 w-24 mx-auto bg-gradient-to-r from-red-500 to-red-500 rounded-full" />
         </div>
       )}
 
@@ -42,7 +43,7 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({
         style={{ animation: `marquee ${speed} linear infinite` }}
       >
         {[...logos, ...logos].map((logo, index) => (
-          <img
+          <SiteImage decoding="async"
             key={`${logo.name}-${index}`}
             src={logo.src}
             alt={logo.name}

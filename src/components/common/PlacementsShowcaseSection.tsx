@@ -1,5 +1,9 @@
+import { useViewportActivity } from "../../hooks/useViewportActivity";
+import { useReducedMotion } from "framer-motion";
+import SiteImage from "./SiteImage";
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
+import Slider from "./ViewportSlider";
+
 import {
   Briefcase,
   IndianRupee,
@@ -131,22 +135,24 @@ type PlacementStat = {
 ----------------------------- */
 
 const StatCard = ({ stat }: { stat: PlacementStat }) => {
+  const { ref, active } = useViewportActivity<HTMLDivElement>();
+  const reducedMotion = useReducedMotion();
   const Icon = stat.icon;
   const rotatingValues = stat.rotatingValues;
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!rotatingValues?.length) return;
+    if (!rotatingValues?.length || !active || reducedMotion) return;
     const interval = setInterval(
       () => setIndex((p) => (p + 1) % rotatingValues.length),
       1800,
     );
     return () => clearInterval(interval);
-  }, [rotatingValues]);
+  }, [rotatingValues, active, reducedMotion]);
 
   return (
-    <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 text-center">
-      <Icon className="w-6 h-6 text-green-500 mx-auto mb-3" />
+    <div ref={ref} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 text-center">
+      <Icon className="w-6 h-6 text-red-500 mx-auto mb-3" />
       <div className="text-3xl font-semibold mb-2 h-[40px]">
         {stat.value ?? rotatingValues?.[index] ?? ""}
       </div>
@@ -210,7 +216,7 @@ const PlacementsShowcaseSection: React.FC = () => {
                   className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8"
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <Icon className="w-5 h-5 text-green-500" />
+                    <Icon className="w-5 h-5 text-red-500" />
                     <h3 className="font-semibold">{item.title}</h3>
                   </div>
                   <p className="text-sm text-gray-300">{item.description}</p>
@@ -236,13 +242,13 @@ const PlacementsShowcaseSection: React.FC = () => {
             {achievers.map((student, i) => (
               <div key={i} className="px-4">
                 <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 md:p-8">
-                  <div className="flex items-center gap-6">
+                  <div className="flex flex-col sm:flex-row items-start gap-6">
                     {/* LEFT : Avatar + Name */}
                     <div className="flex flex-col items-center min-w-[120px]">
-                      <img
+                      <SiteImage decoding="async" loading="lazy"
                         src={student.image}
                         alt={student.name}
-                        className="w-24 h-24 rounded-full object-cover border-2 border-green-500/40 mb-3"
+                        className="w-24 h-24 rounded-full object-cover border-2 border-red-500/40 mb-3"
                       />
                       <h4 className="text-sm font-semibold text-center">
                         {student.name}
@@ -257,12 +263,12 @@ const PlacementsShowcaseSection: React.FC = () => {
 
                       <div className="space-y-2 text-sm">
                         <div className="flex items-center gap-2 text-gray-300">
-                          <Building2 className="w-4 h-4 text-green-500" />
+                          <Building2 className="w-4 h-4 text-red-500" />
                           <span>{student.company}</span>
                         </div>
 
                         <div className="flex items-center gap-2 font-semibold text-white">
-                          <IndianRupee className="w-4 h-4 text-green-500" />
+                          <IndianRupee className="w-4 h-4 text-red-500" />
                           <span>{student.package}</span>
                         </div>
                       </div>

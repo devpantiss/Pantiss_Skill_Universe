@@ -1,20 +1,21 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React from "react";
 import AdvancedDiplomaHero from "../../components/programmes/AdvancedDiploma/AdvancedDiplomaHero";
-import AdvancedDiplomaOverview from "../../components/programmes/AdvancedDiploma/AdvancedDiplomaOverview";
-import AdvancedDiplomaHighlights from "../../components/programmes/AdvancedDiploma/AdvancedDiplomaHighlights";
-import AdvancedDiplomaSchoolsCourses from "../../components/programmes/AdvancedDiploma/AdvancedDiplomaSchoolsCourses";
-import TestimonialSectionAdvancedDiploma from "../../components/programmes/AdvancedDiploma/Testimonials";
+const AdvancedDiplomaOverview = React.lazy(() => import("../../components/programmes/AdvancedDiploma/AdvancedDiplomaOverview"));
+const AdvancedDiplomaHighlights = React.lazy(() => import("../../components/programmes/AdvancedDiploma/AdvancedDiplomaHighlights"));
+const AdvancedDiplomaSchoolsCourses = React.lazy(() => import("../../components/programmes/AdvancedDiploma/AdvancedDiplomaSchoolsCourses"));
+const TestimonialSectionAdvancedDiploma = React.lazy(() => import("../../components/programmes/AdvancedDiploma/Testimonials"));
 import LogoMarquee from "../../components/common/LogoMaequee";
-import AdvancedDiplomaBenefitsCards from "../../components/programmes/AdvancedDiploma/AdvancedDiplomaBenefitsCards";
+const AdvancedDiplomaBenefitsCards = React.lazy(() => import("../../components/programmes/AdvancedDiploma/AdvancedDiplomaBenefitsCards"));
 
 const schoolLogos = [
   {
     name: "School for Mines, Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+    src: "/Homepage/placements/company/fleetguard.png",
   },
   {
     name: "School for Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
+    src: "/Homepage/placements/company/vedanta-removebg-preview.png",
   },
   {
     name: "School for Power & Green Energy",
@@ -22,15 +23,15 @@ const schoolLogos = [
   },
   {
     name: "School for Shipping & Logistics",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+    src: "/Homepage/placements/company/schneider_electric.png",
   },
   {
     name: "School for Construction Tech & Infra Equipments",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+    src: "/Homepage/placements/company/TATA_STEEL-removebg-preview.png",
   },
   {
     name: "School for Water, Sanitation & Facility Management",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+    src: "/Homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png",
   },
 ];
 
@@ -38,8 +39,8 @@ const AdvancedDiplomaPage: React.FC = () => {
   return (
     <div>
       <AdvancedDiplomaHero />
-      <AdvancedDiplomaOverview />
-      <AdvancedDiplomaSchoolsCourses />
+      <DeferredSection><AdvancedDiplomaOverview /></DeferredSection>
+      <DeferredSection><AdvancedDiplomaSchoolsCourses /></DeferredSection>
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}
@@ -49,9 +50,9 @@ const AdvancedDiplomaPage: React.FC = () => {
         bg="bg-black"
         className="py-3"
       />
-      <AdvancedDiplomaHighlights />
-      <AdvancedDiplomaBenefitsCards />
-      <TestimonialSectionAdvancedDiploma />
+      <DeferredSection><AdvancedDiplomaHighlights /></DeferredSection>
+      <DeferredSection><AdvancedDiplomaBenefitsCards /></DeferredSection>
+      <DeferredSection><TestimonialSectionAdvancedDiploma /></DeferredSection>
     </div>
   );
 };

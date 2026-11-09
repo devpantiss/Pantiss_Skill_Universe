@@ -101,7 +101,7 @@ const programmes = [
 const ProgrammeCategories: React.FC = () => {
   return (
     <div className="w-full relative overflow-hidden">
-      <section
+      <section id="programme-directory"
         className="relative py-20 bg-black"
         role="region"
         aria-label="Programme Categories"
@@ -109,8 +109,8 @@ const ProgrammeCategories: React.FC = () => {
         {/* Background Glow */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-20 left-10 w-72 h-72 bg-red-500 rounded-full mix-blend-screen filter blur-[120px] opacity-70"></div>
-          <div className="absolute bottom-32 right-10 w-80 h-80 bg-green-500 rounded-full mix-blend-screen filter blur-[140px] opacity-65"></div>
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-green-500 rounded-full mix-blend-screen filter blur-[160px] opacity-70 -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-32 right-10 w-80 h-80 bg-red-500 rounded-full mix-blend-screen filter blur-[140px] opacity-65"></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-red-500 rounded-full mix-blend-screen filter blur-[160px] opacity-70 -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-10 left-1/4 w-64 h-64 bg-red-700 rounded-full mix-blend-screen filter blur-[130px] opacity-70"></div>
         </div>
 
@@ -124,7 +124,7 @@ const ProgrammeCategories: React.FC = () => {
             className="text-3xl md:text-4xl text-white font-black text-center mb-14 tracking-wide relative"
           >
             Programme Categories
-            <span className="absolute left-1/2 -bottom-2 -translate-x-1/2 w-24 h-1 bg-green-500 rounded-full"></span>
+            <span className="absolute left-1/2 -bottom-2 -translate-x-1/2 w-24 h-1 bg-red-500 rounded-full"></span>
           </motion.h2>
 
           {/* Single Grid – 9 Active Programmes */}
@@ -136,7 +136,7 @@ const ProgrammeCategories: React.FC = () => {
             className="text-xl md:text-2xl text-white font-black text-center mb-8 relative"
           >
             Active Programmes
-            <span className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-16 h-1 bg-green-500 rounded-full"></span>
+            <span className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-16 h-1 bg-red-500 rounded-full"></span>
           </motion.h3> */}
 
           <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-4">
@@ -160,7 +160,7 @@ const ProgrammeCategories: React.FC = () => {
                   }}
                 >
                   <div className="p-6 relative z-10 flex flex-col gap-3">
-                    <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-green-500 transition-colors">
+                    <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-red-500 transition-colors">
                       {programme.title}
                     </h3>
                     <p className="text-gray-100 text-sm font-medium leading-relaxed">
@@ -173,7 +173,7 @@ const ProgrammeCategories: React.FC = () => {
                             key={i}
                             className="flex items-center text-sm text-gray-100 font-medium"
                           >
-                            <FaCheckCircle className="text-green-400 w-4 h-4 mr-2" />
+                            <FaCheckCircle className="text-red-400 w-4 h-4 mr-2" />
                             {point}
                           </li>
                         ))}

@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 
 const SchoolLogoStrip: React.FC = React.memo(() => {
@@ -32,7 +33,7 @@ const SchoolLogoStrip: React.FC = React.memo(() => {
     <div className="flex lg:hidden top-24 left-0 w-full bg-black bg-opacity-90 z-40 overflow-hidden">
       <div className="marquee flex animate-marquee whitespace-nowrap">
         {[...schoolLogos, ...schoolLogos].map((logo, index) => (
-          <img
+          <SiteImage
             key={`${logo.name}-${index}`}
             src={logo.src}
             alt={`${logo.name} logo`}

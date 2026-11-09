@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useMemo } from "react";
+import { useCountUp } from "../../hooks/useCountUp";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
 // Reusable ImpactCard component
@@ -8,31 +9,7 @@ const ImpactCard: React.FC<{
   label: string;
   index: number;
 }> = ({ value, suffix, label, index }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const start = 0;
-    const end = value;
-    const duration = 2000; // 2 seconds
-    let startTimestamp: number | null = null;
-
-    const animate = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const ease =
-        progress < 0.5
-          ? 2 * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 2) / 2; // Ease in-out
-      setCount(Math.floor(start + (end - start) * ease));
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    const animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [value]);
+  const count = useCountUp(value, true);
 
   return (
     <motion.div
@@ -46,7 +23,7 @@ const ImpactCard: React.FC<{
       aria-labelledby={`impact-card-${index}`}
     >
       <div
-        className="text-4xl font-bold text-green-500 mb-4 text-center focus:outline-none focus:ring-2 focus:ring-green-600"
+        className="text-4xl font-bold text-red-500 mb-4 text-center focus:outline-none focus:ring-2 focus:ring-red-600"
         id={`impact-card-${index}`}
       >
         {count}

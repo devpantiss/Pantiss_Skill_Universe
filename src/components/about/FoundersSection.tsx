@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 import { FaLinkedin } from "react-icons/fa";
 
@@ -31,9 +32,9 @@ const FoundersSection: React.FC = () => {
     <section className="relative bg-black py-24 px-6 md:px-20 overflow-hidden">
       {/* 🔴🟢 Original Vibrant Blurry Background */}
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-red-600 rounded-full blur-[180px] opacity-70" />
-      <div className="absolute top-1/3 -right-40 w-[400px] h-[400px] bg-green-500 rounded-full blur-[160px] opacity-70" />
+      <div className="absolute top-1/3 -right-40 w-[400px] h-[400px] bg-red-500 rounded-full blur-[160px] opacity-70" />
       <div className="absolute bottom-0 left-1/4 w-[350px] h-[350px] bg-red-600 rounded-full blur-[140px] opacity-65" />
-      <div className="absolute bottom-10 right-1/3 w-[300px] h-[300px] bg-green-500 rounded-full blur-[120px] opacity-60" />
+      <div className="absolute bottom-10 right-1/3 w-[300px] h-[300px] bg-red-500 rounded-full blur-[120px] opacity-60" />
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -58,7 +59,7 @@ const FoundersSection: React.FC = () => {
               {/* Image */}
               <div className="flex justify-center md:justify-start">
                 <div className="relative h-[450px] rounded-xl overflow-hidden shadow-xl shadow-black/50">
-                  <img
+                  <SiteImage decoding="async" loading="lazy"
                     src={founder.image}
                     alt={founder.name}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"

@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { memo, useMemo, useEffect, useRef, useState } from "react";
 
 // Define the Vehicle interface
@@ -140,7 +141,7 @@ const VehicleCard = memo(
         </div>
 
         {/* Middle: Vehicle Image */}
-        <img
+        <SiteImage
           src={vehicle.image}
           alt={vehicle.title}
           className="h-full object-cover w-[600px] transition-transform duration-300 group-hover:scale-105"

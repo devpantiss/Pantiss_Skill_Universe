@@ -5,7 +5,7 @@ const ForBusinessBanner: React.FC = () => {
   return (
     <div
       className="relative w-full h-[350px] bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: `url('/solutions_banner.webp')` }}
+      style={{ backgroundImage: `url('/optimized/solutions_banner.webp.webp')` }}
     >
       {/* Dark Overlay for Text Visibility */}
       <div className="absolute inset-0 bg-black/40"></div>

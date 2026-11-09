@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useGeoData } from "../../../hooks/useGeoData";
+import { useMemo, useState } from "react";
 import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
-import type { Feature, GeoJsonObject, Geometry } from "geojson";
+import type { Feature, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* ===================== TYPES ===================== */
@@ -40,14 +41,10 @@ const colorByPct = (p: number) => {
 /* ===================== COMPONENT ===================== */
 
 export default function AttendanceAnalyticsSection() {
-  const [geoJson, setGeoJson] = useState<GeoJsonObject | null>(null);
+  const { geoData: geoJson } = useGeoData("/map/Orissa.geojson");
   const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch("/map/Orissa.geojson")
-      .then((r) => r.json())
-      .then(setGeoJson);
-  }, []);
+
 
   /* ===================== TOTALS ===================== */
 

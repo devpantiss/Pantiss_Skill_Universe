@@ -1,19 +1,20 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React from "react";
 import WILPHero from "../../components/programmes/WorkIntegratedTraining/WILPHero";
-import WILPOverview from "../../components/programmes/WorkIntegratedTraining/WILPOverview";
-import WILPHighlights from "../../components/programmes/WorkIntegratedTraining/WILPHighlights";
-import WILPSchoolsCourses from "../../components/programmes/WorkIntegratedTraining/WILPSchoolsCourses";
-import TestimonialSectionWILP from "../../components/programmes/WorkIntegratedTraining/Testimonials";
+const WILPOverview = React.lazy(() => import("../../components/programmes/WorkIntegratedTraining/WILPOverview"));
+const WILPHighlights = React.lazy(() => import("../../components/programmes/WorkIntegratedTraining/WILPHighlights"));
+const WILPSchoolsCourses = React.lazy(() => import("../../components/programmes/WorkIntegratedTraining/WILPSchoolsCourses"));
+const TestimonialSectionWILP = React.lazy(() => import("../../components/programmes/WorkIntegratedTraining/Testimonials"));
 import LogoMarquee from "../../components/common/LogoMaequee";
 
 const schoolLogos = [
   {
     name: "School for Mines, Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+    src: "/Homepage/placements/company/fleetguard.png",
   },
   {
     name: "School for Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
+    src: "/Homepage/placements/company/vedanta-removebg-preview.png",
   },
   {
     name: "School for Power & Green Energy",
@@ -21,15 +22,15 @@ const schoolLogos = [
   },
   {
     name: "School for Shipping & Logistics",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+    src: "/Homepage/placements/company/schneider_electric.png",
   },
   {
     name: "School for Construction Tech & Infra Equipments",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+    src: "/Homepage/placements/company/TATA_STEEL-removebg-preview.png",
   },
   {
     name: "School for Water, Sanitation & Facility Management",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+    src: "/Homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png",
   },
 ];
 
@@ -37,9 +38,9 @@ const WorkIntegratedTrainingPage: React.FC = () => {
   return (
     <div>
       <WILPHero />
-      <WILPOverview />
-      <WILPHighlights />
-      <WILPSchoolsCourses />
+      <DeferredSection><WILPOverview /></DeferredSection>
+      <DeferredSection><WILPHighlights /></DeferredSection>
+      <DeferredSection><WILPSchoolsCourses /></DeferredSection>
       <LogoMarquee
         heading="Our Trusted Placement Partners"
         logos={schoolLogos}
@@ -49,7 +50,7 @@ const WorkIntegratedTrainingPage: React.FC = () => {
         bg="bg-black"
         className="py-3"
       />
-      <TestimonialSectionWILP />
+      <DeferredSection><TestimonialSectionWILP /></DeferredSection>
     </div>
   );
 };

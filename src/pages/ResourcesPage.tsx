@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import SiteImage from "../components/common/SiteImage";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -35,7 +36,7 @@ const dashboardItems: ContentCardItem[] = [
   {
     title: "Results Dashboard",
     description: "Track outcomes across programmes through clear metrics, visualisations and performance indicators.",
-    image: "/Homepage/dash_image_1.png",
+    image: "/optimized/Homepage/dash_image_1.png.webp",
     meta: "Updated: August 1, 2026",
     href: "/skill-dashboard",
     dashboard: true,
@@ -51,7 +52,7 @@ const dashboardItems: ContentCardItem[] = [
   {
     title: "Key Result Stories Dashboard",
     description: "Discover success narratives and data-led stories that show the measurable impact of our work.",
-    image: "/Homepage/dash_image_2.png",
+    image: "/optimized/Homepage/dash_image_2.png.webp",
     meta: "Updated: August 20, 2026",
     href: "/skill-dashboard",
     dashboard: true,
@@ -62,22 +63,22 @@ const researchItems: ResearchItem[] = [
   {
     title: "Future Workforce Needs in Mining",
     subtitle: "Industry demand and workforce readiness",
-    image: "/Homepage/why/mines.jpg",
+    image: "/optimized/Homepage/why/mines.jpg.webp",
   },
   {
     title: "Women in Industrial Skilling",
     subtitle: "Participation, access and employment outcomes",
-    image: "/Homepage/women-in-mining.png",
+    image: "/optimized/Homepage/women-in-mining.png.webp",
   },
   {
     title: "Green Energy Skills Outlook",
     subtitle: "Preparing technicians for the energy transition",
-    image: "/Homepage/why/greenenergy.jpg",
+    image: "/optimized/Homepage/why/greenenergy.jpg.webp",
   },
   {
     title: "Smart Logistics Workforce",
     subtitle: "Emerging roles across ports and supply chains",
-    image: "/Homepage/why/shippingandlogistics.jpg",
+    image: "/optimized/Homepage/why/shippingandlogistics.jpg.webp",
   },
 ];
 
@@ -85,19 +86,19 @@ const toolkitItems: ContentCardItem[] = [
   {
     title: "Webinar Series",
     description: "Expert-led sessions on workforce strategy, inclusive skilling and sustainable industrial transformation.",
-    image: "/careers/life/team.jpeg",
+    image: "/optimized/careers/life/team.jpeg.webp",
     meta: "Last updated: August 12, 2026",
   },
   {
     title: "Resource Collections",
     description: "Curated templates, case studies and practical tools for designing high-impact skill programmes.",
-    image: "/careers/curriculum.jpeg",
+    image: "/optimized/careers/curriculum.jpeg.webp",
     meta: "Last updated: August 18, 2026",
   },
   {
     title: "Training Manuals",
     description: "Step-by-step guides, implementation methods and field-ready training practices for delivery teams.",
-    image: "/careers/tvet.jpg",
+    image: "/optimized/careers/tvet.jpg.webp",
     meta: "Last updated: August 22, 2026",
   },
 ];
@@ -105,17 +106,17 @@ const toolkitItems: ContentCardItem[] = [
 const videoItems: VideoItem[] = [
   {
     title: "Building the Future of Skills",
-    image: "/Homepage/accredition.jpg",
+    image: "/optimized/Homepage/accredition.jpg.webp",
     source: "/book.mp4",
   },
   {
     title: "Women Leading Industrial Change",
-    image: "/Homepage/women-in-mining.png",
+    image: "/optimized/Homepage/women-in-mining.png.webp",
     source: "/Homepage/12791129_1920_1080_30fps.mp4",
   },
   {
     title: "Skills for Sustainable Livelihoods",
-    image: "/Homepage/why/greenjobs.jpg",
+    image: "/optimized/Homepage/why/greenjobs.jpg.webp",
     source: "/vid.mp4",
   },
 ];
@@ -124,21 +125,21 @@ const factSheetItems: ContentCardItem[] = [
   {
     title: "Mining Workforce Readiness — Odisha",
     description: "A data-led snapshot of workforce demand, occupational shifts and training priorities in mining regions.",
-    image: "/Homepage/why/mines.jpg",
+    image: "/optimized/Homepage/why/mines.jpg.webp",
     meta: "Releasing soon",
     comingSoon: true,
   },
   {
     title: "Skill Development & Employability Snapshot",
     description: "Key statistics on training outcomes, employer requirements and placement trends across core sectors.",
-    image: "/careers/Assessment.jpeg",
+    image: "/optimized/careers/Assessment.jpeg.webp",
     meta: "Releasing soon",
     comingSoon: true,
   },
   {
     title: "Just Transition Indicators Framework",
     description: "Core indicators for monitoring livelihoods, inclusion, resilience and green economic opportunity.",
-    image: "/careers/research&advocacy.jpg",
+    image: "/optimized/careers/research&advocacy.jpg.webp",
     meta: "Releasing soon",
     comingSoon: true,
   },
@@ -214,7 +215,7 @@ function CardGrid({
                 </div>
               </div>
             ) : (
-              <img src={item.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              <SiteImage decoding="async" src={item.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
             )}
             {item.comingSoon && (
               <span className="absolute right-4 top-4 rounded-full bg-red-600 px-3 py-1.5 text-[11px] font-black uppercase tracking-wide text-white">
@@ -290,6 +291,7 @@ function FeatureBanner({
 export default function ResourcesPage() {
   const [researchIndex, setResearchIndex] = useState(1);
   const [notice, setNotice] = useState<string | null>(null);
+  const videoDialogRef = useRef<HTMLDialogElement>(null);
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
 
   useEffect(() => {
@@ -299,14 +301,11 @@ export default function ResourcesPage() {
   }, [notice]);
 
   useEffect(() => {
-    if (!activeVideo) return;
-    const handleKeyDown = (event: KeyboardEvent) => event.key === "Escape" && setActiveVideo(null);
-    document.body.style.overflow = "hidden";
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("keydown", handleKeyDown);
-    };
+    if (activeVideo) videoDialogRef.current?.showModal();
+    else videoDialogRef.current?.close();
+    const previous = document.body.style.overflow;
+    if (activeVideo) document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previous; };
   }, [activeVideo]);
 
   const showComingSoon = (title: string) => setNotice(`${title} is coming soon.`);
@@ -315,10 +314,10 @@ export default function ResourcesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="relative flex min-h-screen items-center overflow-hidden bg-black px-6 pb-16 pt-[210px] sm:px-10 sm:pb-20 sm:pt-[225px] lg:px-16 lg:pb-16 lg:pt-[250px]">
-        <img
-          src="/resources-hero-analytics.png"
+    <div className="min-h-screen bg-black text-white">
+      <section className="relative flex min-h-screen items-center overflow-hidden bg-black px-6 pb-16 pt-20 sm:px-10 sm:pb-20 sm:pt-24 lg:px-16 lg:pb-16 lg:pt-24">
+        <SiteImage decoding="async" loading="lazy"
+          src="/optimized/resources-hero-analytics.png.webp"
           alt=""
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center"
@@ -369,7 +368,7 @@ export default function ResourcesPage() {
       <FeatureBanner
         title="Our Programs Impact Assessment Report"
         description="Evaluating our initiatives' transformative effects on communities, industries and workforce outcomes."
-        image="/About/cert_bg.jpg"
+        image="/optimized/About/cert_bg.jpg.webp"
         action="View report"
         onAction={() => showComingSoon("Impact Assessment Report")}
       />
@@ -400,7 +399,7 @@ export default function ResourcesPage() {
                     className={`group relative overflow-hidden rounded-2xl border-2 border-red-600 bg-zinc-950 text-left shadow-2xl transition duration-500 ${active ? "h-[430px] sm:scale-105" : "hidden h-[350px] opacity-75 sm:block"} ${focusRing} focus-visible:ring-white focus-visible:ring-offset-red-600`}
                     aria-label={`${active ? "Open" : "Show"} ${item.title}`}
                   >
-                    <img src={item.image} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                    <SiteImage decoding="async" loading="lazy" src={item.image} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-6">
                       <p className="text-xl font-black leading-tight text-white">{item.title}</p>
@@ -428,7 +427,7 @@ export default function ResourcesPage() {
       <FeatureBanner
         title="2026 Model Mining Villages Report"
         description="Discover our latest findings on resilient livelihoods, local infrastructure and community-led development in mining regions."
-        image="/Homepage/why/mines.jpg"
+        image="/optimized/Homepage/why/mines.jpg.webp"
         action="Coming soon"
         onAction={() => showComingSoon("Model Mining Villages Report")}
       />
@@ -448,7 +447,7 @@ export default function ResourcesPage() {
       <FeatureBanner
         title="Voices of Impact — The Podcasts"
         description="Conversations with industry leaders, educators and change-makers shaping the future of skills, sustainability and livelihoods."
-        image="/careers/research&advocacy.jpg"
+        image="/optimized/careers/research&advocacy.jpg.webp"
       />
 
       <section className="bg-red-600 px-5 py-20 text-white sm:px-10 sm:py-24 lg:px-16">
@@ -467,7 +466,7 @@ export default function ResourcesPage() {
                 className={`group overflow-hidden rounded-2xl border-2 border-red-600 bg-zinc-950 text-left shadow-xl ${focusRing} focus-visible:ring-white focus-visible:ring-offset-red-600`}
               >
                 <div className="relative h-52 overflow-hidden">
-                  <img src={video.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                  <SiteImage decoding="async" src={video.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-black/20 transition group-hover:bg-black/35" />
                   <span className="absolute left-1/2 top-1/2 inline-flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/65 text-white backdrop-blur-md transition group-hover:scale-110 group-hover:bg-red-600">
                     <Play className="ml-1 h-6 w-6 fill-current" aria-hidden="true" />
@@ -506,21 +505,15 @@ export default function ResourcesPage() {
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {activeVideo && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(event) => event.target === event.currentTarget && setActiveVideo(null)} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md">
-            <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} role="dialog" aria-modal="true" aria-labelledby="video-title" className="w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 shadow-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-white">
-                <h2 id="video-title" className="font-bold">{activeVideo.title}</h2>
-                <button type="button" autoFocus onClick={() => setActiveVideo(null)} className="rounded-lg p-2 text-zinc-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500" aria-label="Close video">
-                  <X className="h-5 w-5" aria-hidden="true" />
-                </button>
-              </div>
-              <video src={activeVideo.source} controls autoPlay playsInline className="aspect-video w-full bg-black" />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </main>
+      <dialog ref={videoDialogRef} aria-labelledby="video-title" onCancel={() => setActiveVideo(null)}
+        onClick={event => { if (event.target === event.currentTarget) setActiveVideo(null); }} className="resource-video-dialog">
+        {activeVideo && <div>
+          <div className="resource-video-toolbar"><h2 id="video-title">{activeVideo.title}</h2>
+            <button type="button" autoFocus className="site-icon-button" onClick={() => setActiveVideo(null)} aria-label="Close video"><X size={22} /></button>
+          </div>
+          <video src={activeVideo.source} controls autoPlay playsInline className="aspect-video w-full bg-black" />
+        </div>}
+      </dialog>
+    </div>
   );
 }

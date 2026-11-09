@@ -146,7 +146,7 @@ const TopEnrolledCoursesSection: React.FC = () => {
                 tick={{ fontSize: 12 }}
               />
               <Tooltip
-                formatter={(value: number | undefined) => 
+                formatter={(value: number | undefined) =>
                   (typeof value === "number" ? value.toLocaleString() : "")}
                 contentStyle={{
                   backgroundColor: "#020617",
@@ -161,16 +161,16 @@ const TopEnrolledCoursesSection: React.FC = () => {
 
               {activeGender === "All" ? (
                 <>
-                  <Bar dataKey="Male" stackId="a" fill={genderColors.Male} />
-                  <Bar dataKey="Female" stackId="a" fill={genderColors.Female} />
-                  <Bar
+                  <Bar isAnimationActive={false} dataKey="Male" stackId="a" fill={genderColors.Male} />
+                  <Bar isAnimationActive={false} dataKey="Female" stackId="a" fill={genderColors.Female} />
+                  <Bar isAnimationActive={false}
                     dataKey="Transgender"
                     stackId="a"
                     fill={genderColors.Transgender}
                   />
                 </>
               ) : (
-                <Bar
+                <Bar isAnimationActive={false}
                   dataKey={activeGender}
                   fill={genderColors[activeGender]}
                   radius={[4, 4, 0, 0]}

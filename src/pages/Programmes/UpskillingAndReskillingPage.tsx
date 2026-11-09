@@ -1,23 +1,24 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React from "react";
 import UpskillingHero from "../../components/programmes/UpskillingAndReskilling/Hero";
 // import UpskillReskillHighlights from "../../components/programmes/UpskillingAndReskilling/UpskillingHighlights";
 // import UpskillReskillOverview from "../../components/programmes/UpskillingAndReskilling/UpskillingOverview";
-import UpskillingReskillingSchoolsCourses from "../../components/programmes/UpskillingAndReskilling/UpskillingSchoolsCourses";
-import TestimonialSectionUpskilling from "../../components/programmes/UpskillingAndReskilling/Testimonials";
+const UpskillingReskillingSchoolsCourses = React.lazy(() => import("../../components/programmes/UpskillingAndReskilling/UpskillingSchoolsCourses"));
+const TestimonialSectionUpskilling = React.lazy(() => import("../../components/programmes/UpskillingAndReskilling/Testimonials"));
 import LogoMarquee from "../../components/common/LogoMaequee";
 import WorkmenUpskillingImpactSection from "../../components/programmes/UpskillingAndReskilling/UpskillingImpact";
-import ProgramOverviewVideo from "../../components/common/ProgramOverviewVideo";
-import UpskillingAndReskillingGallery from "../../components/programmes/UpskillingAndReskilling/UpskillingAndReskillingGallery";
+const ProgramOverviewVideo = React.lazy(() => import("../../components/common/ProgramOverviewVideo"));
+const UpskillingAndReskillingGallery = React.lazy(() => import("../../components/programmes/UpskillingAndReskilling/UpskillingAndReskillingGallery"));
 // import PlacementsShowcaseSection from "../../components/common/PlacementsShowcaseSection";
 
 const schoolLogos = [
   {
     name: "School for Mines, Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+    src: "/Homepage/placements/company/fleetguard.png",
   },
   {
     name: "School for Steel & Aluminium",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
+    src: "/Homepage/placements/company/vedanta-removebg-preview.png",
   },
   {
     name: "School for Power & Green Energy",
@@ -25,15 +26,15 @@ const schoolLogos = [
   },
   {
     name: "School for Shipping & Logistics",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+    src: "/Homepage/placements/company/schneider_electric.png",
   },
   {
     name: "School for Construction Tech & Infra Equipments",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+    src: "/Homepage/placements/company/TATA_STEEL-removebg-preview.png",
   },
   {
     name: "School for Water, Sanitation & Facility Management",
-    src: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+    src: "/Homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png",
   },
 ];
 
@@ -42,10 +43,10 @@ const UpskillingAndReskillingPage: React.FC = () => {
     <div>
       <UpskillingHero />
       <WorkmenUpskillingImpactSection />
-      <ProgramOverviewVideo videoId="Ky46MN2buqQ" />
+      <DeferredSection><ProgramOverviewVideo videoId="Ky46MN2buqQ" /></DeferredSection>
       {/* <UpskillReskillOverview /> */}
       {/* <UpskillReskillHighlights /> */}
-      <UpskillingReskillingSchoolsCourses />
+      <DeferredSection><UpskillingReskillingSchoolsCourses /></DeferredSection>
       {/* <PlacementsShowcaseSection /> */}
       <LogoMarquee
         heading="Our Candidates are from"
@@ -56,8 +57,8 @@ const UpskillingAndReskillingPage: React.FC = () => {
         bg="bg-black"
         className="py-3"
       />
-      <UpskillingAndReskillingGallery />
-      <TestimonialSectionUpskilling />
+      <DeferredSection><UpskillingAndReskillingGallery /></DeferredSection>
+      <DeferredSection><TestimonialSectionUpskilling /></DeferredSection>
     </div>
   );
 };

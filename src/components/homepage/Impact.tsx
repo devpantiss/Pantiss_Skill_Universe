@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 // Reusable ImpactCard component — only animates when visible
@@ -10,16 +10,18 @@ const ImpactCard: React.FC<{
   index: number;
   shouldAnimate: boolean;
 }> = React.memo(({ value, suffix, label, index, shouldAnimate }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(value);
+  const reducedMotion = useReducedMotion();
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!shouldAnimate || hasAnimated.current) return;
+    if (!shouldAnimate || hasAnimated.current || reducedMotion) return;
     hasAnimated.current = true;
 
     let startTimestamp: number | null = null;
     const duration = 2000;
 
+    let animationFrame: number;
     const animate = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
@@ -27,13 +29,16 @@ const ImpactCard: React.FC<{
       setCount(Math.floor(value * ease));
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        animationFrame = requestAnimationFrame(animate);
       }
     };
 
-    const animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [value, shouldAnimate]);
+    animationFrame = requestAnimationFrame(animate);
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      hasAnimated.current = false;
+    };
+  }, [value, shouldAnimate, reducedMotion]);
 
   return (
     <motion.div
@@ -47,7 +52,7 @@ const ImpactCard: React.FC<{
       aria-labelledby={`impact-card-${index}`}
     >
       <div
-        className="text-4xl font-bold text-green-600 mb-4 text-center focus:outline-none focus:ring-2 focus:ring-red-600"
+        className="tabular-nums text-4xl font-bold text-red-600 mb-4 text-center focus:outline-none focus:ring-2 focus:ring-red-600"
         id={`impact-card-${index}`}
       >
         {count}{suffix}

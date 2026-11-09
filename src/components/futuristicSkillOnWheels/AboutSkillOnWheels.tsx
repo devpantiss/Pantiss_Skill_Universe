@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -16,7 +17,7 @@ const AboutSkillOnWheels: React.FC = () => {
     >
       {/* 🌌 Animated background glow */}
       <div className="absolute inset-0">
-        <div className="absolute -top-32 -left-32 w-[400px] h-[400px] bg-green-500/20 rounded-full blur-[180px] animate-pulse" />
+        <div className="absolute -top-32 -left-32 w-[400px] h-[400px] bg-red-500/20 rounded-full blur-[180px] animate-pulse" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[200px]" />
       </div>
 
@@ -29,8 +30,8 @@ const AboutSkillOnWheels: React.FC = () => {
           viewport={{ once: true }}
           className="relative group"
         >
-          <div className="absolute -inset-1 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-500 rounded-2xl blur opacity-40 group-hover:opacity-70 transition duration-500" />
-          <img
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-400 via-cyan-400 to-blue-500 rounded-2xl blur opacity-40 group-hover:opacity-70 transition duration-500" />
+          <SiteImage decoding="async" loading="lazy"
             src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762516054/edited-photo-removebg-preview_ao4noa.png"
             alt="Skill Truck"
             className="relative rounded-2xl shadow-[0_0_40px_rgba(0,255,200,0.2)] transition-transform duration-500 group-hover:scale-105"
@@ -44,7 +45,7 @@ const AboutSkillOnWheels: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-red-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
             Taking Skilling Beyond Boundaries
           </h2>
 
@@ -64,14 +65,14 @@ const AboutSkillOnWheels: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
               >
-                <div className="w-3 h-3 mr-3 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full animate-pulse"></div>
+                <div className="w-3 h-3 mr-3 bg-gradient-to-r from-red-400 to-cyan-400 rounded-full animate-pulse"></div>
                 {h}
               </motion.li>
             ))}
           </ul>
 
           {/* ✨ Neon line divider */}
-          <div className="mt-10 h-0.5 w-2/3 bg-gradient-to-r from-green-400 via-cyan-400 to-transparent rounded-full opacity-60" />
+          <div className="mt-10 h-0.5 w-2/3 bg-gradient-to-r from-red-400 via-cyan-400 to-transparent rounded-full opacity-60" />
         </motion.div>
       </div>
 

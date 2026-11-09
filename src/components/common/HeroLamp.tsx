@@ -33,7 +33,7 @@ export const HeroLamp: React.FC<HeroLampProps> = ({
 
       {/* Lamp Glow */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={{ opacity: 0.7 }}
         transition={{ duration: 1 }}
         className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[550px] h-[350px] rounded-full blur-[150px] z-10"
@@ -42,7 +42,7 @@ export const HeroLamp: React.FC<HeroLampProps> = ({
 
       {/* Light Bar */}
       <motion.div
-        initial={{ width: 0, opacity: 0 }}
+        initial={false}
         animate={{ width: "320px", opacity: 1 }}
         transition={{ duration: 1, ease: "easeInOut" }}
         className="absolute top-[14%] left-1/2 -translate-x-1/2 h-[3px] rounded-full z-10"
@@ -53,7 +53,7 @@ export const HeroLamp: React.FC<HeroLampProps> = ({
 
       {/* Heading */}
       <motion.h1
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative z-20 mt-20 text-center text-4xl md:text-6xl font-semibold"

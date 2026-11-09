@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import { ArrowUpRight, MapPin, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { SkillingProject } from './projects';
@@ -7,7 +8,7 @@ export default function ProjectCard({ project, preview = false }: { project: Ski
   return (
     <article id={preview ? undefined : project.id} className="project-card">
       <div className="project-image">
-        <img src={project.image} alt={`${project.sector} sector`} loading="lazy" width="720" height="480" />
+        <SiteImage decoding="async" src={project.image} alt={`${project.sector} sector`} loading="lazy" width="720" height="480" />
         <span className="project-tag">{project.sector}</span>
       </div>
       <div className="project-card-body">

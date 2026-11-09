@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState, useCallback } from "react";
+import { useGeoData } from "../../../hooks/useGeoData";
+import React, { useMemo, useState, useCallback } from "react";
 import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
-import type { Feature, GeoJsonObject, Geometry } from "geojson";
+import type { Feature, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer } from "recharts";
 import {
@@ -60,7 +61,7 @@ const miningData: DistrictMiningData[] = [
 /* ===================== COMPONENT ===================== */
 
 const MiningAnalyticsSection = () => {
-  const [geoJsonData, setGeoJsonData] = useState<GeoJsonObject | null>(null);
+  const { geoData: geoJsonData } = useGeoData("/map/Orissa.geojson");
 
   const [selectedRole, setSelectedRole] = useState<JobRole>("total");
   const [metric, setMetric] = useState<MetricType>("candidates");
@@ -71,11 +72,7 @@ const MiningAnalyticsSection = () => {
 
   /* ===================== LOAD MAP ===================== */
 
-  useEffect(() => {
-    fetch("/map/Orissa.geojson")
-      .then((r) => r.json())
-      .then(setGeoJsonData);
-  }, []);
+
 
   /* ===================== HELPERS ===================== */
 
@@ -271,7 +268,7 @@ const MiningAnalyticsSection = () => {
               <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
               <YAxis stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: '#11161C', border: '1px solid #374151', borderRadius: '8px' }} />
-              <Bar dataKey="value" fill="#22c55e" radius={[4, 4, 0, 0]} />
+              <Bar isAnimationActive={false} dataKey="value" fill="#22c55e" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -281,7 +278,7 @@ const MiningAnalyticsSection = () => {
               <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
               <YAxis stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: '#11161C', border: '1px solid #374151', borderRadius: '8px' }} />
-              <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+              <Bar isAnimationActive={false} dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>

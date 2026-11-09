@@ -1,5 +1,8 @@
+import SiteImage from "../../common/SiteImage";
 import React from "react";
-import Slider, { Settings } from "react-slick";
+import Slider from "../../common/ViewportSlider";
+import type { Settings } from "react-slick";
+
 
 type GalleryItem = {
   src: string;
@@ -7,15 +10,15 @@ type GalleryItem = {
 };
 
 const galleryItems: GalleryItem[] = [
-  { src: "/gallery/Gallery_1.JPG", title: "Hands-on Technical Training" },
-  { src: "/gallery/Gallery_2.jpg", title: "Community Immersion" },
-  { src: "/gallery/Gallery_3.jpg", title: "Indigenous Engagement" },
-  { src: "/gallery/Gallery_4.JPG", title: "Livelihood & Enterprise Training" },
+  { src: "/optimized/gallery/Gallery_1.JPG.webp", title: "Hands-on Technical Training" },
+  { src: "/optimized/gallery/Gallery_2.jpg.webp", title: "Community Immersion" },
+  { src: "/optimized/gallery/Gallery_3.jpg.webp", title: "Indigenous Engagement" },
+  { src: "/optimized/gallery/Gallery_4.JPG.webp", title: "Livelihood & Enterprise Training" },
   { src: "/gallery/Gallery_5.JPG", title: "Structured Learning Environments" },
   { src: "/gallery/Gallery_6.JPG", title: "Skill Labs & Infrastructure" },
-  { src: "/gallery/Gallery_7.JPG", title: "Advanced Skill Labs" },
-  { src: "/gallery/Gallery_9.JPG", title: "Practical Exposure" },
-  { src: "/gallery/Gallery_10.JPG", title: "On-ground Training" },
+  { src: "/optimized/gallery/Gallery_7.JPG.webp", title: "Advanced Skill Labs" },
+  { src: "/optimized/gallery/Gallery_9.JPG.webp", title: "Practical Exposure" },
+  { src: "/optimized/gallery/Gallery_10.JPG.webp", title: "On-ground Training" },
 ];
 
 const sliderSettings: Settings = {
@@ -85,7 +88,7 @@ const UpskillingAndReskillingGallery: React.FC = () => {
                 "
               >
                 {/* IMAGE */}
-                <img
+                <SiteImage decoding="async"
                   src={item.src}
                   alt={item.title}
                   loading="lazy"

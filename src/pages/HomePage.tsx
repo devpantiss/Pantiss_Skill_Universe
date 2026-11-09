@@ -46,10 +46,10 @@ const HomePage: React.FC = () => {
       <Impact />
 
       <div>
-        <LazySection>
+        <LazySection fallbackHeight="min-h-[690px]">
           <WhyPantissSkillUniversity />
         </LazySection>
-        <LazySection fallbackHeight="min-h-[160px]">
+        <LazySection fallbackHeight="min-h-[80px] lg:min-h-0">
           <SchoolLogoStrip />
         </LazySection>
         <LazySection>

@@ -1,13 +1,6 @@
-import { useState, Suspense } from "react";
+import SiteImage from "../common/SiteImage";
+import { useState } from "react";
 import { Download } from "lucide-react";
-import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Environment,
-  useGLTF,
-  Bounds,
-} from "@react-three/drei";
-
 /* ===================== TYPES ===================== */
 
 type Program = {
@@ -94,11 +87,6 @@ const PROGRAMS: Program[] = [
 
 /* ===================== 3D MODEL ===================== */
 
-function SkillUniverseModel() {
-  const { scene } = useGLTF("/model/worker.glb");
-  return <primitive object={scene} />;
-}
-
 /* ===================== COMPONENT ===================== */
 
 export default function ProgrammeSyllabusExplorer() {
@@ -144,33 +132,14 @@ export default function ProgrammeSyllabusExplorer() {
             {/* IMAGE OR MODEL */}
             <div className="relative mt-12 h-[360px] overflow-hidden rounded-lg border border-red-500/20 bg-black">
               {activeProgram ? (
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   key={activeProgram.id}
                   src={activeProgram.image}
                   alt={activeProgram.name}
                   className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"
                 />
               ) : (
-                <Canvas camera={{ fov: 42 }} dpr={[1, 1.5]}>
-                  <ambientLight intensity={0.7} />
-                  <directionalLight position={[6, 10, 6]} intensity={1} />
-
-                  <Suspense fallback={null}>
-                    <Bounds fit clip observe margin={1.25}>
-                      <SkillUniverseModel />
-                    </Bounds>
-                    <Environment preset="city" />
-                  </Suspense>
-
-                  <OrbitControls
-                    autoRotate
-                    autoRotateSpeed={0.45}
-                    enableZoom={false}
-                    enablePan={false}
-                    minPolarAngle={Math.PI / 2.3}
-                    maxPolarAngle={Math.PI / 2.3}
-                  />
-                </Canvas>
+                <SiteImage src="/Homepage/announcements_bg.webp" loading="lazy" decoding="async" alt="Industry-led skill training" className="h-full w-full object-cover" />
               )}
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
@@ -191,6 +160,8 @@ export default function ProgrammeSyllabusExplorer() {
                     {/* HEADER */}
                     <button
                       onClick={() => toggle(program.id)}
+                      aria-expanded={isActive}
+                      aria-controls={`curriculum-${program.id}`}
                       className="w-full flex items-center justify-between py-6 text-left group"
                     >
                       <span className="text-lg tracking-wide group-hover:text-red-400 transition">
@@ -209,7 +180,7 @@ export default function ProgrammeSyllabusExplorer() {
                     </button>
 
                     {/* BODY */}
-                    <div
+                    <div id={`curriculum-${program.id}`} hidden={!isActive}
                       className={`grid transition-[grid-template-rows,opacity] duration-500 ${
                         isActive
                           ? "grid-rows-[1fr] opacity-100"
@@ -238,11 +209,10 @@ export default function ProgrammeSyllabusExplorer() {
 
                         <div className="mt-6">
                           <a
-                            href={program.pdfUrl}
-                            download
+                            href="/contact-us"
                             className="inline-flex items-center gap-3 border border-red-500/40 px-6 py-3 text-xs tracking-widest text-white/80 hover:bg-red-500/10 transition"
                           >
-                            DOWNLOAD SYLLABUS
+                            ENQUIRE ABOUT SYLLABUS
                             <Download className="h-4 w-4" />
                           </a>
                         </div>
@@ -261,5 +231,3 @@ export default function ProgrammeSyllabusExplorer() {
 }
 
 /* ===================== PRELOAD ===================== */
-
-useGLTF.preload("/model/worker.glb");

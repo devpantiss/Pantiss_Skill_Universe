@@ -1,5 +1,7 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
-import Slider from "react-slick";
+import Slider from "../common/ViewportSlider";
+
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const mouPartners = [
@@ -94,7 +96,7 @@ const MouSection: React.FC = () => {
       {/* Background blurry circles */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-10 w-72 h-72 bg-red-600 rounded-full blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-80 h-80 bg-green-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-80 h-80 bg-red-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
         <div className="absolute bottom-20 left-1/3 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-20"></div>
       </div>
 
@@ -108,7 +110,7 @@ const MouSection: React.FC = () => {
             <div key={index} className="px-4">
               <div className="group relative bg-gray-900 rounded-2xl shadow-lg overflow-hidden hover:shadow-red-600/30 hover:scale-[1.02] transition transform">
                 {/* Image */}
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src={partner.image}
                   alt={partner.name}
                   className="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition"
@@ -116,7 +118,7 @@ const MouSection: React.FC = () => {
 
                 {/* Logo overlay */}
                 <div className="absolute top-4 left-4 bg-white rounded-lg p-2 shadow-md">
-                  <img
+                  <SiteImage decoding="async" loading="lazy"
                     src={partner.logo}
                     alt={partner.name + " logo"}
                     className="h-10 w-auto object-contain"

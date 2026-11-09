@@ -114,7 +114,7 @@ const JobRolesMarquee = () => {
 
       {/* Gradient Lighting Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500 rounded-full filter blur-[120px] opacity-10 animate-pulse"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500 rounded-full filter blur-[120px] opacity-10 animate-pulse"></div>
         <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-blue-500 rounded-full filter blur-[120px] opacity-10 animate-pulse delay-1000"></div>
         <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-yellow-500 rounded-full filter blur-[100px] opacity-10 animate-pulse delay-2000"></div>
       </div>
@@ -123,7 +123,7 @@ const JobRolesMarquee = () => {
       <div className="relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-green-400">Blue Collar Job Roles</span> Across
+            <span className="text-red-400">Blue Collar Job Roles</span> Across
             Industries
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
@@ -137,12 +137,12 @@ const JobRolesMarquee = () => {
           {jobCategories.map((category, index) => (
             <div key={category.industry} className="flex items-center gap-4 group">
               <div
-                className="flex items-center gap-2 px-4 py-3 w-64 bg-transparent backdrop-blur-md border border-green-400 rounded-full font-bold text-sm md:text-base text-white transition-all duration-300 hover:bg-green-500/10 hover:shadow-lg hover:shadow-green-500/20"
+                className="flex items-center gap-2 px-4 py-3 w-64 bg-transparent backdrop-blur-md border border-red-400 rounded-full font-bold text-sm md:text-base text-white transition-all duration-300 hover:bg-red-500/10 hover:shadow-lg hover:shadow-red-500/20"
                 aria-label={`Industry: ${category.industry}`}
               >
                 {React.cloneElement(category.icon, {
                   className:
-                    "w-6 h-6 group-hover:text-green-400 transition-colors duration-300",
+                    "w-6 h-6 group-hover:text-red-400 transition-colors duration-300",
                 })}
                 <span>{category.industry}</span>
               </div>
@@ -164,7 +164,7 @@ const JobRolesMarquee = () => {
                           transition-all duration-300 transform hover:scale-105 hover:shadow-lg
                           ${index % 2 === 0
                             ? 'bg-red-500/10 text-red-400 border border-red-500 hover:bg-red-500/20 hover:text-red-300 hover:shadow-red-500/20'
-                            : 'bg-green-500/10 text-green-400 border border-green-500/30 hover:bg-green-500/20 hover:text-green-300 hover:shadow-green-500/20'
+                            : 'bg-red-500/10 text-red-400 border border-red-500/30 hover:bg-red-500/20 hover:text-red-300 hover:shadow-red-500/20'
                           }
                         `}
                       >
@@ -179,7 +179,7 @@ const JobRolesMarquee = () => {
         </div>
 
         {/* Bottom Gradient Bar */}
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-black to-green-500"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-black to-red-500"></div>
       </div>
     </section>
   );

@@ -7,8 +7,8 @@ const CollabImpact: React.FC = () => {
     {
       title: "1st in India",
       description: "to feature Learn & Earn during Degree",
-      border: "border-green-500",
-      badge: "bg-green-500",
+      border: "border-red-500",
+      badge: "bg-red-500",
     },
     {
       title: "1st in India",
@@ -19,8 +19,8 @@ const CollabImpact: React.FC = () => {
     {
       title: "1st in India",
       description: "to promote Overseas Mobility",
-      border: "border-green-500",
-      badge: "bg-green-500",
+      border: "border-red-500",
+      badge: "bg-red-500",
     },
     {
       title: "1st in India",
@@ -55,7 +55,7 @@ const CollabImpact: React.FC = () => {
 
       {/* Content wrapper */}
       <div className="relative z-10 flex justify-center">
-        <div className="w-full max-w-7xl bg-gray-900/70 backdrop-blur-lg rounded-xl border border-green-500/30 shadow-xl p-10">
+        <div className="w-full max-w-7xl bg-gray-900/70 backdrop-blur-lg rounded-xl border border-red-500/30 shadow-xl p-10">
           {/* Heading */}
           <h2 className="text-4xl sm:text-5xl font-extrabold text-white text-center mb-6 tracking-tight">
             Collaboration Impact
@@ -97,14 +97,14 @@ const CollabImpact: React.FC = () => {
                   <div
                     key={idx}
                     className={`flex flex-col items-center justify-center text-center p-4 rounded-lg border min-h-[100px] ${
-                      idx % 2 === 0 ? "border-green-500/30" : "border-red-600/30"
-                    } hover:bg-gray-700/70 hover:scale-[1.03] transition-all duration-300 ease-in-out animate-slide-up focus-visible:ring-2 focus-visible:ring-green-500`}
+                      idx % 2 === 0 ? "border-red-500/30" : "border-red-600/30"
+                    } hover:bg-gray-700/70 hover:scale-[1.03] transition-all duration-300 ease-in-out animate-slide-up focus-visible:ring-2 focus-visible:ring-red-500`}
                     style={{ animationDelay: `${idx * 100}ms` }}
                     aria-label={`${stat.value} ${stat.label}`}
                     tabIndex={0}
                   >
                     <p className={`text-3xl font-extrabold ${
-                      idx % 2 === 0 ? "text-green-500" : "text-red-600"
+                      idx % 2 === 0 ? "text-red-500" : "text-red-600"
                     }`}>
                       {inView ? (
                         <CountUp
@@ -125,7 +125,7 @@ const CollabImpact: React.FC = () => {
           </InView>
 
           {/* Decorative Divider */}
-          <div className="mx-auto mt-16 w-64 h-1 bg-gradient-to-r from-green-500 to-red-600 rounded-full opacity-90" />
+          <div className="mx-auto mt-16 w-64 h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full opacity-90" />
         </div>
       </div>
 

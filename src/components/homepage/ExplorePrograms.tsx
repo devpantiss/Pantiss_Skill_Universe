@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 
 const ExplorePrograms: React.FC = () => {
@@ -19,7 +20,7 @@ const ExplorePrograms: React.FC = () => {
             in making
           </h2>
 
-          <img
+          <SiteImage decoding="async" loading="lazy"
             src="https://www.lpu.in/lpu-assets/images/home-page/history-in-making/history-in-making.webp"
             alt="Students Group"
             className="w-full h-auto rounded-lg mb-4"

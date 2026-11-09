@@ -1,23 +1,12 @@
+import SiteImage from "../common/SiteImage";
+import BackgroundVideo from "../common/BackgroundVideo";
 import React from "react";
 
 const OverLappingCards2: React.FC = () => {
   return (
     <div className="relative bg-black">
       {/* Background Video */}
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-      >
-        <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742994033/12700136_1920_1080_30fps_zajh9b.mp4" // Replace with your actual video URL
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
+      <BackgroundVideo src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1742994033/12700136_1920_1080_30fps_zajh9b.mp4" className="absolute top-0 left-0 w-full h-full object-cover" defer />
 
       {/* Dark Overlay for Text Visibility */}
       <div className="absolute inset-0 bg-black/20"></div>
@@ -42,7 +31,7 @@ const OverLappingCards2: React.FC = () => {
             <li>Pay-per-Task</li>
           </ul>
           <div className="relative">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1733829181/Screenshot_2024-12-10_at_4.40.50_PM-removebg-preview_jxbped.png"
               alt="logo"
               className="absolute left-4 -bottom-32"
@@ -60,7 +49,7 @@ const OverLappingCards2: React.FC = () => {
             <li>Field Force Management</li>
           </ul>
           <div className="relative">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1733829181/Screenshot_2024-12-10_at_4.41.18_PM-removebg-preview_gezxml.png"
               alt="logo"
               className="absolute left-4 -bottom-32"
@@ -69,7 +58,7 @@ const OverLappingCards2: React.FC = () => {
         </div>
 
         {/* Card 3 */}
-        <div className="absolute top-[500px] left-[500px] bg-green-200 text-gray-800 p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
+        <div className="absolute top-[500px] left-[500px] bg-red-200 text-gray-800 p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
           <h3 className="text-lg font-bold mb-4">Talent</h3>
           <ul className="list-disc pl-5 space-y-1">
             <li>Contract and Temp Staffing</li>
@@ -79,7 +68,7 @@ const OverLappingCards2: React.FC = () => {
             <li>Apprenticeship Programs</li>
           </ul>
           <div className="relative">
-            <img
+            <SiteImage decoding="async" loading="lazy"
               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1733829181/Screenshot_2024-12-10_at_4.41.31_PM-removebg-preview_q4xvel.png"
               alt="logo"
               className="absolute left-4 -bottom-32"

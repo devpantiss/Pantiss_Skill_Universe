@@ -1,64 +1,33 @@
-import React, { Suspense, lazy, useEffect, useRef, useState } from 'react'
+import DeferredSection from "../components/common/DeferredSection";
+import React, { Suspense, lazy, useState } from 'react'
 import SkillOnWheelsHero from '../components/futuristicSkillOnWheels/SkillOnWheelsHero'
-import AboutSkillOnWheels from '../components/futuristicSkillOnWheels/AboutSkillOnWheels'
-import ActiveRegions from '../components/futuristicSkillOnWheels/ActiveRegions'
-import FleetDetails from '../components/futuristicSkillOnWheels/FleetDetails'
+const AboutSkillOnWheels = React.lazy(() => import("../components/futuristicSkillOnWheels/AboutSkillOnWheels"));
+const ActiveRegions = React.lazy(() => import("../components/futuristicSkillOnWheels/ActiveRegions"));
+const FleetDetails = React.lazy(() => import("../components/futuristicSkillOnWheels/FleetDetails"));
 import ImpactStats from '../components/futuristicSkillOnWheels/ImpactStats'
-import GalleryShowcase from '../components/futuristicSkillOnWheels/GalleryShowcase'
-import SkillOnWheelsCTA from '../components/futuristicSkillOnWheels/SkillOnWheelsCTA'
+const GalleryShowcase = React.lazy(() => import("../components/futuristicSkillOnWheels/GalleryShowcase"));
+const SkillOnWheelsCTA = React.lazy(() => import("../components/futuristicSkillOnWheels/SkillOnWheelsCTA"));
 
 const ModelViewer = lazy(() => import('../components/futuristicSkillOnWheels/ModelViewer'))
 
 const LazyModelViewer: React.FC = () => {
-  const ref = useRef<HTMLDivElement | null>(null)
   const [shouldRender, setShouldRender] = useState(false)
-
-  useEffect(() => {
-    const node = ref.current
-    if (!node || shouldRender) return
-
-    if (!('IntersectionObserver' in window)) {
-      setShouldRender(true)
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldRender(true)
-          observer.disconnect()
-        }
-      },
-      { rootMargin: '300px 0px' }
-    )
-
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [shouldRender])
-
-  return (
-    <div ref={ref} className="relative min-h-[420px] w-full bg-black md:min-h-[560px]">
-      {shouldRender ? (
-        <Suspense fallback={<div className="absolute inset-0 flex items-center justify-center text-white/50">Loading 3D Fleet Viewer...</div>}>
-          <ModelViewer />
-        </Suspense>
-      ) : (
-        <div className="min-h-[420px] md:min-h-[560px]" aria-hidden="true" />
-      )}
-    </div>
-  )
+  return <div className="relative min-h-[420px] w-full bg-black md:min-h-[560px]">
+    {shouldRender ? <Suspense fallback={<div className="fleet-viewer-preview" role="status">Loading interactive fleet viewer…</div>}><ModelViewer /></Suspense> :
+      <div className="fleet-viewer-preview"><p className="site-eyebrow">Explore our fleet</p><h2>Get a closer look.</h2><p>Discover the mobile training unit in an interactive 3D view.</p><button className="site-button" onClick={() => setShouldRender(true)}>Open 3D fleet viewer</button></div>}
+  </div>
 }
 
 const FuturisticSkillOnWheels : React.FC = () => {
   return (
     <div>
       <SkillOnWheelsHero />
-      <AboutSkillOnWheels />
-      <ActiveRegions />
-      <FleetDetails />
+      <DeferredSection><AboutSkillOnWheels /></DeferredSection>
+      <DeferredSection><ActiveRegions /></DeferredSection>
+      <DeferredSection><FleetDetails /></DeferredSection>
       <ImpactStats />
-      <GalleryShowcase />
-      <SkillOnWheelsCTA />
+      <DeferredSection><GalleryShowcase /></DeferredSection>
+      <DeferredSection><SkillOnWheelsCTA /></DeferredSection>
       <LazyModelViewer />
     </div>
   )

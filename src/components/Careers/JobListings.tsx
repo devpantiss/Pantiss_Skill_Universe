@@ -227,15 +227,15 @@ const JobsListing: React.FC = () => {
     filter === "All" ? jobsData : jobsData.filter((c) => c.category === filter);
 
   return (
-    <section className="min-h-screen bg-[#070707] pt-36">
+    <section className="min-h-screen bg-[#070707] pt-16">
       <div className="max-w-6xl mx-auto px-6 py-14">
         {/* HEADER */}
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#f5d38a]">
           Open Appointments
         </p>
-        <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
+        <h1 className="mt-3 text-3xl font-bold text-white md:text-4xl">
           Join Pantiss Skill University
-        </h2>
+        </h1>
         <p className="mt-3 mb-8 max-w-3xl text-neutral-300">
           Explore faculty, trainer, campus operations, laboratory, placement, and digital learning roles that support student success.
         </p>
@@ -246,6 +246,7 @@ const JobsListing: React.FC = () => {
               key={category}
               type="button"
               onClick={() => setFilter(category)}
+              aria-pressed={filter === category}
               className={`rounded-md border px-4 py-2 text-sm font-semibold transition ${
                 filter === category
                   ? "border-red-600 bg-red-600 text-white"
@@ -257,6 +258,7 @@ const JobsListing: React.FC = () => {
           ))}
         </div>
 
+        {filtered.length === 0 && <div className="site-message" role="status"><h2>No matching roles</h2><p>Try another category to explore available appointments.</p><button className="site-button" onClick={() => setFilter('All')}>Show all roles</button></div>}
         {/* LISTING */}
         {!selectedJob ? (
           filtered.map((cat) => (

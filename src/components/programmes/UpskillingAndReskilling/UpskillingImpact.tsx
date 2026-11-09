@@ -1,3 +1,4 @@
+import { useCountUp } from "../../../hooks/useCountUp";
 import { useEffect, useRef, useState } from "react";
 import {
   Users,
@@ -17,25 +18,6 @@ const metrics = [
   { label: "Skill Gap Closure Rate", value: 76, suffix: "%", icon: Target },
 ];
 
-const useCountUp = (end: number, enabled: boolean) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!enabled) return;
-    const duration = 1600;
-    const start = performance.now();
-
-    const animate = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      setCount(Number((progress * end).toFixed(1)));
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  }, [end, enabled]);
-
-  return count;
-};
 
 type Metric = (typeof metrics)[number];
 
@@ -47,7 +29,7 @@ function MetricCard({ item, visible }: { item: Metric; visible: boolean }) {
     <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8">
       <div className="flex justify-between mb-6">
         <span className="text-sm text-gray-400">{item.label}</span>
-        <Icon className="w-5 h-5 text-green-500" />
+        <Icon className="w-5 h-5 text-red-500" />
       </div>
       <div className="text-4xl font-semibold">
         {value}{item.suffix}

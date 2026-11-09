@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -129,7 +130,7 @@ export default function JobTabs() {
               className="p-6 shadow-lg rounded-2xl border bg-red-600/30 flex flex-col gap-4 hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="flex items-center gap-3">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src={job.logo}
                   alt="Company Logo"
                   className="w-12 h-12 rounded-full"

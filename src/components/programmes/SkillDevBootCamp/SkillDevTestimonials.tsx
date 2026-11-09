@@ -1,5 +1,10 @@
+import SiteImage from "../../common/SiteImage";
+import BackgroundVideo from "../../common/BackgroundVideo";
 import React, { useState, useRef } from "react";
-import Slider, { Settings } from "react-slick";
+import Slider from "../../common/ViewportSlider";
+import type { Settings } from "react-slick";
+import type SlickSlider from "react-slick";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { gsap } from "gsap";
@@ -131,7 +136,7 @@ const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
 );
 
 const SkillDevTestimonials: React.FC = () => {
-  const sliderRef = useRef<Slider>(null);
+  const sliderRef = useRef<SlickSlider>(null);
   const [activeTab, setActiveTab] = useState<
     "Students" | "Trainers" | "Industries"
   >("Industries");
@@ -166,7 +171,7 @@ const SkillDevTestimonials: React.FC = () => {
       </div>
     ),
     customPaging: () => (
-      <div className="h-2 w-2 rounded-full bg-green-600/50 hover:bg-green-600 transition-all duration-300" />
+      <div className="h-2 w-2 rounded-full bg-red-600/50 hover:bg-red-600 transition-all duration-300" />
     ),
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 2 } },
@@ -192,22 +197,7 @@ const SkillDevTestimonials: React.FC = () => {
     >
       {/* Parallax Background Video */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-          style={{ backgroundAttachment: "fixed", backgroundPosition: "center" }}
-        >
-          <source src="/Homepage/HomePage_Hero.mp4" type="video/mp4" />
-          <img
-            src="https://www.w3schools.com/html/pic_trulli.jpg"
-            alt="Video fallback"
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </video>
+        <BackgroundVideo src="/Homepage/hero-optimized.mp4" className="w-full h-full object-cover" defer />
       </div>
 
       {/* Overlay with Gradient */}
@@ -249,7 +239,7 @@ const SkillDevTestimonials: React.FC = () => {
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl p-6 flex flex-col items-start relative h-full transform transition-all duration-300">
                     {/* Company Logo */}
                     <div className="mb-8">
-                      <img
+                      <SiteImage decoding="async"
                         src={testimonial.logo || defaultImage}
                         alt="Company Logo"
                         className="h-16 object-contain"
@@ -268,7 +258,7 @@ const SkillDevTestimonials: React.FC = () => {
                     {/* User Details */}
                     <div className="flex items-center mt-auto">
                       <div className="w-14 h-14 rounded-full overflow-hidden mr-5">
-                        <img
+                        <SiteImage decoding="async"
                           src={testimonial.photo || defaultImage}
                           alt={testimonial.name}
                           className="object-cover w-full h-full"

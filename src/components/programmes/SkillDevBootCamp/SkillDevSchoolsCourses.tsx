@@ -1,3 +1,7 @@
+import SiteImage from "../../common/SiteImage";
+import { useViewportActivity } from "../../../hooks/useViewportActivity";
+import { useReducedMotion } from "framer-motion";
+import { useGeoData } from "../../../hooks/useGeoData";
 import { memo, useState, useEffect, useCallback } from "react";
 import {
   ChevronLeft,
@@ -17,7 +21,7 @@ import {
 } from "react-leaflet";
 
 import L from "leaflet";
-import type { Feature, GeoJsonObject, Geometry } from "geojson";
+import type { Feature, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* =====================================================
@@ -91,7 +95,7 @@ const schools: School[] = [
       "Electrical and solar PV bootcamps bridging conventional and renewable power.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
-    gradient: "from-yellow-400/20 via-green-400/20 to-cyan-400/20",
+    gradient: "from-yellow-400/20 via-red-400/20 to-cyan-400/20",
     totalParticipants: 2060,
     successRate: 94,
     location: { district: "Jajapur", coords: [20.85, 86.33] },
@@ -186,23 +190,21 @@ const FlyTo = ({ coords }: { coords: [number, number] }) => {
 ===================================================== */
 
 const SkillDevSchoolsCourses = () => {
-  const [geoData, setGeoData] = useState<GeoJsonObject | null>(null);
+  const { geoData, error: mapError } = useGeoData("/map/Orissa.geojson");
+  const { ref: activityRef, active } = useViewportActivity<HTMLElement>();
+  const reducedMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
 
-  useEffect(() => {
-    fetch("/map/Orissa.geojson")
-      .then((res) => res.json())
-      .then(setGeoData);
-  }, []);
+
 
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || !active || reducedMotion) return;
     const i = setInterval(() => {
       setIndex((p) => (p + 1) % schools.length);
     }, 4500);
     return () => clearInterval(i);
-  }, [playing]);
+  }, [playing, active, reducedMotion]);
 
   const school = schools[index];
 
@@ -217,7 +219,8 @@ const SkillDevSchoolsCourses = () => {
   );
 
   return (
-    <section className="bg-black py-24 text-white">
+    <section ref={activityRef} className="bg-black py-24 text-white">
+      {mapError && <p className="map-data-notice" role="status">Map outlines could not load. Location details are still available. <button onClick={() => window.location.reload()}>Retry</button></p>}
       <style>{`
         .district-glow{
           filter: drop-shadow(0 0 6px rgba(34,197,94,.9))
@@ -246,7 +249,7 @@ const SkillDevSchoolsCourses = () => {
 
         {/* LEFT */}
         <div>
-          <img
+          <SiteImage decoding="async" loading="lazy"
             src={school.image}
             className="rounded-3xl h-[400px] w-full object-cover"
           />
@@ -261,7 +264,7 @@ const SkillDevSchoolsCourses = () => {
 
           <div className="flex gap-4 mt-4">
             <span className="bg-white/10 px-4 py-2 rounded-full flex items-center gap-2">
-              <Award className="w-4 text-green-400"/>
+              <Award className="w-4 text-red-400"/>
               {school.successRate}% success
             </span>
 
@@ -309,7 +312,7 @@ const SkillDevSchoolsCourses = () => {
             >
               <FlyTo coords={school.location.coords} />
 
-              <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" />
+              <TileLayer attribution='&copy; OpenStreetMap contributors &copy; CARTO' url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
 
               <GeoJSON
                 key={school.location.district}

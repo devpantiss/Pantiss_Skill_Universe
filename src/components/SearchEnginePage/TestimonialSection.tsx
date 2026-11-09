@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 
 const testimonials = [
@@ -40,7 +41,7 @@ const TestimonialSection: React.FC = () => {
             >
               {/* Company Logo */}
               <div className="mb-4">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src={testimonial.logo}
                   alt="Company Logo"
                   className="object-contain"
@@ -53,7 +54,7 @@ const TestimonialSection: React.FC = () => {
               {/* User Details */}
               <div className="flex items-center mt-auto">
                 <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                  <img
+                  <SiteImage decoding="async" loading="lazy"
                     src={testimonial.photo}
                     alt={testimonial.name}
                     className="object-cover"

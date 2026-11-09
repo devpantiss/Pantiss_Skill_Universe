@@ -1,18 +1,19 @@
+import DeferredSection from "../../components/common/DeferredSection";
 import React from 'react'
 import RplHero from '../../components/programmes/RPL/Hero'
-import RplHighlights from '../../components/programmes/RPL/Highlights'
-import SchoolsCourses from '../../components/programmes/RPL/SchoolsCourses'
-import RplOverview from '../../components/programmes/RPL/RplOverview'
-import TestimonialSectionRpl from '../../components/programmes/RPL/Testimonials'
+const RplHighlights = React.lazy(() => import("../../components/programmes/RPL/Highlights"));
+const SchoolsCourses = React.lazy(() => import("../../components/programmes/RPL/SchoolsCourses"));
+const RplOverview = React.lazy(() => import("../../components/programmes/RPL/RplOverview"));
+const TestimonialSectionRpl = React.lazy(() => import("../../components/programmes/RPL/Testimonials"));
 
 const RecognitionofPriorLearningPage: React.FC = () => {
   return (
     <div>
         <RplHero />
-        <RplOverview />
-        <SchoolsCourses />
-        <RplHighlights />
-        <TestimonialSectionRpl />
+        <DeferredSection><RplOverview /></DeferredSection>
+        <DeferredSection><SchoolsCourses /></DeferredSection>
+        <DeferredSection><RplHighlights /></DeferredSection>
+        <DeferredSection><TestimonialSectionRpl /></DeferredSection>
     </div>
   )
 }

@@ -1,105 +1,24 @@
-import { useState, Suspense, lazy } from "react";
-
-const DashboardOverviewPage = lazy(() => import("../../pages/dashboard/DashboardOverviewPage"));
-const AttendanceDashboard = lazy(() => import("../../pages/dashboard/AttendanceDashboard"));
-const DistrictwiseDashboardPage = lazy(() => import("../../pages/dashboard/DistrictwiseDashboardPage"));
-const PlacementsDashboard = lazy(() => import("../../pages/dashboard/PlacementsDashboard"));
-
-const TabLoader = () => (
-  <div className="flex justify-center items-center h-[500px]">
-    <div className="w-8 h-8 border-2 border-red-600 border-t-transparent rounded-full animate-spin" />
-  </div>
-);
-
-/* ===================== TYPES ===================== */
-
-type DashboardTab =
-  | "overview"
-  | "attendance"
-  | "district-analytics" 
-  | "placements";
-
-
-/* ===================== MAIN COMPONENT ===================== */
-
+import { lazy, Suspense, useRef, useState, type KeyboardEvent } from 'react';
+const DashboardOverviewPage = lazy(() => import('../../pages/dashboard/DashboardOverviewPage'));
+const AttendanceDashboard = lazy(() => import('../../pages/dashboard/AttendanceDashboard'));
+const DistrictwiseDashboardPage = lazy(() => import('../../pages/dashboard/DistrictwiseDashboardPage'));
+const PlacementsDashboard = lazy(() => import('../../pages/dashboard/PlacementsDashboard'));
+const tabs = [{key:'overview',label:'Overview',component:DashboardOverviewPage},{key:'attendance',label:'Attendance',component:AttendanceDashboard},{key:'district-analytics',label:'District analytics',component:DistrictwiseDashboardPage},{key:'placements',label:'Placements',component:PlacementsDashboard}];
 export default function DashboardFilters() {
-  const [activeTab, setActiveTab] =
-    useState<DashboardTab>("overview");
-
-  return (
-    <section className="w-full bg-black text-white lg:mt-0 sm:mt-16">
-      {/* ===================== HEADER ===================== */}
-      <header className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-8">
-          <h1 className="text-5xl font-bold tracking-tight">
-            Skill Dashboard
-          </h1>
-          <p className="mt-2 max-w-2xl text-sm text-white/60">
-            Programme performance, attendance monitoring,
-            and district-level insights.
-          </p>
-        </div>
-      </header>
-
-      {/* ===================== TABS ===================== */}
-      <div className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6">
-          <nav className="flex gap-10 h-14">
-            {[
-              { key: "overview", label: "Overview" },
-              { key: "attendance", label: "Attendance" },
-              {
-                key: "district-analytics",
-                label: "District Level Analytics",
-              },
-              {
-                key: "placements",
-                label: "Placements",
-              },
-            ].map((tab) => {
-              const isActive = tab.key === activeTab;
-
-              return (
-                <button
-                  key={tab.key}
-                  onClick={() =>
-                    setActiveTab(tab.key as DashboardTab)
-                  }
-                  className="relative h-full flex items-center focus:outline-none"
-                >
-                  <span
-                    className={`text-sm tracking-wide transition-colors ${
-                      isActive
-                        ? "text-white"
-                        : "text-white/60 hover:text-white"
-                    }`}
-                  >
-                    {tab.label}
-                  </span>
-
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-white" />
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-        </div>
-      </div>
-
-      {/* ===================== CONTENT ===================== */}
-      <main className="mx-auto max-w-7xl px-6 py-10">
-        <Suspense fallback={<TabLoader />}>
-          {activeTab === "overview" && <DashboardOverviewPage />}
-          {activeTab === "attendance" && <AttendanceDashboard />}
-          {activeTab === "district-analytics" && (
-            <DistrictwiseDashboardPage />
-          )}
-          {activeTab === "placements" && (
-            <PlacementsDashboard />
-          )}
-        </Suspense>
-      </main>
-    </section>
-  );
+  const [active, setActive] = useState(0);
+  const refs = useRef<(HTMLButtonElement|null)[]>([]);
+  const Content = tabs[active].component;
+  const onKey = (event:KeyboardEvent<HTMLButtonElement>, index:number) => {
+    let next=index;
+    if(event.key==='ArrowRight') next=(index+1)%tabs.length;
+    else if(event.key==='ArrowLeft') next=(index+tabs.length-1)%tabs.length;
+    else if(event.key==='Home') next=0;
+    else if(event.key==='End') next=tabs.length-1;
+    else return;
+    event.preventDefault();setActive(next);refs.current[next]?.focus();
+  };
+  return <section className="dashboard-surface"><header className="site-shell dashboard-heading"><p className="site-eyebrow">Training & outcomes</p><h1>Skill dashboard</h1><p>Programme performance, attendance, and district-level insights.</p></header>
+    <div className="dashboard-tabbar"><div className="site-shell"><div role="tablist" aria-label="Skill dashboard views">{tabs.map((tab,index)=><button key={tab.key} id={`dashboard-tab-${tab.key}`} role="tab" aria-selected={index===active} aria-controls="dashboard-panel" tabIndex={index===active?0:-1} ref={el=>{refs.current[index]=el;}} onKeyDown={event=>onKey(event,index)} onClick={()=>setActive(index)}>{tab.label}</button>)}</div></div></div>
+    <div id="dashboard-panel" role="tabpanel" tabIndex={0} aria-labelledby={`dashboard-tab-${tabs[active].key}`} className="site-shell dashboard-content"><Suspense fallback={<div className="section-placeholder min-h-[500px]" role="status"><span className="sr-only">Loading dashboard view</span></div>}><Content /></Suspense></div>
+  </section>;
 }

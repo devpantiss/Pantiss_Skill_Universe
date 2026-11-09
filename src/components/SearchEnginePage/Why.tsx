@@ -1,3 +1,4 @@
+import BackgroundVideo from "../common/BackgroundVideo";
 import React, { useRef } from "react";
 
 const benefits = [
@@ -38,16 +39,7 @@ const Why: React.FC = () => {
     <section className="relative w-full py-20 text-center overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          aria-hidden="true"
-        >
-          <source src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743490676/12900822_1920_1080_30fps_ldejrt.mp4" type="video/mp4" />
-        </video>
+        <BackgroundVideo src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1743490676/12900822_1920_1080_30fps_ldejrt.mp4" className="w-full h-full object-cover" defer />
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-red-900/30 to-black bg-opacity-30 backdrop-blur-sm"></div>
       </div>

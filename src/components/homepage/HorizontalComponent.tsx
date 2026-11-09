@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React, { useRef, useEffect, useState } from "react";
 
 type ImpactItem = {
@@ -167,12 +168,12 @@ const HorizontalScrollComponent: React.FC = () => {
             {/* Left */}
             <div className="relative lg:w-1/2 h-full bg-gradient-to-b from-black via-red-600 to-black flex flex-col px-16 py-24 justify-center gap-8 text-white">
               {/* Slide Number (top right corner) */}
-              <div className="absolute top-6 right-6 text-sm font-medium bg-white/10 backdrop-blur-sm px-4 py-2 rounded-md text-green-400">
+              <div className="absolute top-6 right-6 text-sm font-medium bg-white/10 backdrop-blur-sm px-4 py-2 rounded-md text-red-400">
                 {String(idx + 1).padStart(2, "0")} / {String(schools.length).padStart(2, "0")}
               </div>
 
               <div className="flex flex-col items-center gap-6 max-w-lg mx-auto">
-                <img
+                <SiteImage decoding="async"
                   src={school.logo}
                   alt={`${school.title} logo`}
                   className="w-80 object-contain py-4"
@@ -188,7 +189,7 @@ const HorizontalScrollComponent: React.FC = () => {
 
                 {/* Programs List */}
                 <div className="mt-6">
-                  <h4 className="text-xl font-medium mb-2 text-green-400">Programs Offered</h4>
+                  <h4 className="text-xl font-medium mb-2 text-red-400">Programs Offered</h4>
                   <ul className="list-disc list-inside text-lg space-y-2">
                     {school.programs.map((program) => (
                       <li key={program}>{program}</li>
@@ -205,8 +206,8 @@ const HorizontalScrollComponent: React.FC = () => {
                     className="flex flex-col items-center bg-white/10 rounded-md p-4 hover:bg-white/20 transition-all"
                     aria-label={`${label}: ${value}`}
                   >
-                    <span className="text-4xl font-extrabold text-green-400">{value}</span>
-                    <span className="text-base text-green-200 uppercase tracking-wider mt-1">
+                    <span className="text-4xl font-extrabold text-red-400">{value}</span>
+                    <span className="text-base text-red-200 uppercase tracking-wider mt-1">
                       {label}
                     </span>
                   </div>
@@ -227,7 +228,7 @@ const HorizontalScrollComponent: React.FC = () => {
                 />
               ) : (
                 school.image && (
-                  <img
+                  <SiteImage decoding="async"
                     src={school.image}
                     alt={`${school.title} image`}
                     className="w-full h-full object-cover"

@@ -1,23 +1,11 @@
+import BackgroundVideo from "../common/BackgroundVideo";
 import React from "react";
 
 const OverLappingCards: React.FC = () => {
   return (
     <div className="relative bg-transparent">
       {/* Background Video */}
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-      >
-        <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1742994000/16498883-hd_1920_1080_24fps_zb7mxr.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
+      <BackgroundVideo src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1742994000/16498883-hd_1920_1080_24fps_zb7mxr.mp4" className="absolute top-0 left-0 w-full h-full object-cover" defer />
 
       {/* Dark Overlay for Text Visibility */}
       <div className="absolute inset-0 bg-black/20"></div>
@@ -32,7 +20,7 @@ const OverLappingCards: React.FC = () => {
         </div>
 
         {/* Card 1 – Skilling */}
-        <div className="absolute top-0 right-0 bg-green-100 text-gray-800 p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
+        <div className="absolute top-0 right-0 bg-red-100 text-gray-800 p-6 rounded-lg shadow-lg w-[400px] h-[350px]">
           <h3 className="text-xl font-bold mb-4 flex items-center">
             Skilling
           </h3>

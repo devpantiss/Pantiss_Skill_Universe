@@ -1,3 +1,4 @@
+import SiteImage from "./SiteImage";
 import React, { useRef, useLayoutEffect, useState } from "react";
 import {
   motion,
@@ -122,7 +123,7 @@ const VelocityImages: React.FC<{
         className="flex gap-4 flex-shrink-0"
       >
         {images.map((src, idx) => (
-          <img key={`${i}-${idx}`} src={src} alt={`scroll-img-${idx}`} className={imageClassName} />
+          <SiteImage decoding="async" loading="lazy" key={`${i}-${idx}`} src={src} alt={`scroll-img-${idx}`} className={imageClassName} />
         ))}
       </div>
     );

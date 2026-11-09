@@ -1,3 +1,5 @@
+import SiteImage from "../../common/SiteImage";
+import { useGeoData } from "../../../hooks/useGeoData";
 import { memo, useEffect, useState } from "react";
 import {
   ChevronLeft,
@@ -16,7 +18,7 @@ import {
 } from "react-leaflet";
 
 import L from "leaflet";
-import type { Feature, GeoJsonObject, Geometry } from "geojson";
+import type { Feature, Geometry } from "geojson";
 import "leaflet/dist/leaflet.css";
 
 /* ===============================
@@ -149,19 +151,16 @@ const FlyToDistrict = ({ coords }: { coords: [number, number] }) => {
 ================================= */
 
 const DiplomaSchoolsCourses = () => {
-  const [geoData, setGeoData] = useState<GeoJsonObject | null>(null);
+  const { geoData, error: mapError } = useGeoData("/map/Orissa.geojson");
   const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    fetch("/map/Orissa.geojson")
-      .then((res) => res.json())
-      .then(setGeoData);
-  }, []);
+
 
   const school = schools[index];
 
   return (
     <section className="bg-black py-20 text-white relative overflow-hidden">
+      {mapError && <p className="map-data-notice" role="status">Map outlines could not load. Location details are still available. <button onClick={() => window.location.reload()}>Retry</button></p>}
       {/* INLINE PREMIUM CSS */}
       <style>{`
 
@@ -207,7 +206,7 @@ const DiplomaSchoolsCourses = () => {
 
         {/* LEFT */}
         <div>
-          <img
+          <SiteImage decoding="async" loading="lazy"
             src={school.image}
             className="rounded-3xl h-[380px] w-full object-cover"
           />
@@ -222,12 +221,12 @@ const DiplomaSchoolsCourses = () => {
 
           <div className="flex gap-6 mt-4 text-sm">
             <span className="flex items-center gap-2">
-              <Award className="text-green-400 w-4" />
+              <Award className="text-red-400 w-4" />
               {school.successRate}% placement
             </span>
 
             <span className="flex items-center gap-2">
-              <Users className="text-green-400 w-4" />
+              <Users className="text-red-400 w-4" />
               {school.totalStudents}+ trained
             </span>
           </div>
@@ -279,7 +278,7 @@ const DiplomaSchoolsCourses = () => {
             >
               <FlyToDistrict coords={school.location.coords} />
 
-              <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" />
+              <TileLayer attribution='&copy; OpenStreetMap contributors &copy; CARTO' url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
 
               <GeoJSON
                 key={school.location.district}

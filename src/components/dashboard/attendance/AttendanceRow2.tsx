@@ -9,9 +9,9 @@ import {
   Pie,
   Cell,
 } from "recharts";
-  
+
   /* ===================== GAUGE DATA (5 CARDS) ===================== */
-  
+
   const gaugeData = [
     { title: "% Present (STT)", value: 32.6 },
     { title: "% Present (SP)", value: 41.2 },
@@ -19,9 +19,9 @@ import {
     { title: "% Present (Women)", value: 44.1 },
     { title: "% Present (Overall)", value: 39.8 },
   ];
-  
+
   /* ===================== MONTHLY ATTENDANCE (7 DISTRICTS) ===================== */
-  
+
   const blockAttendance = [
     {
       block: "Keonjhar",
@@ -115,13 +115,13 @@ import {
       Jan: 49,
     },
   ];
-  
+
   const months = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"] as const;
   type Month = (typeof months)[number];
   type BlockAttendanceRow = { block: string } & Record<Month, number>;
-  
+
   /* ===================== UTILS ===================== */
-  
+
   const cellColor = (v: number) => {
     if (v >= 80) return "bg-green-600";
     if (v >= 60) return "bg-yellow-500";
@@ -129,9 +129,9 @@ import {
     if (v > 0) return "bg-red-600";
     return "bg-[#1f2937]";
   };
-  
+
   /* ===================== COMPONENT ===================== */
-  
+
   export default function AttendanceAnalyticsSection() {
   /* ===================== BAR CHART ===================== */
 
@@ -141,19 +141,19 @@ import {
       months.reduce((s, m) => s + b[m], 0) / months.length
     ),
   }));
-  
+
     /* ===================== RENDER ===================== */
-  
+
     return (
       <section className="bg-black text-white mt-4 p-6 space-y-10 rounded-xl">
-  
+
         {/* ===================== ROW 1: GAUGES (5) ===================== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {gaugeData.map(g => (
             <GaugeCard key={g.title} title={g.title} value={g.value} />
           ))}
         </div>
-  
+
         {/* ===================== ROW 2: BAR CHART ===================== */}
       <div className="bg-[#11161C] border border-white/10 rounded-xl p-6 h-[400px] flex flex-col">
         <h3 className="text-sm text-white/70 mb-4">
@@ -165,18 +165,18 @@ import {
               <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
               <YAxis domain={[0, 60]} stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: '#11161C', border: '1px solid #374151', borderRadius: '8px' }} />
-              <Bar dataKey="value" fill="#dc2626" radius={[6, 6, 0, 0]} barSize={40} />
+              <Bar isAnimationActive={false} dataKey="value" fill="#dc2626" radius={[6, 6, 0, 0]} barSize={40} />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
-  
+
         {/* ===================== ROW 3: MONTHLY TABLE (7 DISTRICTS) ===================== */}
         <div className="bg-[#11161C] border border-white/10 rounded-xl p-6 overflow-auto">
           <h3 className="text-sm text-white/70 mb-4">
             District-wise Monthly Attendance (%)
           </h3>
-  
+
           <table className="min-w-full text-xs border-collapse">
             <thead className="sticky top-0 bg-[#11161C]">
               <tr>
@@ -209,7 +209,7 @@ import {
       </section>
     );
   }
-  
+
 /* ===================== GAUGE CARD ===================== */
 
 function GaugeCard({ title, value }: { title: string; value: number }) {
@@ -225,7 +225,7 @@ function GaugeCard({ title, value }: { title: string; value: number }) {
       <div className="relative h-36">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
-            <Pie
+            <Pie isAnimationActive={false}
               data={data}
               cx="50%"
               cy="100%"
@@ -255,5 +255,3 @@ function GaugeCard({ title, value }: { title: string; value: number }) {
     </div>
   );
 }
-
-  

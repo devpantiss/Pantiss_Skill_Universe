@@ -1,3 +1,5 @@
+import SiteImage from "../../common/SiteImage";
+import BackgroundVideo from "../../common/BackgroundVideo";
 import React, { memo, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle, Play, Pause, Users, Award, Clock, ArrowUpRight } from "lucide-react";
 
@@ -65,7 +67,7 @@ const schools: School[] = [
       "Plant attachments, renewable installation practicum and energy-efficiency projects to skill technicians for modern power assets.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451905/sungrow-emea-VC-m6ULjJ6Y-unsplash_fjglkj.jpg",
-    gradient: "from-yellow-400/20 via-green-400/20 to-cyan-400/20",
+    gradient: "from-yellow-400/20 via-red-400/20 to-cyan-400/20",
     totalStudents: 3400,
     successRate: 96,
     courses: [
@@ -133,7 +135,7 @@ const schools: School[] = [
       "Practical placements in water systems operations, sanitation services, plumbing and facility maintenance for urban & rural ecosystems.",
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1763451908/gallery-ds-X_tEarX6svc-unsplash_sy31wa.jpg",
-    gradient: "from-cyan-400/20 via-green-400/20 to-emerald-400/20",
+    gradient: "from-cyan-400/20 via-red-400/20 to-emerald-400/20",
     totalStudents: 2000,
     successRate: 91,
     courses: [
@@ -220,19 +222,13 @@ const WILPSchoolsCarousel: React.FC = () => {
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-          <source
-            src="https://res.cloudinary.com/dxzhnns58/video/upload/v1763201620/2792967-uhd_2160_1440_25fps_u4mo5l.mp4"
-            type="video/mp4"
-          />
-          <div className="w-full h-full bg-gradient-to-br from-black via-gray-900 to-black"></div>
-        </video>
+        <BackgroundVideo src="https://res.cloudinary.com/dxzhnns58/video/upload/q_auto,w_1280/v1763201620/2792967-uhd_2160_1440_25fps_u4mo5l.mp4" className="w-full h-full object-cover" defer />
 
         <div className="absolute inset-0 bg-gradient-to-br from-black via-black/50 to-black"></div>
 
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-green-600/30 to-green-600/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-red-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-red-600/30 to-red-600/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-red-600/20 to-orange-600/20 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
       </div>
@@ -240,16 +236,16 @@ const WILPSchoolsCarousel: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-green-100 to-red-100 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-red-100 to-red-100 bg-clip-text text-transparent">
             Work-Integrated Learning (WILP) Schools
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Earn-while-you-learn attachments and employer-led modules aligned with NSQF standards for blue-collar careers
           </p>
           <div className="mt-6 flex items-center justify-center space-x-4">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-green-500"></div>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-green-500"></div>
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-red-500"></div>
+            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-red-500"></div>
           </div>
         </div>
 
@@ -258,7 +254,7 @@ const WILPSchoolsCarousel: React.FC = () => {
           {/* Navigation Buttons */}
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-green-500"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-red-500"
             aria-label="Previous school"
           >
             <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
@@ -266,7 +262,7 @@ const WILPSchoolsCarousel: React.FC = () => {
 
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-green-500"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 group p-3 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 hover:ring-red-500"
             aria-label="Next school"
           >
             <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
@@ -282,7 +278,7 @@ const WILPSchoolsCarousel: React.FC = () => {
               <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
                 {/* Image Section */}
                 <div className="relative h-64 md:h-80 overflow-hidden">
-                  <img
+                  <SiteImage decoding="async" loading="lazy"
                     src={currentSchool.image}
                     alt={currentSchool.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -291,11 +287,11 @@ const WILPSchoolsCarousel: React.FC = () => {
 
                   {/* Overlay Stats */}
                   <div className="absolute top-6 right-6 flex flex-col space-y-2">
-                    <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                    <div className="bg-red-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
                       <Award className="w-4 h-4 mr-1" />
                       {currentSchool.successRate}% Success
                     </div>
-                    <div className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
+                    <div className="bg-red-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
                       <Users className="w-4 h-4 mr-1" />
                       {currentSchool.totalStudents.toLocaleString()} Learners
                     </div>
@@ -315,7 +311,7 @@ const WILPSchoolsCarousel: React.FC = () => {
                 {/* Content Section */}
                 <div className="p-8">
                   <h4 className="text-xl font-semibold text-white mb-6 flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
+                    <CheckCircle className="w-5 h-5 text-red-400 mr-2" />
                     NSQF-Aligned Work-Integrated Courses
                   </h4>
 
@@ -326,14 +322,14 @@ const WILPSchoolsCarousel: React.FC = () => {
                         className="group/course bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <h5 className="font-medium text-white group-hover/course:text-green-300 transition-colors">
+                          <h5 className="font-medium text-white group-hover/course:text-red-300 transition-colors">
                             {course.name}
                           </h5>
                           <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover/course:text-white transition-colors" />
                         </div>
 
                         <div className="flex items-center space-x-4 text-sm text-gray-300">
-                          <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded-lg font-medium">
+                          <span className="bg-red-500/20 text-red-300 px-2 py-1 rounded-lg font-medium">
                             Level {course.nsqfLevel}
                           </span>
                           <span className="flex items-center">
@@ -372,7 +368,7 @@ const WILPSchoolsCarousel: React.FC = () => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`transition-all duration-300 rounded-full ${
-                  currentIndex === index ? "w-8 h-3 bg-green-500" : "w-3 h-3 bg-white/30 hover:bg-white/50"
+                  currentIndex === index ? "w-8 h-3 bg-red-500" : "w-3 h-3 bg-white/30 hover:bg-white/50"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

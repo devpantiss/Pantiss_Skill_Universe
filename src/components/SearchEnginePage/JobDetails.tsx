@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 // import { Link } from "react-router-dom";
 // import { useParams } from "react-router-dom";
@@ -94,21 +95,7 @@ const JobDetails: React.FC = () => {
   return (
     <div className="min-h-screen relative bg-transparent mt-16 py-10 bg-black">
       {/* Background Video */}
-      {/* <video
-        autoPlay
-        loop
-        muted
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
-      >
-        <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743257159/6618336-uhd_3840_2160_24fps_1_qaxmgu.mp4"
-          type="video/webm"
-        />
-        <source
-          src="https://www.videvo.net/videvo_files/converted/2016_12/preview/160228_Workshop_1080p.mp472287.mp4"
-          type="video/mp4"
-        />
-      </video> */}
+      {/* <BackgroundVideo src="https://res.cloudinary.com/dgtc2fvgu/video/upload/q_auto,w_1280/v1743257159/6618336-uhd_3840_2160_24fps_1_qaxmgu.mp4" className="absolute top-0 left-0 w-full h-full object-cover -z-10" defer /> */}
 
       {/* Overlay for better readability */}
       <div className="absolute inset-0 -z-10 bg-black"></div>
@@ -244,7 +231,7 @@ const JobDetails: React.FC = () => {
           <div className="lg:w-1/3">
             <div className="ring-2 ring-red-600 rounded-lg p-6 sticky top-24">
               <div className="flex items-center mb-4">
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1743255049/ffsclogo_txufun.svg" // Replace with actual company logo
                   alt={`${job.company} logo`}
                   className="w-12 h-12 mr-3"
@@ -308,7 +295,7 @@ const JobDetails: React.FC = () => {
                 rel="noopener noreferrer"
                 aria-label={`Share on ${link.name}`}
               >
-                <img
+                <SiteImage decoding="async" loading="lazy"
                   src={link.icon}
                   alt={`${link.name} icon`}
                   className="w-6 h-6"

@@ -1,6 +1,7 @@
 import React, { memo, useState } from "react";
 import { motion, Variants } from "framer-motion";
-import Slider from "react-slick";
+import Slider from "../../common/ViewportSlider";
+
 
 // Interfaces
 interface ImpactData {
@@ -124,7 +125,7 @@ interface CustomArrowProps {
 
 const CustomPrevArrow = ({ onClick }: CustomArrowProps) => (
   <button
-    className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-500"
+    className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-500"
     onClick={onClick}
     aria-label="Previous sector"
   >
@@ -136,7 +137,7 @@ const CustomPrevArrow = ({ onClick }: CustomArrowProps) => (
 
 const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   <button
-    className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-500"
+    className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-500"
     onClick={onClick}
     aria-label="Next sector"
   >
@@ -165,7 +166,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
     nextArrow: <CustomNextArrow />,
     customPaging: (i: number) => (
       <button
-        className="w-2 h-2 sm:w-3 sm:h-3 mx-1 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+        className="w-2 h-2 sm:w-3 sm:h-3 mx-1 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"
         aria-label={`Go to slide ${i + 1}`}
       />
     ),
@@ -180,10 +181,10 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
     <section className="relative min-h-screen py-8 sm:py-12 lg:py-20 bg-black overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-10 left-4 sm:left-16 w-48 sm:w-96 h-48 sm:h-96 bg-gradient-to-br from-red-600/30 to-green-500/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-16 right-4 sm:right-20 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-br from-green-500/30 to-red-600/30 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/3 right-1/4 w-36 sm:w-72 h-36 sm:h-72 bg-gradient-to-br from-red-600/25 to-green-500/25 rounded-full blur-3xl animate-pulse delay-700" />
-        <div className="absolute bottom-1/4 left-1/5 w-32 sm:w-64 h-32 sm:h-64 bg-gradient-to-br from-green-500/25 to-red-600/25 rounded-full blur-3xl animate-pulse delay-1400" />
+        <div className="absolute top-10 left-4 sm:left-16 w-48 sm:w-96 h-48 sm:h-96 bg-gradient-to-br from-red-600/30 to-red-500/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-16 right-4 sm:right-20 w-40 sm:w-80 h-40 sm:h-80 bg-gradient-to-br from-red-500/30 to-red-600/30 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/3 right-1/4 w-36 sm:w-72 h-36 sm:h-72 bg-gradient-to-br from-red-600/25 to-red-500/25 rounded-full blur-3xl animate-pulse delay-700" />
+        <div className="absolute bottom-1/4 left-1/5 w-32 sm:w-64 h-32 sm:h-64 bg-gradient-to-br from-red-500/25 to-red-600/25 rounded-full blur-3xl animate-pulse delay-1400" />
       </div>
 
       <div
@@ -212,7 +213,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             </span>
             <span className="text-white/90">Introduction</span>
           </h2> */}
-          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full mx-auto mb-4 sm:mb-6" />
+          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-600 to-red-500 rounded-full mx-auto mb-4 sm:mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
             3-year NSQF-aligned diploma programs designed for hands-on blue-collar jobs in core industries, with 100% placement support and industry training.
           </p>
@@ -225,16 +226,16 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             variants={fadeInLeft as Variants}
             className="order-2 xl:order-1 w-full flex flex-col"
           >
-            <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 group flex-1 flex flex-col">
+            <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10 hover:border-red-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/20 group flex-1 flex flex-col">
               <div className="hidden sm:block absolute top-4 left-4 w-6 sm:w-8 h-6 sm:h-8 border-l-2 border-t-2 border-red-600/50 rounded-tl-lg" />
-              <div className="hidden sm:block absolute top-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-t-2 border-green-500/50 rounded-tr-lg" />
+              <div className="hidden sm:block absolute top-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-t-2 border-red-500/50 rounded-tr-lg" />
               <div className="hidden sm:block absolute bottom-4 left-4 w-6 sm:w-8 h-6 sm:h-8 border-l-2 border-b-2 border-red-600/50 rounded-bl-lg" />
-              <div className="hidden sm:block absolute bottom-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-b-2 border-green-500/50 rounded-br-lg" />
+              <div className="hidden sm:block absolute bottom-4 right-4 w-6 sm:w-8 h-6 sm:h-8 border-r-2 border-b-2 border-red-500/50 rounded-br-lg" />
 
               <div className="mb-4">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
                   Blue-Collar Career{" "}
-                  <span className="bg-green-500 bg-clip-text text-transparent">
+                  <span className="bg-red-500 bg-clip-text text-transparent">
                     Pathway
                   </span>
                 </h3>
@@ -269,7 +270,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                 </div>
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-green-500/10 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-red-500/10 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
           </motion.div>
 
@@ -282,7 +283,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
               <div className="mb-4 sm:mb-6">
                 <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
                   Our{" "}
-                  <span className="bg-green-500 bg-clip-text text-transparent">
+                  <span className="bg-red-500 bg-clip-text text-transparent">
                     8 Core Sectors
                   </span>
                 </h3>
@@ -307,16 +308,16 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                   <Slider {...sliderSettings}>
                     {sectors.map((sector, index) => (
                       <div key={index} className="px-1 sm:px-2 h-full">
-                        <div className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/10 hover:border-gradient transition-all duration-500 hover:shadow-xl hover:shadow-green-500/10 group h-full flex flex-col">
+                        <div className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/10 hover:border-gradient transition-all duration-500 hover:shadow-xl hover:shadow-red-500/10 group h-full flex flex-col">
                           <div className="flex items-start space-x-3 sm:space-x-4 mb-4">
                             <div className="text-2xl sm:text-3xl lg:text-4xl p-2 sm:p-3 bg-white/10 rounded-xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                               {sector.icon}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 group-hover:text-green-500 transition-colors duration-300 leading-tight">
+                              <h4 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors duration-300 leading-tight">
                                 {sector.name}
                               </h4>
-                              <span className="inline-block px-2 py-1 bg-gradient-to-r from-red-600/20 to-green-500/20 rounded-full text-xs sm:text-sm text-white/80 border border-white/10">
+                              <span className="inline-block px-2 py-1 bg-gradient-to-r from-red-600/20 to-red-500/20 rounded-full text-xs sm:text-sm text-white/80 border border-white/10">
                                 {sector.certificationLevel}
                               </span>
                             </div>
@@ -334,14 +335,14 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
                               {sector.skills.map((skill, skillIndex) => (
                                 <span
                                   key={skillIndex}
-                                  className="px-2 py-1 bg-white/5 rounded-md text-xs text-white/70 border border-white/10 hover:border-green-500/30 transition-colors duration-300"
+                                  className="px-2 py-1 bg-white/5 rounded-md text-xs text-white/70 border border-white/10 hover:border-red-500/30 transition-colors duration-300"
                                 >
                                   {skill}
                                 </span>
                               ))}
                             </div>
 
-                            <div className="h-1 bg-gradient-to-r from-red-600 to-green-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                            <div className="h-1 bg-gradient-to-r from-red-600 to-red-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                           </div>
                         </div>
                       </div>
@@ -368,7 +369,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
             <div className="mb-4 sm:mb-6 text-center">
               <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
                 <span className="text-white/70">Impact in </span>
-                <span className="bg-green-500 bg-clip-text text-transparent">
+                <span className="bg-red-500 bg-clip-text text-transparent">
                   {currentSector?.name}
                 </span>
               </h4>
@@ -399,12 +400,12 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
               </motion.div>
 
               <motion.div
-                className="text-center p-3 sm:p-4 lg:p-6 bg-white/5 rounded-xl backdrop-blur-xl border border-white/10 hover:border-green-500/50 transition-all duration-300 group cursor-pointer"
+                className="text-center p-3 sm:p-4 lg:p-6 bg-white/5 rounded-xl backdrop-blur-xl border border-white/10 hover:border-red-500/50 transition-all duration-300 group cursor-pointer"
                 whileHover={{ scale: 1.05, y: -2 }}
                 transition={{ duration: 0.2 }}
               >
                 <motion.div
-                  className="text-xl sm:text-2xl lg:text-4xl font-bold text-green-500 mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300"
+                  className="text-xl sm:text-2xl lg:text-4xl font-bold text-red-500 mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300"
                   key={`trained-${currentImpact.trained}`}
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -419,12 +420,12 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
               </motion.div>
 
               <motion.div
-                className="text-center p-3 sm:p-4 lg:p-6 bg-white/5 rounded-xl backdrop-blur-xl border border-white/10 hover:border-green-500/50 transition-all duration-300 group cursor-pointer"
+                className="text-center p-3 sm:p-4 lg:p-6 bg-white/5 rounded-xl backdrop-blur-xl border border-white/10 hover:border-red-500/50 transition-all duration-300 group cursor-pointer"
                 whileHover={{ scale: 1.05, y: -2 }}
                 transition={{ duration: 0.2 }}
               >
                 <motion.div
-                  className="text-xl sm:text-2xl lg:text-4xl font-bold text-green-500 mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300"
+                  className="text-xl sm:text-2xl lg:text-4xl font-bold text-red-500 mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300"
                   key={`placed-${currentImpact.placed}`}
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -445,7 +446,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
         <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           <motion.div
             variants={itemVariants as Variants}
-            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
+            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-red-500/50 transition-all duration-300"
           >
             <h4 className="text-lg sm:text-xl font-bold text-white mb-2">100% Job Guarantee</h4>
             <p className="text-white/70 text-sm sm:text-base">
@@ -455,7 +456,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
 
           <motion.div
             variants={itemVariants as Variants}
-            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
+            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-red-500/50 transition-all duration-300"
           >
             <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Live Equipment Training</h4>
             <p className="text-white/70 text-sm sm:text-base">
@@ -465,7 +466,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
 
           <motion.div
             variants={itemVariants as Variants}
-            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
+            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-red-500/50 transition-all duration-300"
           >
             <h4 className="text-lg sm:text-xl font-bold text-white mb-2">6-Month Paid Internship</h4>
             <p className="text-white/70 text-sm sm:text-base">
@@ -475,7 +476,7 @@ const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
 
           <motion.div
             variants={itemVariants as Variants}
-            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-green-500/50 transition-all duration-300"
+            className="bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-red-500/50 transition-all duration-300"
           >
             <h4 className="text-lg sm:text-xl font-bold text-white mb-2">NSQF Certified</h4>
             <p className="text-white/70 text-sm sm:text-base">

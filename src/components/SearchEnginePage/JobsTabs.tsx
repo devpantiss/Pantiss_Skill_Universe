@@ -1,3 +1,4 @@
+import SiteImage from "../common/SiteImage";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -64,7 +65,7 @@ const JobTabs: React.FC = () => {
               className="job-card bg-transparent p-6 rounded-lg border-2 border-red-600/60 shadow-lg hover:shadow-red-600/50 transition-all duration-300 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <img
+              <SiteImage decoding="async"
                 src={role.icon}
                 alt={role.title}
                 className="w-24 h-24 mb-4 mx-auto"

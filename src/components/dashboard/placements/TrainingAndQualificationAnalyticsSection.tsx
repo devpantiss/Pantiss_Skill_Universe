@@ -84,13 +84,13 @@ const TrainingAndQualificationAnalyticsSection: React.FC = () => {
                   wrapperStyle={{ color: "#9ca3af", fontSize: 12 }}
                 />
 
-                <Bar
+                <Bar isAnimationActive={false}
                   dataKey="Designated"
                   stackId="a"
                   fill="#0ea5e9"
                   name="Designated"
                 />
-                <Bar
+                <Bar isAnimationActive={false}
                   dataKey="Optional"
                   stackId="a"
                   fill="#312e81"
@@ -138,14 +138,14 @@ const TrainingAndQualificationAnalyticsSection: React.FC = () => {
                 />
 
                 {/* DESIGNATED (LEFT) */}
-                <Bar
+                <Bar isAnimationActive={false}
                   dataKey="Designated"
                   fill="#86198f"
                   name="Designated"
                 />
 
                 {/* OPTIONAL (RIGHT) */}
-                <Bar
+                <Bar isAnimationActive={false}
                   dataKey="Optional"
                   fill="#0d9488"
                   name="Optional"

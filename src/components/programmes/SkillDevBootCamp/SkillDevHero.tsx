@@ -6,10 +6,10 @@ const SkillDevHero: React.FC = () => {
     <section className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden bg-black">
       {/* Parallax Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        className="absolute inset-0 bg-cover bg-center "
         style={{
           backgroundImage:
-            "url('/programs/Hero/hero_2.jpg')",
+            "url('/optimized/programs/Hero/hero_2.jpg.webp')",
         }}
       />
 
@@ -18,7 +18,7 @@ const SkillDevHero: React.FC = () => {
 
       {/* Content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
         className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto"
@@ -57,7 +57,7 @@ const SkillDevHero: React.FC = () => {
 
         {/* CTA */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="px-7 py-3 rounded-xl bg-green-600 hover:bg-green-700 transition font-semibold shadow-lg">
+          <button className="px-7 py-3 rounded-xl bg-red-600 hover:bg-red-700 transition font-semibold shadow-lg">
             Apply Now
           </button>
           <button className="px-7 py-3 rounded-xl bg-white/10 hover:bg-white/15 transition font-semibold border border-white/20">

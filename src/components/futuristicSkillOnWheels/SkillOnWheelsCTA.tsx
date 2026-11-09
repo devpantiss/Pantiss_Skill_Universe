@@ -2,7 +2,7 @@ import React from "react";
 
 const SkillOnWheelsCTA: React.FC = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-r from-green-600 to-green-500 text-center text-black">
+    <section className="relative py-20 bg-gradient-to-r from-red-600 to-red-500 text-center text-black">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-extrabold mb-6">
           Join us in driving skill empowerment across India
@@ -12,7 +12,7 @@ const SkillOnWheelsCTA: React.FC = () => {
         </p>
         <a
           href="#contact"
-          className="px-8 py-3 bg-black text-green-400 font-semibold rounded-full hover:bg-gray-900 transition"
+          className="px-8 py-3 bg-black text-red-400 font-semibold rounded-full hover:bg-gray-900 transition"
         >
           Partner With Us
         </a>

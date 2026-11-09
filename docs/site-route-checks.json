@@ -1,0 +1,183 @@
+{
+  "viewport": "390x844",
+  "mobile": [
+    {
+      "path": "/",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/about",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/careers",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/collaborations",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/contact-us",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/programmes",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/our-programmes",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/resources",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/our-projects",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/placements",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/our-programmes/diploma-programs",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/our-programmes/upskilling-and-reskilling-program",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/our-programmes/industry-alligned-certification",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/our-programmes/iti-program",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/our-programmes/international-mobility-program",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/our-programmes/skill-development-boot-camp-program",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/futuristic-skill-on-wheels",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0,
+      "canvases": 0,
+      "viewerButton": true
+    },
+    {
+      "path": "/careers/jobs",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    },
+    {
+      "path": "/skill-dashboard",
+      "h1": true,
+      "overflow": false,
+      "failed": false,
+      "broken": 0
+    }
+  ],
+  "desktopViewport": "1440x900",
+  "desktop": [
+    {
+      "path": "/about",
+      "load": 411,
+      "requests": 22,
+      "images": 425417,
+      "iframes": 0,
+      "canvases": 0,
+      "overflow": false,
+      "h1": "Who We Are"
+    },
+    {
+      "path": "/our-programmes",
+      "load": 116,
+      "requests": 17,
+      "images": 200770,
+      "iframes": 0,
+      "canvases": 0,
+      "overflow": false,
+      "h1": "Building Industry-ReadySkills for the Real World"
+    },
+    {
+      "path": "/our-programmes/iti-program",
+      "load": 84,
+      "requests": 25,
+      "images": 775002,
+      "iframes": 0,
+      "canvases": 0,
+      "overflow": false,
+      "h1": "Industrial Training Institute "
+    },
+    {
+      "path": "/skill-dashboard",
+      "load": 82,
+      "requests": 37,
+      "images": 78824,
+      "iframes": 0,
+      "canvases": 0,
+      "overflow": false,
+      "h1": "Skill dashboard"
+    }
+  ]
+}

@@ -1,5 +1,8 @@
+import SiteImage from "../common/SiteImage";
 import React, { memo } from "react";
 import Marquee from "react-fast-marquee";
+import { useViewportActivity } from "../../hooks/useViewportActivity";
+import { useReducedMotion } from "framer-motion";
 
 // Partner arrays
 const governmentPartners: string[] = [
@@ -24,10 +27,10 @@ const corporatePartners: string[] = [
 
 const multilateralPartners: string[] = [
   "/Homepage/acceredition/pssc.png",
-  "/Homepage/acceredition/MEPSC.png",
+  "/optimized/Homepage/acceredition/MEPSC.png.webp",
   "/Homepage/acceredition/lsc.png",
   "/Homepage/partner/asci.png",
-  "/Homepage/acceredition/iisssc.png",
+  "/optimized/Homepage/acceredition/iisssc.png.webp",
   // "https://res.cloudinary.com/dxzhnns58/image/upload/v1762188977/WMPSC_adgkmq.png",
   "/Homepage/acceredition/SCMS.png"
 ];
@@ -42,11 +45,13 @@ interface PartnerSectionProps {
 // Partner Section
 const PartnerSection: React.FC<PartnerSectionProps> = memo(
   ({ title, partners, direction, borderSide }) => {
+    const { ref, active } = useViewportActivity<HTMLDivElement>();
+    const reducedMotion = useReducedMotion();
     const borderClass =
       borderSide === "r" ? "border-r-4 border-red-600" : "border-l-4 border-red-600";
 
     return (
-      <div className="relative flex justify-center items-center py-24">
+      <div ref={ref} className="relative flex justify-center items-center py-24">
         <div className="w-full relative z-10">
           <div className="flex flex-col items-center justify-center">
             <div className="absolute z-20 h-44 w-44 rounded-full bg-black -top-10 flex flex-col justify-center items-center">
@@ -62,14 +67,14 @@ const PartnerSection: React.FC<PartnerSectionProps> = memo(
             </div>
           </div>
           {/* Logos Marquee */}
-          <Marquee gradient={false} speed={50} direction={direction} pauseOnHover>
+          <Marquee play={active && !reducedMotion} gradient={false} speed={50} direction={direction} pauseOnHover>
             {partners.map((logo, index) => (
               <div
                 key={index}
                 className="mx-6"
                 style={{ width: "200px", height: "80px" }}
               >
-                <img
+                <SiteImage decoding="async"
                   src={logo}
                   alt={`${title} Partner ${index + 1}`}
                   style={{ width: "100%", height: "100%", objectFit: "contain" }}
@@ -96,14 +101,14 @@ const OurPartners: React.FC = () => {
       {/* Background Blurred Color Circles */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-pink-500 rounded-full blur-3xl opacity-40"></div>
       <div className="absolute bottom-32 right-20 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute top-1/2 left-1/4 w-28 h-28 bg-green-400 rounded-full blur-2xl opacity-30"></div>
+      <div className="absolute top-1/2 left-1/4 w-28 h-28 bg-red-400 rounded-full blur-2xl opacity-30"></div>
       <div className="absolute bottom-10 left-1/3 w-24 h-24 bg-yellow-500 rounded-full blur-2xl opacity-20"></div>
 
       {/* Extra small blurred circles for depth */}
       <div className="absolute top-10 right-1/3 w-16 h-16 bg-red-500 rounded-full blur-xl opacity-40"></div>
       <div className="absolute top-1/4 right-10 w-12 h-12 bg-red-500 rounded-full blur-lg opacity-40"></div>
       <div className="absolute bottom-20 left-10 w-14 h-14 bg-blue-400 rounded-full blur-lg opacity-30"></div>
-      <div className="absolute bottom-1/4 right-1/2 w-10 h-10 bg-green-500 rounded-full blur-md opacity-40"></div>
+      <div className="absolute bottom-1/4 right-1/2 w-10 h-10 bg-red-500 rounded-full blur-md opacity-40"></div>
       <div className="absolute top-2/3 left-1/5 w-20 h-20 bg-orange-500 rounded-full blur-2xl opacity-30"></div>
 
       {/* Heading */}

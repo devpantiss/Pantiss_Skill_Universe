@@ -6,10 +6,10 @@ const IntMobilityHero: React.FC = () => {
     <section className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden bg-black">
       {/* Parallax Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        className="absolute inset-0 bg-cover bg-center "
         style={{
           backgroundImage:
-            "url('/programs/Hero/global_hero.jpg')",
+            "url('/optimized/programs/Hero/global_hero.jpg.webp')",
         }}
       />
 
@@ -18,7 +18,7 @@ const IntMobilityHero: React.FC = () => {
 
       {/* Content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
         className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto"
